@@ -1,0 +1,122 @@
+.header {
+  height: 80px;
+  border-bottom: 3px solid $main-green;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  background: $white;
+
+  &__in {
+    height: 100%;
+  }
+
+  &__desktop {
+    @include flex-grid-row();
+    @include flex();
+    height: 100%;
+    align-items: center;
+    max-width: 60rem;
+    @include breakpoint(medium down) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    display: none;
+    height: 100%;
+    @include breakpoint(medium down) {
+      display: block;
+    }
+  }
+
+  &__logo {
+    @include grid-col(2, 0);
+  }
+
+  &__action {
+    @include grid-col(3, 0);
+    text-align: right;
+  }
+
+  &__action_sidenav {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+
+    .header__action-signup {
+      display: inline-block;
+      width: 100%;
+      padding: 0;
+      font-size: 0.9375rem;
+      color: $gray-nav;
+      font-weight: 400;
+      &:hover {
+        color: $main-green;
+      }
+    }
+
+    .header__action-login {
+      width: 80%;
+      margin: 0.2rem 0;
+    }
+  }
+
+  &__action-signup {
+    color: $gray-nav;
+    font-size: 0.9375rem;
+    padding-right: 1rem;
+    &:hover {
+      color: $main-green;
+    }
+  }
+
+  &__action-login {
+    background: $main-green;
+    color: $white;
+    font-size: 0.9375rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 3px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+.topbar-menu {
+  @include grid-col(7, 0);
+  text-align: center;
+
+  &__item {
+    display: inline-block;
+    position: relative;
+    &:after {
+      width: 3px;
+      height: 3px;
+      background: $gray-standard;
+      display: inline-block;
+      content: "";
+      border-radius: 50%;
+      margin-bottom: 0.2rem;
+    }
+    &:last-child {
+      &:after {
+        background: none;
+        width: 0;
+        height: 0;
+      }
+    }
+  }
+
+  &__link {
+    padding-left: 0.3rem;
+    padding-right: 0.4rem;
+    font-size: 0.9375rem;
+    color: $gray-nav;
+
+    &:hover {
+      color: $main-green;
+    }
+  }
+
+  &__link_active {
+    color: $main-green;
+  }
+}
