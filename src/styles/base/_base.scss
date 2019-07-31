@@ -1,0 +1,65 @@
+html {
+    font-size: 16px; /* Essentially 10px */
+
+    height: 100%;
+    min-height: 100vh;
+    min-width: 320px;
+}
+
+body {
+    font-size: 16px; /* Essentially 17px */
+    font-family: 'Poppins', sans-serif;
+    background: #efefef;
+    overflow-x: hidden;
+    height: 100%;
+    min-height: 100vh;
+    min-width: 320px;
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+h1, h2, h3, h4, h5, h6, button {
+    font-family: 'Poppins', sans-serif;
+}
+
+//i {
+//    font-family: "FontAwesome" !important;
+//}
+
+p {
+    font-size: 1rem;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.horizontal-scroll {
+    overflow: hidden;
+    overflow-x: auto;
+    clear: both;
+    width: 100%;
+}
+
+.body-opacity {
+    background: black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+.unstriped {
+    border: none;
+}
