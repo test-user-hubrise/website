@@ -13,7 +13,7 @@ const Footer = () => (
       backgroundSize: `cover`,
     }}
     data-floater-footer
-    >
+  >
     <div className="footer__in">
       <div className="footer__block">
         <ul className="footer-menu">
@@ -45,7 +45,11 @@ const Footer = () => (
           contact@hubrise.com
         </a>
       </div>
-      <button className="footer__scroll-up" id="scroll-top">
+      <button
+        className="footer__scroll-up"
+        id="scroll-top"
+        onClick={() => window.scrollTo({ top: 0, behavior: `smooth` })}
+      >
         <i className="fa fa-angle-up"></i>
       </button>
     </div>
