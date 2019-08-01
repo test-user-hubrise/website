@@ -1,0 +1,168 @@
+.footer {
+  width: 100%;
+  padding-top: 2rem;
+  position: relative;
+
+  &__in {
+    @include flex();
+    @include flex-grid-row();
+    padding-left: $row-padding;
+    padding-right: $row-padding;
+    justify-content: space-between;
+    @include breakpoint(medium down) {
+      @include flex-grid-column(12);
+      text-align: center;
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    @include breakpoint(medium down) {
+      width: 100%;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    @include breakpoint(medium down) {
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  &__title {
+    color: $white;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    @include breakpoint(medium down) {
+      width: 100%;
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  &__contact {
+    color: $white;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    line-height: 1.1;
+    @include breakpoint(medium down) {
+      width: 100%;
+    }
+  }
+
+  &__contact-schedule {
+    margin-top: 1rem;
+    @include breakpoint(medium down) {
+      width: 100%;
+    }
+  }
+
+  &__contact-mail {
+    color: $white;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    line-height: 1.1;
+    &:hover,
+    &:active {
+      color: $main-green;
+    }
+    @include breakpoint(medium down) {
+      width: 100%;
+    }
+  }
+
+  &__copyright {
+    background: #333333;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    text-align: center;
+  }
+
+  &__scroll-up {
+    position: absolute;
+    top: -23px;
+    right: 5%;
+    width: 46px;
+    height: 46px;
+    background: $main-green;
+    border-radius: 50%;
+    text-align: center;
+    color: $white;
+    font-size: 2rem;
+  }
+
+  &__copyright-span {
+    color: #cccccc;
+    font-weight: 300;
+    font-size: 0.8125rem;
+  }
+}
+
+.footer-menu {
+  @include grid-col(7, 0);
+  margin-bottom: 2rem;
+  width: 100%;
+  float: none;
+
+  &__item {
+    display: inline-block;
+    position: relative;
+
+    &:after {
+      width: 3px;
+      height: 3px;
+      background: $gray-standard;
+      display: inline-block;
+      content: "";
+      border-radius: 50%;
+      margin-bottom: 0.2rem;
+    }
+
+    &:last-child {
+      &:after {
+        background: none;
+        width: 0;
+        height: 0;
+      }
+    }
+
+    @include breakpoint(medium down) {
+      width: 100%;
+      text-align: center;
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  &__link {
+    padding-left: 0.3rem;
+    padding-right: 0.4rem;
+    font-size: 0.9375rem;
+    color: $white;
+    &:hover {
+      color: $white;
+      font-weight: 400;
+    }
+  }
+}
