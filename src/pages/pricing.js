@@ -58,7 +58,7 @@ const PricingPage = () => (
         <a
           className="section__description-link section__description-link_black"
           data-open="contact-us"
-          href="mailto:a@b.c"
+          href="mailto:contact@hubrise.com"
         >
           Contact Us
         </a>
