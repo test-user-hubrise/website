@@ -16,7 +16,7 @@ const features = [
 ]
 
 const IndexPage = () => (
-  <main className="content" data-floater-content>
+  <>
     <div
       className="index-hero"
       style={{
@@ -68,7 +68,7 @@ const IndexPage = () => (
         </div>
       </div>
     </section>
-  </main>
+  </>
 )
 
-export default IndexPage
+    export default IndexPage
