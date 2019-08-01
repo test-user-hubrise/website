@@ -1,7 +1,20 @@
 import React from "react"
 import { Link } from "gatsby"
 
+import HeaderMobile from './header_mobile'
+
 import logo from '../images/logo.png'
+
+const nav = [
+  {
+    to: `/pricing`,
+    title: `Pricing`
+  },
+  {
+    to: `/developers`,
+    title: `Developers`
+  },
+]
 
 const Header = () => (
   <header className="header">
@@ -14,16 +27,23 @@ const Header = () => (
         </div>
         <nav className="topbar-menu">
           <ul className="topbar-menu__list">
-            <li className="topbar-menu__item">
-              <Link className="topbar-menu__link" to="/pricing/">Pricing</Link>
-            </li>
-            <li className="topbar-menu__item">
-              <Link className="topbar-menu__link" to="/developers/">Developers</Link>
-            </li>
+            {nav.map(({ to, title }, idx) => (
+              <li
+                key={`${title}--${idx}`}
+                className="topbar-menu__item"
+              >
+                <Link className="topbar-menu__link" to={to}>
+                  {title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
         <div className="header__action">
-          <a className="header__action-signup" href="https://manager.hubrise.com/signup">
+          <a
+            className="header__action-signup"
+            href="https://manager.hubrise.com/signup"
+          >
             Sign up
           </a>
           <button
@@ -37,6 +57,7 @@ const Header = () => (
           </button>
         </div>
       </div>
+      <HeaderMobile />
     </div>
   </header>
 )
