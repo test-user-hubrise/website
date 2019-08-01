@@ -2,12 +2,17 @@
 @import "node_modules/font-awesome/scss/font-awesome";
 
 @import "node_modules/motion-ui/motion-ui";
-@import "./plugins/foundation/foundation";
+@import "plugins/foundation/foundation";
 @include foundation-everything($flex: true);
 
-@import "./base/_base";
-@import "./base/_variables";
+@import "base/_base";
+@import "base/_variables";
 
-@import "./components/header";
-@import "./components/mobile-bar";
-@import "./components/footer";
+@import "components/header";
+@import "components/mobile-bar";
+@import "components/footer";
+
+@import "components/section";
+@import "components/form";
+
+@import "components/index";
