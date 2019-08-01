@@ -1,0 +1,21 @@
+.button {
+  font-size: 0.9375rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 3px;
+
+  &_white {
+    background: $white;
+    color: $main-green;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    &:hover, &:active, &:focus {
+        background-color: $white;
+        color: $main-green;
+    }
+  }
+
+  &_section {
+    margin-top: 1rem;
+  }
+}
