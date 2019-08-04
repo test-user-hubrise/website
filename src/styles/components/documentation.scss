@@ -1,0 +1,424 @@
+// Left sidebar {{{
+.sidebar-nav {
+  margin-top: 1rem;
+
+  &__title {
+    display: block;
+    width: 100%;
+    position: relative;
+    padding-bottom: 1rem;
+    color: #cccccc;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    cursor: pointer;
+
+    @include breakpoint(medium down) {
+      display: none;
+    }
+
+    &:before {
+      border-bottom: 4px solid #ececec;
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 65%;
+      @include breakpoint(medium down) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__title_small {
+    @include breakpoint(medium up) {
+      display: none;
+    }
+    @include breakpoint(medium down) {
+      display: block;
+    }
+  }
+
+  &__list {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  &__list_hidden {
+    @include breakpoint(medium down) {
+      display: none;
+    }
+  }
+
+  &__item {
+    display: inline-block;
+    width: 100%;
+    line-height: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__link {
+    color: #555555;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1;
+    position: relative;
+    vertical-align: middle;
+    padding-left: 1rem;
+
+    &:hover {
+      color: $main-green;
+      font-weight: 500;
+    }
+
+    &:before {
+      left: 0;
+      width: 3px;
+      height: 94%;
+      background: #cccccc;
+      content: "";
+      top: 0;
+      position: absolute;
+    }
+
+    &:hover:before {
+      background: $main-green;
+      font-weight: 500;
+    }
+
+    &:active:before {
+      background: $main-green;
+      font-weight: 500;
+    }
+  }
+
+  &__link_active {
+    color: $main-green;
+    font-weight: 500;
+
+    &:before {
+      background: $main-green;
+    }
+  }
+
+  &__arrow {
+    color: $main-green;
+    font-size: 1.3em;
+    float: right;
+    cursor: pointer;
+    display: none;
+
+    @include breakpoint(medium down) {
+      display: block;
+    }
+  }
+}
+// }}}
+
+// Body {{{
+.documentation {
+  font-family: "Poppins", sans-serif;
+
+  h1 {
+    color: #333333;
+    font-weight: bold;
+    font-size: 2.625rem;
+    position: relative;
+    margin: 0 0 2.5rem 0;
+    width: 100%;
+    line-height: 1;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: inherit;
+      top: 100%;
+      margin: 10px auto;
+      width: 15%;
+      height: 3px;
+      background: #6db24f;
+    }
+  }
+
+  h2 {
+    color: #555555;
+    font-size: 1.563rem;
+    text-align: left;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+  }
+
+  h3 {
+    color: #777777;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin: 1rem 0 1rem 0;
+    display: inline-block;
+    width: 100%;
+  }
+
+  h4 {
+    color: #777777;
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 0.5rem 0 0.5rem 0;
+    display: inline-block;
+    width: 100%;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #999999;
+    font-weight: 400;
+  }
+
+  a {
+    font-weight: 400;
+    font-size: 1rem;
+    color: $main-green;
+    text-decoration: underline;
+
+    &:hover {
+      color: $main-green;
+    }
+  }
+
+  //&__item-description{
+  //  color: #777777;
+  //  font-weight: 400;
+  //  font-size: 1rem;
+  //}
+
+  ul,
+  ol {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  li {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #999999;
+  }
+
+  ul li {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    padding-left: 0.8rem;
+
+    &:before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      background: #777777;
+      border-radius: 50%;
+      left: 0;
+      position: absolute;
+      top: 0.7rem;
+    }
+  }
+
+  /* -----------
+      Code
+     ----------- */
+
+  figure {
+    width: 100%;
+    background: #fbfbfb;
+    display: inline-block;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-top: 1px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
+
+    tbody {
+      background: none;
+    }
+
+    tr {
+      border: none;
+    }
+
+    .line {
+      font-family: Consolas, "Liberation Mono", Courier, monospace !important;
+      font-size: 0.9375rem;
+      color: #555;
+    }
+  }
+
+  code {
+    padding: 0 2px;
+    margin: 0 2px;
+  }
+
+  &__optional {
+    font-weight: normal;
+    font-size: 0.625rem;
+    padding-left: 5px;
+  }
+
+  /* -----------
+      Table reset
+     ----------- */
+
+  tbody {
+    background: none;
+  }
+
+  tr {
+    border: none;
+  }
+
+  td,
+  td:first-child {
+    padding: 0.6rem;
+  }
+
+  td a {
+    text-decoration: none;
+  }
+}
+
+.documentation-title {
+  &__anchor {
+    margin-left: 0.5rem;
+    display: none;
+
+    &:before {
+      content: "#";
+    }
+
+    @media print {
+      display: none !important;
+    }
+  }
+
+  &:hover &__anchor {
+    display: inline-block;
+  }
+}
+// }}}
+
+// Right sidebar {{{
+.content-nav {
+  &__title {
+    display: block;
+    width: 100%;
+    position: relative;
+    padding-bottom: 1rem;
+    color: #cccccc;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding-left: 1rem;
+    cursor: pointer;
+
+    @include breakpoint(medium down) {
+      display: none;
+      padding-left: 0;
+    }
+
+    &:before {
+      border-bottom: 4px solid #ececec;
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      width: 65%;
+      @include breakpoint(medium down) {
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  &__title_small {
+    @include breakpoint(medium up) {
+      display: none;
+    }
+    @include breakpoint(medium down) {
+      display: block;
+    }
+  }
+
+  &__list {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  &__list_hidden {
+    @include breakpoint(medium down) {
+      display: none;
+    }
+  }
+
+  &__arrow {
+    color: $main-green;
+    font-size: 1.3em;
+    float: right;
+    cursor: pointer;
+    display: none;
+    @include breakpoint(medium down) {
+      display: block;
+    }
+  }
+
+  &__item {
+    color: #555555;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 0.2rem;
+  }
+
+  &__item_active {
+    color: $white;
+    .content-nav__link {
+      color: $white;
+      background: $main-green;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  &__link {
+    color: #555555;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    display: inline-block;
+    width: 100%;
+    padding-left: 1rem;
+    padding-top: 0.2rem;
+    &:hover {
+      color: $main-green;
+    }
+  }
+}
+
+.content-sublist {
+  margin-left: 1.7rem;
+  margin-top: 0.2rem;
+
+  li a {
+    color: #555555;
+    font-weight: 400;
+    font-size: 0.9375rem;
+    display: inline-block;
+    width: 100%;
+
+    &:hover {
+      color: $main-green;
+    }
+  }
+
+  li a.active {
+    color: $main-green;
+  }
+}
+// }}}

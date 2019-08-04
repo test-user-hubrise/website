@@ -37,7 +37,7 @@ const createPages = async ({ graphql, actions }) => {
   result.data.allMdx.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve(`./src/templates/api.jsx`),
+      component: path.resolve(`./src/templates/api/index.jsx`),
       context: {
         id: node.id
       }
