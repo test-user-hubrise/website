@@ -5,11 +5,11 @@ const onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `Mdx`) {
-    const slug = createFilePath({ node, getNode, basePath: `src/articles` })
+    const slug = createFilePath({ node, getNode })
     createNodeField({
       node,
       name: `slug`,
-      value: `/developers${slug}`,
+      value: `${slug}`,
     })
   }
 }

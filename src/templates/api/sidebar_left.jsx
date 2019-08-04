@@ -7,7 +7,7 @@ const nav = [
     title: `Quick Start`,
   },
   {
-    to: `/developers/general-concepts`,
+    to: `/api/general-concepts`,
     title: `API reference`,
   },
   {

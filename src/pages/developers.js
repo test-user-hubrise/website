@@ -12,7 +12,7 @@ const thumbs = [
     title: `API reference`,
     description: `The resources available in the API are documented here`,
     icon: `fa-cogs`,
-    to: `/developers/general-concepts`,
+    to: `/api/general-concepts`,
   },
   {
     title: `Authentication`,
