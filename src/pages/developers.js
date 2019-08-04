@@ -28,7 +28,7 @@ const thumbs = [
   },
 ]
 
-const PricingPage = () => (
+const DevelopersPage = () => (
   <div className="index">
     <section className="section">
       <div className="section__in section__in_padding">
@@ -72,4 +72,4 @@ const PricingPage = () => (
   </div>
 )
 
-export default PricingPage
+export default DevelopersPage
