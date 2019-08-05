@@ -2,7 +2,7 @@
 title: General concepts
 ---
 
-This chapter takes a close look at the API. If you're looking for a brief introduction, check our [Quick Start](/developers/quick-start.html) tutorial.
+This chapter takes a close look at the API. If you're looking for a brief introduction, check our [Quick Start](/developers/quick-start) tutorial.
 
 ## 1. Endpoints
 
@@ -19,7 +19,7 @@ GET https://api.hubrise.com/v1/location/orders
 X-Access-Token: [your_access_token]
 ```
 
-Access tokens are acquired via OAuth 2.0. See [Authentication](/developers/authentication.html).
+Access tokens are acquired via OAuth 2.0. See [Authentication](/developers/authentication).
 
 __Note__: further in this documentation, the root part of the request URLs will be omitted. In the example above, we would simply use: _GET /location/orders_   
 
