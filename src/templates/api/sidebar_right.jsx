@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Link from '../../components/link'
+
 const SidebarRight = ({ currentPath, title, headings }) => (
   <div className="section__sidebar section__sidebar_right section__sidebar_small-padding">
     <div className="section__sidebar-in" data-floater-float-me="">
@@ -12,9 +14,9 @@ const SidebarRight = ({ currentPath, title, headings }) => (
       </h5>
       <ul className="content-nav__list content-nav__list_hidden" id="content-nav-list">
         <li className="content-nav__item content-nav__item_active">
-          <a href={currentPath} className="content-nav__link">
+          <Link to={currentPath} className="content-nav__link">
             {title}
-          </a>
+          </Link>
           <ol className="content-sublist">
             {headings
               .filter(({ depth }) => depth === 2)
@@ -25,11 +27,11 @@ const SidebarRight = ({ currentPath, title, headings }) => (
                     key={`${heading}--${idx}`}
                     className="content-sublist-item content-sublist-level-2"
                   >
-                    <a className="content-sublist-link" href={`#${attribute}`}>
+                    <Link className="content-sublist-link" to={`#${attribute}`}>
                       <span className="content-sublist-text">
                         {heading}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 )
               })}

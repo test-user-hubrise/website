@@ -72,12 +72,14 @@
 
   &__action-login {
     background: $main-green;
-    color: $white;
     font-size: 0.9375rem;
     padding: 0.6rem 1.5rem;
     border-radius: 3px;
     font-weight: 500;
     cursor: pointer;
+    & a {
+      color: $white;
+    }
   }
 }
 

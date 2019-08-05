@@ -1,5 +1,5 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react'
+import Link from './link'
 
 import logo from '../images/logo-footer.png'
 import hero from '../images/hero_image_optimized.jpg'
@@ -41,9 +41,9 @@ const Footer = () => (
         <h5 className="footer__title">
           Contact
         </h5>
-        <a className="footer__contact-mail" href="mailto:contact@hubrise.com">
+        <Link className="footer__contact-mail" to="mailto:contact@hubrise.com">
           contact@hubrise.com
-        </a>
+        </Link>
       </div>
       <button
         className="footer__scroll-up"

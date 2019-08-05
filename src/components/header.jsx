@@ -1,5 +1,5 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react'
+import Link from './link'
 
 import HeaderMobile from './header_mobile'
 
@@ -40,20 +40,20 @@ const Header = () => (
           </ul>
         </nav>
         <div className="header__action">
-          <a
+          <Link
             className="header__action-signup"
-            href="https://manager.hubrise.com/signup"
+            to="https://manager.hubrise.com/signup"
           >
             Sign up
-          </a>
+          </Link>
           <button
             className="header__action-login"
-            onClick={() => {
-              window.location.href='https://manager.hubrise.com/login'
-              return false
-            }}
           >
-            Login
+            <Link
+              to="https://manager.hubrise.com/login"
+            >
+              Login
+            </Link>
           </button>
         </div>
       </div>

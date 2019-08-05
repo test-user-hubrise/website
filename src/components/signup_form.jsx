@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import Link from './link'
 
 const SignupForm = () => (
   <div className="index-hero__form">

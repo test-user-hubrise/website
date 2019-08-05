@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Link from '../components/link'
+
 const features = [
   `Unlimited Orders`,
   `Unlimited Customers`,
@@ -41,27 +43,27 @@ const PricingPage = () => (
         {` `}
         Up to 50 orders and 50 customers per month.
         {` `}
-        <a
+        <Link
           className="section__description-link section__description-link_black"
-          href="https://manager.hubrise.com/signup"
+          to="https://manager.hubrise.com/signup"
           target="_blank"
           rel="noopener noreferrer"
         >
           Start Now
-        </a>
+        </Link>
       </p>
       <p className="section__description section__description_large">
         <b>Large accounts:</b>
         {` `}
         prices are negotiable starting from 10 locations.
         {` `}
-        <a
+        <Link
           className="section__description-link section__description-link_black"
           data-open="contact-us"
-          href="mailto:contact@hubrise.com"
+          to="mailto:contact@hubrise.com"
         >
           Contact Us
-        </a>
+        </Link>
       </p>
     </div>
   </section>

@@ -1,5 +1,5 @@
-import { Link } from "gatsby"
-import React from "react"
+import React from 'react'
+import Link from './link'
 
 import logo from '../images/logo.png'
 import button from '../images/bread-button.png';

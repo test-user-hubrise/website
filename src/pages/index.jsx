@@ -1,5 +1,6 @@
-import React from "react"
+import React from 'react'
 
+import Link from '../components/link'
 import SignupForm from '../components/signup_form'
 
 import hero from '../images/hero_image_optimized.jpg'
@@ -33,9 +34,9 @@ const IndexPage = () => (
             </h3>
             <p className="index-hero__description">
               Connect your POS, your website and all your applications.
-              <a className="index-hero__link" href="#more">
+              <Link className="index-hero__link" to="#more">
                 Read more
-              </a>
+              </Link>
             </p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import Link from '../components/link'
 
 const thumbs = [
   {
@@ -38,13 +38,13 @@ const DevelopersPage = () => (
         <p className="section__description">
           An integration to HubRise makes your application connected to the HubRise ecosystem.
           <br />
-          <a
+          <Link
             className="section__description-link section__description-link_black"
             data-open="contact-us"
-            href="mailto:contact@hubrise.com"
+            to="mailto:contact@hubrise.com"
           >
             Contact us
-          </a>
+          </Link>
           {` `}
           for more information or technical assistance.
         </p>
