@@ -9,6 +9,28 @@ const features = [
   `Unlimited Connections`,
 ]
 
+const additional = [
+  {
+    title: `Free:`,
+    description: `Up to 50 orders and 50 customers per month.`,
+    linkProps: {
+      to: `https://manager.hubrise.com/signup`,
+      target: `_blank`,
+      rel: `noopener noreferrer`,
+      children: `Start Now`,
+    },
+  },
+  {
+    title: `Large accounts:`,
+    description: `prices are negotiable starting from 10 locations.`,
+    linkProps: {
+      to: `mailto:contact@hubrise.com`,
+      [`data-open`]: `contact-us`,
+      children: `Contact Us`,
+    },
+  },
+]
+
 const PricingPage = () => (
   <section className="section section_white">
     <div className="section__in section__in_padding">
@@ -38,33 +60,21 @@ const PricingPage = () => (
           </button>
         </div>
       </div>
-      <p className="section__description section__description_large">
-        <b>Free:</b>
-        {` `}
-        Up to 50 orders and 50 customers per month.
-        {` `}
-        <Link
-          className="section__description-link section__description-link_black"
-          to="https://manager.hubrise.com/signup"
-          target="_blank"
-          rel="noopener noreferrer"
+      {additional.map(({ title, description, linkProps }, idx) => (
+        <p
+          key={`${title}--${idx}`}
+          className="section__description section__description_large"
         >
-          Start Now
-        </Link>
-      </p>
-      <p className="section__description section__description_large">
-        <b>Large accounts:</b>
-        {` `}
-        prices are negotiable starting from 10 locations.
-        {` `}
-        <Link
-          className="section__description-link section__description-link_black"
-          data-open="contact-us"
-          to="mailto:contact@hubrise.com"
-        >
-          Contact Us
-        </Link>
-      </p>
+          <b>{title}</b>
+          {` `}
+          {description}
+          {` `}
+          <Link
+            className="section__description-link section__description-link_black"
+            {...linkProps}
+          />
+        </p>
+      ))}
     </div>
   </section>
 )
