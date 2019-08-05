@@ -7,7 +7,7 @@ import SidebarLeft from './sidebar_left'
 import SidebarRight from './sidebar_right'
 
 const ApiPage = ({ uri, data }) => {
-  const { frontmatter, body, headings } = data.mdx
+  const { frontmatter, body } = data.mdx
   return (
     <>
       <section className="section">
@@ -20,9 +20,8 @@ const ApiPage = ({ uri, data }) => {
             </div>
           </div>
           <SidebarRight
-            title={frontmatter.title}
             currentPath={uri}
-            headings={headings}
+            currentNode={data.mdx}
           />
         </div>
       </section>
@@ -42,6 +41,9 @@ export const apiPageQuery = graphql`
         value
         depth
       }
+      fields {
+        slug
+      }
       body
     }
   }
@@ -52,13 +54,16 @@ ApiPage.propTypes = {
     mdx: PropTypes.shape({
       frontmatter: PropTypes.shape({
         title: PropTypes.string.isRequired,
-      }),
+      }).isRequired,
       headings: PropTypes.arrayOf(
         PropTypes.shape({
           depth: PropTypes.number.isRequired,
           value: PropTypes.string.isRequired,
         })
       ).isRequired,
+      fields: PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+      }).isRequired,
       body: PropTypes.string.isRequired,
     }),
   }).isRequired,

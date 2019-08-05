@@ -33,21 +33,29 @@ const SidebarLeft = ({ currentPath }) => (
         <i className="fa fa-angle-down sidebar-nav__arrow"></i>
       </h5>
       <ul className="sidebar-nav__list sidebar-nav__list_hidden" id="sidebar-nav-list">
-        {nav.map(({ to, title }, idx) => (
-          <li
-            key={`${title}--${idx}`}
-            className="sidebar-nav__item"
-          >
-            <Link
-              className={`sidebar-nav__link ${
-                currentPath.startsWith(to) ? 'sidebar-nav__link_active' : ''
-              }`}
-              to={to}
+        {nav.map(({ to, title }, idx) => {
+          const isHighlighted = (
+            // Retain highlighting when navigating API section.
+            currentPath.startsWith(`/api`) && to.startsWith(`/api`)
+          ) || currentPath.startsWith(to)
+          return (
+            <li
+              key={`${title}--${idx}`}
+              className="sidebar-nav__item"
             >
-              {title}
-            </Link>
-          </li>
-        ))}
+              <Link
+                className={`sidebar-nav__link ${
+                  isHighlighted
+                    ? 'sidebar-nav__link_active'
+                    : ''
+                }`}
+                to={to}
+              >
+                {title}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </div>
   </div>
