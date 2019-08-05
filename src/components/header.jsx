@@ -5,7 +5,7 @@ import HeaderMobile from './header_mobile'
 
 import logo from '../images/logo.png'
 
-const nav = [
+export const nav = [
   {
     to: `/pricing`,
     title: `Pricing`

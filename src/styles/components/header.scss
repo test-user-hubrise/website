@@ -71,6 +71,7 @@
   }
 
   &__action-login {
+    color: $white;
     background: $main-green;
     font-size: 0.9375rem;
     padding: 0.6rem 1.5rem;
@@ -159,7 +160,8 @@
 
   &__menu {
     height: 100%;
-    width: 0;
+    width: 300px;
+    max-width: 300px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -196,10 +198,26 @@
       float: left;
     }
   }
+}
 
-  &__visible {
-    max-width: 300px;
-    width: 300px;
+.leftbar-menu {
+  padding-bottom: 0.5rem;
+  text-align: center;
+  margin-top: 2rem;
+
+  &__item {
+    padding: 0.2rem 0.5rem;
+  }
+
+  &__link {
+    padding-left: 0.3rem;
+    padding-right: 0.4rem;
+    font-size: 0.9375rem;
+    color: $gray-nav;
+    &:hover {
+      color: $main-green;
+      font-weight: 400;
+    }
   }
 }
 // }}}
