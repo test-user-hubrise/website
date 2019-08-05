@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import Link from '../../components/link'
 
 const nav = [
@@ -50,5 +52,9 @@ const SidebarLeft = ({ currentPath }) => (
     </div>
   </div>
 )
+
+SidebarLeft.propTypes = {
+  currentPath: PropTypes.string.isRequired,
+}
 
 export default SidebarLeft

@@ -35,7 +35,6 @@ export const apiPageQuery = graphql`
     mdx(
       id: { eq: $id }
     ) {
-      id
       frontmatter {
         title
       }
@@ -51,12 +50,16 @@ export const apiPageQuery = graphql`
 ApiPage.propTypes = {
   data: PropTypes.shape({
     mdx: PropTypes.shape({
-      id: PropTypes.string,
       frontmatter: PropTypes.shape({
-        title: PropTypes.string,
-        date: PropTypes.string,
+        title: PropTypes.string.isRequired,
       }),
-      body: PropTypes.string,
+      headings: PropTypes.arrayOf(
+        PropTypes.shape({
+          depth: PropTypes.number.isRequired,
+          value: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+      body: PropTypes.string.isRequired,
     }),
   }).isRequired,
 }

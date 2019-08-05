@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Link from '../../components/link'
 
@@ -41,5 +42,16 @@ const SidebarRight = ({ currentPath, title, headings }) => (
     </div>
   </div>
 )
+
+SidebarRight.propTypes = {
+  currentPath: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  headings: PropTypes.arrayOf(
+    PropTypes.shape({
+      depth: PropTypes.number.isRequired,
+      value: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+}
 
 export default SidebarRight
