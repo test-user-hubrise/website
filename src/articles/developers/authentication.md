@@ -48,7 +48,7 @@ An __access-level set of permissions__ is made of:
 
 When your application needs to access a user's data, it should redirect him to HubRise's OAuth server:
 
-```
+```http
 GET https://manager.hubrise.com/oauth2/v1/authorize?
   redirect_uri=https://myapp.com/oauth_callback&
   client_id=459691768564.clients.hubrise.com&
@@ -59,19 +59,19 @@ HubRise authenticates the user, prompts him to choose the location, account, cat
 
 HubRise server sends the result of the authorization to the provided URL. If the user approves the request, then the response contains an authorization code that looks like:
 
-```
+```http
 https://myapp.com/oauth_callback?code=ffae0047c4d6b9e02f95e76a3f6a32...
 ```
 
 If the authorization fails, then the URL is called with an error message:
 
-```
+```http
 https://myapp.com/oauth_callback?error=access_denied
 ```
 
 Or:
 
-```
+```http
 https://myapp.com/oauth_callback?error=expired
 ```
 
@@ -79,10 +79,9 @@ https://myapp.com/oauth_callback?error=expired
 
 After receiving an authorization code, your application can retrieve an access token:
 
-``` http
+```http
 POST https://manager.hubrise.com/oauth2/v1/token
 Content-Type: application/x-www-form-urlencoded
-
 code=ffae0047c4d6b9e02f95e76a3f&
 client_id=407408718192.clients.hubrise.com&
 client_secret=*********
@@ -90,7 +89,7 @@ client_secret=*********
 
 To which HubRise responds:
 
-``` json
+```json
 {
   "access_token": "b9922a78d3ffab6b95e9d72e88",
   "location_id": "3r4s3-1",
@@ -105,7 +104,7 @@ Now that your application has an access token, it can call the API on behalf of 
 
 Here is a call to get location details:
 
-``` http
+```http
 GET https://api.hubrise.com/v1/location
 X-Access-Token: b9922a78d3ffab6b95e9d72e88
 ```
@@ -120,7 +119,7 @@ You will need to embed the client secret into your application, which obviously 
 
 The authorization request is made by opening a browser with this URL:
 
-``` http
+```http
 https://manager.hubrise.com/oauth2/v1/authorize?
   redirect_uri=urn:ietf:wg:oauth:2.0:oob&
   client_id=407408718192.clients.hubrise.com&

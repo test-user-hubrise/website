@@ -19,7 +19,7 @@ The client's __id__ and __secret__ uniquely identify your application. A client 
 
 To access a HubRise account, you need the account owner approval. Open a web browser with this URL:
 
-```
+```http
 https://manager.hubrise.com/oauth2/v1/authorize?
   redirect_uri=https://myapp.com/oauth_callback&
   client_id=459691768564.clients.hubrise.com&
@@ -32,7 +32,7 @@ HubRise authenticates the user, prompts him to choose the location, account, cat
 
 HubRise server sends the result of the authorization to the provided URL. If the user approves the request, then the response contains an authorization code that looks like:
 
-```
+```http
 https://myapp.com/oauth_callback?code=ffae0047c4d6b9e02f95e76a3f6a32...
 ```
 
