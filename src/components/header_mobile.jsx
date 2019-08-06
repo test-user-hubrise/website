@@ -9,12 +9,15 @@ import button from '../images/bread-button.png'
 const social = [
   {
     icon: `fa-twitter`,
+    to: `https://www.twitter.com`,
   },
   {
     icon: `fa-facebook`,
+    to: `https://www.facebook.com`,
   },
   {
     icon: `fa-envelope`,
+    to: `mailto:contact@hubrise.com`,
   },
 ]
 
@@ -56,16 +59,16 @@ const HeaderMobile = () => {
               className="mobile-bar__close-button"
               id="mobile-bar-close"
             >
-              <i className="fa fa-angle-left" />
+              <i className="fa fa-angle-left fa-pull-left" />
               <span className="mobile-bar__sclose-button-span">
                 Menu
               </span>
             </button>
             <div className="header__social-block header__social-block_sidenav">
-              {social.map(({ icon }, idx) => (
+              {social.map(({ icon, to }, idx) => (
                 <Link
                   key={`${icon}--${idx}`}
-                  to="/"
+                  to={to}
                   className="header__social-block-link"
                 >
                   <i className={`fa ${icon} header__social-block-icon`} />
@@ -91,8 +94,19 @@ const HeaderMobile = () => {
               ))}
             </ul>
             <div className="header__action header__action_sidenav">
-              <Link className="header__action-signup" to="/">Sign up</Link>
-              <button className="header__action-login">Login</button>
+              <Link
+                to="https://manager.hubrise.com/signup"
+                className="header__action-signup"
+              >
+                Sign up
+              </Link>
+              <button className="header__action-login">
+                <Link
+                  to="https://manager.hubrise.com/login"
+                >
+                  Login
+                </Link>
+              </button>
             </div>
           </nav>
         </div>
