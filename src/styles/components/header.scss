@@ -27,6 +27,13 @@
     @include breakpoint(medium down) {
       display: block;
     }
+    &__overlay {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,.3);
+      z-index: 4;
+    }
   }
 
   &__logo {
@@ -176,7 +183,6 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    box-shadow: 0 0 0 800px rgba(0,0,0,.22);
   }
 
   &__header {
