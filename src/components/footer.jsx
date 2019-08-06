@@ -4,6 +4,21 @@ import Link from './link'
 import logo from '../images/logo-footer.png'
 import hero from '../images/hero_image_optimized.jpg'
 
+export const nav = [
+  {
+    to: `/`,
+    title: `Home`,
+  },
+  {
+    to: `/pricing`,
+    title: `Pricing`,
+  },
+  {
+    to: `/developers`,
+    title: `Developers`,
+  },
+]
+
 const Footer = () => (
   <footer
     className="footer"
@@ -17,21 +32,19 @@ const Footer = () => (
     <div className="footer__in">
       <div className="footer__block">
         <ul className="footer-menu">
-          <li className="footer-menu__item">
-            <Link className="footer-menu__link" to="/">
-              Home
-            </Link>
-          </li>
-          <li className="footer-menu__item">
-            <Link className="footer-menu__link" to="/pricing/">
-              Pricing
-            </Link>
-          </li>
-          <li className="footer-menu__item">
-            <Link className="footer-menu__link" to="/developers/">
-              Developers
-            </Link>
-          </li>
+          {nav.map(({ title, to }, idx) => (
+            <li
+              key={`${title}--${idx}`}
+              className="footer-menu__item"
+            >
+              <Link
+                to={to}
+                className="footer-menu__link"
+              >
+                {title}
+              </Link>
+            </li>
+          ))}
         </ul>
         <div className="footer__logo">
           <img src={logo} alt="company-logo" />

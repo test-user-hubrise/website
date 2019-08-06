@@ -2,19 +2,9 @@ import React from 'react'
 import Link from './link'
 
 import HeaderMobile from './header_mobile'
+import { nav } from './footer'
 
 import logo from '../images/logo.png'
-
-export const nav = [
-  {
-    to: `/pricing`,
-    title: `Pricing`
-  },
-  {
-    to: `/developers`,
-    title: `Developers`
-  },
-]
 
 const Header = () => (
   <header className="header">
@@ -27,16 +17,18 @@ const Header = () => (
         </div>
         <nav className="topbar-menu">
           <ul className="topbar-menu__list">
-            {nav.map(({ to, title }, idx) => (
-              <li
-                key={`${title}--${idx}`}
-                className="topbar-menu__item"
-              >
-                <Link className="topbar-menu__link" to={to}>
-                  {title}
-                </Link>
-              </li>
-            ))}
+            {nav
+              .filter(({ to }) => to !== `/`)
+              .map(({ to, title }, idx) => (
+                <li
+                  key={`${title}--${idx}`}
+                  className="topbar-menu__item"
+                >
+                  <Link className="topbar-menu__link" to={to}>
+                    {title}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </nav>
         <div className="header__action">

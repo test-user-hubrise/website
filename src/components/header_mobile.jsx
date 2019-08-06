@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import Link from './link'
-import { nav } from './header'
+import { nav } from './footer'
 
 import logo from '../images/logo.png'
 import button from '../images/bread-button.png'
@@ -18,13 +18,6 @@ const social = [
   {
     icon: `fa-envelope`,
     to: `mailto:contact@hubrise.com`,
-  },
-]
-
-const additionalNav = [
-  {
-    title: `Home`,
-    to: `/`
   },
 ]
 
@@ -78,7 +71,7 @@ const HeaderMobile = () => {
           </div>
           <nav className="mobile-bar__content">
             <ul className="leftbar-menu">
-              {additionalNav.concat(nav).map(({ to, title }, idx) => (
+              {nav.map(({ to, title }, idx) => (
                 <li
                   key={`${title}--${idx}`}
                   className="leftbar-menu__item"
