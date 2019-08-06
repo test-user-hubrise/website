@@ -3,6 +3,7 @@ import { MDXProvider } from '@mdx-js/react'
 
 import Link from "./src/components/link"
 import Layout from "./src/components/layout"
+import HighlightCode from "./src/components/markdown/highlight_code"
 
 import './src/styles/global.scss'
 
@@ -42,6 +43,18 @@ const components = {
     )
   },
   a: ({ href, ...other }) => <Link to={href} {...other} />,
+  pre: ({ children: { props } }) => (
+    <HighlightCode
+      language={props.className && props.className.split(`-`)[1]}
+      code={props.children}
+    />
+  ),
+  inlineCode: ({ children }) => (
+    <HighlightCode
+      inline
+      code={children}
+    />
+  ),
 }
 
 export function wrapRootElement({ element }) {

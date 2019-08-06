@@ -225,6 +225,35 @@
   /* -----------
       Code
      ----------- */
+  .prism-code {
+    margin: 1.5rem auto;
+    border-top: 1px solid $gray-color;
+    border-bottom: 1px solid $gray-color;
+  }
+
+  .token-line {
+    display: block;
+    border: none;
+    padding: 0;
+    margin-left: 1.5rem;
+    &:first-of-type {
+      padding-top: 1.5rem;
+    }
+    &:last-of-type {
+      padding-bottom: 1.5rem;
+    }
+    & span:last-child {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &__code--inline {
+    padding: .15rem .25rem;
+  }
+
+  code {
+    background-color: inherit;
+  }
 
   figure {
     width: 100%;
@@ -248,11 +277,6 @@
       font-size: 0.9375rem;
       color: #555;
     }
-  }
-
-  code {
-    padding: 0 2px;
-    margin: 0 2px;
   }
 
   &__optional {
