@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import Link from '../../components/link'
 
 const SidebarRight = ({ currentPath, currentNode }) => {
+  const [ isExpanded, setIsExpanded ] = useState(false)
   const isApiSection = currentPath.startsWith(`/api`)
   let pages = [ currentNode ]
 
@@ -24,13 +25,18 @@ const SidebarRight = ({ currentPath, currentNode }) => {
         <h5
           id="content-nav"
           className="content-nav__title content-nav__title_small"
+          onClick={() => setIsExpanded(!isExpanded)}
         >
           Content
-          <i className="fa fa-angle-down content-nav__arrow" />
+          <i className={`
+            fa fa-angle-${ isExpanded ? 'up' : 'down'} content-nav__arrow`
+          }/>
         </h5>
         <ul
           id="content-nav-list"
-          className="content-nav__list content-nav__list_hidden"
+          className={`content-nav__list ${
+            isExpanded ? '' : 'content-nav__list_hidden'
+          }`}
         >
           {pages.map(({ frontmatter, fields, headings }, idx) => {
             const isCurrentPage = fields.slug.startsWith(currentPath)
