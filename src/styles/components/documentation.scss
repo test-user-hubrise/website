@@ -226,29 +226,24 @@
       Code
      ----------- */
   .prism-code {
+    padding: 2.5rem 1.25rem;
     margin: 1.5rem auto;
     border-top: 1px solid $gray-color;
     border-bottom: 1px solid $gray-color;
+
+    & .prism-code__wrapper {
+      position: relative;
+      white-space: inherit;
+    }
   }
 
   .token-line {
     display: block;
     border: none;
     padding: 0;
-    margin-left: 1.5rem;
-    &:first-of-type {
-      padding-top: 1.5rem;
-    }
-    &:last-of-type {
-      padding-bottom: 1.5rem;
-    }
     & span:last-child {
-      margin-right: 1.5rem;
+      margin-right: 1.25rem;
     }
-  }
-
-  &__code--inline {
-    padding: .15rem .25rem;
   }
 
   code {
