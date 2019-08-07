@@ -49,10 +49,7 @@ An __access-level set of permissions__ is made of:
 When your application needs to access a user's data, it should redirect him to HubRise's OAuth server:
 
 ```http
-GET https://manager.hubrise.com/oauth2/v1/authorize?
-  redirect_uri=https://myapp.com/oauth_callback&
-  client_id=459691768564.clients.hubrise.com&
-  scope=location[orders.write,customer_list.write,catalog.read]
+GET https://manager.hubrise.com/oauth2/v1/authorize?redirect_uri=https://myapp.com/oauth_callback&client_id=459691768564.clients.hubrise.com&scope=location[orders.write,customer_list.write,catalog.read] HTTP/1.1
 ```
 
 HubRise authenticates the user, prompts him to choose the location, account, catalog and customer list he's willing to connect, and obtain consent to access the requested scope. If the user is not logged in, he will be able to sign in or create an account.
@@ -80,8 +77,9 @@ https://myapp.com/oauth_callback?error=expired
 After receiving an authorization code, your application can retrieve an access token:
 
 ```http
-POST https://manager.hubrise.com/oauth2/v1/token
+POST https://manager.hubrise.com/oauth2/v1/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
+---
 code=ffae0047c4d6b9e02f95e76a3f&
 client_id=407408718192.clients.hubrise.com&
 client_secret=*********
@@ -105,7 +103,7 @@ Now that your application has an access token, it can call the API on behalf of 
 Here is a call to get location details:
 
 ```http
-GET https://api.hubrise.com/v1/location
+GET https://api.hubrise.com/v1/location HTTP/1.1
 X-Access-Token: b9922a78d3ffab6b95e9d72e88
 ```
 
