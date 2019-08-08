@@ -1,7 +1,100 @@
 import React from 'react'
+import { withFormik, Form, Field, ErrorMessage } from 'formik'
+import * as yup from 'yup'
+
 import Link from './link'
 
-const SignupForm = () => (
+const fields = [
+  {
+    id: `first_name`,
+    name: `first_name`,
+    type: `text`,
+    placeholder: `First Name`,
+  },
+  {
+    id: `last_name`,
+    name: `last_name`,
+    type: `text`,
+    placeholder: `Last Name`,
+  },
+  {
+    id: `email`,
+    name: `email`,
+    type: `email`,
+    placeholder: `Email`,
+  },
+  {
+    id: `password`,
+    name: `password`,
+    type: `password`,
+    placeholder: `Password`,
+  },
+]
+
+const SignupFormBase = (props) => {
+  const { errors, touched } = props
+  return (
+    <Form
+      id="main-form"
+      className="form"
+    >
+      {fields.map((fieldProps, idx) => (
+        <div
+          key={`${fieldProps.name}--${idx}`}
+          className={`form__block ${
+            touched[fieldProps.name] && (errors[fieldProps.name] ? 'error' : 'valid')
+          }`}
+        >
+          <label htmlFor={fieldProps.id} />
+          <Field
+            className="form__input"
+            {...fieldProps}
+          />
+          <ErrorMessage
+            name={fieldProps.name}
+            render={(msg) => <p className="error__message">{msg}</p>}
+          />
+        </div>
+      ))}
+      <button
+        className="form__button form__button_full-width"
+        type="submit"
+        name="submit"
+      >
+        Create your account
+      </button>
+    </Form>
+  )
+}
+
+const signupSchema = yup.object().shape({
+  [`first_name`]: yup.string()
+    .min(2, `Is your first name really 1 character long? o_0`),
+  [`last_name`]: yup.string()
+    .min(2, `Is your last name really 1 character long? o_0`)
+    .required(`Sorry, but we cannot proceed without your last name.`),
+  email: yup.string()
+    .email(`Provided email seems to be incorrect. Could you double check?`)
+    .required(`Sorry, but we cannot proceed without your email.`),
+  password: yup.string()
+    .min(10, `It's a good practice to have at least 10 symbols in your password.`)
+    .required(`Please choose a password.`),
+ })
+
+const SignupForm = withFormik({
+  mapPropsToValues: () => ({
+   [`first_name`]: ``,
+   [`last_name`]: ``,
+   email: ``,
+   password: ``,
+  }),
+  validationSchema: signupSchema,
+  handleSubmit: () => {
+    window.location = `https://manager.hubrise.com/signup`
+  },
+})(SignupFormBase)
+
+const Wrapper = () => (
   <div className="index-hero__form">
     <div className="index-hero__form-in">
       <h5 className="index-hero__form-title">
@@ -14,61 +107,9 @@ const SignupForm = () => (
           See pricing
         </Link>
       </p>
-      <form
-        className="form"
-        action="https://manager.hubrise.com/signup"
-        id="main-form"
-      >
-        <div className="form__block">
-          <label htmlFor="hr_first_name"></label>
-          <input
-            className="form__input"
-            type="text"
-            placeholder="First Name"
-            name="hr_user[first_name]"
-            id="hr_first_name"
-          />
-        </div>
-        <div className="form__block">
-          <label htmlFor="hr_last_name"></label>
-          <input
-            className="form__input"
-            type="text"
-            placeholder="Last Name"
-            name="hr_user[last_name]"
-            id="hr_last_name"
-          />
-        </div>
-        <div className="form__block">
-          <label htmlFor="hr_email"></label>
-          <input
-            className="form__input"
-            type="email"
-            placeholder="Email"
-            name="hr_user[email]"
-            id="hr_email"
-          />
-        </div>
-        <div className="form__block">
-          <label htmlFor="hr_password"></label>
-          <input
-            className="form__input"
-            type="password"
-            placeholder="Password"
-            name="hr_user[password]"
-            id="hr_password"
-          />
-        </div>
-        <button
-          className="form__button form__button_full-width"
-          type="submit"
-          name="submit"
-        >
-          Create your account
-        </button>
-      </form>
+      <SignupForm />
     </div>
   </div>
 )
 
-export default SignupForm
+export default Wrapper

@@ -106,20 +106,28 @@
   }
 }
 
-.error label {
-  position: absolute;
-  display: inline-block;
-  font-size: 0;
-  right: 10px;
-  top: 0;
-  &:after {
+.error {
+  & label {
     position: absolute;
-    content: "\f00d";
-    font-family: FontAwesome !important;
-    font-size: 1rem;
+    display: inline-block;
+    font-size: 0;
+    right: 10px;
+    top: 0;
+    &:after {
+      position: absolute;
+      content: "\f00d";
+      font-family: FontAwesome !important;
+      font-size: 1rem;
+      color: red;
+      right: 0;
+      top: 3px;
+    }
+  }
+
+  &__message {
     color: red;
-    right: 0;
-    top: 3px;
+    font-size: .85rem;
+    margin: .5rem;
   }
 }
 
