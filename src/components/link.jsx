@@ -3,7 +3,7 @@ import { Link as GatsbyLink } from 'gatsby'
 import PropTypes from 'prop-types'
 
 const Link = ({ to, children, ...other }) => {
-  const leadsToInternalPage = to.startsWith(`/`)
+  const leadsToInternalPage = to && to.startsWith(`/`)
   return (
     leadsToInternalPage
       ? (
@@ -20,7 +20,7 @@ const Link = ({ to, children, ...other }) => {
 }
 
 Link.propTypes = {
-  to: PropTypes.string.isRequired,
+  to: PropTypes.string,
   children: PropTypes.node,
 }
 

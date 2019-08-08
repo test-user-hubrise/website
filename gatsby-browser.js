@@ -1,18 +1,16 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 
-import Link from "./src/components/link"
-import Layout from "./src/components/layout"
 import HighlightCode from "./src/components/markdown/highlight_code"
+import Link from "./src/components/link"
+import PageWrapper from "./src/components/page_wrapper"
+
+import { AppContextProvider } from './src/context/AppContext'
 
 import './src/styles/global.scss'
 
-export function wrapPageElement({ element, props }) {
-  return (
-    <Layout {...props}>
-      {element}
-    </Layout>
-  )
+export const wrapPageElement = (props) => {
+  return <PageWrapper {...props} />
 }
 
 const components = {
@@ -57,10 +55,10 @@ const components = {
   ),
 }
 
-export function wrapRootElement({ element }) {
-  return (
+export const wrapRootElement = ({ element }) => (
+  <AppContextProvider>
     <MDXProvider components={components}>
       {element}
     </MDXProvider>
-  )
-}
+  </AppContextProvider>
+)

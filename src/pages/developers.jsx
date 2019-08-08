@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
 import Link from '../components/link'
+
+import AppContext from '../context/AppContext'
 
 const thumbs = [
   {
@@ -28,48 +31,51 @@ const thumbs = [
   },
 ]
 
-const DevelopersPage = () => (
-  <div className="index">
-    <section className="section">
-      <div className="section__in section__in_padding">
-        <h3 className="section__title">
-          Connect your application to HubRise
-        </h3>
-        <p className="section__description">
-          An integration to HubRise makes your application connected to the HubRise ecosystem.
-          <br />
-          <Link
-            className="section__description-link section__description-link_black"
-            data-open="contact-us"
-            to="mailto:contact@hubrise.com"
-          >
-            Contact us
-          </Link>
-          {` `}
-          for more information or technical assistance.
-        </p>
-      </div>
-    </section>
-    <section className="section">
-      <div className="section__in section__in_padding section__in_reverse">
-        <ul className="developers-thumbs">
-          {thumbs.map(({ title, description, icon, to }, idx) => (
-            <li key={`${title}--${idx}`} className="developers-thumbs__item">
-              <Link className="developers-thumbs__link" to={to}>
-                <i className={`developers-thumbs__icon fa ${icon}`}></i>
-                <span className="developers-thumbs__title">
-                  {title}
-                </span>
-                <p className="developers-thumbs__description">
-                  {description}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  </div>
-)
+const DevelopersPage = () => {
+  const { toggleContactUsVisibility } = useContext(AppContext)
+  return (
+    <div className="index">
+      <section className="section">
+        <div className="section__in section__in_padding">
+          <h3 className="section__title">
+            Connect your application to HubRise
+          </h3>
+          <p className="section__description">
+            An integration to HubRise makes your application connected to the HubRise ecosystem.
+            <br />
+            <Link
+              className="section__description-link section__description-link_black"
+              data-open="contact-us"
+              onClick={toggleContactUsVisibility}
+            >
+              Contact us
+            </Link>
+            {` `}
+            for more information or technical assistance.
+          </p>
+        </div>
+      </section>
+      <section className="section">
+        <div className="section__in section__in_padding section__in_reverse">
+          <ul className="developers-thumbs">
+            {thumbs.map(({ title, description, icon, to }, idx) => (
+              <li key={`${title}--${idx}`} className="developers-thumbs__item">
+                <Link className="developers-thumbs__link" to={to}>
+                  <i className={`developers-thumbs__icon fa ${icon}`}></i>
+                  <span className="developers-thumbs__title">
+                    {title}
+                  </span>
+                  <p className="developers-thumbs__description">
+                    {description}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </div>
+  )
+}
 
 export default DevelopersPage
