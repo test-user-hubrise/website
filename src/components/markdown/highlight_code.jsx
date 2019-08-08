@@ -43,7 +43,9 @@ const HighlightCode = ({ code, language, inline }) => {
               </span>
             ))}
             <span aria-hidden="true" className="line-numbers-rows">
-              {tokens.map((line) => !line[0].empty ? <span /> : null)}
+              {tokens.map((line, idx) => (
+                !line[0].empty ? <span key={`${line}--${idx}`}/> : null
+              ))}
             </span>
           </div>
         </pre>
