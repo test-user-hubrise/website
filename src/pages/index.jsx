@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Link from '../components/link'
-import SignupForm from '../components/signup_form'
+import SignupForm from '../components/forms/signup'
 
 import hero from '../images/hero_image_optimized.jpg'
 import diagram from '../images/diagram.png'

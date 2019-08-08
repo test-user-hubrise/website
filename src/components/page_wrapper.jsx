@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import ContactUs from './contact_us'
+import ContactUs from './forms/contact_us'
 import Layout from './layout'
 
 import AppContext from '../context/AppContext'

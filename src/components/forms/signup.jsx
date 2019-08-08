@@ -2,7 +2,7 @@ import React from 'react'
 import { withFormik, Form, Field, ErrorMessage } from 'formik'
 import * as yup from 'yup'
 
-import Link from './link'
+import Link from '../link'
 
 const fields = [
   {
