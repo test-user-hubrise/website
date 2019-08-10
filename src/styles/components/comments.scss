@@ -1,0 +1,105 @@
+.comments {
+  text-align: left;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    @include breakpoint(medium down) {
+      flex-direction: column;
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__new {
+    display: inline-block;
+    color: $main-green;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    text-decoration: underline;
+    &:hover {
+      color: $main-green;
+    }
+    @include breakpoint(medium down) {
+      width: 100%;
+    }
+  }
+
+  &__list {
+    display: block;
+    text-align: left;
+  }
+
+  &__item {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  &__author {
+    color: $main-green;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding-right: 0.3rem;
+    &:hover {
+      color: $main-green;
+    }
+  }
+
+  &__date {
+    color: #999999;
+    font-weight: 400;
+    font-size: 0.8125rem;
+  }
+
+  &__text {
+    color: #999999;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__reply {
+    color: $main-green;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding-right: 0.3rem;
+    text-decoration: underline;
+    &:hover {
+      color: $main-green;
+    }
+  }
+
+  &__sub-title {
+    color: #555555;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 2rem;
+  }
+
+  &__reply-to {
+    color: $main-green;
+    font-size: 1.125rem;
+    text-decoration: underline;
+    display: inline-block;
+    padding: 0 0.3rem;
+  }
+
+  &__reply-separator {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #999999;
+    vertical-align: middle;
+  }
+
+  &__reply-cancel {
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: underline;
+    color: $main-green;
+    padding: 0 0.3rem;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 
 import Link from '../../components/link'
+import SuggestAppModal from '../../components/forms/suggest_app.fr'
 
 import AppContext from '../../context/AppContext'
 
@@ -77,6 +78,7 @@ const AppSection = ({ title, blocks, extraBlock }) => {
 }
 
 const SuggestApp = () => {
+  const { toggleSuggestAppVisibility } = useContext(AppContext)
   return (
     <li className="app">
       <div className="app__title">
@@ -88,6 +90,7 @@ const SuggestApp = () => {
         aria-controls="suggest-app"
         aria-haspopup="true"
         tabIndex="0"
+        onClick={toggleSuggestAppVisibility}
       >
         <div className="app__box-image app__box-image_suggest-app">
           <span>?</span>
@@ -103,6 +106,7 @@ const SuggestApp = () => {
           aria-controls="suggest-app"
           aria-haspopup="true"
           tabIndex="0"
+          onClick={toggleSuggestAppVisibility}
         >
           Proposer
         </Link>
@@ -151,15 +155,15 @@ const Intro = () => {
 
 const ForDevelopers = () => {
   return (
-    <section class="section section_full-width section_padding">
-      <div class="section__in section__in section__in_green section__in_padding">
-        <h3 class="section__title section__title_white">
+    <section className="section section_full-width section_padding">
+      <div className="section__in section__in section__in_green section__in_padding">
+        <h3 className="section__title section__title_white">
           Vous êtes développeur ?
         </h3>
-        <p class="section__description_white">
+        <p className="section__description_white">
           Utilisez notre API pour construire une application utile aux commerçants. Proposez-la aux utilisateurs d'HubRise en la publiant sur notre site.
         </p>
-        <p class="section__description_white">
+        <p className="section__description_white">
           Nos utilisateurs sont des professionnels en recherche de solutions pour moderniser leur activité.<br />
           Il y a beaucoup à faire, et les bonnes idées d'aujourd'hui sont les standards de demain.
         </p>
@@ -279,6 +283,7 @@ const sections = [
 ]
 
 const AppsPage = () => {
+  const { isSuggestAppVisible } = useContext(AppContext)
   return (
     <>
       <Intro />
@@ -289,6 +294,7 @@ const AppsPage = () => {
         />
       ))}
       <ForDevelopers />
+      {isSuggestAppVisible && <SuggestAppModal />}
     </>
   )
 }
