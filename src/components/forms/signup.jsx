@@ -1,60 +1,69 @@
 import React from 'react'
-import { withFormik, Form, Field, ErrorMessage } from 'formik'
+import { withFormik, Form } from 'formik'
 import * as yup from 'yup'
 
 import Link from '../link'
+import Row from './base/row'
 
-const fields = [
+const rows = [
   {
-    id: `first_name`,
-    name: `first_name`,
-    type: `text`,
-    placeholder: `First Name`,
+    fields: [
+      {
+        id: `first_name`,
+        name: `first_name`,
+        type: `text`,
+        placeholder: `First Name`,
+        component: `input`,
+      },
+    ]
   },
   {
-    id: `last_name`,
-    name: `last_name`,
-    type: `text`,
-    placeholder: `Last Name`,
+    fields: [
+      {
+        id: `last_name`,
+        name: `last_name`,
+        type: `text`,
+        placeholder: `Last Name`,
+        component: `input`,
+      },
+    ]
   },
   {
-    id: `email`,
-    name: `email`,
-    type: `email`,
-    placeholder: `Email`,
+    fields: [
+      {
+        id: `email`,
+        name: `email`,
+        type: `email`,
+        placeholder: `Email`,
+        component: `input`,
+      },
+    ]
   },
   {
-    id: `password`,
-    name: `password`,
-    type: `password`,
-    placeholder: `Password`,
+    fields: [
+      {
+        id: `password`,
+        name: `password`,
+        type: `password`,
+        placeholder: `Password`,
+        component: `input`,
+      },
+    ]
   },
 ]
 
 const SignupFormBase = (props) => {
-  const { errors, touched } = props
   return (
     <Form
       id="main-form"
       className="form"
     >
-      {fields.map((fieldProps, idx) => (
-        <div
-          key={`${fieldProps.name}--${idx}`}
-          className={`form__block ${
-            touched[fieldProps.name] && (errors[fieldProps.name] ? 'error' : 'valid')
-          }`}
-        >
-          <label htmlFor={fieldProps.id} />
-          <Field
-            className="form__input"
-            {...fieldProps}
-          />
-          <ErrorMessage
-            name={fieldProps.name}
-            render={(msg) => <p className="error__message">{msg}</p>}
-          />
-        </div>
+      {rows.map(({ fields }, idx) => (
+        <Row
+          key={`${fields[0].id}--${idx}`}
+          fields={fields}
+          formProps={props}
+        />
       ))}
       <button
         className="form__button form__button_full-width"

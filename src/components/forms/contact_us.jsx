@@ -1,72 +1,56 @@
 import React, { useContext } from 'react'
-import { withFormik, Form, Field, ErrorMessage } from 'formik'
+import { withFormik, Form } from 'formik'
 import * as yup from 'yup'
 
 import AppContext from '../../context/AppContext'
 
-const fields = [
+import Row from './base/row'
+
+const rows = [
   {
-    id: `name`,
-    name: `name`,
-    type: `text`,
-    placeholder: `Your name`,
+    fields: [
+      {
+        id: `name`,
+        name: `name`,
+        type: `text`,
+        placeholder: `Your name`,
+        component: `input`,
+      },
+      {
+        id: `email`,
+        name: `email`,
+        type: `email`,
+        placeholder: `Your email`,
+        component: `input`,
+      },
+    ],
   },
   {
-    id: `email`,
-    name: `email`,
-    type: `email`,
-    placeholder: `Your email`,
-  }
+    fields: [
+      {
+        id: `message`,
+        name: `message`,
+        placeholder: `Your message ...`,
+        component: `textarea`,
+      },
+    ],
+  },
 ]
 
 const ContactUsBase = (props) => {
-  const { errors, touched } = props
   return (
     <Form
       id="contact-us__form"
       className="form form_modal"
       noValidate="novalidate"
     >
-      <div
-        className="form__block-row"
-      >
-        {fields.map((fieldProps, idx) => (
-          <div
-            key={`${fieldProps.name}--${idx}`}
-            className={`form__block form__block_medium ${
-              touched[fieldProps.name] && (errors[fieldProps.name] ? 'error' : 'valid')
-            }`}
-          >
-            <label htmlFor={fieldProps.name} />
-            <Field
-              className="form__input"
-              {...fieldProps}
-            />
-            <ErrorMessage
-              name={fieldProps.name}
-              render={(msg) => <p className="error__message">{msg}</p>}
-            />
-          </div>
-        ))}
-      </div>
-      <div
-        className={`form__block ${
-          touched.message && (errors.message ? 'error' : 'valid')
-        }`}
-      >
-        <label htmlFor="message" />
-        <Field
-          component="textarea"
-          id="message"
-          name="message"
-          className="form__textarea"
-          placeholder="Your message ..."
+      {rows.map(({ fields }, idx) => (
+        <Row
+          key={`${fields[0].id}--${idx}`}
+          fields={fields}
+          formProps={props}
         />
-        <ErrorMessage
-          name="message"
-          render={(msg) => <p className="error__message">{msg}</p>}
-        />
-      </div>
+      ))}
       <button
         type="submit"
         name="submit"

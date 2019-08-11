@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
-import { withFormik, Form, Field, ErrorMessage } from 'formik'
+import { withFormik, Form } from 'formik'
 import * as yup from 'yup'
 
 import AppContext from '../../context/AppContext'
+
+import Row from './base/row'
 
 const formSections = [
   {
@@ -93,59 +95,18 @@ const formSections = [
   },
 ]
 
-const CompleteField = ({ fieldProps, ...other }) => {
-  const { name, component } = fieldProps
-  const { touched, errors } = other
-  return (
-    <div className={`${
-      touched[name]
-        ? (errors[name] ? 'error' : 'valid')
-        : ''
-    }`}
-    >
-      <label htmlFor={name} />
-      <Field
-        className={`form__${component}`}
-        {...fieldProps}
-      />
-      <ErrorMessage
-        name={name}
-        render={(msg) => <p className="error__message">{msg}</p>}
-      />
-    </div>
-  )
-}
-
-const Section = ({ title, rows, ...other }) => {
+const Section = ({ title, rows, formProps }) => {
   return (
     <>
       <h6 className="form__sub-title">
         {title}
       </h6>
-      {rows.map(({ fields, isSingleField }, idx) => (
-        <div
-          key={`${fields.title}--${idx}`}
-          className={`form__block${isSingleField ? '' : '-row'}`}
-        >
-          {fields.map((fieldProps, idx) => {
-            return isSingleField
-              ? (
-                <CompleteField
-                  fieldProps={fieldProps}
-                  {...other}
-                />
-              ) : (
-                <div
-                  key={`${fieldProps.name}--${idx}`}
-                  className="form__block form__block_medium"
-                >
-                  <CompleteField
-                    fieldProps={fieldProps}
-                    {...other}
-                  />
-                </div>
-              )})}
-        </div>
+      {rows.map(({ fields }, idx) => (
+        <Row
+          key={`${fields[0].id}--${idx}`}
+          fields={fields}
+          formProps={formProps}
+        />
       ))}
     </>
   )
@@ -163,7 +124,7 @@ const SuggestAppBase = (props) => {
           key={`${title}--${idx}`}
           title={title}
           rows={rows}
-          {...props}
+          formProps={props}
         />
       ))}
       <button
