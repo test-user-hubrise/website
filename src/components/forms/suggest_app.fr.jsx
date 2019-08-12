@@ -2,9 +2,10 @@ import React, { useContext } from 'react'
 import { withFormik, Form } from 'formik'
 import * as yup from 'yup'
 
-import AppContext from '../../context/AppContext'
-
+import Modal from '../modal'
 import Row from './base/row'
+
+import AppContext from '../../context/AppContext'
 
 const formSections = [
   {
@@ -26,7 +27,7 @@ const formSections = [
             placeholder: `Votre Société`,
             component: `input`,
           },
-        ]
+        ],
       },
       {
         fields: [
@@ -44,9 +45,9 @@ const formSections = [
             placeholder: `Votre Numéro de Téléphone`,
             component: `input`,
           },
-        ]
+        ],
       },
-    ]
+    ],
   },
   {
     title: `A propos de l'Application :`,
@@ -67,7 +68,7 @@ const formSections = [
             placeholder: `Site internet de l'Application`,
             component: `input`,
           },
-        ]
+        ],
       },
       {
         isSingleField: true,
@@ -78,7 +79,7 @@ const formSections = [
             placeholder: `Qui devons-nous contacter ?`,
             component: `textarea`,
           },
-        ]
+        ],
       },
       {
         isSingleField: true,
@@ -89,18 +90,16 @@ const formSections = [
             placeholder: `Quelque chose à ajouter ?`,
             component: `textarea`,
           },
-        ]
+        ],
       },
-    ]
+    ],
   },
 ]
 
 const Section = ({ title, rows, formProps }) => {
   return (
     <>
-      <h6 className="form__sub-title">
-        {title}
-      </h6>
+      <h6 className="form__sub-title">{title}</h6>
       {rows.map(({ fields }, idx) => (
         <Row
           key={`${fields[0].id}--${idx}`}
@@ -139,29 +138,40 @@ const SuggestAppBase = (props) => {
 }
 
 const suggestAppSchema = yup.object().shape({
-  name: yup.string()
+  name: yup
+    .string()
     .min(2, `Is your name really 1 character long? o_0`)
     .required(`Sorry, but we cannot proceed without your name.`),
   company: yup.string(),
-  email: yup.string()
+  email: yup
+    .string()
     .email(`Provided email seems to be incorrect. Could you double check?`)
     .required(`Sorry, but we cannot proceed without your email.`),
   phone: yup.string(),
-  app_name: yup.string()
+  app_name: yup
+    .string()
     .min(2, `Is company's name really 1 character long? o_0`)
     .required(`Sorry, but we cannot proceed without company's name.`),
   app_site: yup.string(),
-  app_contact: yup.string()
+  app_contact: yup
+    .string()
     .min(2, `Is company's contact details really 1 character long? o_0`)
-    .required(`Sorry, but we cannot proceed without company's contact details.`),
+    .required(
+      `Sorry, but we cannot proceed without company's contact details.`
+    ),
   app_extra: yup.string(),
 })
 
 const SuggestApp = withFormik({
   mapPropsToValues: () => ({
     name: ``,
+    company: ``,
     email: ``,
-    message: ``,
+    phone: ``,
+    app_name: ``,
+    app_site: ``,
+    app_contact: ``,
+    app_extra: ``,
   }),
   validationSchema: suggestAppSchema,
   handleSubmit: (_values, { resetForm }) => {
@@ -173,45 +183,15 @@ const SuggestApp = withFormik({
 const Wrapper = () => {
   const { toggleSuggestAppVisibility } = useContext(AppContext)
   return (
-    <div
-      className="reveal-overlay"
-      style={{ display: `block` }}
-      onClick={toggleSuggestAppVisibility}
+    <Modal
+      title="Proposer une Application"
+      description="Dnteger viverra non lorem vitae efficitur. Nam quis nunc erat.
+      Mauris aliquet ullamcorper maximus. Quisque faucibus felis metus, eget
+      iaculis lectus aliquet non."
+      onClose={toggleSuggestAppVisibility}
     >
-      <div
-        id="suggest-app"
-        className="reveal modal"
-        data-reveal="k4dn8k-reveal"
-        role="dialog"
-        aria-hidden="false"
-        data-yeti-box="suggest-app"
-        data-resize="suggest-app"
-        tabIndex="-1"
-        style={{
-          display: `block`,
-          top: `25px`,
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <h5 className="modal__title">
-          Proposer une Application
-        </h5>
-        <div className="comments__text">
-          Dnteger viverra non lorem vitae efficitur. Nam quis nunc erat.<br />
-          Mauris aliquet ullamcorper maximus. Quisque faucibus felis metus, eget iaculis lectus aliquet non.
-        </div>
-        <SuggestApp />
-        <button
-          type="button"
-          className="close-button modal__close-button"
-          data-close=""
-          aria-label="close"
-          onClick={toggleSuggestAppVisibility}
-        >
-          <i className="fa fa-close modal__close-button-icon" />
-        </button>
-      </div>
-    </div>
+      <SuggestApp />
+    </Modal>
   )
 }
 
