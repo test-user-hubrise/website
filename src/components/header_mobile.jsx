@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import Link from './link'
 import { nav } from './footer'
 
+import { generateKey } from './utils'
+
 import logo from '../images/logo.png'
 import button from '../images/bread-button.png'
 
@@ -22,7 +24,7 @@ const social = [
 ]
 
 const HeaderMobile = () => {
-  const [ isVisible, setIsVisible ] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
   return (
     <>
@@ -39,8 +41,8 @@ const HeaderMobile = () => {
             className="mobile-bar__button"
             type="button"
             style={{
-            backgroundImage: `url(${button})`,
-            backgroundRepeat: `no-repeat`,
+              backgroundImage: `url(${button})`,
+              backgroundRepeat: `no-repeat`,
             }}
             onClick={() => setIsVisible(!isVisible)}
           />
@@ -49,10 +51,7 @@ const HeaderMobile = () => {
           </Link>
         </div>
         {isVisible && (
-          <div
-            id="mobile-bar-menu"
-            className="mobile-bar__menu"
-          >
+          <div id="mobile-bar-menu" className="mobile-bar__menu">
             <div className="mobile-bar__header">
               <button
                 onClick={() => setIsVisible(!isVisible)}
@@ -60,14 +59,12 @@ const HeaderMobile = () => {
                 id="mobile-bar-close"
               >
                 <i className="fa fa-angle-left fa-pull-left" />
-                <span className="mobile-bar__sclose-button-span">
-                  Menu
-                </span>
+                <span className="mobile-bar__sclose-button-span">Menu</span>
               </button>
               <div className="header__social-block header__social-block_sidenav">
                 {social.map(({ icon, to }, idx) => (
                   <Link
-                    key={`${icon}--${idx}`}
+                    key={generateKey(icon, idx)}
                     to={to}
                     className="header__social-block-link"
                   >
@@ -80,14 +77,11 @@ const HeaderMobile = () => {
               <ul className="leftbar-menu">
                 {nav.map(({ to, title }, idx) => (
                   <li
-                    key={`${title}--${idx}`}
+                    key={generateKey(title, idx)}
                     className="leftbar-menu__item"
                     onClick={() => setIsVisible(!isVisible)}
                   >
-                    <Link
-                      to={to}
-                      className="leftbar-menu__link"
-                    >
+                    <Link to={to} className="leftbar-menu__link">
                       {title}
                     </Link>
                   </li>
@@ -101,11 +95,7 @@ const HeaderMobile = () => {
                   Sign up
                 </Link>
                 <button className="header__action-login">
-                  <Link
-                    to="https://manager.hubrise.com/login"
-                  >
-                    Login
-                  </Link>
+                  <Link to="https://manager.hubrise.com/login">Login</Link>
                 </button>
               </div>
             </nav>

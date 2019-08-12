@@ -4,6 +4,8 @@ import Link from '../components/link'
 
 import AppContext from '../context/AppContext'
 
+import { generateKey } from '../components/utils'
+
 const thumbs = [
   {
     title: `Quick Start`,
@@ -41,7 +43,8 @@ const DevelopersPage = () => {
             Connect your application to HubRise
           </h3>
           <p className="section__description">
-            An integration to HubRise makes your application connected to the HubRise ecosystem.
+            An integration to HubRise makes your application connected to the
+            HubRise ecosystem.
             <br />
             <Link
               className="section__description-link section__description-link_black"
@@ -59,12 +62,13 @@ const DevelopersPage = () => {
         <div className="section__in section__in_padding section__in_reverse">
           <ul className="developers-thumbs">
             {thumbs.map(({ title, description, icon, to }, idx) => (
-              <li key={`${title}--${idx}`} className="developers-thumbs__item">
+              <li
+                key={generateKey(title, idx)}
+                className="developers-thumbs__item"
+              >
                 <Link className="developers-thumbs__link" to={to}>
                   <i className={`developers-thumbs__icon fa ${icon}`}></i>
-                  <span className="developers-thumbs__title">
-                    {title}
-                  </span>
+                  <span className="developers-thumbs__title">{title}</span>
                   <p className="developers-thumbs__description">
                     {description}
                   </p>

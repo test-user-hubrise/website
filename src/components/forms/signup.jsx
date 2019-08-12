@@ -5,6 +5,8 @@ import * as yup from 'yup'
 import Link from '../link'
 import Row from './base/row'
 
+import { generateKey } from '../utils'
+
 const rows = [
   {
     fields: [
@@ -15,7 +17,7 @@ const rows = [
         placeholder: `First Name`,
         component: `input`,
       },
-    ]
+    ],
   },
   {
     fields: [
@@ -26,7 +28,7 @@ const rows = [
         placeholder: `Last Name`,
         component: `input`,
       },
-    ]
+    ],
   },
   {
     fields: [
@@ -37,7 +39,7 @@ const rows = [
         placeholder: `Email`,
         component: `input`,
       },
-    ]
+    ],
   },
   {
     fields: [
@@ -48,19 +50,16 @@ const rows = [
         placeholder: `Password`,
         component: `input`,
       },
-    ]
+    ],
   },
 ]
 
 const SignupFormBase = (props) => {
   return (
-    <Form
-      id="main-form"
-      className="form"
-    >
+    <Form id="main-form" className="form">
       {rows.map(({ fields }, idx) => (
         <Row
-          key={`${fields[0].id}--${idx}`}
+          key={generateKey(fields[0].id, idx)}
           fields={fields}
           formProps={props}
         />
@@ -77,25 +76,32 @@ const SignupFormBase = (props) => {
 }
 
 const signupSchema = yup.object().shape({
-  [`first_name`]: yup.string()
+  [`first_name`]: yup
+    .string()
     .min(2, `Is your first name really 1 character long? o_0`),
-  [`last_name`]: yup.string()
+  [`last_name`]: yup
+    .string()
     .min(2, `Is your last name really 1 character long? o_0`)
     .required(`Sorry, but we cannot proceed without your last name.`),
-  email: yup.string()
+  email: yup
+    .string()
     .email(`Provided email seems to be incorrect. Could you double check?`)
     .required(`Sorry, but we cannot proceed without your email.`),
-  password: yup.string()
-    .min(10, `It's a good practice to have at least 10 symbols in your password.`)
+  password: yup
+    .string()
+    .min(
+      10,
+      `It's a good practice to have at least 10 symbols in your password.`
+    )
     .required(`Please choose a password.`),
- })
+})
 
 const SignupForm = withFormik({
   mapPropsToValues: () => ({
-   [`first_name`]: ``,
-   [`last_name`]: ``,
-   email: ``,
-   password: ``,
+    [`first_name`]: ``,
+    [`last_name`]: ``,
+    email: ``,
+    password: ``,
   }),
   validationSchema: signupSchema,
   handleSubmit: () => {
@@ -106,9 +112,7 @@ const SignupForm = withFormik({
 const Wrapper = () => (
   <div className="index-hero__form">
     <div className="index-hero__form-in">
-      <h5 className="index-hero__form-title">
-        Get started now
-      </h5>
+      <h5 className="index-hero__form-title">Get started now</h5>
       <p className="index-hero__form-description">
         <span>HubRise is free up to 50 orders per month.</span>
         {` `}

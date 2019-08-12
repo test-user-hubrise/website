@@ -4,6 +4,8 @@ import Link from './link'
 import HeaderMobile from './header_mobile'
 import { nav } from './footer'
 
+import { generateKey } from './utils'
+
 import logo from '../images/logo.png'
 
 const Header = () => (
@@ -20,10 +22,7 @@ const Header = () => (
             {nav
               .filter(({ to }) => to !== `/`)
               .map(({ to, title }, idx) => (
-                <li
-                  key={`${title}--${idx}`}
-                  className="topbar-menu__item"
-                >
+                <li key={generateKey(title, idx)} className="topbar-menu__item">
                   <Link className="topbar-menu__link" to={to}>
                     {title}
                   </Link>
@@ -38,14 +37,8 @@ const Header = () => (
           >
             Sign up
           </Link>
-          <button
-            className="header__action-login"
-          >
-            <Link
-              to="https://manager.hubrise.com/login"
-            >
-              Login
-            </Link>
+          <button className="header__action-login">
+            <Link to="https://manager.hubrise.com/login">Login</Link>
           </button>
         </div>
       </div>

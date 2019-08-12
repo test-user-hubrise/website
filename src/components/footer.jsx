@@ -1,5 +1,8 @@
 import React from 'react'
+
 import Link from './link'
+
+import { generateKey } from './utils'
 
 import logo from '../images/logo-footer.png'
 import hero from '../images/hero_image_optimized.jpg'
@@ -33,14 +36,8 @@ const Footer = () => (
       <div className="footer__block">
         <ul className="footer-menu">
           {nav.map(({ title, to }, idx) => (
-            <li
-              key={`${title}--${idx}`}
-              className="footer-menu__item"
-            >
-              <Link
-                to={to}
-                className="footer-menu__link"
-              >
+            <li key={generateKey(title, idx)} className="footer-menu__item">
+              <Link to={to} className="footer-menu__link">
                 {title}
               </Link>
             </li>
@@ -51,9 +48,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="footer__contacts">
-        <h5 className="footer__title">
-          Contact
-        </h5>
+        <h5 className="footer__title">Contact</h5>
         <Link className="footer__contact-mail" to="mailto:contact@hubrise.com">
           contact@hubrise.com
         </Link>
@@ -67,9 +62,7 @@ const Footer = () => (
       </button>
     </div>
     <div className="footer__copyright">
-      <span className="footer__copyright-span">
-        Copyright © 2019 HubRise
-      </span>
+      <span className="footer__copyright-span">Copyright © 2019 HubRise</span>
     </div>
   </footer>
 )

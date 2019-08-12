@@ -3,14 +3,12 @@ import PropTypes from 'prop-types'
 import Prism from 'prismjs'
 import Highlight from 'prism-react-renderer'
 
+import { generateKey } from '../utils'
+
 const HighlightCode = ({ code, language, inline }) => {
   if (inline) {
     return (
-      <Highlight
-        code={code}
-        language={language}
-        Prism={Prism}
-      >
+      <Highlight code={code} language={language} Prism={Prism}>
         {({ className, style }) => (
           <code
             className={`${className} documentation__code--inline`}
@@ -27,25 +25,27 @@ const HighlightCode = ({ code, language, inline }) => {
   }
 
   return (
-    <Highlight
-      code={code}
-      language={language}
-      Prism={Prism}
-    >
+    <Highlight code={code} language={language} Prism={Prism}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={`${className} line-numbers`} style={style}>
           <div className="prism-code__wrapper">
-            {tokens.map((line, i) => !line[0].empty && (
-              <span {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => token.content && (
-                  <span {...getTokenProps({ token, key })}/>
-                ))}
-              </span>
-            ))}
+            {tokens.map(
+              (line, i) =>
+                !line[0].empty && (
+                  <span {...getLineProps({ line, key: i })}>
+                    {line.map(
+                      (token, key) =>
+                        token.content && (
+                          <span {...getTokenProps({ token, key })} />
+                        )
+                    )}
+                  </span>
+                )
+            )}
             <span aria-hidden="true" className="line-numbers-rows">
-              {tokens.map((line, idx) => (
-                !line[0].empty ? <span key={`${line}--${idx}`}/> : null
-              ))}
+              {tokens.map((line, idx) =>
+                !line[0].empty ? <span key={generateKey(idx)} /> : null
+              )}
             </span>
           </div>
         </pre>

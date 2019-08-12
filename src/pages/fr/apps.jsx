@@ -5,6 +5,8 @@ import SuggestAppModal from '../../components/forms/suggest_app.fr'
 
 import AppContext from '../../context/AppContext'
 
+import { generateKey } from '../../components/utils'
+
 import jdcLogo from '../../images/apps/jdc.png'
 import orderLordLogo from '../../images/apps/orderlord.png'
 import nestorLogo from '../../images/apps/nestor.png'
@@ -21,55 +23,31 @@ const AppSection = ({ title, blocks, extraBlock }) => {
   return (
     <section className="section">
       <div className="section__in section__in_padding section__in_reverse">
-        <h3 className="section__title section__title_align-left">
-          {title}
-        </h3>
+        <h3 className="section__title section__title_align-left">{title}</h3>
         <ul className="apps">
-          {blocks.map(({
-            title,
-            to,
-            domain,
-            logo,
-            description,
-            additionalInfo
-          }, idx) => (
-            <li
-              key={`${title}--${idx}`}
-              className="app"
-            >
-              <div className="app__title">
-                {title}
-              </div>
-              <Link
-                className="app__box"
-                to={to}
-                target="_blank"
-              >
-                <img
-                  className="app__box-image"
-                  src={logo}
-                  alt={title}
-                />
-              </Link>
-              <div className="app__description">
-                {description}
-                {additionalInfo && (
-                  <p style={{ fontSize: `0.9rem` }}>
-                    <i>{additionalInfo}</i>
-                  </p>
-                )}
-              </div>
-              <div className="app__more">
-                <Link
-                  className="app__more-link"
-                  to={to}
-                  target="_blank"
-                >
-                  {domain}
+          {blocks.map(
+            ({ title, to, domain, logo, description, additionalInfo }, idx) => (
+              <li key={generateKey(title, idx)} className="app">
+                <div className="app__title">{title}</div>
+                <Link className="app__box" to={to} target="_blank">
+                  <img className="app__box-image" src={logo} alt={title} />
                 </Link>
-              </div>
-            </li>
-          ))}
+                <div className="app__description">
+                  {description}
+                  {additionalInfo && (
+                    <p style={{ fontSize: `0.9rem` }}>
+                      <i>{additionalInfo}</i>
+                    </p>
+                  )}
+                </div>
+                <div className="app__more">
+                  <Link className="app__more-link" to={to} target="_blank">
+                    {domain}
+                  </Link>
+                </div>
+              </li>
+            )
+          )}
           {extraBlock}
         </ul>
       </div>
@@ -81,9 +59,7 @@ const SuggestApp = () => {
   const { toggleSuggestAppVisibility } = useContext(AppContext)
   return (
     <li className="app">
-      <div className="app__title">
-        Proposer une application
-      </div>
+      <div className="app__title">Proposer une application</div>
       <Link
         className="app__box app__box_suggest-app"
         data-open="suggest-app"
@@ -121,12 +97,14 @@ const Intro = () => {
     <section className="section">
       <div className="section__in section__in_padding">
         <h3 className="section__title">
-          Les applications disponibles<br />
+          Les applications disponibles
+          <br />
           ou bientôt disponibles
         </h3>
         <div className="section__description">
           <p>
-            Vous êtes commerçant et votre application ne figure pas dans cette liste ?
+            Vous êtes commerçant et votre application ne figure pas dans cette
+            liste ?
             <Link
               className="section__description-link section__description-link_black"
               data-open="contact-us"
@@ -139,7 +117,8 @@ const Intro = () => {
             </Link>
           </p>
           <p>
-            Vous êtes développeur et souhaitez intégrer votre application à HubRise ?
+            Vous êtes développeur et souhaitez intégrer votre application à
+            HubRise ?
             <Link
               className="section__description-link section__description-link_black"
               to="/fr/developpeurs/"
@@ -161,11 +140,16 @@ const ForDevelopers = () => {
           Vous êtes développeur ?
         </h3>
         <p className="section__description_white">
-          Utilisez notre API pour construire une application utile aux commerçants. Proposez-la aux utilisateurs d'HubRise en la publiant sur notre site.
+          Utilisez notre API pour construire une application utile aux
+          commerçants. Proposez-la aux utilisateurs d'HubRise en la publiant sur
+          notre site.
         </p>
         <p className="section__description_white">
-          Nos utilisateurs sont des professionnels en recherche de solutions pour moderniser leur activité.<br />
-          Il y a beaucoup à faire, et les bonnes idées d'aujourd'hui sont les standards de demain.
+          Nos utilisateurs sont des professionnels en recherche de solutions
+          pour moderniser leur activité.
+          <br />
+          Il y a beaucoup à faire, et les bonnes idées d'aujourd'hui sont les
+          standards de demain.
         </p>
       </div>
     </section>
@@ -259,7 +243,7 @@ const sections = [
         description: `Agence digitale et éditeur de solutions de commande en ligne pour les PME et petits commerçants.`,
         additionalInfo: `En cours d'intégration`,
       },
-    ]
+    ],
   },
   {
     title: `Autres applications`,
@@ -278,7 +262,7 @@ const sections = [
         logo: mailChimpLogo,
         description: `Solution d'envoi d'emails et de newsletter personnalisés.`,
       },
-    ]
+    ],
   },
 ]
 
@@ -289,7 +273,7 @@ const AppsPage = () => {
       <Intro />
       {sections.map((sectionProps, idx) => (
         <AppSection
-          key={`${sectionProps.title}--${idx}`}
+          key={generateKey(sectionProps.title, idx)}
           {...sectionProps}
         />
       ))}

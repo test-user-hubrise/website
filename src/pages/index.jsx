@@ -3,6 +3,8 @@ import React from 'react'
 import Link from '../components/link'
 import SignupForm from '../components/forms/signup'
 
+import { generateKey } from '../components/utils'
+
 import hero from '../images/hero_image_optimized.jpg'
 import diagram from '../images/diagram.png'
 
@@ -45,31 +47,25 @@ const IndexPage = () => (
     </div>
     <section className="section" id="more">
       <div className="section__in section__in_padding">
-        <h3 className="section__title">
-          HubRise makes POS integration easy
-        </h3>
+        <h3 className="section__title">HubRise makes POS integration easy</h3>
         <p className="section__description">
-          HubRise stores your data in the Cloud for easy sharing between your applications.Your HubRise-compatible applications can be connected in one click and start communicating together instantly.
+          HubRise stores your data in the Cloud for easy sharing between your
+          applications.Your HubRise-compatible applications can be connected in
+          one click and start communicating together instantly.
         </p>
         <ul className="index-about">
           {features.map((feature, idx) => (
-            <li key={`${feature}--${idx}`} className="index-about__item">
-              <span className="index-about__span">
-                {feature}
-              </span>
+            <li key={generateKey(feature, idx)} className="index-about__item">
+              <span className="index-about__span">{feature}</span>
             </li>
           ))}
         </ul>
         <div className="section__diagram">
-          <img
-            className="section__diagram-image"
-            src={diagram}
-            alt="diagram"
-          />
+          <img className="section__diagram-image" src={diagram} alt="diagram" />
         </div>
       </div>
     </section>
   </>
 )
 
-    export default IndexPage
+export default IndexPage

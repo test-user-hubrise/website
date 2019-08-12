@@ -4,33 +4,33 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Link from '../../components/link'
 
+import { generateKey } from '../../components/utils'
+
 const SidebarRight = ({ currentPath, currentNode }) => {
-  const [ isExpanded, setIsExpanded ] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
   const isApiSection = currentPath.startsWith(`/api`)
-  let pages = [ currentNode ]
+  let pages = [currentNode]
 
   // Fetch all docs from API section and match structure
   // with `currentNode` element to allow looping.
   if (isApiSection) {
-    pages = getAllApiDocs()['allMdx']['edges']
-      .map(({ node }) => ({ ...node }))
+    pages = getAllApiDocs()['allMdx']['edges'].map(({ node }) => ({ ...node }))
   }
 
   return (
     <div className="section__sidebar section__sidebar_right section__sidebar_small-padding">
       <div className="section__sidebar-in" data-floater-float-me="">
-        <h5 className="content-nav__title">
-          Content
-        </h5>
+        <h5 className="content-nav__title">Content</h5>
         <h5
           id="content-nav"
           className="content-nav__title content-nav__title_small"
           onClick={() => setIsExpanded(!isExpanded)}
         >
           Content
-          <i className={`
-            fa fa-angle-${ isExpanded ? 'up' : 'down'} content-nav__arrow`
-          }/>
+          <i
+            className={`
+            fa fa-angle-${isExpanded ? 'up' : 'down'} content-nav__arrow`}
+          />
         </h5>
         <ul
           id="content-nav-list"
@@ -42,16 +42,12 @@ const SidebarRight = ({ currentPath, currentNode }) => {
             const isCurrentPage = fields.slug.startsWith(currentPath)
             return (
               <li
-                key={`${frontmatter.title}--${idx}`}
+                key={generateKey(frontmatter.title, idx)}
                 className={`content-nav__item ${
-                    isCurrentPage ? 'content-nav__item_active' : ''
-                  }`
-                }
+                  isCurrentPage ? 'content-nav__item_active' : ''
+                }`}
               >
-                <Link
-                  to={fields.slug}
-                  className="content-nav__link"
-                >
+                <Link to={fields.slug} className="content-nav__link">
                   {frontmatter.title}
                 </Link>
                 {isCurrentPage && (
@@ -59,10 +55,14 @@ const SidebarRight = ({ currentPath, currentNode }) => {
                     {headings
                       .filter(({ depth }) => depth === 2)
                       .map(({ value: heading }, idx) => {
-                        const anchor = heading.slice(3).toLowerCase().split(` `).join(`-`)
+                        const anchor = heading
+                          .slice(3)
+                          .toLowerCase()
+                          .split(` `)
+                          .join(`-`)
                         return (
                           <li
-                            key={`${heading}--${idx}`}
+                            key={generateKey(heading, idx)}
                             className="content-sublist-item content-sublist-level-2"
                           >
                             <Link
@@ -74,11 +74,13 @@ const SidebarRight = ({ currentPath, currentNode }) => {
                               </span>
                             </Link>
                           </li>
-                        )})}
+                        )
+                      })}
                   </ol>
                 )}
               </li>
-            )})}
+            )
+          })}
         </ul>
       </div>
     </div>
@@ -88,15 +90,15 @@ const SidebarRight = ({ currentPath, currentNode }) => {
 const getAllApiDocs = () => {
   return useStaticQuery(graphql`
     query getAllApiDocs {
-      allMdx(
-        filter: {
-          fields: { slug: { glob: "/api/*" }}
-        }
-      ) {
+      allMdx(filter: { fields: { slug: { glob: "/api/*" } } }) {
         edges {
           node {
-            frontmatter { title }
-            fields { slug }
+            frontmatter {
+              title
+            }
+            fields {
+              slug
+            }
             headings {
               value
               depth

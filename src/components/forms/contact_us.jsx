@@ -5,6 +5,8 @@ import * as yup from 'yup'
 import Row from './base/row'
 import Modal from '../modal'
 
+import { generateKey } from '../utils'
+
 import AppContext from '../../context/AppContext'
 
 const rows = [
@@ -47,7 +49,7 @@ const ContactUsBase = (props) => {
     >
       {rows.map(({ fields }, idx) => (
         <Row
-          key={`${fields[0].id}--${idx}`}
+          key={generateKey(fields[0].id, idx)}
           fields={fields}
           formProps={props}
         />

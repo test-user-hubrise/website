@@ -5,6 +5,8 @@ import * as yup from 'yup'
 import Modal from '../modal'
 import Row from './base/row'
 
+import { generateKey } from '../utils'
+
 import AppContext from '../../context/AppContext'
 
 const formSections = [
@@ -102,7 +104,7 @@ const Section = ({ title, rows, formProps }) => {
       <h6 className="form__sub-title">{title}</h6>
       {rows.map(({ fields }, idx) => (
         <Row
-          key={`${fields[0].id}--${idx}`}
+          key={generateKey(fields[0].id, idx)}
           fields={fields}
           formProps={formProps}
         />
@@ -120,7 +122,7 @@ const SuggestAppBase = (props) => {
     >
       {formSections.map(({ title, rows }, idx) => (
         <Section
-          key={`${title}--${idx}`}
+          key={generateKey(title, idx)}
           title={title}
           rows={rows}
           formProps={props}

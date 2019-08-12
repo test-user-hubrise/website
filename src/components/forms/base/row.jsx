@@ -2,32 +2,22 @@ import React from 'react'
 
 import Field from './field'
 
+import { generateKey } from '../../utils'
+
 const Row = ({ fields, formProps }) => {
-  const isSingleField = (fields.length === 1)
+  const isSingleField = fields.length === 1
   return (
-    <div
-      className={`form__block${isSingleField ? '' : '-row'}`}
-    >
+    <div className={`form__block${isSingleField ? '' : '-row'}`}>
       {fields.map((fieldProps, idx) => {
-        const key = `${fieldProps.id}--${idx}`
-        return isSingleField
-          ? (
-            <Field
-              key={key}
-              fieldProps={fieldProps}
-              formProps={formProps}
-            />
-          ) : (
-            <div
-              key={key}
-              className="form__block form__block_medium"
-            >
-              <Field
-                fieldProps={fieldProps}
-                formProps={formProps}
-              />
-            </div>
-          )})}
+        const key = generateKey(fieldProps.id, idx)
+        return isSingleField ? (
+          <Field key={key} fieldProps={fieldProps} formProps={formProps} />
+        ) : (
+          <div key={key} className="form__block form__block_medium">
+            <Field fieldProps={fieldProps} formProps={formProps} />
+          </div>
+        )
+      })}
     </div>
   )
 }
