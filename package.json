@@ -6,10 +6,9 @@
   "author": "Pavel Ermolin <pavel.2@icloud.com>",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "start:dev": "gatsby develop",
+    "start:prod": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
