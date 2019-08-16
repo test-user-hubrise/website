@@ -12,9 +12,9 @@ const Header = ({ pagePaths, path }) => {
   return (
     <header className="header">
       <div className="header__in">
-        <div className="header__desktop" data-floater-desktop-header>
+        <div className="header__desktop">
           <div className="header__logo">
-            <Link to="/">
+            <Link to={path.startsWith(`/fr/`) ? `/fr/` : `/`}>
               <img src={logo} alt="company-logo" />
             </Link>
           </div>
@@ -27,7 +27,12 @@ const Header = ({ pagePaths, path }) => {
                     key={generateKey(title, idx)}
                     className="topbar-menu__item"
                   >
-                    <Link className="topbar-menu__link" to={to}>
+                    <Link
+                      className={`topbar-menu__link ${
+                        path.startsWith(to) ? 'topbar-menu__link_active' : ''
+                      }`}
+                      to={to}
+                    >
                       {title}
                     </Link>
                   </li>
