@@ -31,7 +31,7 @@
       position: fixed;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0,0,0,.3);
+      background-color: rgba(0, 0, 0, 0.3);
       z-index: 4;
     }
   }
@@ -102,12 +102,13 @@
   &__item {
     display: inline-block;
     position: relative;
+    text-transform: capitalize;
     &:after {
       width: 3px;
       height: 3px;
       background: $gray-standard;
       display: inline-block;
-      content: "";
+      content: '';
       border-radius: 50%;
       margin-bottom: 0.2rem;
     }
@@ -219,6 +220,7 @@
 
   &__item {
     padding: 0.2rem 0.5rem;
+    text-transform: capitalize;
   }
 
   &__link {

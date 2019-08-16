@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import Link from './link'
-import { nav } from './footer'
 
 import { generateKey } from './utils'
 
@@ -23,7 +22,7 @@ const social = [
   },
 ]
 
-const HeaderMobile = () => {
+const HeaderMobile = ({ navigationList }) => {
   const [isVisible, setIsVisible] = useState(false)
 
   return (
@@ -75,7 +74,7 @@ const HeaderMobile = () => {
             </div>
             <nav className="mobile-bar__content">
               <ul className="leftbar-menu">
-                {nav.map(({ to, title }, idx) => (
+                {navigationList.map(({ to, title }, idx) => (
                   <li
                     key={generateKey(title, idx)}
                     className="leftbar-menu__item"
