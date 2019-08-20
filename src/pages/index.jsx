@@ -8,17 +8,30 @@ import { generateKey } from '../components/utils'
 import hero from '../images/hero_image_optimized.jpg'
 import diagram from '../images/diagram.png'
 
-const features = [
-  `Online Ordering Website`,
-  `Dashboard`,
-  `Fleet Managment`,
-  `POS`,
-  `Emailing Solution`,
-  `Loyalty Solution`,
-  `And More`,
-]
+const content = {
+  hero: {
+    title: `Centralize the data of your retail store`,
+    description: `Connect your POS, your website and all your applications.`,
+    link: `Read more`,
+  },
+  main: {
+    title: `HubRise makes POS integration easy`,
+    description: `HubRise stores your data in the Cloud for easy sharing between your
+    applications. Your HubRise-compatible applications can be connected in
+    one click and start communicating together instantly.`,
+    features: [
+      `Online Ordering Website`,
+      `Dashboard`,
+      `Fleet Managment`,
+      `POS`,
+      `Emailing Solution`,
+      `Loyalty Solution`,
+      `And More`,
+    ],
+  },
+}
 
-const IndexPage = () => (
+export const IndexPage = ({ content }) => (
   <>
     <div
       className="index-hero"
@@ -31,30 +44,37 @@ const IndexPage = () => (
       <div className="index-hero__container">
         <div className="index-hero__banner">
           <div className="index-hero__banner-in">
-            <h3 className="index-hero__title">
-              Centralize the data of your retail store
-            </h3>
+            <h3 className="index-hero__title">{content.hero.title}</h3>
             <p className="index-hero__description">
-              Connect your POS, your website and all your applications.
+              {content.hero.description}
               <Link className="index-hero__link" to="#more">
-                Read more
+                {content.hero.link}
               </Link>
             </p>
           </div>
         </div>
-        <SignupForm />
+        <SignupForm
+          content={{
+            title: `Get started now`,
+            description: `HubRise is free up to 50 orders per month.`,
+            link: `See pricing`,
+            placeholders: {
+              first_name: `First name`,
+              last_name: `Last name`,
+              email: `Email`,
+              password: `Password`,
+            },
+            button: `Create your account`,
+          }}
+        />
       </div>
     </div>
-    <section className="section" id="more">
+    <section id="more" className="section">
       <div className="section__in section__in_padding">
-        <h3 className="section__title">HubRise makes POS integration easy</h3>
-        <p className="section__description">
-          HubRise stores your data in the Cloud for easy sharing between your
-          applications.Your HubRise-compatible applications can be connected in
-          one click and start communicating together instantly.
-        </p>
+        <h3 className="section__title">{content.main.title}</h3>
+        <p className="section__description">{content.main.description}</p>
         <ul className="index-about">
-          {features.map((feature, idx) => (
+          {content.main.features.map((feature, idx) => (
             <li key={generateKey(feature, idx)} className="index-about__item">
               <span className="index-about__span">{feature}</span>
             </li>
@@ -68,4 +88,4 @@ const IndexPage = () => (
   </>
 )
 
-export default IndexPage
+export default () => <IndexPage content={content} />

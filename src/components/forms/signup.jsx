@@ -1,11 +1,9 @@
 import React from 'react'
-import { withFormik, Form } from 'formik'
+import { withFormik } from 'formik'
 import * as yup from 'yup'
 
 import Link from '../link'
-import Row from './base/row'
-
-import { generateKey } from '../utils'
+import Form from './base/form'
 
 const rows = [
   {
@@ -14,7 +12,6 @@ const rows = [
         id: `first_name`,
         name: `first_name`,
         type: `text`,
-        placeholder: `First Name`,
         component: `input`,
       },
     ],
@@ -25,7 +22,6 @@ const rows = [
         id: `last_name`,
         name: `last_name`,
         type: `text`,
-        placeholder: `Last Name`,
         component: `input`,
       },
     ],
@@ -36,7 +32,6 @@ const rows = [
         id: `email`,
         name: `email`,
         type: `email`,
-        placeholder: `Email`,
         component: `input`,
       },
     ],
@@ -47,31 +42,21 @@ const rows = [
         id: `password`,
         name: `password`,
         type: `password`,
-        placeholder: `Password`,
         component: `input`,
       },
     ],
   },
 ]
 
-const SignupFormBase = (props) => {
+const SignupFormBase = ({ rows, content, ...formikProps }) => {
   return (
-    <Form id="main-form" className="form">
-      {rows.map(({ fields }, idx) => (
-        <Row
-          key={generateKey(fields[0].id, idx)}
-          fields={fields}
-          formProps={props}
-        />
-      ))}
-      <button
-        className="form__button form__button_full-width"
-        type="submit"
-        name="submit"
-      >
-        Create your account
-      </button>
-    </Form>
+    <Form
+      formProps={{ id: `main-form` }}
+      buttonClasses={[`form__button_full-width`]}
+      rows={rows}
+      content={content}
+      formikProps={formikProps}
+    />
   )
 }
 
@@ -109,20 +94,23 @@ const SignupForm = withFormik({
   },
 })(SignupFormBase)
 
-const Wrapper = () => (
-  <div className="index-hero__form">
-    <div className="index-hero__form-in">
-      <h5 className="index-hero__form-title">Get started now</h5>
-      <p className="index-hero__form-description">
-        <span>HubRise is free up to 50 orders per month.</span>
-        {` `}
-        <Link className="index-hero__form-link" to="/pricing">
-          See pricing
-        </Link>
-      </p>
-      <SignupForm />
+const Wrapper = ({ content }) => {
+  const { title, description, link } = content
+  return (
+    <div className="index-hero__form">
+      <div className="index-hero__form-in">
+        <h5 className="index-hero__form-title">{title}</h5>
+        <p className="index-hero__form-description">
+          <span>{description}</span>
+          {` `}
+          <Link className="index-hero__form-link" to="/pricing">
+            {link}
+          </Link>
+        </p>
+        <SignupForm rows={rows} content={content} />
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default Wrapper

@@ -27,7 +27,18 @@ const PageWrapper = ({ element, props }) => {
       >
         {element}
       </Layout>
-      {isContactUsVisible && <ContactUs />}
+      {isContactUsVisible && (
+        <ContactUs
+          content={{
+            placeholders: {
+              name: `Your name`,
+              email: `Your email`,
+              message: `Your message ...`,
+            },
+            button: `Send`,
+          }}
+        />
+      )}
     </>
   )
 }

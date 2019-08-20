@@ -1,11 +1,9 @@
 import React, { useContext } from 'react'
-import { withFormik, Form } from 'formik'
+import { withFormik } from 'formik'
 import * as yup from 'yup'
 
-import Row from './base/row'
+import Form from './base/form'
 import Modal from '../modal'
-
-import { generateKey } from '../utils'
 
 import AppContext from '../../context/AppContext'
 
@@ -16,14 +14,12 @@ const rows = [
         id: `name`,
         name: `name`,
         type: `text`,
-        placeholder: `Your name`,
         component: `input`,
       },
       {
         id: `email`,
         name: `email`,
         type: `email`,
-        placeholder: `Your email`,
         component: `input`,
       },
     ],
@@ -33,35 +29,24 @@ const rows = [
       {
         id: `message`,
         name: `message`,
-        placeholder: `Your message ...`,
         component: `textarea`,
       },
     ],
   },
 ]
 
-const ContactUsBase = (props) => {
+const ContactUsBase = ({ rows, content, ...formikProps }) => {
   return (
     <Form
-      id="contact-us__form"
-      className="form form_modal"
-      noValidate="novalidate"
-    >
-      {rows.map(({ fields }, idx) => (
-        <Row
-          key={generateKey(fields[0].id, idx)}
-          fields={fields}
-          formProps={props}
-        />
-      ))}
-      <button
-        type="submit"
-        name="submit"
-        className="form__button form__button_full-width form__button_modal"
-      >
-        Send
-      </button>
-    </Form>
+      formProps={{
+        id: `contact-us__form`,
+        classNames: [`form form_modal`],
+      }}
+      buttonClasses={[`form__button_full-width`, `form__button_modal`]}
+      rows={rows}
+      content={content}
+      formikProps={formikProps}
+    />
   )
 }
 
@@ -90,11 +75,11 @@ const ContactUs = withFormik({
   },
 })(ContactUsBase)
 
-const Wrapper = () => {
+const Wrapper = ({ content }) => {
   const { toggleContactUsVisibility } = useContext(AppContext)
   return (
     <Modal title="Contact Us" onClose={toggleContactUsVisibility}>
-      <ContactUs />
+      <ContactUs rows={rows} content={content} />
     </Modal>
   )
 }

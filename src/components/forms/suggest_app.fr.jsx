@@ -73,7 +73,6 @@ const formSections = [
         ],
       },
       {
-        isSingleField: true,
         fields: [
           {
             id: `app_contact`,
@@ -84,7 +83,6 @@ const formSections = [
         ],
       },
       {
-        isSingleField: true,
         fields: [
           {
             id: `app_extra`,
