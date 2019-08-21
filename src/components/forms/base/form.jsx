@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'formik'
-import { assoc } from 'ramda'
 
 import Row from './row'
 
@@ -22,9 +21,10 @@ const CompleteForm = ({
     >
       {rows
         .map(({ fields }) => ({
-          fields: fields.map((field) =>
-            assoc(`placeholder`, placeholders[field.id], field)
-          ),
+          fields: fields.map((field) => {
+            field.placeholder = placeholders[field.id]
+            return field
+          }),
         }))
         .map(({ fields }, idx) => (
           <Row
