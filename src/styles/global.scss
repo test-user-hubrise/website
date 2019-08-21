@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
-@import "node_modules/font-awesome/scss/font-awesome";
+@import 'node_modules/font-awesome/scss/font-awesome';
 
-@import "node_modules/motion-ui/motion-ui";
-@import "plugins/foundation/foundation";
+@import 'node_modules/motion-ui/motion-ui';
+@import 'plugins/foundation/foundation';
 @include foundation-everything($flex: true);
 
-@import "base/_base";
-@import "base/_variables";
+@import 'base/_base';
+@import 'base/_variables';
 
-@import "components/header";
-@import "components/footer";
+@import 'components/header';
+@import 'components/footer';
 
-@import "components/section";
-@import "components/form";
-@import "components/modal";
-@import "components/comments";
+@import 'components/section';
+@import 'components/form';
+@import 'components/modal';
+@import 'components/comments';
 
-@import "components/index";
-@import "components/pricing";
-@import "components/developers";
-@import "components/documentation";
-@import "components/apps";
+@import 'components/home';
+@import 'components/pricing';
+@import 'components/developers';
+@import 'components/documentation';
+@import 'components/apps';
