@@ -283,13 +283,6 @@
   }
 
   &__slide {
-    display: none;
-    position: relative;
-    top: 0;
-
-    &--is-active {
-      display: block;
-    }
   }
 
   &__image {
