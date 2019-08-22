@@ -1,59 +1,64 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
 
 import Link from '../link'
 import Form from './base/form'
 
-const rows = [
+const sections = [
   {
-    fields: [
+    rows: [
       {
-        id: `first_name`,
-        name: `first_name`,
-        type: `text`,
-        component: `input`,
+        fields: [
+          {
+            id: `first_name`,
+            name: `first_name`,
+            type: `text`,
+            component: `input`,
+          },
+        ],
       },
-    ],
-  },
-  {
-    fields: [
       {
-        id: `last_name`,
-        name: `last_name`,
-        type: `text`,
-        component: `input`,
+        fields: [
+          {
+            id: `last_name`,
+            name: `last_name`,
+            type: `text`,
+            component: `input`,
+          },
+        ],
       },
-    ],
-  },
-  {
-    fields: [
       {
-        id: `email`,
-        name: `email`,
-        type: `email`,
-        component: `input`,
+        fields: [
+          {
+            id: `email`,
+            name: `email`,
+            type: `email`,
+            component: `input`,
+          },
+        ],
       },
-    ],
-  },
-  {
-    fields: [
       {
-        id: `password`,
-        name: `password`,
-        type: `password`,
-        component: `input`,
+        fields: [
+          {
+            id: `password`,
+            name: `password`,
+            type: `password`,
+            component: `input`,
+          },
+        ],
       },
     ],
   },
 ]
 
-const SignupFormBase = ({ rows, content, ...formikProps }) => {
+const SignupFormBase = ({ sections, content, ...formikProps }) => {
   return (
     <Form
       formProps={{ id: `main-form` }}
       buttonClasses={[`form__button_full-width`]}
-      rows={rows}
+      sections={sections}
       content={content}
       formikProps={formikProps}
     />
@@ -107,10 +112,20 @@ const Wrapper = ({ content }) => {
             {link}
           </Link>
         </p>
-        <SignupForm rows={rows} content={content} />
+        <SignupForm sections={sections} content={content} />
       </div>
     </div>
   )
+}
+
+Wrapper.propTypes = {
+  content: PropTypes.shape({
+    placeholders: PropTypes.objectOf(PropTypes.string).isRequired,
+    button: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+  }),
 }
 
 export default Wrapper

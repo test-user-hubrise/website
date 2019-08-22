@@ -6,46 +6,62 @@ import Row from './row'
 
 import { generateKey } from '../../utils'
 
+function defineContent(sections, content) {
+  const { placeholders, subtitles } = content
+  return sections.map((section) => {
+    if (subtitles) {
+      section.subtitle = subtitles[section.id]
+    }
+
+    section.rows.forEach((row) => {
+      row.fields.forEach((field) => {
+        field.placeholder = placeholders[field.id]
+      })
+    })
+
+    return section
+  })
+}
+
 const CompleteForm = ({
-  rows,
-  content: { button, placeholders },
+  sections,
+  content,
   formProps,
   formikProps,
   buttonClasses,
 }) => {
   const { classNames: formClasses, ...otherFormProps } = formProps
+
   return (
     <Form
       className={`form ${formClasses ? formClasses.join(' ') : ''}`}
       {...otherFormProps}
     >
-      {rows
-        .map(({ fields }) => ({
-          fields: fields.map((field) => {
-            field.placeholder = placeholders[field.id]
-            return field
-          }),
-        }))
-        .map(({ fields }, idx) => (
-          <Row
-            key={generateKey(fields[0].id, idx)}
-            fields={fields}
-            formikProps={formikProps}
-          />
-        ))}
+      {defineContent(sections, content).map(({ subtitle, rows }, idx) => (
+        <section key={generateKey(idx)}>
+          {subtitle && <h6 className="form__sub-title">{subtitle}</h6>}
+          {rows.map(({ fields }) => (
+            <Row
+              key={generateKey(idx)}
+              fields={fields}
+              formikProps={formikProps}
+            />
+          ))}
+        </section>
+      ))}
       <button
         className={`form__button ${buttonClasses.join(' ')}`}
         type="submit"
         name="submit"
       >
-        {button}
+        {content.button}
       </button>
     </Form>
   )
 }
 
 CompleteForm.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sections: PropTypes.arrayOf(PropTypes.object).isRequired,
   content: PropTypes.shape({
     button: PropTypes.string,
     placeholders: PropTypes.objectOf(PropTypes.string),

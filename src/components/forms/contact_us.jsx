@@ -1,41 +1,43 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
 
 import Form from './base/form'
-import Modal from '../modal'
 
-import AppContext from '../../context/AppContext'
-
-const rows = [
+const sections = [
   {
-    fields: [
+    rows: [
       {
-        id: `name`,
-        name: `name`,
-        type: `text`,
-        component: `input`,
+        fields: [
+          {
+            id: `name`,
+            name: `name`,
+            type: `text`,
+            component: `input`,
+          },
+          {
+            id: `email`,
+            name: `email`,
+            type: `email`,
+            component: `input`,
+          },
+        ],
       },
       {
-        id: `email`,
-        name: `email`,
-        type: `email`,
-        component: `input`,
-      },
-    ],
-  },
-  {
-    fields: [
-      {
-        id: `message`,
-        name: `message`,
-        component: `textarea`,
+        fields: [
+          {
+            id: `message`,
+            name: `message`,
+            component: `textarea`,
+          },
+        ],
       },
     ],
   },
 ]
 
-const ContactUsBase = ({ rows, content, ...formikProps }) => {
+const ContactUsBase = ({ sections, content, ...formikProps }) => {
   return (
     <Form
       formProps={{
@@ -43,7 +45,7 @@ const ContactUsBase = ({ rows, content, ...formikProps }) => {
         classNames: [`form form_modal`],
       }}
       buttonClasses={[`form__button_full-width`, `form__button_modal`]}
-      rows={rows}
+      sections={sections}
       content={content}
       formikProps={formikProps}
     />
@@ -76,12 +78,14 @@ const ContactUs = withFormik({
 })(ContactUsBase)
 
 const Wrapper = ({ content }) => {
-  const { toggleContactUsVisibility } = useContext(AppContext)
-  return (
-    <Modal title="Contact Us" onClose={toggleContactUsVisibility}>
-      <ContactUs rows={rows} content={content} />
-    </Modal>
-  )
+  return <ContactUs sections={sections} content={content} />
+}
+
+Wrapper.propTypes = {
+  content: PropTypes.shape({
+    placeholders: PropTypes.objectOf(PropTypes.string).isRequired,
+    button: PropTypes.string.isRequired,
+  }),
 }
 
 export default Wrapper

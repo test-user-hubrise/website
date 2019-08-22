@@ -1,17 +1,13 @@
-import React, { useContext } from 'react'
-import { withFormik, Form } from 'formik'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withFormik } from 'formik'
 import * as yup from 'yup'
 
-import Modal from '../modal'
-import Row from './base/row'
+import Form from './base/form'
 
-import { generateKey } from '../utils'
-
-import AppContext from '../../context/AppContext'
-
-const formSections = [
+const sections = [
   {
-    title: `A propos de Vous :`,
+    id: `contact`,
     rows: [
       {
         fields: [
@@ -19,14 +15,12 @@ const formSections = [
             id: `name`,
             name: `name`,
             type: `text`,
-            placeholder: `Votre Nom`,
             component: `input`,
           },
           {
             id: `company`,
             name: `company`,
             type: `text`,
-            placeholder: `Votre Société`,
             component: `input`,
           },
         ],
@@ -37,14 +31,12 @@ const formSections = [
             id: `email`,
             name: `email`,
             type: `email`,
-            placeholder: `Votre Email`,
             component: `input`,
           },
           {
             id: `phone`,
             name: `phone`,
             type: `text`,
-            placeholder: `Votre Numéro de Téléphone`,
             component: `input`,
           },
         ],
@@ -52,7 +44,7 @@ const formSections = [
     ],
   },
   {
-    title: `A propos de l'Application :`,
+    id: `app`,
     rows: [
       {
         fields: [
@@ -60,14 +52,12 @@ const formSections = [
             id: `app_name`,
             name: `app_name`,
             type: `text`,
-            placeholder: `Nom de l'Application`,
             component: `input`,
           },
           {
             id: `app_site`,
             name: `app_site`,
             type: `text`,
-            placeholder: `Site internet de l'Application`,
             component: `input`,
           },
         ],
@@ -77,7 +67,6 @@ const formSections = [
           {
             id: `app_contact`,
             name: `app_contact`,
-            placeholder: `Qui devons-nous contacter ?`,
             component: `textarea`,
           },
         ],
@@ -87,7 +76,6 @@ const formSections = [
           {
             id: `app_extra`,
             name: `app_extra`,
-            placeholder: `Quelque chose à ajouter ?`,
             component: `textarea`,
           },
         ],
@@ -96,44 +84,15 @@ const formSections = [
   },
 ]
 
-const Section = ({ title, rows, formProps }) => {
-  return (
-    <>
-      <h6 className="form__sub-title">{title}</h6>
-      {rows.map(({ fields }, idx) => (
-        <Row
-          key={generateKey(fields[0].id, idx)}
-          fields={fields}
-          formProps={formProps}
-        />
-      ))}
-    </>
-  )
-}
-
-const SuggestAppBase = (props) => {
+const SuggestAppBase = ({ sections, content, ...formikProps }) => {
   return (
     <Form
-      id="suggest-app__form"
-      className="form form_modal"
-      noValidate="novalidate"
-    >
-      {formSections.map(({ title, rows }, idx) => (
-        <Section
-          key={generateKey(title, idx)}
-          title={title}
-          rows={rows}
-          formProps={props}
-        />
-      ))}
-      <button
-        type="submit"
-        name="submit"
-        className="form__button form__button_full-width form__button_modal"
-      >
-        Envoyer
-      </button>
-    </Form>
+      formProps={{ id: `suggest-app__form`, classNames: [`form_modal`] }}
+      buttonClasses={[`form__button_full-width`, `form__button_modal`]}
+      sections={sections}
+      content={content}
+      formikProps={formikProps}
+    />
   )
 }
 
@@ -180,19 +139,15 @@ const SuggestApp = withFormik({
   },
 })(SuggestAppBase)
 
-const Wrapper = () => {
-  const { toggleSuggestAppVisibility } = useContext(AppContext)
-  return (
-    <Modal
-      title="Proposer une Application"
-      description="Dnteger viverra non lorem vitae efficitur. Nam quis nunc erat.
-      Mauris aliquet ullamcorper maximus. Quisque faucibus felis metus, eget
-      iaculis lectus aliquet non."
-      onClose={toggleSuggestAppVisibility}
-    >
-      <SuggestApp />
-    </Modal>
-  )
+const Wrapper = ({ content }) => {
+  return <SuggestApp sections={sections} content={content} />
+}
+
+Wrapper.propTypes = {
+  content: PropTypes.shape({
+    placeholders: PropTypes.objectOf(PropTypes.string).isRequired,
+    button: PropTypes.string.isRequired,
+  }),
 }
 
 export default Wrapper

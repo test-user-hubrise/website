@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 
 import Link from '../../components/link'
-import SuggestAppModal from '../../components/forms/suggest_app.fr'
+import Modal from '../../components/modal'
+import SuggestAppForm from '../../components/forms/suggest_app'
 
 import AppContext from '../../context/AppContext'
 
@@ -18,6 +19,24 @@ import alloRestoLogo from '../../images/apps/alloresto.png'
 import nextMenuLogo from '../../images/apps/nextmenu.png'
 import yProximiteLogo from '../../images/apps/yproximite.png'
 import mailChimpLogo from '../../images/apps/mailchimp.png'
+
+const formContent = {
+  subtitles: {
+    contact: `A propos de Vous :`,
+    app: `A propos de l'Application :`,
+  },
+  placeholders: {
+    name: `Votre Nom`,
+    company: `Votre Société`,
+    email: `Votre Email`,
+    phone: `Votre Numéro de Téléphone`,
+    app_name: `Nom de l'Application`,
+    app_site: `Site internet de l'Application`,
+    app_contact: `Qui devons-nous contacter ?`,
+    app_extra: `Quelque chose à ajouter ?`,
+  },
+  button: `Envoyer`,
+}
 
 const AppSection = ({ title, blocks, extraBlock }) => {
   return (
@@ -267,7 +286,9 @@ const sections = [
 ]
 
 const AppsPage = () => {
-  const { isSuggestAppVisible } = useContext(AppContext)
+  const { isSuggestAppVisible, toggleSuggestAppVisibility } = useContext(
+    AppContext
+  )
   return (
     <>
       <Intro />
@@ -278,7 +299,17 @@ const AppsPage = () => {
         />
       ))}
       <ForDevelopers />
-      {isSuggestAppVisible && <SuggestAppModal />}
+      {isSuggestAppVisible && (
+        <Modal
+          title="Proposer une Application"
+          description="Dnteger viverra non lorem vitae efficitur. Nam quis nunc erat.
+          Mauris aliquet ullamcorper maximus. Quisque faucibus felis metus, eget
+          iaculis lectus aliquet non."
+          onClose={toggleSuggestAppVisibility}
+        >
+          <SuggestAppForm content={formContent} />
+        </Modal>
+      )}
     </>
   )
 }
