@@ -8,7 +8,26 @@ import Layout from './layout'
 
 import AppContext from '../context/AppContext'
 
+const formContentEng = {
+  placeholders: {
+    name: `Your name`,
+    email: `Your email`,
+    message: `Your message ...`,
+  },
+  button: `Send`,
+}
+
+const formContentFr = {
+  placeholders: {
+    name: `Votre Nom`,
+    email: `Votre Email`,
+    message: `Votre Message...`,
+  },
+  button: `Envoyer`,
+}
+
 const PageWrapper = ({ element, props }) => {
+  const isFrench = props.path.startsWith(`/fr`)
   const { isContactUsVisible, toggleContactUsVisibility } = useContext(
     AppContext
   )
@@ -31,17 +50,11 @@ const PageWrapper = ({ element, props }) => {
         {element}
       </Layout>
       {isContactUsVisible && (
-        <Modal title="Contact Us" onClose={toggleContactUsVisibility}>
-          <ContactUsForm
-            content={{
-              placeholders: {
-                name: `Your name`,
-                email: `Your email`,
-                message: `Your message ...`,
-              },
-              button: `Send`,
-            }}
-          />
+        <Modal
+          title={isFrench ? `Contactez-Nous` : `Contact Us`}
+          onClose={toggleContactUsVisibility}
+        >
+          <ContactUsForm content={isFrench ? formContentFr : formContentEng} />
         </Modal>
       )}
     </>
