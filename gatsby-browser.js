@@ -1,9 +1,11 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 
-import HighlightCode from "./src/components/markdown/highlight_code"
-import Link from "./src/components/link"
-import PageWrapper from "./src/components/page_wrapper"
+import HighlightCode from './src/components/markdown/highlight_code'
+import Link from './src/components/link'
+import PageWrapper from './src/components/page_wrapper'
+
+import { kebabify } from './src/utils/content'
 
 import { AppContextProvider } from './src/context/AppContext'
 
@@ -14,30 +16,35 @@ export const wrapPageElement = (props) => {
 }
 
 const components = {
-  h2: ({ children }) => {
-    const attribute = children
-      .slice(3).toLowerCase().split(` `).join(`-`)
+  h2: ({ children: heading }) => {
+    const kebabifiedHeading = kebabify(heading.slice(3))
 
     return (
       <h2
         className="documentation-title"
-        id={attribute}
-        data-magellan-target={attribute}
+        id={kebabifiedHeading}
+        data-magellan-target={kebabifiedHeading}
       >
         {/* TODO(2x): Improve accessibility by filling anchor with content */}
         {/* eslint-disable-next-line */}
-        <a
-          href={attribute}
-          title={children}
-        ></a>
-        {children}
+        <a href={kebabifiedHeading} title={heading}></a>
+        {heading}
         {/* eslint-disable-next-line */}
         <a
           className="documentation-title__anchor"
-          href={`#${attribute}`}
+          href={`#${kebabifiedHeading}`}
           aria-hidden="true"
         ></a>
       </h2>
+    )
+  },
+  h4: ({ children: heading }) => {
+    const kebabifiedHeading = kebabify(heading)
+
+    return (
+      <h4 className="documentation-title" id={kebabifiedHeading}>
+        {heading}
+      </h4>
     )
   },
   a: ({ href, ...other }) => <Link to={href} {...other} />,
@@ -47,18 +54,11 @@ const components = {
       code={props.children}
     />
   ),
-  inlineCode: ({ children }) => (
-    <HighlightCode
-      inline
-      code={children}
-    />
-  ),
+  inlineCode: ({ children }) => <HighlightCode inline code={children} />,
 }
 
 export const wrapRootElement = ({ element }) => (
   <AppContextProvider>
-    <MDXProvider components={components}>
-      {element}
-    </MDXProvider>
+    <MDXProvider components={components}>{element}</MDXProvider>
   </AppContextProvider>
 )

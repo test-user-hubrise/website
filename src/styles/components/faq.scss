@@ -1,0 +1,41 @@
+.faq {
+  h4 {
+    color: #333333;
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: relative;
+    margin-bottom: 2.5rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  h4:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: inherit;
+    top: 100%;
+    margin: 10px auto;
+    width: 15%;
+    height: 3px;
+    background: #ececec;
+  }
+
+  h5 {
+    width: 100%;
+    display: inline-block;
+    color: #555555;
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.15rem;
+    text-align: left;
+  }
+
+  p {
+    text-align: left;
+    color: #555555;
+    font-weight: 400;
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+}

@@ -19,11 +19,17 @@ export const generateNavigationList = (allPaths, currentPath) => {
     })
     .map(function prepareDomAttributes(path) {
       const title = getPageTitle(path)
-      return { to: `${isFrench ? frenchPrefix : '/'}${title}`, title }
+
+      return {
+        to: `${isFrench ? frenchPrefix : '/'}${title}`,
+        title: title === 'faq' ? 'F.A.Q.' : title,
+      }
     })
     .filter(function removeDuplicates({ title }) {
       if (titles.has(title) || title === `home`) return false
+
       titles.add(title)
+
       return true
     })
 

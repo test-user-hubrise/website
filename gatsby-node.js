@@ -28,7 +28,8 @@ const createPages = async ({ graphql, actions }) => {
           }
         }
       }
-    }`)
+    }
+  `)
 
   if (result.errors) {
     return Promise.reject(result.errors)
@@ -37,10 +38,14 @@ const createPages = async ({ graphql, actions }) => {
   result.data.allMdx.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve(`./src/templates/api/index.jsx`),
+      component: path.resolve(
+        `./src/templates/${
+          node.fields.slug.startsWith(`/fr/faq`) ? 'faq.jsx' : 'api/index.jsx'
+        }`
+      ),
       context: {
-        id: node.id
-      }
+        id: node.id,
+      },
     })
   })
 }
