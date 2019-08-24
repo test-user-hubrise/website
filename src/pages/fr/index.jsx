@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 
 import { IndexPage as IndexBase } from '../'
 
@@ -243,9 +242,13 @@ const Philosophy = () => {
   )
 }
 
-const IndexPage = (props) => {
+const IndexPage = () => {
   return (
-    <IndexBase {...props}>
+    <IndexBase
+      pageContent={pageContent}
+      formContent={formContent}
+      diagram={diagram}
+    >
       <Video />
       <Faq />
       <CompatibleApps />
@@ -254,16 +257,4 @@ const IndexPage = (props) => {
   )
 }
 
-IndexPage.propTypes = {
-  pageContent: PropTypes.objectOf(PropTypes.any).isRequired,
-  formContent: PropTypes.objectOf(PropTypes.any).isRequired,
-  diagram: PropTypes.string.isRequired,
-}
-
-export default () => (
-  <IndexPage
-    pageContent={pageContent}
-    formContent={formContent}
-    diagram={diagram}
-  />
-)
+export default IndexPage

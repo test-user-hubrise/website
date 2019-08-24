@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { PricingPage as PricingBase } from '../pricing'
 
@@ -32,7 +31,7 @@ const pageContent = {
   ],
 }
 
-const PricingPage = ({ pageContent }) => {
+const PricingPage = () => {
   return (
     <PricingBase
       pageContent={pageContent}
@@ -46,12 +45,8 @@ const PricingPage = ({ pageContent }) => {
           </a>
         </div>
       }
-    ></PricingBase>
+    />
   )
 }
 
-PricingPage.propTypes = {
-  pageContent: PropTypes.objectOf(PropTypes.any).isRequired,
-}
-
-export default () => <PricingPage pageContent={pageContent} />
+export default PricingPage
