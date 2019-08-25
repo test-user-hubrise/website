@@ -10,7 +10,11 @@ const CompleteField = ({ fieldProps, formikProps }) => {
       className={`${touched[name] ? (errors[name] ? 'error' : 'valid') : ''}`}
     >
       <label htmlFor={name} />
-      <Field className={`form__${component}`} {...fieldProps} />
+      <Field
+        className={`form__${component}`}
+        aria-invalid={touched[name] ? (errors[name] ? true : false) : ''}
+        {...fieldProps}
+      />
       <ErrorMessage
         name={name}
         render={(msg) => <p className="error__message">{msg}</p>}
