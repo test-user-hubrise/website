@@ -38,11 +38,11 @@ const CompleteForm = ({
       {...otherFormProps}
     >
       {defineContent(sections, content).map(({ subtitle, rows }, idx) => (
-        <section key={generateKey(idx)}>
+        <section key={generateKey(subtitle, idx)}>
           {subtitle && <h6 className="form__sub-title">{subtitle}</h6>}
           {rows.map(({ fields }) => (
             <Row
-              key={generateKey(idx)}
+              key={generateKey(`${subtitle}${fields[0].id}`, idx)}
               fields={fields}
               formikProps={formikProps}
             />

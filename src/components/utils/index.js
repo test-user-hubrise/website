@@ -1,5 +1,4 @@
-export const generateKey = (prefix, suffix) =>
-  `${prefix}--${suffix ? suffix : Math.random(10000)}`
+export const generateKey = (suffix, prefix) => `${suffix}--${prefix}`
 
 export const generateNavigationList = (allPaths, currentPath) => {
   const frenchPrefix = `/fr/`
