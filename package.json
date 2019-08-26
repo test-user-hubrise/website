@@ -8,7 +8,7 @@
     "build": "gatsby build",
     "clean": "gatsby clean",
     "start:dev": "gatsby develop",
-    "start:prod": "gatsby serve",
+    "start:prod": "gatsby build && gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
