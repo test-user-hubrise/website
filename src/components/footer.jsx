@@ -1,13 +1,23 @@
 import React from 'react'
 
 import Link from './link'
+import { navigationListEnglish, navigationListFrench } from './header'
 
-import { generateKey, generateNavigationList } from './utils'
+import { generateKey } from './utils'
 
 import logo from '../images/logo-footer.png'
 import hero from '../images/hero_image_optimized.jpg'
 
 const Footer = ({ pagePaths, path }) => {
+  const isFrench = path.startsWith(`/fr`)
+  const navigationList = [
+    {
+      title: `Home`,
+      to: isFrench ? `/fr` : `/`,
+    },
+    ...(isFrench ? navigationListFrench : navigationListEnglish),
+  ]
+
   return (
     <footer
       className="footer"
@@ -21,15 +31,13 @@ const Footer = ({ pagePaths, path }) => {
       <div className="footer__in">
         <div className="footer__block">
           <ul className="footer-menu">
-            {generateNavigationList(pagePaths, path).map(
-              ({ title, to }, idx) => (
-                <li key={generateKey(title, idx)} className="footer-menu__item">
-                  <Link to={to} className="footer-menu__link">
-                    {title}
-                  </Link>
-                </li>
-              )
-            )}
+            {navigationList.map(({ title, to }, idx) => (
+              <li key={generateKey(title, idx)} className="footer-menu__item">
+                <Link to={to} className="footer-menu__link">
+                  {title}
+                </Link>
+              </li>
+            ))}
           </ul>
           <div className="footer__logo">
             <img src={logo} alt="company-logo" />
