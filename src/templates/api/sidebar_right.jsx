@@ -7,8 +7,10 @@ import Link from '../../components/link'
 import { generateKey } from '../../components/utils'
 
 const SidebarRight = ({ currentPath, currentNode }) => {
+  const isFrench = currentPath.startsWith(`/fr`)
   const [isExpanded, setIsExpanded] = useState(false)
-  const isApiSection = currentPath.startsWith(`/api`)
+  const isApiSection =
+    currentPath.startsWith(`/api`) || currentPath.startsWith(`/fr/api`)
   let pages = [currentNode]
 
   // Fetch all docs from API section and match structure
@@ -39,7 +41,9 @@ const SidebarRight = ({ currentPath, currentNode }) => {
           }`}
         >
           {pages.map(({ frontmatter, fields, headings }, idx) => {
-            const isCurrentPage = fields.slug.startsWith(currentPath)
+            const slug = `${isFrench ? '/fr' : ''}${fields.slug}`
+            const isCurrentPage = slug.startsWith(currentPath)
+
             return (
               <li
                 key={generateKey(frontmatter.title, idx)}
@@ -47,7 +51,7 @@ const SidebarRight = ({ currentPath, currentNode }) => {
                   isCurrentPage ? 'content-nav__item_active' : ''
                 }`}
               >
-                <Link to={fields.slug} className="content-nav__link">
+                <Link to={slug} className="content-nav__link">
                   {frontmatter.title}
                 </Link>
                 {isCurrentPage && (

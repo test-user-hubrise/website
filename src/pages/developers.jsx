@@ -59,7 +59,8 @@ const pageContent = {
   ],
 }
 
-export const DevelopersPage = ({ pageContent }) => {
+export const DevelopersPage = ({ pageContent, uri }) => {
+  const isFrench = uri.startsWith(`/fr`)
   const { toggleContactUsVisibility } = useContext(AppContext)
   const { hero, thumbs } = pageContent
 
@@ -91,7 +92,7 @@ export const DevelopersPage = ({ pageContent }) => {
               >
                 <Link
                   className="developers-thumbs__link"
-                  to={thumbProps[id].to}
+                  to={`${isFrench ? '/fr' : ''}${thumbProps[id].to}`}
                 >
                   <i
                     className={`developers-thumbs__icon fa ${thumbProps[id].icon}`}
@@ -114,4 +115,6 @@ DevelopersPage.propTypes = {
   pageContent: PropTypes.objectOf(PropTypes.any).isRequired,
 }
 
-export default () => <DevelopersPage pageContent={pageContent} />
+export default (props) => (
+  <DevelopersPage pageContent={pageContent} {...props} />
+)

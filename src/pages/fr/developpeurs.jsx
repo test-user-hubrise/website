@@ -35,8 +35,8 @@ const pageContent = {
   ],
 }
 
-const DevelopersPage = () => {
-  return <DevelopersBase pageContent={pageContent} />
+const DevelopersPage = ({ uri }) => {
+  return <DevelopersBase pageContent={pageContent} uri={uri} />
 }
 
 export default DevelopersPage
