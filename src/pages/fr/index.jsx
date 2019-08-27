@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'gatsby'
 
 import { IndexPage as IndexBase } from '../'
 
@@ -71,9 +72,9 @@ const Faq = () => {
         <ul className="index-faq">
           {links.map((link, idx) => (
             <li key={generateKey(link, idx)} className="index-faq__item">
-              <a className="index-faq__link" href="/fr/faq">
+              <Link className="index-faq__link" to="/fr/faq">
                 {link}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -126,13 +127,13 @@ const CompatibleApps = () => {
           <br />
           D'autres intégrations sont en cours.
           <br />
-          <a className="section__description-link" href="/fr/apps">
+          <Link className="section__description-link" to="/fr/apps">
             Voir les applications disponibles
-          </a>
+          </Link>
           <span className="section__description-span">(commerçants)</span>-
-          <a className="section__description-link" href="/fr/developpeurs">
+          <Link className="section__description-link" to="/fr/developpeurs">
             Connectez votre logiciel à HubRise
-          </a>
+          </Link>
           <span className="section__description-span">(développeurs)</span>
         </p>
         <div

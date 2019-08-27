@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 
 import { PricingPage as PricingBase } from '../pricing'
 
@@ -37,12 +38,12 @@ const PricingPage = () => {
       pageContent={pageContent}
       callToActionExtra={
         <div className="section__link-block">
-          <a
+          <Link
             className="section__description-link section__description-link_black section__description-link_bold"
-            href="/fr/faq#abonnement"
+            to="/fr/faq#abonnement"
           >
             Voir notre F.A.Q. concernant l'abonnement
-          </a>
+          </Link>
         </div>
       }
     />
