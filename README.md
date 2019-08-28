@@ -4,7 +4,7 @@
 
 2. In console, `cd` to the project root then type:
 ```shell
-docker build -f docker-dev/Dockerfile -t hubrise/website-dev .
+docker build -f docker_dev/Dockerfile -t hubrise/website-dev .
 ```
 
 ## Development cycle

@@ -7,7 +7,7 @@ import { generateKey } from '../../components/utils'
 import { useInterval } from '../../components/custom_hooks'
 
 import diagram from '../../images/diagram_french.png'
-import carouselImg from '../../images/logo-carousel.jpg'
+import carouselImg from '../../images/logo_carousel.jpg'
 import preview from '../../images/coming_soon.mp4'
 
 const pageContent = {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Link from '../components/link'
 
-import AppContext from '../context/AppContext'
+import AppContext from '../context'
 
 import { generateKey } from '../components/utils'
 

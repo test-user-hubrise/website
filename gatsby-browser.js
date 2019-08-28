@@ -8,7 +8,7 @@ import PageWrapper from './src/components/page_wrapper'
 
 import { kebabify } from './src/utils/content'
 
-import { AppContextProvider } from './src/context/AppContext'
+import { AppContextProvider } from './src/context'
 
 import './src/styles/global.scss'
 

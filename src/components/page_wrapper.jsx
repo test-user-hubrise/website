@@ -6,7 +6,7 @@ import ContactUsForm from './forms/contact_us'
 import Modal from '../components/modal'
 import Layout from './layout'
 
-import AppContext from '../context/AppContext'
+import AppContext from '../context'
 
 const formContentEng = {
   placeholders: {

@@ -4,7 +4,7 @@ import Link from '../../components/link'
 import Modal from '../../components/modal'
 import SuggestAppForm from '../../components/forms/suggest_app'
 
-import AppContext from '../../context/AppContext'
+import AppContext from '../../context'
 
 import { generateKey } from '../../components/utils'
 

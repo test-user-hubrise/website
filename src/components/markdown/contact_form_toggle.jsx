@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 
 import Link from '../link'
 
-import AppContext from '../../context/AppContext'
+import AppContext from '../../context'
 
 function ContactFormToggle({ text }) {
   const { toggleContactUsVisibility } = useContext(AppContext)

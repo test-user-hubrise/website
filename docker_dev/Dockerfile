@@ -38,7 +38,7 @@ COPY . .
 
 EXPOSE 8000
 
-ENTRYPOINT ["docker-dev/bin/entrypoint.sh"]
+ENTRYPOINT ["docker_dev/bin/entrypoint.sh"]
 
 # Launch Hexo server (local development)
 CMD ["./node_modules/.bin/gatsby", "develop", "-H", "0.0.0.0", "-p", "8000"]

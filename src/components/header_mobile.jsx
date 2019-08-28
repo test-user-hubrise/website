@@ -5,7 +5,7 @@ import Link from './link'
 import { generateKey } from './utils'
 
 import logo from '../images/logo.png'
-import button from '../images/bread-button.png'
+import button from '../images/bread_button.png'
 
 const social = [
   {

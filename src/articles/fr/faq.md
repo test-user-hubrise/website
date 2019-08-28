@@ -2,7 +2,7 @@
 title: F.A.Q
 ---
 
-import ContactFormToggle from '../../components/markdown/contactFormToggle.jsx'
+import ContactFormToggle from '../../components/markdown/contact_form_toggle.jsx'
 
 #### Abonnement
 

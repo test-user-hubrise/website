@@ -5,7 +5,7 @@ import { navigationListEnglish, navigationListFrench } from './header'
 
 import { generateKey } from './utils'
 
-import logo from '../images/logo-footer.png'
+import logo from '../images/logo_footer.png'
 import hero from '../images/hero_image_optimized.jpg'
 
 const Footer = ({ pagePaths, path }) => {
