@@ -233,24 +233,24 @@ Creates a new customer. The only mandatory fields are the first and last name.
 
 #### Request parameters:
 
-| Name                          | Type    | Description                                                                                |
-| ----------------------------- | ------- | ------------------------------------------------------------------------------------------ |
-| `private_ref` {% optional %}  | string  | The customer internal id, visible only to the client who set it. Used for customer lookup. |
-| `email` {% optional %}        | string  | Email                                                                                      |
-| `first_name`                  | string  | First name                                                                                 |
-| `last_name`                   | string  | Last name                                                                                  |
-| `gender` {% optional %}       | string  | If defined, must be either `male` or `female`                                              |
-| `birth_date` {% optional %}   | date    | Birth date (eg. `1999-01-01`)                                                              |
-| `company_name` {% optional %} | string  | Company name                                                                               |
-| `phone` {% optional %}        | string  | Phone number                                                                               |
-| `address_1` {% optional %}    | string  | 1st line of address                                                                        |
-| `address_2` {% optional %}    | string  | 2nd line of address                                                                        |
-| `postal_code` {% optional %}  | string  | Postal code                                                                                |
-| `city` {% optional %}         | string  | City                                                                                       |
-| `state` {% optional %}        | string  | State                                                                                      |
-| `country` {% optional %}      | string  | Country                                                                                    |
-| `latitude` {% optional %}     | decimal | Latitude                                                                                   |
-| `longitude` {% optional %}    | decimal | Longitude                                                                                  |
+| Name                                     | Type    | Description                                                                                |
+| ---------------------------------------- | ------- | ------------------------------------------------------------------------------------------ |
+| `private_ref` <Label type="optional" />  | string  | The customer internal id, visible only to the client who set it. Used for customer lookup. |
+| `email` <Label type="optional" />        | string  | Email                                                                                      |
+| `first_name`                             | string  | First name                                                                                 |
+| `last_name`                              | string  | Last name                                                                                  |
+| `gender` <Label type="optional" />       | string  | If defined, must be either `male` or `female`                                              |
+| `birth_date` <Label type="optional" />   | date    | Birth date (eg. `1999-01-01`)                                                              |
+| `company_name` <Label type="optional" /> | string  | Company name                                                                               |
+| `phone` <Label type="optional" />        | string  | Phone number                                                                               |
+| `address_1` <Label type="optional" />    | string  | 1st line of address                                                                        |
+| `address_2` <Label type="optional" />    | string  | 2nd line of address                                                                        |
+| `postal_code` <Label type="optional" />  | string  | Postal code                                                                                |
+| `city` <Label type="optional" />         | string  | City                                                                                       |
+| `state` <Label type="optional" />        | string  | State                                                                                      |
+| `country` <Label type="optional" />      | string  | Country                                                                                    |
+| `latitude` <Label type="optional" />     | decimal | Latitude                                                                                   |
+| `longitude` <Label type="optional" />    | decimal | Longitude                                                                                  |
 
 #### Example request:
 
@@ -384,11 +384,11 @@ Creates a new loyalty card for a customer.
 
 #### Request parameters:
 
-| Name                 | Type   | Description                                                                                                                                  |
-| -------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `customer_id`        | string | The customer's `id`. Must exist or the request will fail.                                                                                    |
-| `name`               | string | The loyalty card scheme name. Must be unique among the cards owned by the same customer. Mandatory parameter, but "" is an acceptable value. |
-| `ref` {% optional %} | string | The unique reference of the card. If defined, it must be unique among all the cards of the same customer list having the same name.          |
+| Name                            | Type   | Description                                                                                                                                  |
+| ------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `customer_id`                   | string | The customer's `id`. Must exist or the request will fail.                                                                                    |
+| `name`                          | string | The loyalty card scheme name. Must be unique among the cards owned by the same customer. Mandatory parameter, but "" is an acceptable value. |
+| `ref` <Label type="optional" /> | string | The unique reference of the card. If defined, it must be unique among all the cards of the same customer list having the same name.          |
 
 #### Example request:
 
@@ -415,10 +415,10 @@ Update a loyalty card.
 
 #### Request parameters:
 
-| Name                  | Type   | Description                       |
-| --------------------- | ------ | --------------------------------- |
-| `name` {% optional %} | string | The loyalty card scheme name.     |
-| `ref` {% optional %}  | string | The unique reference of the card. |
+| Name                             | Type   | Description                       |
+| -------------------------------- | ------ | --------------------------------- |
+| `name` <Label type="optional" /> | string | The loyalty card scheme name.     |
+| `ref` <Label type="optional" />  | string | The unique reference of the card. |
 
 #### Example request:
 
@@ -498,11 +498,11 @@ Create a loyalty card operation and updates the balance accordingly.
 
 #### Request parameters:
 
-| Name                      | Type    | Description                                                                                                                                                         |
-| ------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `order_id` {% optional %} | string  | Attach this operation to a particular order. If defined, an order with this id must exist or the request will fail. An order can be attached to several operations. |
-| `reason` {% optional %}   | string  | Describes how the points were obtained/redeemed. The customer will typically see this field when he checks his loyalty account operations from a website.           |
-| `delta`                   | decimal | The number of points to add to the customer balance. Use a negative number to remove points.                                                                        |
+| Name                                 | Type    | Description                                                                                                                                                         |
+| ------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `order_id` <Label type="optional" /> | string  | Attach this operation to a particular order. If defined, an order with this id must exist or the request will fail. An order can be attached to several operations. |
+| `reason` <Label type="optional" />   | string  | Describes how the points were obtained/redeemed. The customer will typically see this field when he checks his loyalty account operations from a website.           |
+| `delta`                              | decimal | The number of points to add to the customer balance. Use a negative number to remove points.                                                                        |
 
 #### Example request:
 

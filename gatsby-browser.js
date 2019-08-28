@@ -3,6 +3,7 @@ import { MDXProvider } from '@mdx-js/react'
 
 import HighlightCode from './src/components/markdown/highlight_code'
 import CallSummaryTable from './src/components/markdown/call_summary_table'
+import Label from './src/components/markdown/label'
 import Link from './src/components/link'
 import PageWrapper from './src/components/page_wrapper'
 
@@ -57,6 +58,7 @@ const components = {
   ),
   inlineCode: ({ children }) => <HighlightCode inline code={children} />,
   CallSummaryTable,
+  Label,
 }
 
 export const wrapRootElement = ({ element }) => (
