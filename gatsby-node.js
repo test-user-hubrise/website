@@ -19,12 +19,10 @@ const createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     query loadArticles {
       allMdx {
-        edges {
-          node {
-            id
-            fields {
-              slug
-            }
+        nodes {
+          id
+          fields {
+            slug
           }
         }
       }
@@ -35,17 +33,24 @@ const createPages = async ({ graphql, actions }) => {
     return Promise.reject(result.errors)
   }
 
-  result.data.allMdx.edges.forEach(({ node }) => {
+  result.data.allMdx.nodes.forEach(({ id, fields }) => {
+    // Generate copies of API docs under `/fr` path.
+    if (!fields.slug.startsWith(`/fr`)) {
+      createPage({
+        path: `/fr${fields.slug}`,
+        component: path.resolve(`./src/templates/api/index.jsx`),
+        context: { id },
+      })
+    }
+
     createPage({
-      path: node.fields.slug,
+      path: fields.slug,
       component: path.resolve(
         `./src/templates/${
-          node.fields.slug.startsWith(`/fr/faq`) ? 'faq.jsx' : 'api/index.jsx'
+          fields.slug.startsWith(`/fr/faq`) ? 'faq.jsx' : 'api/index.jsx'
         }`
       ),
-      context: {
-        id: node.id,
-      },
+      context: { id },
     })
   })
 }
