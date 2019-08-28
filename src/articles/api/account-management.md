@@ -8,7 +8,11 @@ title: Account management
 
 Get location details.
 
-{% call_summary 'GET /locations/:id' 'location, account' 'GET /location (location only)' %}
+<CallSummaryTable
+  endpoint="GET /locations/:id"
+  shortEndpoint="GET /location (location only)"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
@@ -27,9 +31,9 @@ Get location details.
   "postal_code": "75003",
   "city": "Paris",
   "country": "FR",
-  "timezone":  {
+  "timezone": {
     "name": "Europe/Paris",
-    "utc_offset": 7200,
+    "utc_offset": 7200
   },
   "custom_fields": {
     "latitude": 48.8697246,
@@ -42,7 +46,11 @@ Get location details.
 
 Update the `custom_fields` of the location
 
-{% call_summary 'PUT /locations/:id' 'location, account' 'PUT /location (location only)' %}
+<CallSummaryTable
+  endpoint="PUT /locations/:id"
+  shortEndpoint="PUT /location (location only)"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
@@ -61,7 +69,10 @@ Update the `custom_fields` of the location
 
 Returns the locations of the account.
 
-{% call_summary 'GET /locations' 'account' %}
+<CallSummaryTable
+  endpoint="GET /locations/"
+  accessLevel="account"
+/>
 
 #### Example request:
 
@@ -89,7 +100,11 @@ Returns the locations of the account.
 
 Get account details.
 
-{% call_summary 'GET /accounts/:id' 'account' 'GET /account' %}
+<CallSummaryTable
+  endpoint="GET /accounts/:id"
+  shortEndpoint="GET /account"
+  accessLevel="account"
+/>
 
 #### Example request:
 
@@ -97,9 +112,9 @@ Get account details.
 
 ```json
 {
-    "id": "3r4s3",
-    "name": "Mister Pizza",
-    "currency": "EUR"
+  "id": "3r4s3",
+  "name": "Mister Pizza",
+  "currency": "EUR"
 }
 ```
 
@@ -109,7 +124,10 @@ Get account details.
 
 Get user information.
 
-{% call_summary 'GET /user' 'profile, profile_with_email' %}
+<CallSummaryTable
+  endpoint="GET /user"
+  accessLevel="profile, profile_with_email"
+/>
 
 #### Example request:
 
@@ -121,14 +139,11 @@ Get user information.
   "first_name": "Tom",
   "last_name": "Jones",
   "email": "tom.jones@gmail.com",
-  "timezone":  {
+  "timezone": {
     "name": "Europe/Paris",
     "utc_offset": 7200
   },
-  "locales": [
-    "en-GB",
-    "fr-FR"
-  ]
+  "locales": ["en-GB", "fr-FR"]
 }
 ```
 

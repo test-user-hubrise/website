@@ -12,13 +12,16 @@ Name unicity is ruled by the same constraints as catalogs: at the location level
 
 Returns a customer list.
 
-{% call_summary 'GET /customer_lists/:customer_list_id' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="GET /customer_lists/:customer_list_id"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
 `GET /customer_lists/ag8u4`
 
-``` json
+```json
 {
   "id": "ag8u4",
   "name": "Online customers"
@@ -29,17 +32,25 @@ Returns a customer list.
 
 Returns a location's Customer Lists. Includes location and account level Customer Lists.
 
-{% call_summary 'GET /locations/:location_id/customer_lists' 'location, account' 'GET /location/customer_lists (location only)' %}
+<CallSummaryTable
+  endpoint="GET /locations/:location_id/customer_lists"
+  shortEndpoint="GET /location/customer_lists (location only)"
+  accessLevel="location, account"
+/>
 
 Account level Customer Lists of an account:
 
-{% call_summary 'GET /accounts/:account_id/customer_lists' 'account' 'GET /account/customer_lists (account only)' %}
+<CallSummaryTable
+  endpoint="GET /accounts/:account_id/customer_lists"
+  shortEndpoint="GET /account/customer_lists (account only)"
+  accessLevel="account"
+/>
 
 #### Example request:
 
 `GET /locations/3r4s3-1/customer_lists`
 
-``` json
+```json
 [
   {
     "id": "apm3s",
@@ -50,7 +61,7 @@ Account level Customer Lists of an account:
     "id": "s7ma5",
     "name": "POS customers",
     "created_at": "2017-05-19T13:23:10Z"
-  },
+  }
 ]
 ```
 
@@ -60,25 +71,33 @@ Creates a new customer list.
 
 To create a location-level customer list, use this request:
 
-{% call_summary 'POST /locations/:location_id/customer_lists' 'location, account' 'POST /location/customer_lists (location only)' %}
+<CallSummaryTable
+  endpoint="POST /locations/:location_id/customer_lists"
+  shortEndpoint="POST /location/customer_lists (location only)"
+  accessLevel="location, account"
+/>
 
 To create an account-level customer list:
 
-{% call_summary 'POST /accounts/:account_id/customer_lists' 'account' 'POST /account/customer_lists (account only)' %}
+<CallSummaryTable
+  endpoint="POST /accounts/:account_id/customer_lists"
+  shortEndpoint="POST /account/customer_lists (account only)"
+  accessLevel="account"
+/>
 
 #### Request parameters:
 
-Name | Type | Description
---- | ---
-`name` | string | The name of the customer list.
+| Name   | Type   | Description                    |
+| ------ | ------ | ------------------------------ |
+| `name` | string | The name of the customer list. |
 
 #### Example request:
 
 `POST /locations/3r4s3-1/customer_lists`
 
-``` json
+```json
 {
-  "name": "Web customers",
+  "name": "Web customers"
 }
 ```
 
@@ -88,13 +107,16 @@ If a customer list with the same name already exists, it returns an error.
 
 Update a customer list.
 
-{% call_summary 'PUT /customer_lists/:id' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="PUT /customer_lists/:id"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
 `PUT /customer_lists/apm3s`
 
-``` json
+```json
 {
   "name": "New customers"
 }
@@ -106,7 +128,10 @@ If `name` is used by another customer list, it returns an error.
 
 Delete a customer list and its customers.
 
-{% call_summary 'DELETE /customer_lists/:id' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="DELETE /customer_lists/:id"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
@@ -115,48 +140,52 @@ Delete a customer list and its customers.
 ## 2. Customers
 
 ### 2.1. Retrieve customer
+
 Returns a customer's details.
 
-{% call_summary 'GET /customer_lists/:customer_list_id/customers/:customer_id' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="GET /customer_lists/:customer_list_id/customers/:customer_id"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
 `GET /customer_lists/smpse3/customers/jdj9v`
 
-``` json
+```json
 {
-    "id": "jdj9v",
-    "email": "xxx@yyy.com",
-    "first_name": "Jimmy",
-    "last_name": "Watson",
-    "gender": "male",
-    "birth_date": null,
-    "company_name": null,
-    "phone": "+44.123456789",
-    "address_1": "1 Town Road",
-    "address_2": null,
-    "postal_code": "N9 0HL",
-    "city": "London",
-    "state": null,
-    "country": "GB",
-    "latitude": 45.7571206,
-    "longitude": 4.8307575,
-    "delivery_notes": null,
-    "sms_marketing": true,
-    "email_marketing": true,
-    "nb_orders": 2,
-    "order_total": "28.40 GBP",
-    "first_order_date": "2017-01-18T17:15:11+01:00",
-    "last_order_date": "2017-01-23T10:13:21+01:00",
-    "loyalty_cards": [
-      {
-        "id": "slp8q",
-        "name": "",
-        "ref": "av-33489",
-        "balance": 13.5,
-      }
-    ],
-    "custom_fields": {}
+  "id": "jdj9v",
+  "email": "xxx@yyy.com",
+  "first_name": "Jimmy",
+  "last_name": "Watson",
+  "gender": "male",
+  "birth_date": null,
+  "company_name": null,
+  "phone": "+44.123456789",
+  "address_1": "1 Town Road",
+  "address_2": null,
+  "postal_code": "N9 0HL",
+  "city": "London",
+  "state": null,
+  "country": "GB",
+  "latitude": 45.7571206,
+  "longitude": 4.8307575,
+  "delivery_notes": null,
+  "sms_marketing": true,
+  "email_marketing": true,
+  "nb_orders": 2,
+  "order_total": "28.40 GBP",
+  "first_order_date": "2017-01-18T17:15:11+01:00",
+  "last_order_date": "2017-01-23T10:13:21+01:00",
+  "loyalty_cards": [
+    {
+      "id": "slp8q",
+      "name": "",
+      "ref": "av-33489",
+      "balance": 13.5
+    }
+  ],
+  "custom_fields": {}
 }
 ```
 
@@ -164,21 +193,24 @@ Returns a customer's details.
 
 Returns the customers of a customer list. Some filters can be passed.
 
-{% call_summary 'GET /customer_lists/:customer_list_id/customers' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="GET /customer_lists/:customer_list_id/customers"
+  accessLevel="location, account"
+/>
 
 #### Request parameters:
 
-Name | Description
---- | ---
-`private_ref` | Returns customers having this private_ref.
-`email` | Filter customers by email. Wildcards (\*) can be used.
-`phone` | Filter customers by phone. Wildcards (\*) can be used.
+| Name          | Description                                            |
+| ------------- | ------------------------------------------------------ |
+| `private_ref` | Returns customers having this private_ref.             |
+| `email`       | Filter customers by email. Wildcards (\*) can be used. |
+| `phone`       | Filter customers by phone. Wildcards (\*) can be used. |
 
 #### Example request:
 
 `GET /customer_lists/ag8u4/customers?phone=0123*`
 
-``` json
+```json
 [
   {
     "id": "asdf2",
@@ -194,34 +226,37 @@ Name | Description
 
 Creates a new customer. The only mandatory fields are the first and last name.
 
-{% call_summary 'POST /customer_lists/:customer_list_id/customers' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="POST /customer_lists/:customer_list_id/customers"
+  accessLevel="location, account"
+/>
 
 #### Request parameters:
 
-Name | Type | Description
---- | ---
-`private_ref` {% optional %} | string | The customer internal id, visible only to the client who set it. Used for customer lookup.
-`email` {% optional %} | string | Email
-`first_name` | string | First name
-`last_name` | string | Last name
-`gender` {% optional %} | string | If defined, must be either `male` or `female`
-`birth_date` {% optional %} | date | Birth date (eg. `1999-01-01`)
-`company_name` {% optional %} | string | Company name
-`phone` {% optional %} | string | Phone number
-`address_1` {% optional %} | string | 1st line of address
-`address_2` {% optional %} | string | 2nd line of address
-`postal_code` {% optional %} | string | Postal code
-`city` {% optional %} | string | City
-`state` {% optional %} | string | State
-`country` {% optional %} | string | Country
-`latitude` {% optional %} | decimal | Latitude
-`longitude` {% optional %} | decimal | Longitude
+| Name                          | Type    | Description                                                                                |
+| ----------------------------- | ------- | ------------------------------------------------------------------------------------------ |
+| `private_ref` {% optional %}  | string  | The customer internal id, visible only to the client who set it. Used for customer lookup. |
+| `email` {% optional %}        | string  | Email                                                                                      |
+| `first_name`                  | string  | First name                                                                                 |
+| `last_name`                   | string  | Last name                                                                                  |
+| `gender` {% optional %}       | string  | If defined, must be either `male` or `female`                                              |
+| `birth_date` {% optional %}   | date    | Birth date (eg. `1999-01-01`)                                                              |
+| `company_name` {% optional %} | string  | Company name                                                                               |
+| `phone` {% optional %}        | string  | Phone number                                                                               |
+| `address_1` {% optional %}    | string  | 1st line of address                                                                        |
+| `address_2` {% optional %}    | string  | 2nd line of address                                                                        |
+| `postal_code` {% optional %}  | string  | Postal code                                                                                |
+| `city` {% optional %}         | string  | City                                                                                       |
+| `state` {% optional %}        | string  | State                                                                                      |
+| `country` {% optional %}      | string  | Country                                                                                    |
+| `latitude` {% optional %}     | decimal | Latitude                                                                                   |
+| `longitude` {% optional %}    | decimal | Longitude                                                                                  |
 
 #### Example request:
 
 `POST /customer_lists/ag8u4/customers`
 
-``` json
+```json
 {
   "first_name": "Charles",
   "last_name": "Moore",
@@ -234,13 +269,16 @@ Name | Type | Description
 
 Updates a customer.
 
-{% call_summary 'PUT /customer_lists/:customer_list_id/customers/:customer_id' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="PUT /customer_lists/:customer_list_id/customers/:customer_id"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
 `PUT /customer_lists/ag8u4/customers/asdf2`
 
-``` json
+```json
 {
   "first_name": "Claude"
 }
@@ -260,13 +298,16 @@ The `ref` must be unique for a given customer list and a given name.
 
 The `balance` is updated automatically by HubRise when a loyalty operation is created. This field cannot be changed through the API.
 
-{% call_summary 'GET /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="GET /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
 `GET /customer_lists/smpre3/loyalty_cards/slp8q`
 
-``` json
+```json
 {
   "id": "slp8q",
   "customer_id": "ve343",
@@ -280,21 +321,24 @@ The `balance` is updated automatically by HubRise when a loyalty operation is cr
 
 Returns the loyalty cards belonging to a customer list. Some filters can be passed.
 
-{% call_summary 'GET /customer_lists/:customer_list_id/loyalty_cards' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="GET /customer_lists/:customer_list_id/loyalty_cards"
+  accessLevel="location, account"
+/>
 
 #### Request parameters:
 
-Name | Description
---- | ---
-`name` | Filters the loyalty cards by name.
-`ref` | Filters by ref.
-`customer_id` | Returns the cards belonging to a particular customer.
+| Name          | Description                                           |
+| ------------- | ----------------------------------------------------- |
+| `name`        | Filters the loyalty cards by name.                    |
+| `ref`         | Filters by ref.                                       |
+| `customer_id` | Returns the cards belonging to a particular customer. |
 
 #### Example request: retrieve by name and ref
 
 `GET /customer_lists/smpre3/loyalty_cards?name=&ref=av-33489`
 
-``` json
+```json
 [
   {
     "id": "slp8q",
@@ -310,7 +354,7 @@ Name | Description
 
 `GET /customer_lists/smpre3/loyalty_cards?customer_id=ve343`
 
-``` json
+```json
 [
   {
     "id": "slp8q",
@@ -333,21 +377,24 @@ Name | Description
 
 Creates a new loyalty card for a customer.
 
-{% call_summary 'POST /customer_lists/:customer_list_id/loyalty_cards' 'account,location' '' %}
+<CallSummaryTable
+  endpoint="POST /customer_lists/:customer_list_id/loyalty_cards"
+  accessLevel="location, account"
+/>
 
 #### Request parameters:
 
-Name | Type | Description
---- | ---
-`customer_id` | string | The customer's `id`. Must exist or the request will fail.
-`name` | string | The loyalty card scheme name. Must be unique among the cards owned by the same customer. Mandatory parameter, but "" is an acceptable value.
-`ref` {% optional %} | string | The unique reference of the card. If defined, it must be unique among all the cards of the same customer list having the same name.
+| Name                 | Type   | Description                                                                                                                                  |
+| -------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `customer_id`        | string | The customer's `id`. Must exist or the request will fail.                                                                                    |
+| `name`               | string | The loyalty card scheme name. Must be unique among the cards owned by the same customer. Mandatory parameter, but "" is an acceptable value. |
+| `ref` {% optional %} | string | The unique reference of the card. If defined, it must be unique among all the cards of the same customer list having the same name.          |
 
 #### Example request:
 
 `POST /customer_lists/smpre3/loyalty_cards`
 
-``` json
+```json
 {
   "customer_id": "ve343",
   "name": "",
@@ -361,20 +408,23 @@ If the request succeeds, the loyalty card is created with an initial `balance` s
 
 Update a loyalty card.
 
-{% call_summary 'PUT /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id' 'account,location' '' %}
+<CallSummaryTable
+  endpoint="PUT /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id"
+  accessLevel="location, account"
+/>
 
 #### Request parameters:
 
-Name | Type | Description
---- | ---
-`name` {% optional %} | string | The loyalty card scheme name.
-`ref` {% optional %} | string | The unique reference of the card.
+| Name                  | Type   | Description                       |
+| --------------------- | ------ | --------------------------------- |
+| `name` {% optional %} | string | The loyalty card scheme name.     |
+| `ref` {% optional %}  | string | The unique reference of the card. |
 
 #### Example request:
 
 `PUT /customer_lists/smpre3/loyalty_cards/slp8q`
 
-``` json
+```json
 {
   "ref": "av-20103"
 }
@@ -390,13 +440,16 @@ Note that only the name and the ref can be updated. It's not possible to change 
 
 Returns a loyalty card operation.
 
-{% call_summary 'GET /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id/operations/:operation_id' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="GET /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id/operations/:operation_id"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
 `GET /customer_lists/smpre3/loyalty_cards/slp8q/operations/22kmp`
 
-``` json
+```json
 {
   "id": "22kmp",
   "customer_id": "ve343",
@@ -413,13 +466,16 @@ Returns a loyalty card operation.
 
 Returns the operations on a given loyalty card, sorted by descending chronological order.
 
-{% call_summary 'GET /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id/operations' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="GET /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id/operations"
+  accessLevel="location, account"
+/>
 
 #### Example request:
 
 `GET /customer_lists/smpre3/loyalty_cards/slp8q/operations`
 
-``` json
+```json
 [
   {
     "id": "22kmp",
@@ -435,21 +491,24 @@ Returns the operations on a given loyalty card, sorted by descending chronologic
 
 Create a loyalty card operation and updates the balance accordingly.
 
-{% call_summary 'POST /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id/operations' 'location, account' '' %}
+<CallSummaryTable
+  endpoint="POST /customer_lists/:customer_list_id/loyalty_cards/:loyalty_card_id/operations"
+  accessLevel="location, account"
+/>
 
 #### Request parameters:
 
-Name | Type | Description
---- | ---
-`order_id` {% optional %} | string | Attach this operation to a particular order. If defined, an order with this id must exist or the request will fail. An order can be attached to several operations.
-`reason` {% optional %} | string | Describes how the points were obtained/redeemed. The customer will typically see this field when he checks his loyalty account operations from a website.
-`delta` | decimal | The number of points to add to the customer balance. Use a negative number to remove points.
+| Name                      | Type    | Description                                                                                                                                                         |
+| ------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `order_id` {% optional %} | string  | Attach this operation to a particular order. If defined, an order with this id must exist or the request will fail. An order can be attached to several operations. |
+| `reason` {% optional %}   | string  | Describes how the points were obtained/redeemed. The customer will typically see this field when he checks his loyalty account operations from a website.           |
+| `delta`                   | decimal | The number of points to add to the customer balance. Use a negative number to remove points.                                                                        |
 
 #### Example request:
 
 `POST /customer_lists/smpre3/loyalty_cards/slp8q/operations`
 
-``` json
+```json
 {
   "order_id": "mapcm",
   "reason": "Points earned",
