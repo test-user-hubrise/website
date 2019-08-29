@@ -24,7 +24,7 @@ Par carte bancaire uniquement. Une fois votre carte enregistrée, l'abonnement e
 
 ##### J'ai plusieurs magasins, dois-je payer un abonnement par magasin ?
 
-Oui. Notez que des remises sont appliquées à partir du 5ème point de vente. <ContactFormToggle text={`Contactez-nous`} /> pour en savoir plus.
+Oui. Notez que des remises sont appliquées à partir du 5ème point de vente. <ContactFormToggle text="Contactez-nous" /> pour en savoir plus.
 
 #### Données
 
