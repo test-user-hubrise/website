@@ -21,7 +21,7 @@ const SidebarRight = ({ currentPath, currentNode }) => {
 
   return (
     <div className="section__sidebar section__sidebar_right section__sidebar_small-padding">
-      <div className="section__sidebar-in" data-floater-float-me="">
+      <div className="section__sidebar-in">
         <h5 className="content-nav__title">Content</h5>
         <h5
           id="content-nav"
