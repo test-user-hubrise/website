@@ -1,19 +1,17 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
+import React from 'react'
+import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import appleTouchIcon from '../images/favicons/apple-touch-icon.png'
+import safariPinnedTab from '../images/favicons/safari-pinned-tab.svg'
+import favicon32 from '../images/favicons/favicon-32x32.png'
+import favicon16 from '../images/favicons/favicon-16x16.png'
 
 function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
     graphql`
-      query {
+      query getSiteMetadata {
         site {
           siteMetadata {
             title
@@ -32,8 +30,7 @@ function SEO({ description, lang, meta, title }) {
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={site.siteMetadata.title}
       meta={[
         {
           name: `description`,
@@ -67,13 +64,31 @@ function SEO({ description, lang, meta, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `keywords`,
+          content: ``,
+        },
+        {
+          name: `author`,
+          content: site.siteMetadata.author,
+        },
+        {
+          name: `copyright`,
+          content: `(c)`,
+        },
       ].concat(meta)}
-    />
+    >
+      <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} />
+      <link rel="mask-icon" href={safariPinnedTab} color="#5bbad5" />
+      <link rel="icon" type="image/png" sizes="32x32" href={favicon32} />
+      <link rel="icon" type="image/png" sizes="32x32" href={favicon16} />
+    </Helmet>
   )
 }
 
 SEO.defaultProps = {
   lang: `en`,
+  title: ``,
   meta: [],
   description: ``,
 }

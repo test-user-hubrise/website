@@ -5,6 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import ContactUsForm from './forms/contact_us'
 import Modal from '../components/modal'
 import Layout from './layout'
+import SEO from './seo'
 
 import { checkLanguage } from './utils'
 
@@ -45,6 +46,7 @@ const PageWrapper = ({ element, props }) => {
 
   return (
     <>
+      <SEO lang={isFrench ? `fr` : `en`} />
       <Layout
         pagePaths={data.allSitePage.nodes.map(({ path }) => path)}
         {...props}
