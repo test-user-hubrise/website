@@ -18,6 +18,15 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              // Use shapeless svg as otherwise an <undefined /> tag is rendered
+              icon: `<svg width="0" height="0" />`,
+            },
+          },
+        ],
       },
     },
     {

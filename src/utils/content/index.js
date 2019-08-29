@@ -2,13 +2,6 @@ import React from 'react'
 
 import Link from '../../components/link'
 
-export const kebabify = (string) => {
-  return string
-    .toLowerCase()
-    .split(` `)
-    .join(`-`)
-}
-
 // NOTE: currently replaces only 1 link - throws otherwise.
 // TODO: enable processing of >1 links.
 export const substituteLinks = (string, linkProps) => {

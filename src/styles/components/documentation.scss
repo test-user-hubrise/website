@@ -120,6 +120,37 @@
 .documentation {
   font-family: 'Poppins', sans-serif;
 
+  h2,
+  h3,
+  h4,
+  h5 {
+    display: grid;
+    grid-template-columns: max-content min-content;
+    grid-auto-flow: column;
+    grid-template-areas: 'header anchor';
+    grid-gap: 0.33rem;
+
+    a {
+      grid-area: anchor;
+      align-self: center;
+      color: transparent;
+      text-decoration: none;
+
+      &::after {
+        content: '#';
+
+        @media print {
+          display: none !important;
+        }
+      }
+    }
+
+    &:hover a {
+      color: green;
+      text-decoration: underline;
+    }
+  }
+
   h1 {
     color: #333333;
     font-weight: bold;
@@ -155,8 +186,7 @@
     font-weight: 500;
     font-size: 1rem;
     text-transform: uppercase;
-    margin: 1rem 0 1rem 0;
-    display: inline-block;
+    margin: 1rem 0;
     width: 100%;
   }
 
@@ -164,8 +194,7 @@
     color: #777777;
     font-weight: 500;
     font-size: 1rem;
-    margin: 0.5rem 0 0.5rem 0;
-    display: inline-block;
+    margin: 0.5rem 0;
     width: 100%;
   }
 
@@ -185,12 +214,6 @@
       color: $main-green;
     }
   }
-
-  //&__item-description{
-  //  color: #777777;
-  //  font-weight: 400;
-  //  font-size: 1rem;
-  //}
 
   ul,
   ol {
@@ -299,25 +322,6 @@
 
   td a {
     text-decoration: none;
-  }
-}
-
-.documentation-title {
-  &__anchor {
-    margin-left: 0.5rem;
-    display: none;
-
-    &:before {
-      content: '#';
-    }
-
-    @media print {
-      display: none !important;
-    }
-  }
-
-  &:hover &__anchor {
-    display: inline-block;
   }
 }
 // }}}
