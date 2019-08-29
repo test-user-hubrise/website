@@ -1,3 +1,9 @@
+export const kebabify = (string, keepCase = false) => {
+  const result = string.replace(/[^\w|\s]+/g, ``).replace(/\s/g, `-`)
+
+  return keepCase ? result : result.toLowerCase()
+}
+
 export const generateKey = (suffix, prefix) => `${suffix}--${prefix}`
 
 export const generateNavigationList = (allPaths, currentPath) => {

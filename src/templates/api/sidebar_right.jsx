@@ -5,6 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import Link from '../../components/link'
 
 import { generateKey } from '../../components/utils'
+import { kebabify } from '../../components/utils'
 
 const SidebarRight = ({ currentPath, currentNode }) => {
   const isFrench = currentPath.startsWith(`/fr`)
@@ -59,11 +60,6 @@ const SidebarRight = ({ currentPath, currentNode }) => {
                     {headings
                       .filter(({ depth }) => depth === 2)
                       .map(({ value: heading }, idx) => {
-                        const anchor = heading
-                          .slice(3)
-                          .toLowerCase()
-                          .split(` `)
-                          .join(`-`)
                         return (
                           <li
                             key={generateKey(heading, idx)}
@@ -71,7 +67,7 @@ const SidebarRight = ({ currentPath, currentNode }) => {
                           >
                             <Link
                               className="content-sublist-link"
-                              to={`#${anchor}`}
+                              to={`#${kebabify(heading)}`}
                             >
                               <span className="content-sublist-text">
                                 {heading}
