@@ -3,13 +3,13 @@ import React from 'react'
 import Link from './link'
 import { navigationListEnglish, navigationListFrench } from './header'
 
-import { generateKey } from './utils'
+import { generateKey, checkLanguage } from './utils'
 
 import logo from '../images/logo_footer.png'
 import hero from '../images/hero_image_optimized.jpg'
 
-const Footer = ({ pagePaths, path }) => {
-  const isFrench = path.startsWith(`/fr`)
+const Footer = ({ path }) => {
+  const isFrench = checkLanguage(path, `fr`)
   const navigationList = [
     {
       title: `Home`,

@@ -5,7 +5,7 @@ import Link from '../components/link'
 
 import AppContext from '../context'
 
-import { generateKey } from '../components/utils'
+import { generateKey, checkLanguage } from '../components/utils'
 
 const thumbProps = {
   quick_start: {
@@ -60,7 +60,7 @@ const pageContent = {
 }
 
 export const DevelopersPage = ({ pageContent, uri }) => {
-  const isFrench = uri.startsWith(`/fr`)
+  const isFrench = checkLanguage(uri, `fr`)
   const { toggleContactUsVisibility } = useContext(AppContext)
   const { hero, thumbs } = pageContent
 

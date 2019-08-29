@@ -3,7 +3,7 @@ import Link from './link'
 
 import HeaderMobile from './header_mobile'
 
-import { generateKey } from './utils'
+import { generateKey, checkLanguage } from './utils'
 
 import logo from '../images/logo.png'
 
@@ -38,7 +38,7 @@ export const navigationListFrench = [
 ]
 
 const Header = ({ path }) => {
-  const isFrench = path.startsWith(`/fr`)
+  const isFrench = checkLanguage(path, `fr`)
   const navigationList = isFrench ? navigationListFrench : navigationListEnglish
 
   return (

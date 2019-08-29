@@ -6,10 +6,16 @@ export const kebabify = (string, keepCase = false) => {
 
 export const generateKey = (suffix, prefix) => `${suffix}--${prefix}`
 
+export const checkLanguage = (path, language) => {
+  // There is not prefix for ENG pages.
+  if (language === `en`) return true
+  return path.startsWith(`/${language}`)
+}
+
 export const generateNavigationList = (allPaths, currentPath) => {
   const frenchPrefix = `/fr/`
   const titles = new Set()
-  const isFrench = currentPath.startsWith(frenchPrefix)
+  const isFrench = checkLanguage(currentPath, `fr`)
   const getPageTitle = (path) => {
     if (path === `/` || path === frenchPrefix) return `home`
     const pathSegments = path.split(`/`).filter(Boolean)

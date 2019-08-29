@@ -4,11 +4,10 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Link from '../../components/link'
 
-import { generateKey } from '../../components/utils'
-import { kebabify } from '../../components/utils'
+import { generateKey, kebabify, checkLanguage } from '../../components/utils'
 
 const SidebarRight = ({ currentPath, currentNode }) => {
-  const isFrench = currentPath.startsWith(`/fr`)
+  const isFrench = checkLanguage(currentPath, `fr`)
   const [isExpanded, setIsExpanded] = useState(false)
   const isApiSection =
     currentPath.startsWith(`/api`) || currentPath.startsWith(`/fr/api`)

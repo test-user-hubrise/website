@@ -6,6 +6,8 @@ import ContactUsForm from './forms/contact_us'
 import Modal from '../components/modal'
 import Layout from './layout'
 
+import { checkLanguage } from './utils'
+
 import AppContext from '../context'
 
 const formContentEng = {
@@ -27,7 +29,7 @@ const formContentFr = {
 }
 
 const PageWrapper = ({ element, props }) => {
-  const isFrench = props.path.startsWith(`/fr`)
+  const isFrench = checkLanguage(props.path, `fr`)
   const { isContactUsVisible, toggleContactUsVisibility } = useContext(
     AppContext
   )
