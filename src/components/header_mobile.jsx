@@ -22,7 +22,7 @@ const social = [
   },
 ]
 
-const HeaderMobile = ({ navigationList }) => {
+const HeaderMobile = ({ navigationList, isFrench }) => {
   const [isVisible, setIsVisible] = useState(false)
 
   return (
@@ -74,7 +74,13 @@ const HeaderMobile = ({ navigationList }) => {
             </div>
             <nav className="mobile-bar__content">
               <ul className="leftbar-menu">
-                {navigationList.map(({ to, title }, idx) => (
+                {[
+                  {
+                    to: isFrench ? `/fr` : `/`,
+                    title: `Home`,
+                  },
+                  ...navigationList,
+                ].map(({ to, title }, idx) => (
                   <li
                     key={generateKey(title, idx)}
                     className="leftbar-menu__item"

@@ -78,7 +78,7 @@ const Header = ({ path }) => {
             </button>
           </div>
         </div>
-        <HeaderMobile navigationList={navigationList} />
+        <HeaderMobile navigationList={navigationList} isFrench={isFrench} />
       </div>
     </header>
   )
