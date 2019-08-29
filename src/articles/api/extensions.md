@@ -4,9 +4,9 @@ title: API Extensions
 
 The HubRise API can be extended in two ways:
 
-* __Custom fields__ let you attach arbitrary data to existing resources. For instance, you could add a `tracking_url` field to orders.
+- **Custom fields** let you attach arbitrary data to existing resources. For instance, you could add a `tracking_url` field to orders.
 
-* __Custom endpoints__ let you create new endpoints in the API and bind them to 3rd party services. For instance, you could bind a cloud printing service to a location, so that calling `POST /location/orders/bd1f2/:print` would actually print the `bd1f2` order
+- **Custom endpoints** let you create new endpoints in the API and bind them to 3rd party services. For instance, you could bind a cloud printing service to a location, so that calling `POST /location/orders/bd1f2/:print` would actually print the `bd1f2` order
 
 Extensions let clients implement use cases not natively supported by the API.
 
@@ -15,9 +15,10 @@ The HubRise development team monitors how extensions are used in an effort to do
 ## 1. Custom fields
 
 Custom fields can be defined on the following resources:
-* `Customer`
-* `Order`
-* `Location`
+
+- `Customer`
+- `Order`
+- `Location`
 
 Each resource of the above types has a `custom_fields` field, which can be populated with arbitrary data.
 
@@ -52,9 +53,10 @@ PUT /location/orders/bd1f2
 ```
 
 This request:
-* updates the value of the `tracking_url` custom field to ...664579 (instead of 664578)
-* removes the `delivery_out` custom field
-* adds a new `timeout` custom field to the order
+
+- updates the value of the `tracking_url` custom field to ...664579 (instead of 664578)
+- removes the `delivery_out` custom field
+- adds a new `timeout` custom field to the order
 
 Now if you retrieve the same order:
 
@@ -94,7 +96,7 @@ The only limitation is the size: the JSON representation of `custom_fields` must
 
 ### 1.3. Callbacks
 
-Custom fields work nicely with [callbacks](/api/callbacks.html). Updating the custom fields of a resource triggers the update callback of the resource.
+Custom fields work nicely with [callbacks](/api/callbacks). Updating the custom fields of a resource triggers the update callback of the resource.
 
 ## 2. Custom endpoints
 

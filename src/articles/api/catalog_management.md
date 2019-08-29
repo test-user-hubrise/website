@@ -104,15 +104,15 @@ To create an account-level catalog:
 
 #### Request parameters:
 
-| Name                                          | Type                          | Description              |
-| --------------------------------------------- | ----------------------------- | ------------------------ |
-| `name`                                        | string                        | The name of the catalog. |
-| `data.categories` <Label type="optional" />   | [Category](#categories)[]     | List of categories.      |
-| `data.products` <Label type="optional" />     | [Product](#products)[]        | List of products.        |
-| `data.option_lists` <Label type="optional" /> | [OptionList](#option-lists)[] | List of option lists.    |
-| `data.deals` <Label type="optional" />        | [Deal](#deals)[]              | List of deals.           |
-| `data.discounts` <Label type="optional" />    | [Discount](#discounts)[]      | List of discounts.       |
-| `data.charges` <Label type="optional" />      | [Charge](#charges)[]          | List of charges.         |
+| Name                                          | Type                            | Description              |
+| --------------------------------------------- | ------------------------------- | ------------------------ |
+| `name`                                        | string                          | The name of the catalog. |
+| `data.categories` <Label type="optional" />   | [Category](#2-categories)[]     | List of categories.      |
+| `data.products` <Label type="optional" />     | [Product](#3-products)[]        | List of products.        |
+| `data.option_lists` <Label type="optional" /> | [OptionList](#5-option-lists)[] | List of option lists.    |
+| `data.deals` <Label type="optional" />        | [Deal](#7-deals)[]              | List of deals.           |
+| `data.discounts` <Label type="optional" />    | [Discount](#8-discounts)[]      | List of discounts.       |
+| `data.charges` <Label type="optional" />      | [Charge](#9-charges)[]          | List of charges.         |
 
 #### Example request:
 
@@ -324,16 +324,16 @@ A product belongs to a category. A product has one or several skus.
 
 #### Parameters:
 
-| Name                                     | Type                          | Description                                                                                                     |
-| ---------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `ref` <Label type="optional" />          | string                        | The ref of the product.                                                                                         |
-| `category_ref`                           | string                        | The ref of the parent category.                                                                                 |
-| `name`                                   | string                        | The name of the product.                                                                                        |
-| `description` <Label type="optional" />  | string                        | The description of the product.                                                                                 |
-| `restrictions` <Label type="optional" /> | [Restrictions](#restrictions) | Availability restrictions.                                                                                      |
-| `tags` <Label type="optional" />         | string[]                      | List of tags. A tag is a free text used to describe some particular characteristics of a product or a category. |
-| `image_ids` <Label type="optional" />    | string[]                      | List of image ids attached to the product                                                                       |
-| `skus`                                   | [Sku](#skus)[]                | List of skus of this product. A product must contain at least one sku.                                          |
+| Name                                     | Type                             | Description                                                                                                     |
+| ---------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `ref` <Label type="optional" />          | string                           | The ref of the product.                                                                                         |
+| `category_ref`                           | string                           | The ref of the parent category.                                                                                 |
+| `name`                                   | string                           | The name of the product.                                                                                        |
+| `description` <Label type="optional" />  | string                           | The description of the product.                                                                                 |
+| `restrictions` <Label type="optional" /> | [Restrictions](#10-restrictions) | Availability restrictions.                                                                                      |
+| `tags` <Label type="optional" />         | string[]                         | List of tags. A tag is a free text used to describe some particular characteristics of a product or a category. |
+| `image_ids` <Label type="optional" />    | string[]                         | List of image ids attached to the product                                                                       |
+| `skus`                                   | [Sku](#4-skus)[]                 | List of skus of this product. A product must contain at least one sku.                                          |
 
 #### Example:
 
@@ -365,16 +365,16 @@ A product belongs to a category. A product has one or several skus.
   accessLevel="location, account"
 />
 
-| Name                                    | Type           | Description                               |
-| --------------------------------------- | -------------- | ----------------------------------------- |
-| `id`                                    | string         | The id of the product.                    |
-| `ref` <Label type="optional" />         | string         | The ref of the product.                   |
-| `category_id`                           | string         | The id of the parent category.            |
-| `name`                                  | string         | The name of the product.                  |
-| `description` <Label type="optional" /> | string         | The description of the product.           |
-| `tags` <Label type="optional" />        | string[]       | List of tags.                             |
-| `image_ids` <Label type="optional" />   | string[]       | List of image ids attached to the product |
-| `skus`                                  | [Sku](#skus)[] | List of skus of this product.             |
+| Name                                    | Type             | Description                               |
+| --------------------------------------- | ---------------- | ----------------------------------------- |
+| `id`                                    | string           | The id of the product.                    |
+| `ref` <Label type="optional" />         | string           | The ref of the product.                   |
+| `category_id`                           | string           | The id of the parent category.            |
+| `name`                                  | string           | The name of the product.                  |
+| `description` <Label type="optional" /> | string           | The description of the product.           |
+| `tags` <Label type="optional" />        | string[]         | List of tags.                             |
+| `image_ids` <Label type="optional" />   | string[]         | List of image ids attached to the product |
+| `skus`                                  | [Sku](#4-skus)[] | List of skus of this product.             |
 
 #### Example request:
 
@@ -438,13 +438,13 @@ A product contains one or several skus. A sku is always attached to a product.
 
 #### Parameters:
 
-| Name                                         | Type                                          | Description                                                                                                             |
-| -------------------------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `ref` <Label type="optional" />              | string                                        | The ref of the sku, which will be passed along in orders.                                                               |
-| `name` <Label type="optional" />             | string                                        | The name of the sku. Skus belonging to a same product must have unique names. One sku per product can have a null name. |
-| `price`                                      | [Money](general-concepts.html#monetary-value) | The price of the sku.                                                                                                   |
-| `option_list_refs` <Label type="optional" /> | string[]                                      | The refs of the option lists this sku is attached to.                                                                   |
-| `tags` <Label type="optional" />             | string[]                                      | List of tags.                                                                                                           |
+| Name                                         | Type                                           | Description                                                                                                             |
+| -------------------------------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `ref` <Label type="optional" />              | string                                         | The ref of the sku, which will be passed along in orders.                                                               |
+| `name` <Label type="optional" />             | string                                         | The name of the sku. Skus belonging to a same product must have unique names. One sku per product can have a null name. |
+| `price`                                      | [Money](/api/general-concepts/#monetary-value) | The price of the sku.                                                                                                   |
+| `option_list_refs` <Label type="optional" /> | string[]                                       | The refs of the option lists this sku is attached to.                                                                   |
+| `tags` <Label type="optional" />             | string[]                                       | List of tags.                                                                                                           |
 
 #### Example:
 
@@ -465,15 +465,15 @@ A product contains one or several skus. A sku is always attached to a product.
   accessLevel="location, account"
 />
 
-| Name                                        | Type                                          | Description                                          |
-| ------------------------------------------- | --------------------------------------------- | ---------------------------------------------------- |
-| `id`                                        | string                                        | The id of the sku.                                   |
-| `ref` <Label type="optional" />             | string                                        | The ref of the sku.                                  |
-| `name` <Label type="optional" />            | string                                        | The name of the sku.                                 |
-| `product_id`                                | string                                        | The id of the sku's parent product.                  |
-| `price`                                     | [Money](general-concepts.html#monetary-value) | The price of the sku.                                |
-| `option_list_ids` <Label type="optional" /> | string[]                                      | The ids of the option lists this sku is attached to. |
-| `tags` <Label type="optional" />            | string[]                                      | List of tags.                                        |
+| Name                                        | Type                                           | Description                                          |
+| ------------------------------------------- | ---------------------------------------------- | ---------------------------------------------------- |
+| `id`                                        | string                                         | The id of the sku.                                   |
+| `ref` <Label type="optional" />             | string                                         | The ref of the sku.                                  |
+| `name` <Label type="optional" />            | string                                         | The name of the sku.                                 |
+| `product_id`                                | string                                         | The id of the sku's parent product.                  |
+| `price`                                     | [Money](/api/general-concepts/#monetary-value) | The price of the sku.                                |
+| `option_list_ids` <Label type="optional" /> | string[]                                       | The ids of the option lists this sku is attached to. |
+| `tags` <Label type="optional" />            | string[]                                       | List of tags.                                        |
 
 #### Example request:
 
@@ -523,13 +523,13 @@ An option list is either of type `single` (a single option must be applied to a 
 
 #### Parameters:
 
-| Name                             | Type                 | Description                                                                  |
-| -------------------------------- | -------------------- | ---------------------------------------------------------------------------- |
-| `ref`                            | string               | The ref of the option list. Must be unique among the catalog's option lists. |
-| `name`                           | string               | The name of the option list.                                                 |
-| `type`                           | string               | Either `single` or `multiple`.                                               |
-| `tags` <Label type="optional" /> | string[]             | List of tags.                                                                |
-| `options`                        | [Option](#options)[] | A list of options. An option list must contain at least one option.          |
+| Name                             | Type                   | Description                                                                  |
+| -------------------------------- | ---------------------- | ---------------------------------------------------------------------------- |
+| `ref`                            | string                 | The ref of the option list. Must be unique among the catalog's option lists. |
+| `name`                           | string                 | The name of the option list.                                                 |
+| `type`                           | string                 | Either `single` or `multiple`.                                               |
+| `tags` <Label type="optional" /> | string[]               | List of tags.                                                                |
+| `options`                        | [Option](#6-options)[] | A list of options. An option list must contain at least one option.          |
 
 #### Example:
 
@@ -565,14 +565,14 @@ Retrieve an option list and the possible choices (options).
   accessLevel="location, account"
 />
 
-| Name                             | Type                 | Description                    |
-| -------------------------------- | -------------------- | ------------------------------ |
-| `id`                             | string               | The id of the option list.     |
-| `ref`                            | string               | The ref of the option list.    |
-| `name`                           | string               | The name of the option list.   |
-| `type`                           | string               | Either `single` or `multiple`. |
-| `tags` <Label type="optional" /> | string[]             | List of tags.                  |
-| `options`                        | [Option](#options)[] | A list of options.             |
+| Name                             | Type                   | Description                    |
+| -------------------------------- | ---------------------- | ------------------------------ |
+| `id`                             | string                 | The id of the option list.     |
+| `ref`                            | string                 | The ref of the option list.    |
+| `name`                           | string                 | The name of the option list.   |
+| `type`                           | string                 | Either `single` or `multiple`. |
+| `tags` <Label type="optional" /> | string[]               | List of tags.                  |
+| `options`                        | [Option](#6-options)[] | A list of options.             |
 
 #### Example request:
 
@@ -625,13 +625,13 @@ Retrieve an option list and the possible choices (options).
 
 #### Parameters:
 
-| Name                                | Type                                          | Description                           |
-| ----------------------------------- | --------------------------------------------- | ------------------------------------- |
-| `ref` <Label type="optional" />     | string                                        | The ref of the option.                |
-| `name`                              | string                                        | The name of the option.               |
-| `price` <Label type="optional" />   | [Money](general-concepts.html#monetary-value) | The price of the option.              |
-| `default` <Label type="optional" /> | boolean                                       | Whether this option is on by default. |
-| `tags` <Label type="optional" />    | string[]                                      | List of tags.                         |
+| Name                                | Type                                           | Description                           |
+| ----------------------------------- | ---------------------------------------------- | ------------------------------------- |
+| `ref` <Label type="optional" />     | string                                         | The ref of the option.                |
+| `name`                              | string                                         | The name of the option.               |
+| `price` <Label type="optional" />   | [Money](/api/general-concepts/#monetary-value) | The price of the option.              |
+| `default` <Label type="optional" /> | boolean                                        | Whether this option is on by default. |
+| `tags` <Label type="optional" />    | string[]                                       | List of tags.                         |
 
 #### Example:
 
@@ -651,15 +651,15 @@ Retrieve an option list and the possible choices (options).
   accessLevel="location, account"
 />
 
-| Name                                | Type                                          | Description                           |
-| ----------------------------------- | --------------------------------------------- | ------------------------------------- |
-| `id`                                | string                                        | The id of the option.                 |
-| `ref` <Label type="optional" />     | string                                        | The ref of the option.                |
-| `option_list_id`                    | string                                        | The id of the option's list.          |
-| `name`                              | string                                        | The name of the option.               |
-| `price` <Label type="optional" />   | [Money](general-concepts.html#monetary-value) | The price of the option.              |
-| `default` <Label type="optional" /> | boolean                                       | Whether this option is on by default. |
-| `tags` <Label type="optional" />    | string[]                                      | List of tags.                         |
+| Name                                | Type                                           | Description                           |
+| ----------------------------------- | ---------------------------------------------- | ------------------------------------- |
+| `id`                                | string                                         | The id of the option.                 |
+| `ref` <Label type="optional" />     | string                                         | The ref of the option.                |
+| `option_list_id`                    | string                                         | The id of the option's list.          |
+| `name`                              | string                                         | The name of the option.               |
+| `price` <Label type="optional" />   | [Money](/api/general-concepts/#monetary-value) | The price of the option.              |
+| `default` <Label type="optional" /> | boolean                                        | Whether this option is on by default. |
+| `tags` <Label type="optional" />    | string[]                                       | List of tags.                         |
 
 #### Example request:
 
@@ -705,21 +705,21 @@ Retrieve an option list and the possible choices (options).
 
 #### Parameters:
 
-| Name                                            | Type                          | Description                                                                                                                                                                                                  |
-| ----------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ref` <Label type="optional" />                 | string                        | The ref of the deal.                                                                                                                                                                                         |
-| `category_ref` <Label type="optional" />        | string                        | The [category](#categories) this deal will appear in.                                                                                                                                                        |
-| `name`                                          | string                        | The deal name.                                                                                                                                                                                               |
-| `description` <Label type="optional" />         | string                        | The description of the deal.                                                                                                                                                                                 |
-| `coupon_codes` <Label type="optional" />        | string[]                      | The coupon codes that trigger this deal.                                                                                                                                                                     |
-| `restrictions` <Label type="optional" />        | [Restrictions](#restrictions) | Availability restrictions.                                                                                                                                                                                   |
-| `tags` <Label type="optional" />                | string[]                      | List of tags.                                                                                                                                                                                                |
-| `image_ids` <Label type="optional" />           | string[]                      | List of image ids attached to the deal                                                                                                                                                                       |
-| `lines`                                         | DealLine[]                    | List of deal lines. A deal should contain at least one line, with at least one sku.                                                                                                                          |
-| `lines.label` <Label type="optional" />         | string                        | A label describing the kind of products that can be chosen in this line.                                                                                                                                     |
-| `lines.skus`                                    | DealSku[]                     | Skus are referenced by their `ref`. An optional `extra_charge` can be set.                                                                                                                                   |
-| `lines.pricing_effect`                          | string                        | One of: `unchanged`, `fixed_price`, `price_off`, `percentage_off`.                                                                                                                                           |
-| `lines.pricing_value` <Label type="optional" /> | depends                       | The presence and value of this field depends on `pricing_effect`. It is a [Money](general-concepts.html#monetary-value) for `fixed_price` and `price_off`, a decimal between 0 and 100 for `percentage_off`. |
+| Name                                            | Type                             | Description                                                                                                                                                                                                   |
+| ----------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ref` <Label type="optional" />                 | string                           | The ref of the deal.                                                                                                                                                                                          |
+| `category_ref` <Label type="optional" />        | string                           | The [category](#2-categories) this deal will appear in.                                                                                                                                                       |
+| `name`                                          | string                           | The deal name.                                                                                                                                                                                                |
+| `description` <Label type="optional" />         | string                           | The description of the deal.                                                                                                                                                                                  |
+| `coupon_codes` <Label type="optional" />        | string[]                         | The coupon codes that trigger this deal.                                                                                                                                                                      |
+| `restrictions` <Label type="optional" />        | [Restrictions](#10-restrictions) | Availability restrictions.                                                                                                                                                                                    |
+| `tags` <Label type="optional" />                | string[]                         | List of tags.                                                                                                                                                                                                 |
+| `image_ids` <Label type="optional" />           | string[]                         | List of image ids attached to the deal                                                                                                                                                                        |
+| `lines`                                         | DealLine[]                       | List of deal lines. A deal should contain at least one line, with at least one sku.                                                                                                                           |
+| `lines.label` <Label type="optional" />         | string                           | A label describing the kind of products that can be chosen in this line.                                                                                                                                      |
+| `lines.skus`                                    | DealSku[]                        | Skus are referenced by their `ref`. An optional `extra_charge` can be set.                                                                                                                                    |
+| `lines.pricing_effect`                          | string                           | One of: `unchanged`, `fixed_price`, `price_off`, `percentage_off`.                                                                                                                                            |
+| `lines.pricing_value` <Label type="optional" /> | depends                          | The presence and value of this field depends on `pricing_effect`. It is a [Money](/api/general-concepts/#monetary-value) for `fixed_price` and `price_off`, a decimal between 0 and 100 for `percentage_off`. |
 
 #### Example:
 
@@ -822,16 +822,16 @@ A discount is a reduction of the order total price.
 
 #### Parameters:
 
-| Name                                      | Type                          | Description                                                                                                                                              |
-| ----------------------------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ref` <Label type="optional" />           | string                        | The ref of the discount.                                                                                                                                 |
-| `name`                                    | string                        | The name of the discount.                                                                                                                                |
-| `description` <Label type="optional" />   | string                        | The description of the discount.                                                                                                                         |
-| `coupon_codes` <Label type="optional" />  | string[]                      | The coupon codes that trigger the discount.                                                                                                              |
-| `restrictions` <Label type="optional" />  | [Restrictions](#restrictions) | Availability restrictions.                                                                                                                               |
-| `pricing_effect`                          | string                        | One of: `price_off`, `percentage_off`.                                                                                                                   |
-| `pricing_value` <Label type="optional" /> | depends                       | Depends on `pricing_effect`. It is a [Money](general-concepts.html#monetary-value) for `price_off`, and a number between 0 and 100 for `percentage_off`. |
-| `image_ids` <Label type="optional" />     | string[]                      | List of image ids attached to the discount.                                                                                                              |
+| Name                                      | Type                             | Description                                                                                                                                               |
+| ----------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ref` <Label type="optional" />           | string                           | The ref of the discount.                                                                                                                                  |
+| `name`                                    | string                           | The name of the discount.                                                                                                                                 |
+| `description` <Label type="optional" />   | string                           | The description of the discount.                                                                                                                          |
+| `coupon_codes` <Label type="optional" />  | string[]                         | The coupon codes that trigger the discount.                                                                                                               |
+| `restrictions` <Label type="optional" />  | [Restrictions](#10-restrictions) | Availability restrictions.                                                                                                                                |
+| `pricing_effect`                          | string                           | One of: `price_off`, `percentage_off`.                                                                                                                    |
+| `pricing_value` <Label type="optional" /> | depends                          | Depends on `pricing_effect`. It is a [Money](/api/general-concepts/#monetary-value) for `price_off`, and a number between 0 and 100 for `percentage_off`. |
+| `image_ids` <Label type="optional" />     | string[]                         | List of image ids attached to the discount.                                                                                                               |
 
 #### Example:
 
@@ -900,12 +900,12 @@ A charge is an additional fee billed to the customer. Examples of charges includ
 
 #### Parameters:
 
-| Name                              | Type                                          | Description                                                    |
-| --------------------------------- | --------------------------------------------- | -------------------------------------------------------------- |
-| `ref` <Label type="optional" />   | string                                        | The ref of the charge.                                         |
-| `name`                            | string                                        | The name of the charge.                                        |
-| `type`                            | string                                        | One of: `delivery`, `payment_fee`, `tip`, `tax` or `other`.    |
-| `price` <Label type="optional" /> | [Money](general-concepts.html#monetary-value) | The charge price. Should be omitted if the charge is variable. |
+| Name                              | Type                                           | Description                                                    |
+| --------------------------------- | ---------------------------------------------- | -------------------------------------------------------------- |
+| `ref` <Label type="optional" />   | string                                         | The ref of the charge.                                         |
+| `name`                            | string                                         | The name of the charge.                                        |
+| `type`                            | string                                         | One of: `delivery`, `payment_fee`, `tip`, `tax` or `other`.    |
+| `price` <Label type="optional" /> | [Money](/api/general-concepts/#monetary-value) | The charge price. Should be omitted if the charge is variable. |
 
 #### Example:
 
@@ -927,13 +927,13 @@ A charge is an additional fee billed to the customer. Examples of charges includ
 
 #### Parameters:
 
-| Name                              | Type                                          | Description                                                 |
-| --------------------------------- | --------------------------------------------- | ----------------------------------------------------------- |
-| `id` <Label type="optional" />    | string                                        | The id of the charge.                                       |
-| `ref` <Label type="optional" />   | string                                        | The ref of the charge.                                      |
-| `name`                            | string                                        | The name of the charge.                                     |
-| `type`                            | string                                        | One of: `delivery`, `payment_fee`, `tip`, `tax` or `other`. |
-| `price` <Label type="optional" /> | [Money](general-concepts.html#monetary-value) | The charge price.                                           |
+| Name                              | Type                                           | Description                                                 |
+| --------------------------------- | ---------------------------------------------- | ----------------------------------------------------------- |
+| `id` <Label type="optional" />    | string                                         | The id of the charge.                                       |
+| `ref` <Label type="optional" />   | string                                         | The ref of the charge.                                      |
+| `name`                            | string                                         | The name of the charge.                                     |
+| `type`                            | string                                         | One of: `delivery`, `payment_fee`, `tip`, `tax` or `other`. |
+| `price` <Label type="optional" /> | [Money](/api/general-concepts/#monetary-value) | The charge price.                                           |
 
 #### Example request:
 
@@ -983,17 +983,17 @@ It defines a set of conditions for a particular item to be available.
 
 #### Parameters:
 
-| Name                                         | Type                                                | Description                                              |
-| -------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------- |
-| `dow` <Label type="optional" />              | string                                              | Available on certain days of the week.                   |
-| `start_time` <Label type="optional" />       | string                                              | Available from a certain time of the day. Format: HH:MM  |
-| `end_time` <Label type="optional" />         | string                                              | Available until a certain time of the day. Format: HH:MM |
-| `start_date` <Label type="optional" />       | [Date](general-concepts.html#date-time)             | Available from a certain date                            |
-| `end_date` <Label type="optional" />         | [Date](general-concepts.html#date-time)             | Available until a certain date                           |
-| `service_types` <Label type="optional" />    | [ServiceType](general-concepts.html#service-type)[] | Available for a set of service types.                    |
-| `min_order_amount` <Label type="optional" /> | [Money](general-concepts.html#monetary-value)       | Available for order equal or greater than                |
-| `max_per_order` <Label type="optional" />    | integer                                             | Max number of items per order                            |
-| `max_per_customer` <Label type="optional" /> | integer                                             | Max number of items per customer                         |
+| Name                                         | Type                                                 | Description                                              |
+| -------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------- |
+| `dow` <Label type="optional" />              | string                                               | Available on certain days of the week.                   |
+| `start_time` <Label type="optional" />       | string                                               | Available from a certain time of the day. Format: HH:MM  |
+| `end_time` <Label type="optional" />         | string                                               | Available until a certain time of the day. Format: HH:MM |
+| `start_date` <Label type="optional" />       | [Date](/api/general-concepts/#date-time)             | Available from a certain date                            |
+| `end_date` <Label type="optional" />         | [Date](/api/general-concepts/#date-time)             | Available until a certain date                           |
+| `service_types` <Label type="optional" />    | [ServiceType](/api/general-concepts/#service-type)[] | Available for a set of service types.                    |
+| `min_order_amount` <Label type="optional" /> | [Money](/api/general-concepts/#monetary-value)       | Available for order equal or greater than                |
+| `max_per_order` <Label type="optional" />    | integer                                              | Max number of items per order                            |
+| `max_per_customer` <Label type="optional" /> | integer                                              | Max number of items per customer                         |
 
 All the fields above are optional. Fields with a `null` value are ignored.
 

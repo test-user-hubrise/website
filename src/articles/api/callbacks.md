@@ -210,7 +210,7 @@ The previous and new states are not included to save bandwidth. Individual retri
 
 Deletes (ie acknowledges) a callback event
 
-A passive callback should always delete events after retrieval or they will keep on being pulled by the [List events](#list-events) operation.
+A passive callback should always delete events after retrieval or they will keep on being pulled by the [List events](#22-list-events) operation.
 
 <CallSummaryTable
   endpoint="DELETE /callback/events/:event_id"
