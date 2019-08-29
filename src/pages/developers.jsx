@@ -72,12 +72,12 @@ export const DevelopersPage = ({ pageContent, uri }) => {
           <p className="section__description">
             {hero.description.first_part}
             <br />
-            <Link
+            <button
               className="section__description-link section__description-link_black"
               onClick={toggleContactUsVisibility}
             >
               {hero.description.link}
-            </Link>
+            </button>
             {hero.description.second_part}
           </p>
         </div>

@@ -99,13 +99,22 @@ export const PricingPage = ({ pageContent, callToActionExtra }) => {
               {` `}
               {description}
               {` `}
-              <Link
-                className="section__description-link section__description-link_black"
-                onClick={links[id].showContactUs && toggleContactUsVisibility}
-                {...links[id].props}
-              >
-                {linkText}
-              </Link>
+              {links[id].showContactUs ? (
+                <a
+                  className="section__description-link section__description-link_black"
+                  onClick={toggleContactUsVisibility}
+                  {...links[id].props}
+                >
+                  {linkText}
+                </a>
+              ) : (
+                <Link
+                  className="section__description-link section__description-link_black"
+                  {...links[id].props}
+                >
+                  {linkText}
+                </Link>
+              )}
             </p>
           )
         })}

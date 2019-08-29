@@ -79,7 +79,7 @@ const SuggestApp = () => {
   return (
     <li className="app">
       <div className="app__title">Proposer une application</div>
-      <Link
+      <button
         className="app__box app__box_suggest-app"
         data-open="suggest-app"
         aria-controls="suggest-app"
@@ -90,12 +90,12 @@ const SuggestApp = () => {
         <div className="app__box-image app__box-image_suggest-app">
           <span>?</span>
         </div>
-      </Link>
+      </button>
       <div className="app__description">
         Votre application ne se trouve pas dans cette liste ?
       </div>
       <div className="app__more">
-        <Link
+        <button
           className="app__more-link"
           data-open="suggest-app"
           aria-controls="suggest-app"
@@ -104,7 +104,7 @@ const SuggestApp = () => {
           onClick={toggleSuggestAppVisibility}
         >
           Proposer
-        </Link>
+        </button>
       </div>
     </li>
   )
@@ -124,7 +124,7 @@ const Intro = () => {
           <p>
             Vous êtes commerçant et votre application ne figure pas dans cette
             liste ?
-            <Link
+            <button
               className="section__description-link section__description-link_black"
               data-open="contact-us"
               aria-controls="contact-us"
@@ -133,7 +133,7 @@ const Intro = () => {
               onClick={toggleContactUsVisibility}
             >
               Contactez-nous
-            </Link>
+            </button>
           </p>
           <p>
             Vous êtes développeur et souhaitez intégrer votre application à
