@@ -8,17 +8,16 @@
 @import 'base/_base';
 @import 'base/_variables';
 
-@import 'components/header';
-@import 'components/footer';
-@import 'components/call_summary_table';
-@import 'components/section';
-@import 'components/form';
-@import 'components/modal';
+@import 'components/apps';
+@import 'components/call_summary';
 @import 'components/comments';
-
-@import 'components/home';
-@import 'components/pricing';
 @import 'components/developers';
 @import 'components/documentation';
-@import 'components/apps';
 @import 'components/faq';
+@import 'components/footer';
+@import 'components/form';
+@import 'components/header';
+@import 'components/home';
+@import 'components/modal';
+@import 'components/pricing';
+@import 'components/section';
