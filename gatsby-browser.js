@@ -9,6 +9,8 @@ import PageWrapper from './src/components/page_wrapper'
 
 import { AppContextProvider } from './src/context'
 
+import './src/i18n'
+
 import './src/styles/global.scss'
 
 export const wrapPageElement = (props) => {
