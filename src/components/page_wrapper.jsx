@@ -1,12 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 import ContactUsForm from './forms/contact_us'
 import Modal from '../components/modal'
 import Layout from './layout'
 import Seo from './seo'
 
-import { checkLanguage } from './utils'
+import { getLanguage } from '../i18n/utils'
 
 import AppContext from '../context'
 
@@ -29,23 +30,29 @@ const formContentFr = {
 }
 
 const PageWrapper = ({ element, props }) => {
-  const isFrench = checkLanguage(props.path, 'fr')
-  const { isContactUsVisible, toggleContactUsVisibility } = useContext(
-    AppContext
-  )
+  const language = getLanguage(props.path)
+  const {
+    isContactUsVisible,
+    toggleContactUsVisibility
+  } = useContext(AppContext)
+  const { i18n } = useTranslation()
+
+  useEffect(() => {
+    i18n.changeLanguage(language)
+  }, [language])
 
   return (
     <>
-      <Seo lang={isFrench ? 'fr' : 'en'} />
+      <Seo lang={i18n.language} />
       <Layout {...props}>
         {element}
       </Layout>
       {isContactUsVisible && (
         <Modal
-          title={isFrench ? 'Contactez-Nous' : 'Contact Us'}
+          title={language === 'fr' ? 'Contactez-Nous' : 'Contact Us'}
           onClose={toggleContactUsVisibility}
         >
-          <ContactUsForm content={isFrench ? formContentFr : formContentEng} />
+          <ContactUsForm content={language === 'fr' ? formContentFr : formContentEng} />
         </Modal>
       )}
     </>
