@@ -9,7 +9,7 @@ const onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: `slug`,
-      value: `${slug.replace(`_`, `-`)}`,
+      value: `${slug.replace(`_`, `-`)}`
     })
   }
 }
@@ -39,7 +39,7 @@ const createPages = async ({ graphql, actions }) => {
       createPage({
         path: `/fr${fields.slug}`,
         component: path.resolve(`./src/templates/api/index.jsx`),
-        context: { id },
+        context: { id }
       })
     }
 
@@ -50,12 +50,12 @@ const createPages = async ({ graphql, actions }) => {
           fields.slug.startsWith(`/fr/faq`) ? 'faq.jsx' : 'api/index.jsx'
         }`
       ),
-      context: { id },
+      context: { id }
     })
   })
 }
 
 module.exports = {
   onCreateNode,
-  createPages,
+  createPages
 }

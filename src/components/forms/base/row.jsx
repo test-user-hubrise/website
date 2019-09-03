@@ -14,7 +14,7 @@ const Row = ({ fields, formikProps }) => {
         return isSingleField ? (
           <Field key={key} fieldProps={fieldProps} formikProps={formikProps} />
         ) : (
-          <div key={key} className="form__block form__block_medium">
+          <div key={key} className='form__block form__block_medium'>
             <Field fieldProps={fieldProps} formikProps={formikProps} />
           </div>
         )
@@ -29,10 +29,10 @@ Row.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       type: PropTypes.string,
-      component: PropTypes.string.isRequired,
+      component: PropTypes.string.isRequired
     })
   ).isRequired,
-  formikProps: PropTypes.object.isRequired,
+  formikProps: PropTypes.object.isRequired
 }
 
 export default Row

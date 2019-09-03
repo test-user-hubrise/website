@@ -9,7 +9,7 @@ module.exports = {
   siteMetadata: {
     title: `HubRise`,
     description: ``,
-    author: ``,
+    author: ``
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -23,27 +23,27 @@ module.exports = {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               // Use shapeless svg as otherwise an <undefined /> tag is rendered
-              icon: `<svg width="0" height="0" />`,
-            },
-          },
-        ],
-      },
+              icon: `<svg width="0" height="0" />`
+            }
+          }
+        ]
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
-      },
+        path: `${__dirname}/src/images`
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `articles`,
-        path: `${__dirname}/src/articles`,
-      },
+        path: `${__dirname}/src/articles`
+      }
     },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-  ],
+    `gatsby-plugin-sharp`
+  ]
 }

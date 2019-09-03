@@ -27,7 +27,7 @@ const components = {
   ),
   inlineCode: ({ children }) => <HighlightCode inline code={children} />,
   CallSummaryTable,
-  Label,
+  Label
 }
 
 export const wrapRootElement = ({ element }) => (

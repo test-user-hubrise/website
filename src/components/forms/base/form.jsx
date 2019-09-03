@@ -6,7 +6,7 @@ import Row from './row'
 
 import { generateKey } from '../../utils'
 
-function defineContent(sections, content) {
+function defineContent (sections, content) {
   const { placeholders, subtitles } = content
   return sections.map((section) => {
     if (subtitles) {
@@ -28,7 +28,7 @@ const CompleteForm = ({
   content,
   formProps,
   formikProps,
-  buttonClasses,
+  buttonClasses
 }) => {
   const { classNames: formClasses, ...otherFormProps } = formProps
 
@@ -39,7 +39,7 @@ const CompleteForm = ({
     >
       {defineContent(sections, content).map(({ subtitle, rows }, idx) => (
         <section key={generateKey(subtitle, idx)}>
-          {subtitle && <h6 className="form__sub-title">{subtitle}</h6>}
+          {subtitle && <h6 className='form__sub-title'>{subtitle}</h6>}
           {rows.map(({ fields }) => (
             <Row
               key={generateKey(`${subtitle}${fields[0].id}`, idx)}
@@ -51,8 +51,8 @@ const CompleteForm = ({
       ))}
       <button
         className={`form__button ${buttonClasses.join(' ')}`}
-        type="submit"
-        name="submit"
+        type='submit'
+        name='submit'
       >
         {content.button}
       </button>
@@ -64,22 +64,22 @@ CompleteForm.propTypes = {
   sections: PropTypes.arrayOf(PropTypes.object).isRequired,
   content: PropTypes.shape({
     button: PropTypes.string,
-    placeholders: PropTypes.objectOf(PropTypes.string),
+    placeholders: PropTypes.objectOf(PropTypes.string)
   }),
   formProps: PropTypes.shape({
-    classNames: PropTypes.arrayOf(PropTypes.string),
+    classNames: PropTypes.arrayOf(PropTypes.string)
   }),
   formikProps: PropTypes.object.isRequired,
-  buttonClasses: PropTypes.arrayOf(PropTypes.string),
+  buttonClasses: PropTypes.arrayOf(PropTypes.string)
 }
 
 CompleteForm.defaultProps = {
   content: {
     button: `Form button`,
-    placeholders: [],
+    placeholders: []
   },
   formProps: { classNames: [] },
-  buttonClasses: [],
+  buttonClasses: []
 }
 
 export default CompleteForm

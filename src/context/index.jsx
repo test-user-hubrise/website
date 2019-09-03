@@ -5,7 +5,7 @@ const AppContext = createContext({
   isContactUsVisible: false,
   toggleContactUsVisibility: () => {},
   isSuggestAppVisible: false,
-  toggleSuggestAppVisibility: () => {},
+  toggleSuggestAppVisibility: () => {}
 })
 
 const AppContextProvider = ({ children }) => {
@@ -21,7 +21,7 @@ const AppContextProvider = ({ children }) => {
         isContactUsVisible,
         toggleContactUsVisibility,
         isSuggestAppVisible,
-        toggleSuggestAppVisibility,
+        toggleSuggestAppVisibility
       }}
     >
       {children}
@@ -30,10 +30,10 @@ const AppContextProvider = ({ children }) => {
 }
 
 AppContextProvider.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export {
   AppContext as default,
-  AppContextProvider,
+  AppContextProvider
 }

@@ -16,24 +16,24 @@ const pageContent = {
       `Unlimited orders`,
       `Unlimited customers`,
       `Unlimited products`,
-      `Unlimited connections`,
+      `Unlimited connections`
     ],
-    button: `Start now`,
+    button: `Start now`
   },
   callToAction: [
     {
       id: `free`,
       title: `Free:`,
       description: `Up to 50 orders and 50 customers per month.`,
-      linkText: `Start now`,
+      linkText: `Start now`
     },
     {
       id: `large_accounts`,
       title: `Large accounts:`,
       description: `prices are negotiable starting from 10 locations.`,
-      linkText: `Contact Us`,
-    },
-  ],
+      linkText: `Contact Us`
+    }
+  ]
 }
 
 const links = {
@@ -41,18 +41,18 @@ const links = {
     props: {
       to: `https://manager.hubrise.com/signup`,
       target: `_blank`,
-      rel: `noopener noreferrer`,
-    },
+      rel: `noopener noreferrer`
+    }
   },
   large_accounts: {
     props: {
       [`data-open`]: `contact-us`,
       [`aria-controls`]: `contact-us`,
       [`aria-haspopup`]: true,
-      tabIndex: 0,
+      tabIndex: 0
     },
-    showContactUs: true,
-  },
+    showContactUs: true
+  }
 }
 
 export const PricingPage = ({ pageContent, callToActionExtra }) => {
@@ -60,27 +60,27 @@ export const PricingPage = ({ pageContent, callToActionExtra }) => {
   const { title, pricing, callToAction } = pageContent
 
   return (
-    <section className="section section_white">
-      <div className="section__in section__in_padding">
-        <h3 className="section__title">{title}</h3>
-        <div className="section section_full-width section_vw section_padding">
-          <div className="section__in section__in_green section__in_padding">
-            <h3 className="section__title section__title_no-border">
+    <section className='section section_white'>
+      <div className='section__in section__in_padding'>
+        <h3 className='section__title'>{title}</h3>
+        <div className='section section_full-width section_vw section_padding'>
+          <div className='section__in section__in_green section__in_padding'>
+            <h3 className='section__title section__title_no-border'>
               {pricing.value}
-              <span className="section__title-span">{pricing.subtitle}</span>
+              <span className='section__title-span'>{pricing.subtitle}</span>
             </h3>
-            <ul className="section__price-list">
+            <ul className='section__price-list'>
               {pricing.features.map((feature, idx) => (
                 <li
                   key={generateKey(feature, idx)}
-                  className="section__price-item"
+                  className='section__price-item'
                 >
-                  <span className="section__price-span">{feature}</span>
+                  <span className='section__price-span'>{feature}</span>
                 </li>
               ))}
             </ul>
             <button
-              className="button button_white button_section"
+              className='button button_white button_section'
               onClick={() => {
                 window.location = 'https://manager.hubrise.com/signup'
               }}
@@ -93,7 +93,7 @@ export const PricingPage = ({ pageContent, callToActionExtra }) => {
           return (
             <p
               key={generateKey(title, idx)}
-              className="section__description section__description_large"
+              className='section__description section__description_large'
             >
               <b>{title}</b>
               {` `}
@@ -101,7 +101,7 @@ export const PricingPage = ({ pageContent, callToActionExtra }) => {
               {` `}
               {links[id].showContactUs ? (
                 <a
-                  className="section__description-link section__description-link_black"
+                  className='section__description-link section__description-link_black'
                   onClick={toggleContactUsVisibility}
                   {...links[id].props}
                 >
@@ -109,7 +109,7 @@ export const PricingPage = ({ pageContent, callToActionExtra }) => {
                 </a>
               ) : (
                 <Link
-                  className="section__description-link section__description-link_black"
+                  className='section__description-link section__description-link_black'
                   {...links[id].props}
                 >
                   {linkText}
@@ -126,7 +126,7 @@ export const PricingPage = ({ pageContent, callToActionExtra }) => {
 
 PricingPage.propTypes = {
   pageContent: PropTypes.objectOf(PropTypes.any).isRequired,
-  callToActionExtra: PropTypes.node,
+  callToActionExtra: PropTypes.node
 }
 
 export default () => <PricingPage pageContent={pageContent} />

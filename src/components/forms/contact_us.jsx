@@ -14,27 +14,27 @@ const sections = [
             id: `name`,
             name: `name`,
             type: `text`,
-            component: `input`,
+            component: `input`
           },
           {
             id: `email`,
             name: `email`,
             type: `email`,
-            component: `input`,
-          },
-        ],
+            component: `input`
+          }
+        ]
       },
       {
         fields: [
           {
             id: `message`,
             name: `message`,
-            component: `textarea`,
-          },
-        ],
-      },
-    ],
-  },
+            component: `textarea`
+          }
+        ]
+      }
+    ]
+  }
 ]
 
 const ContactUsBase = ({ sections, content, ...formikProps }) => {
@@ -42,7 +42,7 @@ const ContactUsBase = ({ sections, content, ...formikProps }) => {
     <Form
       formProps={{
         id: `contact-us__form`,
-        classNames: [`form form_modal`],
+        classNames: [`form form_modal`]
       }}
       buttonClasses={[`form__button_full-width`, `form__button_modal`]}
       sections={sections}
@@ -61,20 +61,20 @@ const contactUsSchema = yup.object().shape({
   message: yup
     .string()
     .min(10, `We'd really appreciate a message longer than 10 characters.`)
-    .required(`Sorry, but empty messages are no fun.`),
+    .required(`Sorry, but empty messages are no fun.`)
 })
 
 const ContactUs = withFormik({
   mapPropsToValues: () => ({
     name: ``,
     email: ``,
-    message: ``,
+    message: ``
   }),
   validationSchema: contactUsSchema,
   handleSubmit: (_values, { resetForm }) => {
     alert(`Let's pretend its sent!`)
     resetForm()
-  },
+  }
 })(ContactUsBase)
 
 const Wrapper = ({ content }) => {
@@ -84,8 +84,8 @@ const Wrapper = ({ content }) => {
 Wrapper.propTypes = {
   content: PropTypes.shape({
     placeholders: PropTypes.objectOf(PropTypes.string).isRequired,
-    button: PropTypes.string.isRequired,
-  }),
+    button: PropTypes.string.isRequired
+  })
 }
 
 export default Wrapper

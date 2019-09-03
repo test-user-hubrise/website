@@ -12,24 +12,24 @@ const pageContent = {
       `Nombre de commandes : illimité`,
       `Nombre de clients : illimité`,
       `Nombre de produits : illimité`,
-      `Nombre d'applications connectées : illimité`,
+      `Nombre d'applications connectées : illimité`
     ],
-    button: `Démarrer maintenant`,
+    button: `Démarrer maintenant`
   },
   callToAction: [
     {
       id: `free`,
       title: `Gratuit :`,
       description: `usqu'à 50 commandes et 50 clients par mois.`,
-      linkText: `Démarrer maintenant`,
+      linkText: `Démarrer maintenant`
     },
     {
       id: `large_accounts`,
       title: `Pour les chaînes :`,
       description: `Tarifs dégressifs à partir de 5 points de vente.`,
-      linkText: `Nous contacter`,
-    },
-  ],
+      linkText: `Nous contacter`
+    }
+  ]
 }
 
 const PricingPage = () => {
@@ -37,10 +37,10 @@ const PricingPage = () => {
     <PricingBase
       pageContent={pageContent}
       callToActionExtra={
-        <div className="section__link-block">
+        <div className='section__link-block'>
           <Link
-            className="section__description-link section__description-link_black section__description-link_bold"
-            to="/fr/faq#abonnement"
+            className='section__description-link section__description-link_black section__description-link_bold'
+            to='/fr/faq#abonnement'
           >
             Voir notre F.A.Q. concernant l'abonnement
           </Link>

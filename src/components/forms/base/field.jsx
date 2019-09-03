@@ -12,12 +12,12 @@ const CompleteField = ({ fieldProps, formikProps }) => {
       <label htmlFor={name} />
       <Field
         className={`form__${component}`}
-        aria-invalid={touched[name] ? (errors[name] ? true : false) : ''}
+        aria-invalid={touched[name] ? (!!errors[name]) : ''}
         {...fieldProps}
       />
       <ErrorMessage
         name={name}
-        render={(msg) => <p className="error__message">{msg}</p>}
+        render={(msg) => <p className='error__message'>{msg}</p>}
       />
     </div>
   )
@@ -28,9 +28,9 @@ CompleteField.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.string,
-    component: PropTypes.string.isRequired,
+    component: PropTypes.string.isRequired
   }).isRequired,
-  formikProps: PropTypes.object.isRequired,
+  formikProps: PropTypes.object.isRequired
 }
 
 export default CompleteField

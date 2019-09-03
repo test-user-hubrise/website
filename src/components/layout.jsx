@@ -7,7 +7,7 @@ import Footer from './footer'
 const Layout = ({ children, ...other }) => (
   <>
     <Header {...other} />
-    <main className="content" data-floater-content>
+    <main className='content' data-floater-content>
       {children}
     </main>
     <Footer {...other} />
@@ -15,7 +15,7 @@ const Layout = ({ children, ...other }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default Layout

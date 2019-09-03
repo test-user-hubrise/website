@@ -15,15 +15,15 @@ const sections = [
             id: `name`,
             name: `name`,
             type: `text`,
-            component: `input`,
+            component: `input`
           },
           {
             id: `company`,
             name: `company`,
             type: `text`,
-            component: `input`,
-          },
-        ],
+            component: `input`
+          }
+        ]
       },
       {
         fields: [
@@ -31,17 +31,17 @@ const sections = [
             id: `email`,
             name: `email`,
             type: `email`,
-            component: `input`,
+            component: `input`
           },
           {
             id: `phone`,
             name: `phone`,
             type: `text`,
-            component: `input`,
-          },
-        ],
-      },
-    ],
+            component: `input`
+          }
+        ]
+      }
+    ]
   },
   {
     id: `app`,
@@ -52,36 +52,36 @@ const sections = [
             id: `app_name`,
             name: `app_name`,
             type: `text`,
-            component: `input`,
+            component: `input`
           },
           {
             id: `app_site`,
             name: `app_site`,
             type: `text`,
-            component: `input`,
-          },
-        ],
+            component: `input`
+          }
+        ]
       },
       {
         fields: [
           {
             id: `app_contact`,
             name: `app_contact`,
-            component: `textarea`,
-          },
-        ],
+            component: `textarea`
+          }
+        ]
       },
       {
         fields: [
           {
             id: `app_extra`,
             name: `app_extra`,
-            component: `textarea`,
-          },
-        ],
-      },
-    ],
-  },
+            component: `textarea`
+          }
+        ]
+      }
+    ]
+  }
 ]
 
 const SuggestAppBase = ({ sections, content, ...formikProps }) => {
@@ -118,7 +118,7 @@ const suggestAppSchema = yup.object().shape({
     .required(
       `Sorry, but we cannot proceed without company's contact details.`
     ),
-  app_extra: yup.string(),
+  app_extra: yup.string()
 })
 
 const SuggestApp = withFormik({
@@ -130,13 +130,13 @@ const SuggestApp = withFormik({
     app_name: ``,
     app_site: ``,
     app_contact: ``,
-    app_extra: ``,
+    app_extra: ``
   }),
   validationSchema: suggestAppSchema,
   handleSubmit: (_values, { resetForm }) => {
     alert(`Let's pretend its sent!`)
     resetForm()
-  },
+  }
 })(SuggestAppBase)
 
 const Wrapper = ({ content }) => {
@@ -146,8 +146,8 @@ const Wrapper = ({ content }) => {
 Wrapper.propTypes = {
   content: PropTypes.shape({
     placeholders: PropTypes.objectOf(PropTypes.string).isRequired,
-    button: PropTypes.string.isRequired,
-  }),
+    button: PropTypes.string.isRequired
+  })
 }
 
 export default Wrapper

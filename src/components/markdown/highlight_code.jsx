@@ -14,7 +14,7 @@ const HighlightCode = ({ code, language, inline }) => {
             className={`${className} documentation__code--inline`}
             style={{
               ...style,
-              padding: `.1rem .3rem`,
+              padding: `.1rem .3rem`
             }}
           >
             {code}
@@ -28,7 +28,7 @@ const HighlightCode = ({ code, language, inline }) => {
     <Highlight code={code} language={language} Prism={Prism}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={`${className} line-numbers`} style={style}>
-          <div className="prism-code__wrapper">
+          <div className='prism-code__wrapper'>
             {tokens.map((line, i) => {
               return (
                 !line[0].empty && (
@@ -44,7 +44,7 @@ const HighlightCode = ({ code, language, inline }) => {
                 )
               )
             })}
-            <span aria-hidden className="line-numbers-rows">
+            <span aria-hidden className='line-numbers-rows'>
               {tokens.map((line, idx) => {
                 return !line[0].empty ? (
                   <span key={generateKey(line[0].content, idx)} />
@@ -61,12 +61,12 @@ const HighlightCode = ({ code, language, inline }) => {
 HighlightCode.propTypes = {
   language: PropTypes.string,
   code: PropTypes.string.isRequired,
-  inline: PropTypes.bool,
+  inline: PropTypes.bool
 }
 
 HighlightCode.defaultProps = {
   language: `none`,
-  inline: false,
+  inline: false
 }
 
 export default HighlightCode

@@ -15,9 +15,9 @@ const sections = [
             id: `first_name`,
             name: `first_name`,
             type: `text`,
-            component: `input`,
-          },
-        ],
+            component: `input`
+          }
+        ]
       },
       {
         fields: [
@@ -25,9 +25,9 @@ const sections = [
             id: `last_name`,
             name: `last_name`,
             type: `text`,
-            component: `input`,
-          },
-        ],
+            component: `input`
+          }
+        ]
       },
       {
         fields: [
@@ -35,9 +35,9 @@ const sections = [
             id: `email`,
             name: `email`,
             type: `email`,
-            component: `input`,
-          },
-        ],
+            component: `input`
+          }
+        ]
       },
       {
         fields: [
@@ -45,12 +45,12 @@ const sections = [
             id: `password`,
             name: `password`,
             type: `password`,
-            component: `input`,
-          },
-        ],
-      },
-    ],
-  },
+            component: `input`
+          }
+        ]
+      }
+    ]
+  }
 ]
 
 const SignupFormBase = ({ sections, content, ...formikProps }) => {
@@ -83,7 +83,7 @@ const signupSchema = yup.object().shape({
       10,
       `It's a good practice to have at least 10 symbols in your password.`
     )
-    .required(`Please choose a password.`),
+    .required(`Please choose a password.`)
 })
 
 const SignupForm = withFormik({
@@ -91,24 +91,24 @@ const SignupForm = withFormik({
     [`first_name`]: ``,
     [`last_name`]: ``,
     email: ``,
-    password: ``,
+    password: ``
   }),
   validationSchema: signupSchema,
   handleSubmit: () => {
     window.location = `https://manager.hubrise.com/signup`
-  },
+  }
 })(SignupFormBase)
 
 const Wrapper = ({ content }) => {
   const { title, description, link } = content
   return (
-    <div className="index-hero__form">
-      <div className="index-hero__form-in">
-        <h5 className="index-hero__form-title">{title}</h5>
-        <p className="index-hero__form-description">
+    <div className='index-hero__form'>
+      <div className='index-hero__form-in'>
+        <h5 className='index-hero__form-title'>{title}</h5>
+        <p className='index-hero__form-description'>
           <span>{description}</span>
           {` `}
-          <Link className="index-hero__form-link" to="/pricing">
+          <Link className='index-hero__form-link' to='/pricing'>
             {link}
           </Link>
         </p>
@@ -124,8 +124,8 @@ Wrapper.propTypes = {
     button: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-  }),
+    link: PropTypes.string.isRequired
+  })
 }
 
 export default Wrapper
