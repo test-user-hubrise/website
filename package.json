@@ -43,9 +43,10 @@
   "devDependencies": {
     "babel-plugin-prismjs": "1.1.1",
     "babel-preset-gatsby": "0.2.8",
+    "eslint-plugin-react-hooks": "2.0.1",
     "husky": "3.0.3",
     "prop-types": "15.7.2",
-    "standard": "14.1.0"
+    "standardx": "3.0.1"
   },
   "husky": {
     "hooks": {
@@ -54,9 +55,21 @@
   },
   "lint-staged": {
     "*/**": [
-      "standard --fix",
+      "standardx --fix",
       "git add"
     ]
+  },
+  "standardx": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "react-hooks"
+    ]
+  },
+  "eslintConfig": {
+    "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    }
   },
   "keywords": [
     "gatsby",
