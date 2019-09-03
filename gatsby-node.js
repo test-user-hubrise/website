@@ -1,4 +1,5 @@
 const path = require(`path`)
+const shell = require(`child_process`).execSync
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 const onCreateNode = ({ node, getNode, actions }) => {
@@ -55,7 +56,17 @@ const createPages = async ({ graphql, actions }) => {
   })
 }
 
+const copyTranslations = () => {
+  const src = `src/i18n/resources`
+  const dist = `public/locales`
+
+  shell(`mkdir -p ${dist}`)
+  shell(`cp -r ${src}/* ${dist}`)
+}
+
 module.exports = {
   onCreateNode,
-  createPages
+  createPages,
+  onPostBuild: copyTranslations,
+  onPostBootstrap: copyTranslations
 }
