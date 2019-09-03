@@ -25,16 +25,6 @@ const formContent = {
     contact: `A propos de Vous :`,
     app: `A propos de l'Application :`
   },
-  placeholders: {
-    name: `Votre Nom`,
-    company: `Votre Société`,
-    email: `Votre Email`,
-    phone: `Votre Numéro de Téléphone`,
-    app_name: `Nom de l'Application`,
-    app_site: `Site internet de l'Application`,
-    app_contact: `Qui devons-nous contacter ?`,
-    app_extra: `Quelque chose à ajouter ?`
-  },
   button: `Envoyer`
 }
 

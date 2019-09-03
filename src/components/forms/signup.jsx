@@ -120,7 +120,6 @@ const Wrapper = ({ content }) => {
 
 Wrapper.propTypes = {
   content: PropTypes.shape({
-    placeholders: PropTypes.objectOf(PropTypes.string).isRequired,
     button: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

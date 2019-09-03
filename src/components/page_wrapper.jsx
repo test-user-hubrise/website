@@ -11,31 +11,13 @@ import { getLanguage } from '../i18n/utils'
 
 import AppContext from '../context'
 
-const formContentEng = {
-  placeholders: {
-    name: 'Your name',
-    email: 'Your email',
-    message: 'Your message ...'
-  },
-  button: 'Send'
-}
-
-const formContentFr = {
-  placeholders: {
-    name: 'Votre Nom',
-    email: 'Votre Email',
-    message: 'Votre Message...'
-  },
-  button: 'Envoyer'
-}
-
 const PageWrapper = ({ element, props }) => {
   const language = getLanguage(props.path)
   const {
     isContactUsVisible,
     toggleContactUsVisibility
   } = useContext(AppContext)
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation(`forms`)
 
   useEffect(() => {
     i18n.changeLanguage(language)
@@ -49,10 +31,12 @@ const PageWrapper = ({ element, props }) => {
       </Layout>
       {isContactUsVisible && (
         <Modal
-          title={language === 'fr' ? 'Contactez-Nous' : 'Contact Us'}
+          title={t(`contact.modal_title`)}
           onClose={toggleContactUsVisibility}
         >
-          <ContactUsForm content={language === 'fr' ? formContentFr : formContentEng} />
+          <ContactUsForm
+            content={{ button: t(`contact.button`) }}
+          />
         </Modal>
       )}
     </>

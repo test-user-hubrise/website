@@ -36,12 +36,6 @@ const formContent = {
   title: `Démarrez maintenant`,
   description: `HubRise est gratuit jusqu'à 50 commandes par mois.`,
   link: `Voir tarifs`,
-  placeholders: {
-    first_name: `Prénom`,
-    last_name: `Nom`,
-    email: `Email`,
-    password: `Mot de passe`
-  },
   button: `Créer votre compte`
 }
 

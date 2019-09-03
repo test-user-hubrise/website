@@ -83,9 +83,8 @@ const Wrapper = ({ content }) => {
 
 Wrapper.propTypes = {
   content: PropTypes.shape({
-    placeholders: PropTypes.objectOf(PropTypes.string).isRequired,
     button: PropTypes.string.isRequired
-  })
+  }).isRequired
 }
 
 export default Wrapper
