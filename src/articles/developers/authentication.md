@@ -8,16 +8,16 @@ Before your application can access HubRise data, the user needs to give your app
 
 The OAuth 2.0 flow is a series of interactions between:
 
-* A __resource owner__: the HubRise user
-* A __client__: your application, ie a program or a website making protected requests on behalf of the user
-* An __authorization server__: Hubrise OAuth API, which issues an access token to the client. It is hosted at: http://manager.hubrise.com/oauth2/v1
-* A __resource server__: Hubrise API, which provides access your user data. It is hosted at: http://api.hubrise.com/v1
+- A **resource owner**: the HubRise user
+- A **client**: your application, ie a program or a website making protected requests on behalf of the user
+- An **authorization server**: Hubrise OAuth API, which issues an access token to the client. It is hosted at: http://manager.hubrise.com/oauth2/v1
+- A **resource server**: Hubrise API, which provides access your user data. It is hosted at: http://api.hubrise.com/v1
 
 Although it seems complicated at first, OAuth actually makes things simpler for both you and your users, and it dramatically reduces security risks for everyone:
 
-* Your application doesn't need to store your users' passwords
-* You can pick which permissions to request from a user. For example, users can grant your application access to their order list, without also needing to grant access to their customer list.
-* Users can easily revoke the access they grant a potentially insecure application, without needing to reset their password.
+- Your application doesn't need to store your users' passwords
+- You can pick which permissions to request from a user. For example, users can grant your application access to their order list, without also needing to grant access to their customer list.
+- Users can easily revoke the access they grant a potentially insecure application, without needing to reset their password.
 
 ## 2. OAuth scopes
 
@@ -25,22 +25,22 @@ A _scope_ controls the set of resources an access token is able to retrieve or m
 
 A scope is a commma-separated list of:
 
-* 0 or 1 __access-level set of permissions__
-* and __general permissions__ (eg. `profile`, or `profile_with_email`)
+- 0 or 1 **access-level set of permissions**
+- and **general permissions** (eg. `profile`, or `profile_with_email`)
 
-An __access-level set of permissions__ is made of:
+An **access-level set of permissions** is made of:
 
-* an access-level keyword: `location` or `account`
-* followed by a comma separated list of permissions between square brackets. Each permission is made of:
-   * a resource: `orders`, `customer_list`, `all_customer_lists`, `catalog` or `all_catalogs`
-   * a `.` character
-   * access rights: `read` or `write`
+- an access-level keyword: `location` or `account`
+- followed by a comma separated list of permissions between square brackets. Each permission is made of:
+  - a resource: `orders`, `customer_list`, `all_customer_lists`, `catalog` or `all_catalogs`
+  - a `.` character
+  - access rights: `read` or `write`
 
 #### Examples of valid scopes:
 
-* `profile_with_email`: access to the user profile including email
-* `location[orders.write,customer_list.write]`: allows to create orders and customers for a chosen location
-* `account[customer_list.read],profile`: access to the user profile and to the customers from a chosen customer list
+- `profile_with_email`: access to the user profile including email
+- `location[orders.write,customer_list.write]`: allows to create orders and customers for a chosen location
+- `account[customer_list.read],profile`: access to the user profile and to the customers from a chosen customer list
 
 ## 3. Web application workflow
 

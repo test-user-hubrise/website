@@ -13,7 +13,7 @@ First of all, you need to create an account. It's free and it takes a minute. On
 }
 ```
 
-The client's __id__ and __secret__ uniquely identify your application. A client can access several HubRise accounts, so you will generally need to create only one client.
+The client's **id** and **secret** uniquely identify your application. A client can access several HubRise accounts, so you will generally need to create only one client.
 
 ## 2. Requesting authorization
 

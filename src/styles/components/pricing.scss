@@ -9,9 +9,11 @@
     text-transform: uppercase;
     font-weight: 500;
 
-    &:hover, &:active, &:focus {
-        background-color: $white;
-        color: $main-green;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $white;
+      color: $main-green;
     }
   }
 

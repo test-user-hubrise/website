@@ -3,6 +3,7 @@
 1. Install docker
 
 2. In console, `cd` to the project root then type:
+
 ```shell
 docker build -f docker_dev/Dockerfile -t hubrise/website-dev .
 ```
@@ -10,6 +11,7 @@ docker build -f docker_dev/Dockerfile -t hubrise/website-dev .
 ## Development cycle
 
 To run project on http://localhost:8000:
+
 ```shell
 docker run -v $(pwd):/var/www/website -p8000:8000 hubrise/website-dev
 ```
