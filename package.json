@@ -45,6 +45,7 @@
     "babel-preset-gatsby": "0.2.8",
     "eslint-plugin-react-hooks": "2.0.1",
     "husky": "3.0.3",
+    "prettier": "1.18.2",
     "prop-types": "15.7.2",
     "standardx": "3.0.1"
   },
@@ -54,7 +55,11 @@
     }
   },
   "lint-staged": {
-    "*/**": [
+    "**/*.{json,scss,md,mdx}": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.{js,jsx}": [
       "standardx --fix",
       "git add"
     ]
