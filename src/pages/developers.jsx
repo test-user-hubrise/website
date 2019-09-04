@@ -59,7 +59,7 @@ const pageContent = {
   ]
 }
 
-export const DevelopersPage = ({ pageContent, uri }) => {
+export const DevelopersPage = ({ pageContent }) => {
   const { toggleContactUsVisibility } = useContext(AppContext)
   const { hero, thumbs } = pageContent
 
