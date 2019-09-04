@@ -20,14 +20,6 @@ import nextMenuLogo from '../../images/apps/nextmenu.png'
 import yProximiteLogo from '../../images/apps/yproximite.png'
 import mailChimpLogo from '../../images/apps/mailchimp.png'
 
-const formContent = {
-  subtitles: {
-    contact: `A propos de Vous :`,
-    app: `A propos de l'Application :`
-  },
-  button: `Envoyer`
-}
-
 const AppSection = ({ title, blocks, extraBlock }) => {
   return (
     <section className='section'>
@@ -297,7 +289,7 @@ const AppsPage = () => {
           iaculis lectus aliquet non.'
           onClose={toggleSuggestAppVisibility}
         >
-          <SuggestAppForm content={formContent} />
+          <SuggestAppForm />
         </Modal>
       )}
     </>

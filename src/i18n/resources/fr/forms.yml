@@ -3,11 +3,14 @@ validation:
   min: Minimum allowed length for this field is {{ length }} characters.
   required: This field is required.
   # }
+  app_contact_required: Sorry, but we cannot proceed without company's contact details.
+  app_name_required: Sorry, but we cannot proceed without company's name.
   email: Provided email seems to be incorrect. Could you double check?
   email_required: Sorry, but we cannot proceed without your email.
   last_name_required: Sorry, but we cannot proceed without your last name.
   message_min: We'd really appreciate a message longer than {{ length }} characters.
   message_required: Sorry, but empty messages are no fun.
+  name_required: Sorry, but we cannot proceed without your name.
   password_min: It's a good practice to have at least {{ length }} symbols in your password.
   password_required: Please choose a password.
 placeholders:
@@ -31,3 +34,7 @@ signup:
   description: HubRise est gratuit jusqu'à 50 commandes par mois.
   link: Voir tarifs
   button: Créer votre compte
+suggest_app:
+  subtitle_contact: "A propos de Vous :"
+  subtitle_app: "A propos de l'Application :"
+  button: Envoyer

@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
+import { useTranslation } from 'react-i18next'
 
 import Form from './base/form'
 
@@ -84,7 +84,7 @@ const sections = [
   }
 ]
 
-const SuggestAppBase = ({ sections, content, ...formikProps }) => {
+const SuggestApp = ({ sections, content, ...formikProps }) => {
   return (
     <Form
       formProps={{ id: `suggest-app__form`, classNames: [`form_modal`] }}
@@ -96,32 +96,36 @@ const SuggestAppBase = ({ sections, content, ...formikProps }) => {
   )
 }
 
-const suggestAppSchema = yup.object().shape({
-  name: yup
-    .string()
-    .min(2, `Is your name really 1 character long? o_0`)
-    .required(`Sorry, but we cannot proceed without your name.`),
-  company: yup.string(),
-  email: yup
-    .string()
-    .email(`Provided email seems to be incorrect. Could you double check?`)
-    .required(`Sorry, but we cannot proceed without your email.`),
-  phone: yup.string(),
-  app_name: yup
-    .string()
-    .min(2, `Is company's name really 1 character long? o_0`)
-    .required(`Sorry, but we cannot proceed without company's name.`),
-  app_site: yup.string(),
-  app_contact: yup
-    .string()
-    .min(2, `Is company's contact details really 1 character long? o_0`)
-    .required(
-      `Sorry, but we cannot proceed without company's contact details.`
-    ),
-  app_extra: yup.string()
-})
+const createSuggestAppSchema = (t) => {
+  const nameMinLength = 2
+  const appNameMinLength = 2
+  const appContactMinLength = 8
 
-const SuggestApp = withFormik({
+  return yup.object().shape({
+    name: yup
+      .string()
+      .min(nameMinLength, t(`validation.min`, { length: nameMinLength }))
+      .required(t(`validation.name_required`)),
+    company: yup.string(),
+    email: yup
+      .string()
+      .email(t(`validation.email`))
+      .required(t(`validation.email_required`)),
+    phone: yup.string(),
+    app_name: yup
+      .string()
+      .min(appNameMinLength, t(`validation.min`, { length: appNameMinLength }))
+      .required(t(`validation.app_name_required`)),
+    app_site: yup.string(),
+    app_contact: yup
+      .string()
+      .min(appContactMinLength, t(`validation.min`, { length: appContactMinLength }))
+      .required(t(`validation.app_contact_required`)),
+    app_extra: yup.string()
+  })
+}
+
+const SuggestAppEnhanced = withFormik({
   mapPropsToValues: () => ({
     name: ``,
     company: ``,
@@ -132,21 +136,27 @@ const SuggestApp = withFormik({
     app_contact: ``,
     app_extra: ``
   }),
-  validationSchema: suggestAppSchema,
+  validationSchema: ({ t }) => createSuggestAppSchema(t),
   handleSubmit: (_values, { resetForm }) => {
-    alert(`Let's pretend its sent!`)
+    window.alert(`Let's pretend its sent!`)
     resetForm()
   }
-})(SuggestAppBase)
+})(SuggestApp)
 
-const Wrapper = ({ content }) => {
-  return <SuggestApp sections={sections} content={content} />
+export default () => {
+  const { t } = useTranslation(`forms`)
+
+  return (
+    <SuggestAppEnhanced
+      t={t}
+      sections={sections}
+      content={{
+        subtitles: {
+          contact: t(`suggest_app.subtitle_contact`),
+          app: t(`suggest_app.subtitle_app`)
+        },
+        button: t(`suggest_app.button`)
+      }}
+    />
+  )
 }
-
-Wrapper.propTypes = {
-  content: PropTypes.shape({
-    button: PropTypes.string.isRequired
-  })
-}
-
-export default Wrapper
