@@ -53,13 +53,13 @@ const sections = [
   }
 ]
 
-const SignupForm = ({ sections, content, ...formikProps }) => {
+const SignupForm = ({ t, ...formikProps }) => {
   return (
     <Form
       formProps={{ id: `main-form` }}
       buttonClasses={[`form__button_full-width`]}
       sections={sections}
-      content={content}
+      content={{ button: t(`signup.button`) }}
       formikProps={formikProps}
     />
   )
@@ -120,11 +120,7 @@ export default () => {
             {t(`signup.link`)}
           </Link>
         </p>
-        <SignupFormEnhanced
-          sections={sections}
-          content={{ button: t(`signup.button`) }}
-          t={t}
-        />
+        <SignupFormEnhanced t={t} />
       </div>
     </div>
   )

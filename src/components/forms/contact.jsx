@@ -37,7 +37,7 @@ const sections = [
   }
 ]
 
-const ContactUs = ({ sections, content, ...formikProps }) => {
+const ContactUs = ({ t, ...formikProps }) => {
   return (
     <Form
       formProps={{
@@ -46,7 +46,7 @@ const ContactUs = ({ sections, content, ...formikProps }) => {
       }}
       buttonClasses={[`form__button_full-width`, `form__button_modal`]}
       sections={sections}
-      content={content}
+      content={{ button: t(`contact.button`) }}
       formikProps={formikProps}
     />
   )
@@ -79,7 +79,7 @@ const ContactUsEnhanced = withFormik({
   }),
   validationSchema: ({ t }) => createContactSchema(t),
   handleSubmit: (_values, { resetForm }) => {
-    alert(`Let's pretend its sent!`)
+    window.alert(`Let's pretend its sent!`)
     resetForm()
   }
 })(ContactUs)
@@ -88,12 +88,6 @@ export default () => {
   const { t } = useTranslation(`forms`)
 
   return (
-    <ContactUsEnhanced
-      t={t}
-      sections={sections}
-      content={{
-        button: t(`contact.button`)
-      }}
-    />
+    <ContactUsEnhanced t={t} />
   )
 }

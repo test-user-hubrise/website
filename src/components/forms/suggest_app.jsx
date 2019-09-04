@@ -84,13 +84,19 @@ const sections = [
   }
 ]
 
-const SuggestApp = ({ sections, content, ...formikProps }) => {
+const SuggestApp = ({ t, ...formikProps }) => {
   return (
     <Form
       formProps={{ id: `suggest-app__form`, classNames: [`form_modal`] }}
       buttonClasses={[`form__button_full-width`, `form__button_modal`]}
       sections={sections}
-      content={content}
+      content={{
+        subtitles: {
+          contact: t(`suggest_app.subtitle_contact`),
+          app: t(`suggest_app.subtitle_app`)
+        },
+        button: t(`suggest_app.button`)
+      }}
       formikProps={formikProps}
     />
   )
@@ -147,16 +153,6 @@ export default () => {
   const { t } = useTranslation(`forms`)
 
   return (
-    <SuggestAppEnhanced
-      t={t}
-      sections={sections}
-      content={{
-        subtitles: {
-          contact: t(`suggest_app.subtitle_contact`),
-          app: t(`suggest_app.subtitle_app`)
-        },
-        button: t(`suggest_app.button`)
-      }}
-    />
+    <SuggestAppEnhanced t={t} />
   )
 }
