@@ -32,14 +32,7 @@ const pageContent = {
   }
 }
 
-const formContent = {
-  title: `Get started now`,
-  description: `HubRise is free up to 50 orders per month.`,
-  link: `See pricing`,
-  button: `Create your account`
-}
-
-export const IndexPage = ({ pageContent, formContent, diagram, children }) => {
+export const IndexPage = ({ pageContent, diagram, children }) => {
   return (
     <>
       <div
@@ -62,7 +55,7 @@ export const IndexPage = ({ pageContent, formContent, diagram, children }) => {
               </p>
             </div>
           </div>
-          <SignupForm content={formContent} />
+          <SignupForm />
         </div>
       </div>
       <section id='more' className='section'>
@@ -92,14 +85,12 @@ export const IndexPage = ({ pageContent, formContent, diagram, children }) => {
 
 IndexPage.propTypes = {
   pageContent: PropTypes.objectOf(PropTypes.any).isRequired,
-  formContent: PropTypes.objectOf(PropTypes.any).isRequired,
   diagram: PropTypes.string.isRequired
 }
 
 export default () => (
   <IndexPage
     pageContent={pageContent}
-    formContent={formContent}
     diagram={diagram}
   />
 )

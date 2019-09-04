@@ -1,4 +1,13 @@
 validation:
+  # Generic {
+  min: Minimum allowed length for this field is {{ length }} characters.
+  required: This field is required.
+  # }
+  email: Provided email seems to be incorrect. Could you double check?
+  email_required: Sorry, but we cannot proceed without your email.
+  last_name_required: Sorry, but we cannot proceed without your last name.
+  password_min: It's a good practice to have at least {{ length }} symbols in your password.
+  password_required: Please choose a password.
 placeholders:
   app_contact: Qui devons-nous contacter ?
   app_extra: Quelque chose à ajouter ?
@@ -15,3 +24,8 @@ placeholders:
 contact:
   button: Envoyer
   modal_title: Contactez-Nous
+signup:
+  title: Démarrez maintenant
+  description: HubRise est gratuit jusqu'à 50 commandes par mois.
+  link: Voir tarifs
+  button: Créer votre compte

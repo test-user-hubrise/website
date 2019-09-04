@@ -32,13 +32,6 @@ Les applications raccordées à HubRise peuvent instantanément échanger ces do
   }
 }
 
-const formContent = {
-  title: `Démarrez maintenant`,
-  description: `HubRise est gratuit jusqu'à 50 commandes par mois.`,
-  link: `Voir tarifs`,
-  button: `Créer votre compte`
-}
-
 const Video = () => {
   return (
     <section className='section'>
@@ -241,7 +234,6 @@ const IndexPage = () => {
   return (
     <IndexBase
       pageContent={pageContent}
-      formContent={formContent}
       diagram={diagram}
     >
       <Video />
