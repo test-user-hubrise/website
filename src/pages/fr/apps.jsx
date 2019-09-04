@@ -122,7 +122,7 @@ const Intro = () => {
             HubRise ?
             <Link
               className='section__description-link section__description-link_black'
-              to='/fr/developpeurs/'
+              to='/developpeurs'
             >
               Voir la documentation technique
             </Link>
