@@ -5,6 +5,7 @@ import { Field, ErrorMessage } from 'formik'
 const CompleteField = ({ fieldProps, formikProps }) => {
   const { name, component } = fieldProps
   const { touched, errors } = formikProps
+
   return (
     <div
       className={`${touched[name] ? (errors[name] ? 'error' : 'valid') : ''}`}
@@ -12,7 +13,7 @@ const CompleteField = ({ fieldProps, formikProps }) => {
       <label htmlFor={name} />
       <Field
         className={`form__${component}`}
-        aria-invalid={touched[name] ? (!!errors[name]) : ''}
+        aria-invalid={touched[name] ? !!errors[name] : null}
         {...fieldProps}
       />
       <ErrorMessage
