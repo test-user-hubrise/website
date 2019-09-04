@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
-import ContactUsForm from './forms/contact_us'
+import ContactForm from './forms/contact'
 import Modal from '../components/modal'
 import Layout from './layout'
 import Seo from './seo'
@@ -34,9 +34,7 @@ const PageWrapper = ({ element, props }) => {
           title={t(`contact.modal_title`)}
           onClose={toggleContactUsVisibility}
         >
-          <ContactUsForm
-            content={{ button: t(`contact.button`) }}
-          />
+          <ContactForm />
         </Modal>
       )}
     </>

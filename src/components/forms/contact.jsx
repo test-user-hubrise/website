@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
+import { useTranslation } from 'react-i18next'
 
 import Form from './base/form'
 
@@ -37,7 +37,7 @@ const sections = [
   }
 ]
 
-const ContactUsBase = ({ sections, content, ...formikProps }) => {
+const ContactUs = ({ sections, content, ...formikProps }) => {
   return (
     <Form
       formProps={{
@@ -52,39 +52,48 @@ const ContactUsBase = ({ sections, content, ...formikProps }) => {
   )
 }
 
-const contactUsSchema = yup.object().shape({
-  name: yup.string().min(2, `Is your name really 1 character long? o_0`),
-  email: yup
-    .string()
-    .email(`Provided email seems to be incorrect. Could you double check?`)
-    .required(`Sorry, but we cannot proceed without your email.`),
-  message: yup
-    .string()
-    .min(10, `We'd really appreciate a message longer than 10 characters.`)
-    .required(`Sorry, but empty messages are no fun.`)
-})
+const createContactSchema = (t) => {
+  const nameMinLength = 2
+  const messageMinLength = 10
 
-const ContactUs = withFormik({
+  return yup.object().shape({
+    name: yup
+      .string()
+      .min(nameMinLength, t(`validation.min`, { length: nameMinLength })),
+    email: yup
+      .string()
+      .email(t(`validation.email`))
+      .required(t(`validation.email_required`)),
+    message: yup
+      .string()
+      .min(messageMinLength, t(`validation.message_min`, { length: messageMinLength }))
+      .required(t(`validation.message_required`))
+  })
+}
+
+const ContactUsEnhanced = withFormik({
   mapPropsToValues: () => ({
     name: ``,
     email: ``,
     message: ``
   }),
-  validationSchema: contactUsSchema,
+  validationSchema: ({ t }) => createContactSchema(t),
   handleSubmit: (_values, { resetForm }) => {
     alert(`Let's pretend its sent!`)
     resetForm()
   }
-})(ContactUsBase)
+})(ContactUs)
 
-const Wrapper = ({ content }) => {
-  return <ContactUs sections={sections} content={content} />
+export default () => {
+  const { t } = useTranslation(`forms`)
+
+  return (
+    <ContactUsEnhanced
+      t={t}
+      sections={sections}
+      content={{
+        button: t(`contact.button`)
+      }}
+    />
+  )
 }
-
-Wrapper.propTypes = {
-  content: PropTypes.shape({
-    button: PropTypes.string.isRequired
-  }).isRequired
-}
-
-export default Wrapper

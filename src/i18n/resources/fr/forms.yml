@@ -6,6 +6,8 @@ validation:
   email: Provided email seems to be incorrect. Could you double check?
   email_required: Sorry, but we cannot proceed without your email.
   last_name_required: Sorry, but we cannot proceed without your last name.
+  message_min: We'd really appreciate a message longer than {{ length }} characters.
+  message_required: Sorry, but empty messages are no fun.
   password_min: It's a good practice to have at least {{ length }} symbols in your password.
   password_required: Please choose a password.
 placeholders:
