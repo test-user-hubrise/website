@@ -6,13 +6,14 @@ import PropTypes from 'prop-types'
 import SidebarLeft from './sidebar_left'
 import SidebarRight from './sidebar_right'
 
-const ApiPage = ({ uri, data }) => {
+const ApiPage = ({ data, path }) => {
   const { frontmatter, body } = data.mdx
+
   return (
     <>
       <section className='section'>
         <div className='section__in section__in_padding section__in_reverse section__in_developers'>
-          <SidebarLeft currentPath={uri} />
+          <SidebarLeft currentPath={path} />
           <div className='section__content section__content_small'>
             <div className='documentation'>
               <h1>{frontmatter.title}</h1>
@@ -20,7 +21,7 @@ const ApiPage = ({ uri, data }) => {
             </div>
           </div>
           <SidebarRight
-            currentPath={uri}
+            currentPath={path}
             currentNode={data.mdx}
           />
         </div>

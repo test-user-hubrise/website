@@ -8,8 +8,7 @@ import { generateKey, kebabify } from '../../components/utils'
 
 const SidebarRight = ({ currentPath, currentNode }) => {
   const [isExpanded, setIsExpanded] = useState(false)
-  const isApiSection =
-    currentPath.startsWith('/api') || currentPath.startsWith('/fr/api')
+  const isApiSection = currentPath.includes('/api/')
   let pages = [currentNode]
 
   // Fetch all docs from API section and match structure
@@ -41,7 +40,7 @@ const SidebarRight = ({ currentPath, currentNode }) => {
         >
           {pages.map(({ frontmatter, fields, headings }, idx) => {
             const { slug } = fields
-            const isCurrentPage = slug.startsWith(currentPath)
+            const isCurrentPage = currentPath.includes(slug)
 
             return (
               <li
