@@ -9,12 +9,17 @@ import { generateKey, kebabify } from '../../components/utils'
 const SidebarRight = ({ currentPath, currentNode }) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const isApiSection = currentPath.includes('/api/')
-  let pages = [currentNode]
-
-  // Fetch all docs from API section and match structure
+  // Fetch all nodes from API section and match structure
   // with `currentNode` element to allow looping.
+  const apiNodes = useStaticQuery(getAllApiDocsQuery)
+    .allMdx
+    .edges
+    .map(({ node }) => ({ ...node }))
+
+  let pages = [ currentNode ]
+
   if (isApiSection) {
-    pages = getAllApiDocs().allMdx.edges.map(({ node }) => ({ ...node }))
+    pages = [ ...apiNodes ]
   }
 
   return (
@@ -84,28 +89,26 @@ const SidebarRight = ({ currentPath, currentNode }) => {
   )
 }
 
-const getAllApiDocs = () => {
-  return useStaticQuery(graphql`
-    query getAllApiDocs {
-      allMdx(filter: { fields: { slug: { glob: "/api/*" } } }) {
-        edges {
-          node {
-            frontmatter {
-              title
-            }
-            fields {
-              slug
-            }
-            headings {
-              value
-              depth
-            }
+const getAllApiDocsQuery = graphql`
+  {
+    allMdx(filter: { fields: { slug: { glob: "/api/*" } } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+          }
+          fields {
+            slug
+          }
+          headings {
+            value
+            depth
           }
         }
       }
     }
-  `)
-}
+  }
+`
 
 SidebarRight.propTypes = {
   currentPath: PropTypes.string.isRequired,
