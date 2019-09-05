@@ -5,49 +5,50 @@ import * as yup from 'yup'
 import Form from './base/form'
 import WithTranslation from '../hocs/with_translation'
 
-const sections = [
-  {
-    rows: [
-      {
-        fields: [
-          {
-            id: `name`,
-            name: `name`,
-            type: `text`,
-            component: `input`
-          },
-          {
-            id: `email`,
-            name: `email`,
-            type: `email`,
-            component: `input`
-          }
-        ]
-      },
-      {
-        fields: [
-          {
-            id: `message`,
-            name: `message`,
-            component: `textarea`
-          }
-        ]
-      }
-    ]
-  }
-]
-
-const ContactUs = ({ t, _i18n, ...formikProps }) => {
+const structure = {
+  formId: `contact`,
+  sections: [
+    {
+      rows: [
+        {
+          fields: [
+            {
+              id: `name`,
+              name: `name`,
+              type: `text`,
+              component: `input`
+            },
+            {
+              id: `email`,
+              name: `email`,
+              type: `email`,
+              component: `input`
+            }
+          ]
+        },
+        {
+          fields: [
+            {
+              id: `message`,
+              name: `message`,
+              component: `textarea`
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+const Contact = (props) => {
   return (
     <Form
+      buttonClasses={[`form__button_full-width`, `form__button_modal`]}
       formProps={{
         id: `contact-us__form`,
         classNames: [`form form_modal`]
       }}
-      buttonClasses={[`form__button_full-width`, `form__button_modal`]}
-      sections={sections}
-      content={{ button: t(`contact.button`) }}
-      formikProps={formikProps}
+      structure={structure}
+      {...props}
     />
   )
 }
@@ -71,7 +72,7 @@ const createContactSchema = (t) => {
   })
 }
 
-const ContactUsEnhanced = withFormik({
+const ContactEnhanced = withFormik({
   mapPropsToValues: () => ({
     name: ``,
     email: ``,
@@ -82,11 +83,11 @@ const ContactUsEnhanced = withFormik({
     window.alert(`Let's pretend its sent!`)
     resetForm()
   }
-})(ContactUs)
+})(Contact)
 
 export default () => (
   <WithTranslation
     namespaces={[`forms`]}
-    component={ContactUsEnhanced}
+    component={ContactEnhanced}
   />
 )

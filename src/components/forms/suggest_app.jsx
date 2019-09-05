@@ -5,99 +5,94 @@ import * as yup from 'yup'
 import Form from './base/form'
 import WithTranslation from '../hocs/with_translation'
 
-const sections = [
-  {
-    id: `contact`,
-    rows: [
-      {
-        fields: [
-          {
-            id: `name`,
-            name: `name`,
-            type: `text`,
-            component: `input`
-          },
-          {
-            id: `company`,
-            name: `company`,
-            type: `text`,
-            component: `input`
-          }
-        ]
-      },
-      {
-        fields: [
-          {
-            id: `email`,
-            name: `email`,
-            type: `email`,
-            component: `input`
-          },
-          {
-            id: `phone`,
-            name: `phone`,
-            type: `text`,
-            component: `input`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: `app`,
-    rows: [
-      {
-        fields: [
-          {
-            id: `app_name`,
-            name: `app_name`,
-            type: `text`,
-            component: `input`
-          },
-          {
-            id: `app_site`,
-            name: `app_site`,
-            type: `text`,
-            component: `input`
-          }
-        ]
-      },
-      {
-        fields: [
-          {
-            id: `app_contact`,
-            name: `app_contact`,
-            component: `textarea`
-          }
-        ]
-      },
-      {
-        fields: [
-          {
-            id: `app_extra`,
-            name: `app_extra`,
-            component: `textarea`
-          }
-        ]
-      }
-    ]
-  }
-]
-
-const SuggestApp = ({ t, _i18n, ...formikProps }) => {
+const structure = {
+  formId: `suggest_app`,
+  sections: [
+    {
+      subtitle_key: `subtitle_contact`,
+      rows: [
+        {
+          fields: [
+            {
+              id: `name`,
+              name: `name`,
+              type: `text`,
+              component: `input`
+            },
+            {
+              id: `company`,
+              name: `company`,
+              type: `text`,
+              component: `input`
+            }
+          ]
+        },
+        {
+          fields: [
+            {
+              id: `email`,
+              name: `email`,
+              type: `email`,
+              component: `input`
+            },
+            {
+              id: `phone`,
+              name: `phone`,
+              type: `text`,
+              component: `input`
+            }
+          ]
+        }
+      ]
+    },
+    {
+      subtitle_key: `subtitle_app`,
+      rows: [
+        {
+          fields: [
+            {
+              id: `app_name`,
+              name: `app_name`,
+              type: `text`,
+              component: `input`
+            },
+            {
+              id: `app_site`,
+              name: `app_site`,
+              type: `text`,
+              component: `input`
+            }
+          ]
+        },
+        {
+          fields: [
+            {
+              id: `app_contact`,
+              name: `app_contact`,
+              component: `textarea`
+            }
+          ]
+        },
+        {
+          fields: [
+            {
+              id: `app_extra`,
+              name: `app_extra`,
+              component: `textarea`
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+const SuggestApp = (props) => {
   return (
     <Form
-      formProps={{ id: `suggest-app__form`, classNames: [`form_modal`] }}
       buttonClasses={[`form__button_full-width`, `form__button_modal`]}
-      sections={sections}
-      content={{
-        subtitles: {
-          contact: t(`suggest_app.subtitle_contact`),
-          app: t(`suggest_app.subtitle_app`)
-        },
-        button: t(`suggest_app.button`)
-      }}
-      formikProps={formikProps}
+      formProps={{ id: `suggest-app__form`, classNames: [`form_modal`] }}
+      structure={structure}
+      {...props}
     />
   )
 }

@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useTranslation } from 'react-i18next'
 import { Form } from 'formik'
 
 import Row from './row'
 
 import { generateKey } from '../../utils'
 
-function defineContent (sections, content, t) {
+function defineContent ({ formId, sections }, t) {
   return sections.map((section) => {
-    if (content.subtitles) {
-      section.subtitle = content.subtitles[section.id]
+    if (section.subtitle_key) {
+      section.subtitle = t(`${formId}.${section.subtitle_key}`)
     }
 
     section.rows.forEach((row) => {
@@ -24,59 +23,60 @@ function defineContent (sections, content, t) {
 }
 
 const CompleteForm = ({
-  sections,
-  content,
+  buttonClasses,
+  t,
+  _i18n,
   formProps,
-  formikProps,
-  buttonClasses
+  structure,
+  ...formikProps
 }) => {
   const { classNames: formClasses, ...otherFormProps } = formProps
-  const { t } = useTranslation(`forms`)
 
   return (
     <Form
       className={`form ${formClasses ? formClasses.join(' ') : ''}`}
       {...otherFormProps}
     >
-      {defineContent(sections, content, t).map(({ subtitle, rows }, idx) => (
-        <section key={generateKey(subtitle, idx)}>
-          {subtitle && <h6 className='form__sub-title'>{subtitle}</h6>}
-          {rows.map(({ fields }) => (
-            <Row
-              key={generateKey(`${subtitle}${fields[0].id}`, idx)}
-              fields={fields}
-              formikProps={formikProps}
-            />
-          ))}
-        </section>
-      ))}
+      {defineContent(structure, t)
+        .map(({ subtitle, rows }, idx) => (
+          <section key={generateKey(subtitle, idx)}>
+            {subtitle && <h6 className='form__sub-title'>{subtitle}</h6>}
+            {rows.map(({ fields }) => (
+              <Row
+                key={generateKey(`${subtitle}${fields[0].id}`, idx)}
+                fields={fields}
+                formikProps={formikProps}
+              />
+            ))}
+          </section>
+        ))}
       <button
-        className={`
-          form__button ${buttonClasses ? buttonClasses.join(' ') : ''}
-        `}
+        className={`form__button ${buttonClasses ? buttonClasses.join(' ') : ''}`}
         type='submit'
         name='submit'
       >
-        {content.button}
+        {t(`${structure.formId}.button`)}
       </button>
     </Form>
   )
 }
 
 CompleteForm.propTypes = {
-  sections: PropTypes.arrayOf(PropTypes.object).isRequired,
-  content: PropTypes.shape({
-    button: PropTypes.string.isRequired
+  structure: PropTypes.shape({
+    formId: PropTypes.string,
+    sections: PropTypes.arrayOf(PropTypes.object)
   }).isRequired,
-  formProps: PropTypes.shape({
-    classNames: PropTypes.arrayOf(PropTypes.string)
-  }),
-  formikProps: PropTypes.object.isRequired,
+  formProps: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.string
+    ])
+  ),
   buttonClasses: PropTypes.arrayOf(PropTypes.string)
 }
 
 CompleteForm.defaultProps = {
-  formProps: { classNames: [] },
+  formProps: { classNames: null },
   buttonClasses: []
 }
 

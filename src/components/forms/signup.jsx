@@ -5,61 +5,63 @@ import * as yup from 'yup'
 import Form from './base/form'
 import WithTranslation from '../hocs/with_translation'
 
-const sections = [
-  {
-    rows: [
-      {
-        fields: [
-          {
-            id: `first_name`,
-            name: `first_name`,
-            type: `text`,
-            component: `input`
-          }
-        ]
-      },
-      {
-        fields: [
-          {
-            id: `last_name`,
-            name: `last_name`,
-            type: `text`,
-            component: `input`
-          }
-        ]
-      },
-      {
-        fields: [
-          {
-            id: `email`,
-            name: `email`,
-            type: `email`,
-            component: `input`
-          }
-        ]
-      },
-      {
-        fields: [
-          {
-            id: `password`,
-            name: `password`,
-            type: `password`,
-            component: `input`
-          }
-        ]
-      }
-    ]
-  }
-]
+const structure = {
+  formId: `signup`,
+  sections: [
+    {
+      rows: [
+        {
+          fields: [
+            {
+              id: `first_name`,
+              name: `first_name`,
+              type: `text`,
+              component: `input`
+            }
+          ]
+        },
+        {
+          fields: [
+            {
+              id: `last_name`,
+              name: `last_name`,
+              type: `text`,
+              component: `input`
+            }
+          ]
+        },
+        {
+          fields: [
+            {
+              id: `email`,
+              name: `email`,
+              type: `email`,
+              component: `input`
+            }
+          ]
+        },
+        {
+          fields: [
+            {
+              id: `password`,
+              name: `password`,
+              type: `password`,
+              component: `input`
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
 
-const SignupForm = ({ t, _i18n, ...formikProps }) => {
+const SignupForm = (props) => {
   return (
     <Form
-      formProps={{ id: `main-form` }}
       buttonClasses={[`form__button_full-width`]}
-      sections={sections}
-      content={{ button: t(`signup.button`) }}
-      formikProps={formikProps}
+      formProps={{ id: `main-form` }}
+      structure={structure}
+      {...props}
     />
   )
 }
