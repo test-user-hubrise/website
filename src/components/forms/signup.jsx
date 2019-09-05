@@ -1,10 +1,9 @@
 import React from 'react'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
-import { useTranslation } from 'react-i18next'
 
-import Link from '../link'
 import Form from './base/form'
+import WithTranslation from '../hocs/with_translation'
 
 const sections = [
   {
@@ -53,7 +52,7 @@ const sections = [
   }
 ]
 
-const SignupForm = ({ t, ...formikProps }) => {
+const SignupForm = ({ t, _i18n, ...formikProps }) => {
   return (
     <Form
       formProps={{ id: `main-form` }}
@@ -106,22 +105,9 @@ const SignupFormEnhanced = withFormik({
   }
 })(SignupForm)
 
-export default () => {
-  const { t } = useTranslation(`forms`)
-
-  return (
-    <div className='index-hero__form'>
-      <div className='index-hero__form-in'>
-        <h5 className='index-hero__form-title'>{t(`signup.title`)}</h5>
-        <p className='index-hero__form-description'>
-          <span>{t(`signup.description`)}</span>
-          {` `}
-          <Link className='index-hero__form-link' to='/pricing'>
-            {t(`signup.link`)}
-          </Link>
-        </p>
-        <SignupFormEnhanced t={t} />
-      </div>
-    </div>
-  )
-}
+export default () => (
+  <WithTranslation
+    namespaces={[`forms`]}
+    component={SignupFormEnhanced}
+  />
+)

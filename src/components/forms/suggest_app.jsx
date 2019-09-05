@@ -1,9 +1,9 @@
 import React from 'react'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
-import { useTranslation } from 'react-i18next'
 
 import Form from './base/form'
+import WithTranslation from '../hocs/with_translation'
 
 const sections = [
   {
@@ -84,7 +84,7 @@ const sections = [
   }
 ]
 
-const SuggestApp = ({ t, ...formikProps }) => {
+const SuggestApp = ({ t, _i18n, ...formikProps }) => {
   return (
     <Form
       formProps={{ id: `suggest-app__form`, classNames: [`form_modal`] }}
@@ -149,10 +149,9 @@ const SuggestAppEnhanced = withFormik({
   }
 })(SuggestApp)
 
-export default () => {
-  const { t } = useTranslation(`forms`)
-
-  return (
-    <SuggestAppEnhanced t={t} />
-  )
-}
+export default () => (
+  <WithTranslation
+    namespaces={[`forms`]}
+    component={SuggestAppEnhanced}
+  />
+)

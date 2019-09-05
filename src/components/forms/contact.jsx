@@ -1,9 +1,9 @@
 import React from 'react'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
-import { useTranslation } from 'react-i18next'
 
 import Form from './base/form'
+import WithTranslation from '../hocs/with_translation'
 
 const sections = [
   {
@@ -37,7 +37,7 @@ const sections = [
   }
 ]
 
-const ContactUs = ({ t, ...formikProps }) => {
+const ContactUs = ({ t, _i18n, ...formikProps }) => {
   return (
     <Form
       formProps={{
@@ -84,10 +84,9 @@ const ContactUsEnhanced = withFormik({
   }
 })(ContactUs)
 
-export default () => {
-  const { t } = useTranslation(`forms`)
-
-  return (
-    <ContactUsEnhanced t={t} />
-  )
-}
+export default () => (
+  <WithTranslation
+    namespaces={[`forms`]}
+    component={ContactUsEnhanced}
+  />
+)

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 import Link from '../components/link'
 import SignupForm from '../components/forms/signup'
@@ -33,6 +34,8 @@ const pageContent = {
 }
 
 export const IndexPage = ({ pageContent, diagram, children }) => {
+  const { t } = useTranslation(`forms`)
+
   return (
     <>
       <div
@@ -55,7 +58,19 @@ export const IndexPage = ({ pageContent, diagram, children }) => {
               </p>
             </div>
           </div>
-          <SignupForm />
+          <div className='index-hero__form'>
+            <div className='index-hero__form-in'>
+              <h5 className='index-hero__form-title'>{t(`signup.title`)}</h5>
+              <p className='index-hero__form-description'>
+                <span>{t(`signup.description`)}</span>
+                {` `}
+                <Link className='index-hero__form-link' to='/pricing'>
+                  {t(`signup.link`)}
+                </Link>
+              </p>
+              <SignupForm />
+            </div>
+          </div>
         </div>
       </div>
       <section id='more' className='section'>
