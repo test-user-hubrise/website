@@ -3,8 +3,10 @@ import { initReactI18next } from 'react-i18next'
 
 import homeEn from '../../public/locales/en/home'
 import formsEn from '../../public/locales/en/forms'
+import layoutEn from '../../public/locales/en/layout'
 import homeFr from '../../public/locales/fr/home'
 import formsFr from '../../public/locales/fr/forms'
+import layoutFr from '../../public/locales/fr/layout'
 
 i18n
   .use(initReactI18next)
@@ -13,11 +15,13 @@ i18n
     resources: {
       en: {
         home: homeEn,
-        forms: formsEn
+        forms: formsEn,
+        layout: layoutEn
       },
       fr: {
         home: homeFr,
-        forms: formsFr
+        forms: formsFr,
+        layout: layoutFr
       }
     },
     lng: `en`,

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import Link from './link'
 
@@ -22,8 +23,9 @@ const social = [
   }
 ]
 
-const HeaderMobile = ({ navigationList }) => {
-  const [isVisible, setIsVisible] = useState(false)
+const HeaderMobile = () => {
+  const [ isVisible, setIsVisible ] = useState(false)
+  const { t } = useTranslation(`layout`)
 
   return (
     <>
@@ -74,13 +76,7 @@ const HeaderMobile = ({ navigationList }) => {
             </div>
             <nav className='mobile-bar__content'>
               <ul className='leftbar-menu'>
-                {[
-                  {
-                    to: '/',
-                    title: 'Home'
-                  },
-                  ...navigationList
-                ].map(({ to, title }, idx) => (
+                {t(`menu.links`).map(({ to, title }, idx) => (
                   <li
                     key={generateKey(title, idx)}
                     className='leftbar-menu__item'

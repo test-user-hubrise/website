@@ -8,40 +8,8 @@ import { generateKey } from './utils'
 
 import logo from '../images/logo.png'
 
-export const navigationLists = {
-  en: [
-    {
-      title: 'Pricing',
-      to: '/pricing'
-    },
-    {
-      title: 'Developers',
-      to: '/developers'
-    }
-  ],
-  fr: [
-    {
-      title: 'Apps',
-      to: '/apps'
-    },
-    {
-      title: 'Tarifs',
-      to: '/tarifs'
-    },
-    {
-      title: 'Développeurs',
-      to: '/developpeurs'
-    },
-    {
-      title: 'F.A.Q.',
-      to: '/faq'
-    }
-  ]
-}
-
 const Header = ({ path }) => {
-  const { i18n: { language } } = useTranslation()
-  const navigationList = navigationLists[language]
+  const { t } = useTranslation(`layout`)
 
   return (
     <header className='header'>
@@ -54,18 +22,20 @@ const Header = ({ path }) => {
           </div>
           <nav className='topbar-menu'>
             <ul className='topbar-menu__list'>
-              {navigationList.map(({ to, title }, idx) => (
-                <li key={generateKey(title, idx)} className='topbar-menu__item'>
-                  <Link
-                    className={`topbar-menu__link ${
-                      path.startsWith(to) ? 'topbar-menu__link_active' : ''
-                    }`}
-                    to={to}
-                  >
-                    {title}
-                  </Link>
-                </li>
-              ))}
+              {t(`menu.links`)
+                .filter(({ to }) => to !== `/`)
+                .map(({ title, to }, idx) => (
+                  <li key={generateKey(title, idx)} className='topbar-menu__item'>
+                    <Link
+                      className={`topbar-menu__link ${
+                        path.startsWith(to) ? 'topbar-menu__link_active' : ''
+                      }`}
+                      to={to}
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </nav>
           <div className='header__action'>
@@ -73,14 +43,16 @@ const Header = ({ path }) => {
               className='header__action-signup'
               to='https://manager.hubrise.com/signup'
             >
-              Sign up
+              {t(`header.buttons.signup`)}
             </Link>
             <button className='header__action-login'>
-              <Link to='https://manager.hubrise.com/login'>Login</Link>
+              <Link to='https://manager.hubrise.com/login'>
+                {t(`header.buttons.login`)}
+              </Link>
             </button>
           </div>
         </div>
-        <HeaderMobile navigationList={navigationList} />
+        <HeaderMobile />
       </div>
     </header>
   )

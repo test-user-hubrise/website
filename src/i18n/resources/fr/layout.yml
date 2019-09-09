@@ -1,0 +1,21 @@
+header:
+  buttons:
+    signup: Sign up
+    login: Login
+footer:
+  contacts:
+    title: Contact
+    email: contact@hubrise.com
+  copyright: Copyright © {{ year }} HubRise
+menu:
+  links:
+    - title: Home
+      to: /
+    - title: Apps
+      to: /apps
+    - title: Tarifs
+      to: /tarifs
+    - title: Développeurs
+      to: /developpeurs
+    - title: F.A.Q.
+      to: /faq
