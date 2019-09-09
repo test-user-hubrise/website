@@ -31,8 +31,8 @@ contact:
   modal_title: Contactez-Nous
 signup:
   title: Démarrez maintenant
-  description: HubRise est gratuit jusqu'à 50 commandes par mois.
-  link: Voir tarifs
+  description: <0>HubRise est gratuit jusqu'à 50 commandes par mois.</0> <1>Voir tarifs</1>
+  link_to_pricing: /tarifs
   button: Créer votre compte
 suggest_app:
   subtitle_contact: "A propos de Vous :"

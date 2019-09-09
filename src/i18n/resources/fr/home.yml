@@ -1,7 +1,6 @@
 hero:
   title: HubRise centralise les données de votre commerce
-  description: Reliez votre caisse votre site Internet et tous vos logiciels.
-  link: En savoir plus
+  description: Reliez votre caisse votre site Internet et tous vos logiciels.<1>En savoir plus</1>
 main:
   title: L'intégration à portée de main
   description: "HubRise centralise toutes vos données : commandes clients produits... Les applications raccordées à HubRise peuvent instantanément échanger ces données entre elles."
