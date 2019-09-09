@@ -1,25 +1,30 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
-import homeEn from '../../public/locales/en/home'
+import developersEn from '../../public/locales/en/developers'
 import formsEn from '../../public/locales/en/forms'
+import homeEn from '../../public/locales/en/home'
 import layoutEn from '../../public/locales/en/layout'
 import pricingEn from '../../public/locales/en/pricing'
-import homeFr from '../../public/locales/fr/home'
+
+import developersFr from '../../public/locales/fr/developers'
 import formsFr from '../../public/locales/fr/forms'
+import homeFr from '../../public/locales/fr/home'
 import layoutFr from '../../public/locales/fr/layout'
 import pricingFr from '../../public/locales/fr/pricing'
 
 const resources = {
   en: {
-    home: homeEn,
+    developers: developersEn,
     forms: formsEn,
+    home: homeEn,
     layout: layoutEn,
     pricing: pricingEn
   },
   fr: {
-    home: homeFr,
+    developers: developersFr,
     forms: formsFr,
+    home: homeFr,
     layout: layoutFr,
     pricing: pricingFr
   }
@@ -32,7 +37,7 @@ i18n
     resources,
     lng: `en`,
     fallbackLng: `en`,
-    debug: true,
+    debug: false,
     interpolation: { escapeValue: false },
     returnObjects: true,
     react: { transSupportBasicHtmlNodes: false }
