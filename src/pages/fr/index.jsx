@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'gatsby'
+import { useTranslation, Trans } from 'react-i18next'
 
 import { IndexPage as IndexBase } from '../'
 
+import Link from '../../components/link'
 import { generateKey } from '../../components/utils'
 import { useInterval } from '../../components/custom_hooks'
 
@@ -10,36 +11,16 @@ import diagram from '../../images/diagram_french.png'
 import carouselImg from '../../images/logo_carousel.jpg'
 import preview from '../../images/coming_soon.mp4'
 
-const pageContent = {
-  hero: {
-    title: `HubRise centralise les données de votre commerce`,
-    description: `Reliez votre caisse, votre site Internet et tous vos logiciels.`,
-    link: `En savoir plus`
-  },
-  main: {
-    title: `L'intégration à portée de main`,
-    description: `HubRise centralise toutes vos données : commandes, clients, produits...
-Les applications raccordées à HubRise peuvent instantanément échanger ces données entre elles.`,
-    features: [
-      `Commande en ligne`,
-      `Logiciel de caisse`,
-      `Gestion de livreurs`,
-      `Carte de fidélité`,
-      `Envoi d'emails`,
-      `Applications mobiles`,
-      `Et plus encore`
-    ]
-  }
-}
-
 const Video = () => {
+  const { t } = useTranslation([`home`])
+
   return (
     <section className='section'>
       <div className='section__in section__in_padding section__in_reverse'>
-        <h3 className='section__title'>Démonstration</h3>
+        <h3 className='section__title'>{t(`video.title`)}</h3>
         <video className='index-video' width='400' controls>
           <source src={preview} />
-          Votre navigateur ne supporte pas l'affichage des vidéos HTML5.
+          {t(`video.unsupported`)}
         </video>
       </div>
     </section>
@@ -47,20 +28,22 @@ const Video = () => {
 }
 
 const Faq = () => {
-  const links = [
-    `Every request, every bit of data is traced`,
-    `Access control with thin grained permissions`,
-    `The data belongs to you`
-  ]
+  const { t } = useTranslation([`home`])
+
   return (
     <section className='section section_full-width section_padding'>
       <div className='section__in section__in_green section__in_padding'>
-        <h3 className='section__title'>F.A.Q.</h3>
+        <h3 className='section__title'>
+          {t(`faq.title`)}
+        </h3>
         <ul className='index-faq'>
-          {links.map((link, idx) => (
-            <li key={generateKey(link, idx)} className='index-faq__item'>
-              <Link className='index-faq__link' to='/fr/faq'>
-                {link}
+          {t(`faq.links`).map((linkText, idx) => (
+            <li key={generateKey(linkText, idx)} className='index-faq__item'>
+              <Link
+                className='index-faq__link'
+                to='/faq'
+              >
+                {linkText}
               </Link>
             </li>
           ))}
@@ -71,57 +54,51 @@ const Faq = () => {
 }
 
 const CompatibleApps = () => {
+  const { t } = useTranslation([`home`])
   const [activeIndex, setActiveIndex] = useState(0)
   const [lastActiveIndex, setLastActiveIndex] = useState()
+
   useInterval(function rotateBanners () {
     setLastActiveIndex(activeIndex)
     setActiveIndex(activeIndex >= lastIndex ? 0 : activeIndex + 1)
   }, 5000)
 
-  const slides = [
-    {
-      title: `(1) Orderlord: a mobile app to manage your delivery fleet`,
-      img: carouselImg,
-      description: `First slide details.`
-    },
-    {
-      title: `(2) Orderlord: a mobile app to manage your delivery fleet`,
-      img: carouselImg,
-      description: `Second slide details.`
-    },
-    {
-      title: `(3) Orderlord: a mobile app to manage your delivery fleet`,
-      img: carouselImg,
-      description: `Second slide details.`
-    },
-    {
-      title: `(4) Orderlord: a mobile app to manage your delivery fleet`,
-      img: carouselImg,
-      description: `Second slide details.`
-    }
+  const images = [
+    carouselImg,
+    carouselImg,
+    carouselImg,
+    carouselImg
   ]
+  const slides = t(`compatible_apps.slides.info`).map((info, idx) => ({
+    ...info,
+    img: images[idx]
+  }))
   const lastIndex = slides.length - 1
 
   return (
     <section className='section'>
       <div className='section__in section__in_padding section__in_reverse'>
         <h3 className='section__title'>
-          De nouvelles applications tous les mois
+          {t(`compatible_apps.title`)}
         </h3>
         <p className='section__description'>
-          HubRise est connecté avec un nombre croissant de solutions : JDC/Kezia
-          II, Nestor, MyOrderBox, OrderLord...
-          <br />
-          D'autres intégrations sont en cours.
-          <br />
-          <Link className='section__description-link' to='/fr/apps'>
-            Voir les applications disponibles
-          </Link>
-          <span className='section__description-span'>(commerçants)</span>-
-          <Link className='section__description-link' to='/fr/developpeurs'>
-            Connectez votre logiciel à HubRise
-          </Link>
-          <span className='section__description-span'>(développeurs)</span>
+          <Trans i18nKey='home:compatible_apps.description'>
+            sentence<br />
+            sentence<br />
+            <Link className='section__description-link' to='/apps'>
+              link_text
+            </Link>
+            <span className='section__description-span'>
+              span_text
+            </span>
+            -
+            <Link className='section__description-link' to='/developpeurs'>
+              link_text
+            </Link>
+            <span className='section__description-span'>
+              span_text
+            </span>
+          </Trans>
         </p>
         <div
           className='index-carousel orbit-wrapper'
@@ -196,7 +173,9 @@ const CompatibleApps = () => {
                 >
                   <span className='show-for-sr'>{description}</span>
                   {isCurrentSlide && (
-                    <span className='show-for-sr'>Current slide</span>
+                    <span className='show-for-sr'>
+                      {t(`compatible_apps.slides.sr_current_pointer`)}
+                    </span>
                   )}
                 </button>
               )
@@ -209,22 +188,22 @@ const CompatibleApps = () => {
 }
 
 const Philosophy = () => {
+  const { t } = useTranslation(`home`)
+
   return (
     <section className='section'>
       <div className='section__in section__in_padding'>
-        <h3 className='section__title'>Qui sommes-nous ?</h3>
-        <p className='section__description section__description_black'>
-          HubRise est une société basée en France, fondée par des ingénieurs
-          spécialisés dans les logiciels de réservation aérienne, et de commande
-          en ligne pour les restaurants.
-        </p>
-        <p className='section__description'>
-          Notre vision : les commerçants utilisent de plus en plus
-          d’applications informatiques pour leur activité, mais celles-ci ne
-          communiquent généralement pas entre elles. HubRise veut offrir une
-          solution universelle permettant à toutes les applications des
-          commerçants de communiquer aisément entre elles.
-        </p>
+        <h3 className='section__title'>
+          {t(`home:philosophy.title`)}
+        </h3>
+        <Trans i18nKey='home:philosophy.description'>
+          <p className='section__description section__description_black'>
+            paragraph
+          </p>
+          <p className='section__description'>
+            paragraph
+          </p>
+        </Trans>
       </div>
     </section>
   )
@@ -233,7 +212,6 @@ const Philosophy = () => {
 const IndexPage = () => {
   return (
     <IndexBase
-      pageContent={pageContent}
       diagram={diagram}
     >
       <Video />
