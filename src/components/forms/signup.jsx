@@ -1,9 +1,9 @@
 import React from 'react'
+import { withTranslation } from 'react-i18next'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
 
 import Form from './base/form'
-import WithTranslation from '../hocs/with_translation'
 
 const structure = {
   formId: `signup`,
@@ -55,7 +55,7 @@ const structure = {
   ]
 }
 
-const SignupForm = (props) => {
+const Signup = (props) => {
   return (
     <Form
       buttonClasses={[`form__button_full-width`]}
@@ -94,7 +94,7 @@ const createSignupSchema = (t) => {
   })
 }
 
-const SignupFormEnhanced = withFormik({
+const SignupEnhanced = withFormik({
   mapPropsToValues: () => ({
     first_name: ``,
     last_name: ``,
@@ -105,11 +105,6 @@ const SignupFormEnhanced = withFormik({
   handleSubmit: () => {
     window.location = `https://manager.hubrise.com/signup`
   }
-})(SignupForm)
+})(Signup)
 
-export default () => (
-  <WithTranslation
-    namespaces={[]}
-    component={SignupFormEnhanced}
-  />
-)
+export default withTranslation()(SignupEnhanced)

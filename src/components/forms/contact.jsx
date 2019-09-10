@@ -1,9 +1,9 @@
 import React from 'react'
+import { withTranslation } from 'react-i18next'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
 
 import Form from './base/form'
-import WithTranslation from '../hocs/with_translation'
 
 const structure = {
   formId: `contact`,
@@ -85,9 +85,4 @@ const ContactEnhanced = withFormik({
   }
 })(Contact)
 
-export default () => (
-  <WithTranslation
-    namespaces={[]}
-    component={ContactEnhanced}
-  />
-)
+export default withTranslation()(ContactEnhanced)
