@@ -57,7 +57,8 @@ const AppSection = ({ title, blocks, extraBlock }) => {
 }
 
 const SuggestApp = () => {
-  const { toggleSuggestAppVisibility } = useContext(AppContext)
+  const { forms } = useContext(AppContext)
+
   return (
     <li className='app'>
       <div className='app__title'>Proposer une application</div>
@@ -67,7 +68,7 @@ const SuggestApp = () => {
         aria-controls='suggest-app'
         aria-haspopup='true'
         tabIndex='0'
-        onClick={toggleSuggestAppVisibility}
+        onClick={forms.suggestApp.toggle}
       >
         <div className='app__box-image app__box-image_suggest-app'>
           <span>?</span>
@@ -83,7 +84,7 @@ const SuggestApp = () => {
           aria-controls='suggest-app'
           aria-haspopup='true'
           tabIndex='0'
-          onClick={toggleSuggestAppVisibility}
+          onClick={forms.suggestApp.toggle}
         >
           Proposer
         </button>
@@ -93,7 +94,8 @@ const SuggestApp = () => {
 }
 
 const Intro = () => {
-  const { toggleContactUsVisibility } = useContext(AppContext)
+  const { forms } = useContext(AppContext)
+
   return (
     <section className='section'>
       <div className='section__in section__in_padding'>
@@ -112,7 +114,7 @@ const Intro = () => {
               aria-controls='contact-us'
               aria-haspopup='true'
               tabIndex='0'
-              onClick={toggleContactUsVisibility}
+              onClick={forms.contact.toggle}
             >
               Contactez-nous
             </button>
@@ -268,9 +270,8 @@ const sections = [
 ]
 
 const AppsPage = () => {
-  const { isSuggestAppVisible, toggleSuggestAppVisibility } = useContext(
-    AppContext
-  )
+  const { forms } = useContext(AppContext)
+
   return (
     <>
       <Intro />
@@ -281,13 +282,13 @@ const AppsPage = () => {
         />
       ))}
       <ForDevelopers />
-      {isSuggestAppVisible && (
+      {forms.suggestApp.isVisible && (
         <Modal
           title='Proposer une Application'
           description='Dnteger viverra non lorem vitae efficitur. Nam quis nunc erat.
           Mauris aliquet ullamcorper maximus. Quisque faucibus felis metus, eget
           iaculis lectus aliquet non.'
-          onClose={toggleSuggestAppVisibility}
+          onClose={forms.suggestApp.toggle}
         >
           <SuggestAppForm />
         </Modal>

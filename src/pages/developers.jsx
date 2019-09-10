@@ -32,7 +32,7 @@ const thumbs = [
 
 export const DevelopersPage = () => {
   const { t } = useTranslation()
-  const { toggleContactUsVisibility } = useContext(AppContext)
+  const { forms } = useContext(AppContext)
 
   return (
     <div className='index'>
@@ -46,7 +46,7 @@ export const DevelopersPage = () => {
               text <br />
               <button
                 className='section__description-link section__description-link_black'
-                onClick={toggleContactUsVisibility}
+                onClick={forms.contact.toggle}
               >
                 text
               </button>

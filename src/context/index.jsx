@@ -2,26 +2,38 @@ import React, { useState, createContext } from 'react'
 import PropTypes from 'prop-types'
 
 const AppContext = createContext({
-  isContactUsVisible: false,
-  toggleContactUsVisibility: () => {},
-  isSuggestAppVisible: false,
-  toggleSuggestAppVisibility: () => {}
+  forms: {
+    contact: {
+      isVisible: false,
+      toggle: () => {}
+    },
+    suggestApp: {
+      isVisible: false,
+      toggle: () => {}
+    }
+  }
 })
 
 const AppContextProvider = ({ children }) => {
   const [isContactUsVisible, setIsContactUsVisible] = useState(false)
   const [isSuggestAppVisible, setIsSuggestAppVisible] = useState(false)
 
-  const toggleContactUsVisibility = () => setIsContactUsVisible(!isContactUsVisible)
+  const toggleContactVisibility = () => setIsContactUsVisible(!isContactUsVisible)
   const toggleSuggestAppVisibility = () => setIsSuggestAppVisible(!isSuggestAppVisible)
 
   return (
     <AppContext.Provider
       value={{
-        isContactUsVisible,
-        toggleContactUsVisibility,
-        isSuggestAppVisible,
-        toggleSuggestAppVisibility
+        forms: {
+          contact: {
+            isVisible: isContactUsVisible,
+            toggle: toggleContactVisibility
+          },
+          suggestApp: {
+            isVisible: isSuggestAppVisible,
+            toggle: toggleSuggestAppVisibility
+          }
+        }
       }}
     >
       {children}

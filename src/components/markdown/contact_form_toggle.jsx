@@ -3,9 +3,9 @@ import React, { useContext } from 'react'
 import AppContext from '../../context'
 
 function ContactFormToggle ({ text }) {
-  const { toggleContactUsVisibility } = useContext(AppContext)
+  const { forms } = useContext(AppContext)
 
-  return <button onClick={toggleContactUsVisibility}>{text}</button>
+  return <button onClick={forms.contact.toggle}>{text}</button>
 }
 
 export default ContactFormToggle

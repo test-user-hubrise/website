@@ -13,10 +13,7 @@ import AppContext from '../context'
 
 const PageWrapper = ({ element, props }) => {
   const language = getLanguage(props.path)
-  const {
-    isContactUsVisible,
-    toggleContactUsVisibility
-  } = useContext(AppContext)
+  const { forms } = useContext(AppContext)
   const { t, i18n } = useTranslation()
 
   useEffect(() => {
@@ -29,10 +26,10 @@ const PageWrapper = ({ element, props }) => {
       <Layout {...props}>
         {element}
       </Layout>
-      {isContactUsVisible && (
+      {forms.contact.isVisible && (
         <Modal
           title={t(`forms.contact.modal_title`)}
-          onClose={toggleContactUsVisibility}
+          onClose={forms.contact.toggle}
         >
           <ContactForm />
         </Modal>
