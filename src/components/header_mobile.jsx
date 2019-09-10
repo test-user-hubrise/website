@@ -25,7 +25,7 @@ const social = [
 
 const HeaderMobile = () => {
   const [ isVisible, setIsVisible ] = useState(false)
-  const { t } = useTranslation(`layout`)
+  const { t } = useTranslation()
 
   return (
     <>
@@ -76,7 +76,7 @@ const HeaderMobile = () => {
             </div>
             <nav className='mobile-bar__content'>
               <ul className='leftbar-menu'>
-                {t(`menu.links`).map(({ to, title }, idx) => (
+                {t(`layout.menu.links`).map(({ to, title }, idx) => (
                   <li
                     key={generateKey(title, idx)}
                     className='leftbar-menu__item'

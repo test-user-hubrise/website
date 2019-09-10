@@ -9,7 +9,7 @@ import logo from '../images/logo_footer.png'
 import hero from '../images/hero_image_optimized.jpg'
 
 const Footer = () => {
-  const { t } = useTranslation(`layout`)
+  const { t } = useTranslation()
 
   return (
     <footer
@@ -24,7 +24,7 @@ const Footer = () => {
       <div className='footer__in'>
         <div className='footer__block'>
           <ul className='footer-menu'>
-            {t(`menu.links`).map(({ title, to }, idx) => (
+            {t(`layout.menu.links`).map(({ title, to }, idx) => (
               <li
                 key={generateKey(title, idx)}
                 className='footer-menu__item'
@@ -44,13 +44,13 @@ const Footer = () => {
         </div>
         <div className='footer__contacts'>
           <h5 className='footer__title'>
-            {t(`footer.contacts.title`)}
+            {t(`layout.footer.contacts.title`)}
           </h5>
           <Link
             className='footer__contact-mail'
             to='mailto:contact@hubrise.com'
           >
-            {t(`footer.contacts.email`)}
+            {t(`layout.footer.contacts.email`)}
           </Link>
         </div>
         <button
@@ -63,7 +63,7 @@ const Footer = () => {
       </div>
       <div className='footer__copyright'>
         <span className='footer__copyright-span'>
-          {t(`footer.copyright`, {
+          {t(`layout.footer.copyright`, {
             year: (new Date(Date.now())).getFullYear()
           })}
         </span>

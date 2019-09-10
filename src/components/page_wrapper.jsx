@@ -17,7 +17,7 @@ const PageWrapper = ({ element, props }) => {
     isContactUsVisible,
     toggleContactUsVisibility
   } = useContext(AppContext)
-  const { t, i18n } = useTranslation(`forms`)
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     i18n.changeLanguage(language)
@@ -31,7 +31,7 @@ const PageWrapper = ({ element, props }) => {
       </Layout>
       {isContactUsVisible && (
         <Modal
-          title={t(`contact.modal_title`)}
+          title={t(`forms.contact.modal_title`)}
           onClose={toggleContactUsVisibility}
         >
           <ContactForm />

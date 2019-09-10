@@ -11,36 +11,38 @@ const thumbs = [
   {
     icon: 'fa-fast-forward',
     to: '/developers/quick-start',
-    contentKey: `thumbs.quick_start`
+    contentKey: `pages.developers.thumbs.quick_start`
   },
   {
     icon: 'fa-cogs',
     to: '/api/general-concepts',
-    contentKey: `thumbs.general_concepts`
+    contentKey: `pages.developers.thumbs.general_concepts`
   },
   {
     icon: 'fa-sign-out',
     to: '/developers/authentication',
-    contentKey: `thumbs.authentication`
+    contentKey: `pages.developers.thumbs.authentication`
   },
   {
     icon: 'fa-list-alt',
     to: '/developers/integration',
-    contentKey: `thumbs.integration`
+    contentKey: `pages.developers.thumbs.integration`
   }
 ]
 
 export const DevelopersPage = () => {
-  const { t } = useTranslation(`developers`)
+  const { t } = useTranslation()
   const { toggleContactUsVisibility } = useContext(AppContext)
 
   return (
     <div className='index'>
       <section className='section'>
         <div className='section__in section__in_padding'>
-          <h3 className='section__title'>{t(`hero.title`)}</h3>
+          <h3 className='section__title'>
+            {t(`pages.developers.hero.title`)}
+          </h3>
           <p className='section__description'>
-            <Trans i18nKey='developers:hero.description'>
+            <Trans i18nKey='pages.developers.hero.description'>
               text <br />
               <button
                 className='section__description-link section__description-link_black'
@@ -58,7 +60,6 @@ export const DevelopersPage = () => {
           <ul className='developers-thumbs'>
             {thumbs.map(({ icon, to, contentKey }, idx) => {
               const { title, description } = t(contentKey)
-
               return (
                 <li
                   key={generateKey(title, idx)}
@@ -66,7 +67,9 @@ export const DevelopersPage = () => {
                 >
                   <Link className='developers-thumbs__link' to={to}>
                     <i className={`developers-thumbs__icon fa ${icon}`} />
-                    <span className='developers-thumbs__title'>{title}</span>
+                    <span className='developers-thumbs__title'>
+                      {title}
+                    </span>
                     <p className='developers-thumbs__description'>
                       {description}
                     </p>

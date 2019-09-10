@@ -11,7 +11,7 @@ import hero from '../images/hero_image_optimized.jpg'
 import diagram from '../images/diagram.png'
 
 export const IndexPage = ({ diagram, children }) => {
-  const { t } = useTranslation([`home`, `forms`])
+  const { t } = useTranslation()
 
   return (
     <>
@@ -27,10 +27,10 @@ export const IndexPage = ({ diagram, children }) => {
           <div className='index-hero__banner'>
             <div className='index-hero__banner-in'>
               <h3 className='index-hero__title'>
-                {t(`hero.title`)}
+                {t(`pages.home.hero.title`)}
               </h3>
               <p className='index-hero__description'>
-                <Trans i18nKey='home:hero.description'>
+                <Trans i18nKey='pages.home.hero.description'>
                   paragraph
                   <Link
                     to='#more'
@@ -45,16 +45,16 @@ export const IndexPage = ({ diagram, children }) => {
           <div className='index-hero__form'>
             <div className='index-hero__form-in'>
               <h5 className='index-hero__form-title'>
-                {t(`forms:signup.title`)}
+                {t(`forms.signup.title`)}
               </h5>
               <p className='index-hero__form-description'>
-                <Trans i18nKey='forms:signup.description'>
+                <Trans i18nKey='forms.signup.description'>
                   <span>
                     span_text
                   </span>
                   <Link
                     className='index-hero__form-link'
-                    to={t(`forms:signup.link_to_pricing`)}
+                    to={t(`forms.signup.link_to_pricing`)}
                   >
                     link_text
                   </Link>
@@ -71,18 +71,20 @@ export const IndexPage = ({ diagram, children }) => {
       >
         <div className='section__in section__in_padding'>
           <h3 className='section__title'>
-            {t(`main.title`)}
+            {t(`pages.home.main.title`)}
           </h3>
           <p className='section__description'>
-            {t(`main.description`)}
+            {t(`pages.home.main.description`)}
           </p>
           <ul className='index-about'>
-            {t(`main.features`).map((feature, idx) => (
+            {t(`pages.home.main.features`).map((feature, idx) => (
               <li
                 key={generateKey(feature, idx)}
                 className='index-about__item'
               >
-                <span className='index-about__span'>{feature}</span>
+                <span className='index-about__span'>
+                  {feature}
+                </span>
               </li>
             ))}
           </ul>

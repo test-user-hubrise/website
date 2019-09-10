@@ -6,7 +6,7 @@ import Link from '../../components/link'
 import { PricingPage as PricingBase } from '../pricing'
 
 const PricingPage = () => {
-  const { t } = useTranslation(`pricing`)
+  const { t } = useTranslation()
 
   return (
     <PricingBase
@@ -16,7 +16,7 @@ const PricingPage = () => {
             className='section__description-link section__description-link_black section__description-link_bold'
             to='/faq#abonnement'
           >
-            {t(`special.faq`)}
+            {t(`pages.pricing.special.faq`)}
           </Link>
         </div>
       }

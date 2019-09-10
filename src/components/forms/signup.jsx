@@ -77,20 +77,20 @@ const createSignupSchema = (t) => {
       .string()
       .min(
         lastNameMinLength,
-        t(`validation.min`, { length: lastNameMinLength })
+        t(`forms.validation.min`, { length: lastNameMinLength })
       )
-      .required(t(`validation.last_name_required`)),
+      .required(t(`forms.validation.last_name_required`)),
     email: yup
       .string()
-      .email(t(`validation.email`))
-      .required(t(`validation.email_required`)),
+      .email(t(`forms.validation.email`))
+      .required(t(`forms.validation.email_required`)),
     password: yup
       .string()
       .min(
         passwordLength,
-        t(`validation.password_min`, { length: passwordLength })
+        t(`forms.validation.password_min`, { length: passwordLength })
       )
-      .required(t(`validation.password_required`))
+      .required(t(`forms.validation.password_required`))
   })
 }
 
@@ -109,7 +109,7 @@ const SignupFormEnhanced = withFormik({
 
 export default () => (
   <WithTranslation
-    namespaces={[`forms`]}
+    namespaces={[]}
     component={SignupFormEnhanced}
   />
 )

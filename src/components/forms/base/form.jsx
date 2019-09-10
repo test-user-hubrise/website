@@ -9,12 +9,12 @@ import { generateKey } from '../../utils'
 function defineContent ({ formId, sections }, t) {
   return sections.map((section) => {
     if (section.subtitle_key) {
-      section.subtitle = t(`${formId}.${section.subtitle_key}`)
+      section.subtitle = t(`forms.${formId}.${section.subtitle_key}`)
     }
 
     section.rows.forEach((row) => {
       row.fields.forEach((field) => {
-        field.placeholder = t(`placeholders.${field.id}`)
+        field.placeholder = t(`forms.placeholders.${field.id}`)
       })
     })
 
@@ -55,7 +55,7 @@ const CompleteForm = ({
         type='submit'
         name='submit'
       >
-        {t(`${structure.formId}.button`)}
+        {t(`forms.${structure.formId}.button`)}
       </button>
     </Form>
   )

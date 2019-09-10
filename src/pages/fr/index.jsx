@@ -12,15 +12,21 @@ import carouselImg from '../../images/logo_carousel.jpg'
 import preview from '../../images/coming_soon.mp4'
 
 const Video = () => {
-  const { t } = useTranslation([`home`])
+  const { t } = useTranslation()
 
   return (
     <section className='section'>
       <div className='section__in section__in_padding section__in_reverse'>
-        <h3 className='section__title'>{t(`video.title`)}</h3>
-        <video className='index-video' width='400' controls>
+        <h3 className='section__title'>
+          {t(`pages.home.video.title`)}
+        </h3>
+        <video
+          className='index-video'
+          width='400'
+          controls
+        >
           <source src={preview} />
-          {t(`video.unsupported`)}
+          {t(`pages.home.video.unsupported`)}
         </video>
       </div>
     </section>
@@ -28,17 +34,20 @@ const Video = () => {
 }
 
 const Faq = () => {
-  const { t } = useTranslation([`home`])
+  const { t } = useTranslation()
 
   return (
     <section className='section section_full-width section_padding'>
       <div className='section__in section__in_green section__in_padding'>
         <h3 className='section__title'>
-          {t(`faq.title`)}
+          {t(`pages.home.faq.title`)}
         </h3>
         <ul className='index-faq'>
-          {t(`faq.links`).map((linkText, idx) => (
-            <li key={generateKey(linkText, idx)} className='index-faq__item'>
+          {t(`pages.home.faq.links`).map((linkText, idx) => (
+            <li
+              key={generateKey(linkText, idx)}
+              className='index-faq__item'
+            >
               <Link
                 className='index-faq__link'
                 to='/faq'
@@ -54,7 +63,7 @@ const Faq = () => {
 }
 
 const CompatibleApps = () => {
-  const { t } = useTranslation([`home`])
+  const { t } = useTranslation()
   const [activeIndex, setActiveIndex] = useState(0)
   const [lastActiveIndex, setLastActiveIndex] = useState()
 
@@ -69,30 +78,37 @@ const CompatibleApps = () => {
     carouselImg,
     carouselImg
   ]
-  const slides = t(`compatible_apps.slides.info`).map((info, idx) => ({
-    ...info,
-    img: images[idx]
-  }))
+  const slides = t(`pages.home.compatible_apps.slides.info`)
+    .map((info, idx) => ({
+      ...info,
+      img: images[idx]
+    }))
   const lastIndex = slides.length - 1
 
   return (
     <section className='section'>
       <div className='section__in section__in_padding section__in_reverse'>
         <h3 className='section__title'>
-          {t(`compatible_apps.title`)}
+          {t(`pages.home.compatible_apps.title`)}
         </h3>
         <p className='section__description'>
-          <Trans i18nKey='home:compatible_apps.description'>
+          <Trans i18nKey='pages.home.compatible_apps.description'>
             sentence<br />
             sentence<br />
-            <Link className='section__description-link' to='/apps'>
+            <Link
+              to='/apps'
+              className='section__description-link'
+            >
               link_text
             </Link>
             <span className='section__description-span'>
               span_text
             </span>
             -
-            <Link className='section__description-link' to='/developpeurs'>
+            <Link
+              className='section__description-link'
+              to='/developpeurs'
+            >
               link_text
             </Link>
             <span className='section__description-span'>
@@ -110,7 +126,11 @@ const CompatibleApps = () => {
             tabIndex='0'
           >
             <i
-              className='index-carousel__arrow index-carousel__arrow_previous orbit-previous fa fa-chevron-circle-left'
+              className={`
+                index-carousel__arrow
+                index-carousel__arrow_previous
+                orbit-previous fa fa-chevron-circle-left
+              `}
               tabIndex='0'
               onClick={() => {
                 setLastActiveIndex(activeIndex)
@@ -119,7 +139,11 @@ const CompatibleApps = () => {
               }}
             />
             <i
-              className='index-carousel__arrow index-carousel__arrow_next orbit-next fa fa-chevron-circle-right'
+              className={`
+                index-carousel__arrow
+                index-carousel__arrow_next
+                orbit-next fa fa-chevron-circle-right
+              `}
               tabIndex='0'
               onClick={() => {
                 setLastActiveIndex(activeIndex)
@@ -148,7 +172,9 @@ const CompatibleApps = () => {
                     transition: `transform .55s ease-out`
                   }}
                 >
-                  <span className='index-carousel__title'>{title}</span>
+                  <span className='index-carousel__title'>
+                    {title}
+                  </span>
                   <img
                     className='index-carousel__image orbit-image'
                     src={img}
@@ -174,7 +200,7 @@ const CompatibleApps = () => {
                   <span className='show-for-sr'>{description}</span>
                   {isCurrentSlide && (
                     <span className='show-for-sr'>
-                      {t(`compatible_apps.slides.sr_current_pointer`)}
+                      {t(`pages.home.compatible_apps.slides.sr_current_pointer`)}
                     </span>
                   )}
                 </button>
@@ -188,15 +214,15 @@ const CompatibleApps = () => {
 }
 
 const Philosophy = () => {
-  const { t } = useTranslation(`home`)
+  const { t } = useTranslation()
 
   return (
     <section className='section'>
       <div className='section__in section__in_padding'>
         <h3 className='section__title'>
-          {t(`home:philosophy.title`)}
+          {t(`pages.home.philosophy.title`)}
         </h3>
-        <Trans i18nKey='home:philosophy.description'>
+        <Trans i18nKey='pages.home.philosophy.description'>
           <p className='section__description section__description_black'>
             paragraph
           </p>

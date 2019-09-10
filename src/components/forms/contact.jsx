@@ -60,15 +60,15 @@ const createContactSchema = (t) => {
   return yup.object().shape({
     name: yup
       .string()
-      .min(nameMinLength, t(`validation.min`, { length: nameMinLength })),
+      .min(nameMinLength, t(`forms.validation.min`, { length: nameMinLength })),
     email: yup
       .string()
-      .email(t(`validation.email`))
-      .required(t(`validation.email_required`)),
+      .email(t(`forms.validation.email`))
+      .required(t(`forms.validation.email_required`)),
     message: yup
       .string()
-      .min(messageMinLength, t(`validation.message_min`, { length: messageMinLength }))
-      .required(t(`validation.message_required`))
+      .min(messageMinLength, t(`forms.validation.message_min`, { length: messageMinLength }))
+      .required(t(`forms.validation.message_required`))
   })
 }
 
@@ -87,7 +87,7 @@ const ContactEnhanced = withFormik({
 
 export default () => (
   <WithTranslation
-    namespaces={[`forms`]}
+    namespaces={[]}
     component={ContactEnhanced}
   />
 )

@@ -105,23 +105,23 @@ const createSuggestAppSchema = (t) => {
   return yup.object().shape({
     name: yup
       .string()
-      .min(nameMinLength, t(`validation.min`, { length: nameMinLength }))
-      .required(t(`validation.name_required`)),
+      .min(nameMinLength, t(`forms.validation.min`, { length: nameMinLength }))
+      .required(t(`forms.validation.name_required`)),
     company: yup.string(),
     email: yup
       .string()
-      .email(t(`validation.email`))
-      .required(t(`validation.email_required`)),
+      .email(t(`forms.validation.email`))
+      .required(t(`forms.validation.email_required`)),
     phone: yup.string(),
     app_name: yup
       .string()
-      .min(appNameMinLength, t(`validation.min`, { length: appNameMinLength }))
-      .required(t(`validation.app_name_required`)),
+      .min(appNameMinLength, t(`forms.validation.min`, { length: appNameMinLength }))
+      .required(t(`forms.validation.app_name_required`)),
     app_site: yup.string(),
     app_contact: yup
       .string()
-      .min(appContactMinLength, t(`validation.min`, { length: appContactMinLength }))
-      .required(t(`validation.app_contact_required`)),
+      .min(appContactMinLength, t(`forms.validation.min`, { length: appContactMinLength }))
+      .required(t(`forms.validation.app_contact_required`)),
     app_extra: yup.string()
   })
 }
@@ -146,7 +146,7 @@ const SuggestAppEnhanced = withFormik({
 
 export default () => (
   <WithTranslation
-    namespaces={[`forms`]}
+    namespaces={[]}
     component={SuggestAppEnhanced}
   />
 )

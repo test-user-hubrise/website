@@ -9,19 +9,19 @@ import AppContext from '../context'
 import { generateKey } from '../components/utils'
 
 export const PricingPage = ({ callToActionExtra }) => {
-  const { t } = useTranslation(`pricing`)
+  const { t } = useTranslation()
   const { toggleContactUsVisibility } = useContext(AppContext)
 
   return (
     <section className='section section_white'>
       <div className='section__in section__in_padding'>
         <h3 className='section__title'>
-          {t(`title`)}
+          {t(`pages.pricing.title`)}
         </h3>
         <div className='section section_full-width section_vw section_padding'>
           <div className='section__in section__in_green section__in_padding'>
             <h3 className='section__title section__title_no-border'>
-              <Trans i18nKey='pricing:offer.value'>
+              <Trans i18nKey='pages.pricing.offer.value'>
                 text
                 <span className='section__title-span'>
                   text
@@ -29,7 +29,7 @@ export const PricingPage = ({ callToActionExtra }) => {
               </Trans>
             </h3>
             <ul className='section__price-list'>
-              {t(`offer.features`).map((feature, idx) => (
+              {t(`pages.pricing.offer.features`).map((feature, idx) => (
                 <li
                   key={generateKey(feature, idx)}
                   className='section__price-item'
@@ -46,12 +46,12 @@ export const PricingPage = ({ callToActionExtra }) => {
                 window.location = `https://manager.hubrise.com/signup`
               }}
             >
-              {t(`offer.button`)}
+              {t(`pages.pricing.offer.button`)}
             </button>
           </div>
         </div>
         <p className='section__description section__description_large'>
-          <Trans i18nKey='pricing:special.free'>
+          <Trans i18nKey='pages.pricing.special.free'>
             <b>text</b>
             text
             <Link
@@ -65,7 +65,7 @@ export const PricingPage = ({ callToActionExtra }) => {
           </Trans>
         </p>
         <p className='section__description section__description_large'>
-          <Trans i18nKey='pricing:special.large_accounts'>
+          <Trans i18nKey='pages.pricing.special.large_accounts'>
             <b>text</b>
             text
             <button

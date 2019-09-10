@@ -9,7 +9,7 @@ import { generateKey } from './utils'
 import logo from '../images/logo.png'
 
 const Header = ({ path }) => {
-  const { t } = useTranslation(`layout`)
+  const { t } = useTranslation()
 
   return (
     <header className='header'>
@@ -22,7 +22,7 @@ const Header = ({ path }) => {
           </div>
           <nav className='topbar-menu'>
             <ul className='topbar-menu__list'>
-              {t(`menu.links`)
+              {t(`layout.menu.links`)
                 .filter(({ to }) => to !== `/`)
                 .map(({ title, to }, idx) => (
                   <li key={generateKey(title, idx)} className='topbar-menu__item'>
@@ -43,11 +43,11 @@ const Header = ({ path }) => {
               className='header__action-signup'
               to='https://manager.hubrise.com/signup'
             >
-              {t(`header.buttons.signup`)}
+              {t(`layout.header.buttons.signup`)}
             </Link>
             <button className='header__action-login'>
               <Link to='https://manager.hubrise.com/login'>
-                {t(`header.buttons.login`)}
+                {t(`layout.header.buttons.login`)}
               </Link>
             </button>
           </div>
