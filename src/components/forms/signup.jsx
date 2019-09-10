@@ -55,13 +55,14 @@ const structure = {
   ]
 }
 
-const Signup = (props) => {
+const Signup = ({ t, _i18n, ...formikProps }) => {
   return (
     <Form
       buttonClasses={[`form__button_full-width`]}
       formProps={{ id: `main-form` }}
       structure={structure}
-      {...props}
+      t={t}
+      formikProps={formikProps}
     />
   )
 }

@@ -87,13 +87,14 @@ const structure = {
   ]
 }
 
-const SuggestApp = (props) => {
+const SuggestApp = ({ t, _i18n, ...formikProps }) => {
   return (
     <Form
       buttonClasses={[`form__button_full-width`, `form__button_modal`]}
       formProps={{ id: `suggest-app__form`, classNames: [`form_modal`] }}
       structure={structure}
-      {...props}
+      t={t}
+      formikProps={formikProps}
     />
   )
 }

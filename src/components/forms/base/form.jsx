@@ -24,11 +24,10 @@ function defineContent ({ formId, sections }, t) {
 
 const CompleteForm = ({
   buttonClasses,
-  t,
-  _i18n,
   formProps,
   structure,
-  ...formikProps
+  t,
+  formikProps
 }) => {
   const { classNames: formClasses, ...otherFormProps } = formProps
 
@@ -72,7 +71,9 @@ CompleteForm.propTypes = {
       PropTypes.string
     ])
   ),
-  buttonClasses: PropTypes.arrayOf(PropTypes.string)
+  buttonClasses: PropTypes.arrayOf(PropTypes.string),
+  t: PropTypes.func.isRequired,
+  formikProps: PropTypes.object.isRequired
 }
 
 CompleteForm.defaultProps = {

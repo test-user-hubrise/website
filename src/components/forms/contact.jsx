@@ -39,7 +39,7 @@ const structure = {
     }
   ]
 }
-const Contact = (props) => {
+const Contact = ({ t, _i18n, ...formikProps }) => {
   return (
     <Form
       buttonClasses={[`form__button_full-width`, `form__button_modal`]}
@@ -48,7 +48,8 @@ const Contact = (props) => {
         classNames: [`form form_modal`]
       }}
       structure={structure}
-      {...props}
+      t={t}
+      formikProps={formikProps}
     />
   )
 }
