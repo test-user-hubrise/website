@@ -1,5 +1,4 @@
 pages:
-
   home:
     hero:
       title: Centralize the data of your retail store
@@ -15,22 +14,6 @@ pages:
         - Emailing Solution
         - Loyalty Solution
         - And More
-    video:
-      title: ""
-      unsupported: ""
-    faq:
-      title: ""
-      links: []
-    compatible_apps:
-      title: ""
-      description: ""
-      slides:
-        info: []
-        sr_current_pointer: ""
-    philosophy:
-      title: ""
-      description: ""
-
   developers:
     hero:
       title: Connect your application to HubRise
@@ -48,7 +31,6 @@ pages:
       integration:
         title: Integration
         description: Integration checklist, covering several types of applications
-
   pricing:
     title: Single monthly fee unlimited usage
     offer:
@@ -65,18 +47,15 @@ pages:
       faq: ""
 
 layout:
-
   header:
     buttons:
       signup: Sign up
       login: Login
-
   footer:
     contacts:
       title: Contact
       email: contact@hubrise.com
     copyright: Copyright © {{ year }} HubRise
-
   menu:
     links:
       - title: Home
@@ -87,7 +66,6 @@ layout:
         to: /developers
 
 forms:
-
   validation:
     # Generic {
     min: Minimum allowed length for this field is {{ length }} characters.
@@ -100,7 +78,6 @@ forms:
     message_required: Sorry, but empty messages are no fun.
     password_min: It's a good practice to have at least {{ length }} symbols in your password.
     password_required: Please choose a password.
-
   placeholders:
     email: Your email
     first_name: First name
@@ -108,11 +85,9 @@ forms:
     message: Your message ...
     name: Your name
     password: Password
-
   contact:
     modal_title: Contact Us
     button: Send
-
   signup:
     title: Get started now
     description: <0>HubRise is free up to 50 orders per month.</0> <1>See pricing</1>
