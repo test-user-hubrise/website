@@ -106,8 +106,9 @@ IndexPage.propTypes = {
   diagram: PropTypes.string.isRequired
 }
 
-export default () => (
+export default (props) => (
   <IndexPage
     diagram={diagram}
+    {...props}
   />
 )

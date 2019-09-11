@@ -235,10 +235,11 @@ const Philosophy = () => {
   )
 }
 
-const IndexPage = () => {
+const IndexPage = (props) => {
   return (
     <IndexBase
       diagram={diagram}
+      {...props}
     >
       <Video />
       <Faq />
