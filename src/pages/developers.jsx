@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useTranslation, Trans } from 'react-i18next'
 
 import Link from '../components/link'
 
-import AppContext from '../context'
+import { useLayoutContext } from '../context/layout'
 
 import { generateKey } from '../components/utils'
 
@@ -32,7 +32,7 @@ const thumbs = [
 
 export const DevelopersPage = () => {
   const { t } = useTranslation()
-  const { forms } = useContext(AppContext)
+  const { forms } = useLayoutContext()
 
   return (
     <div className='index'>

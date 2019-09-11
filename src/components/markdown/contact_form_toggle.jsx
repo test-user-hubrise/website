@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import AppContext from '../../context'
+import { useLayoutContext } from '../../context/layout'
 
 function ContactFormToggle ({ text }) {
-  const { forms } = useContext(AppContext)
+  const { forms } = useLayoutContext()
 
   return <button onClick={forms.contact.toggle}>{text}</button>
 }

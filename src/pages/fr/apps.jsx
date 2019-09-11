@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useTranslation, Trans } from 'react-i18next'
 
 import Link from '../../components/link'
 import Modal from '../../components/modal'
 import SuggestAppForm from '../../components/forms/suggest_app'
 
-import AppContext from '../../context'
+import { useLayoutContext } from '../../context/layout'
 
 import { generateKey } from '../../components/utils'
 
@@ -22,7 +22,7 @@ import yProximiteLogo from '../../images/apps/yproximite.png'
 import mailChimpLogo from '../../images/apps/mailchimp.png'
 
 const Intro = () => {
-  const { forms } = useContext(AppContext)
+  const { forms } = useLayoutContext()
 
   return (
     <section className='section'>
@@ -219,7 +219,7 @@ const AppSection = ({ id, blocks, hasSuggestApp }) => {
 }
 
 const SuggestApp = () => {
-  const { forms } = useContext(AppContext)
+  const { forms } = useLayoutContext()
   const { t } = useTranslation()
   const prefix = `pages.apps.sections.shared.suggest_app`
 
@@ -283,7 +283,7 @@ const ForDevelopers = () => {
 }
 
 const AppsPage = () => {
-  const { forms } = useContext(AppContext)
+  const { forms } = useLayoutContext()
   const { t } = useTranslation()
 
   return (

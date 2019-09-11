@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
@@ -9,11 +9,11 @@ import Seo from './seo'
 
 import { getLanguage } from '../i18n/utils'
 
-import AppContext from '../context'
+import { useLayoutContext } from '../context/layout'
 
 const PageWrapper = ({ element, props }) => {
   const language = getLanguage(props.path)
-  const { forms } = useContext(AppContext)
+  const { forms } = useLayoutContext()
   const { t, i18n } = useTranslation()
 
   useEffect(() => {

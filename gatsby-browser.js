@@ -7,7 +7,7 @@ import Label from './src/components/markdown/label'
 import Link from './src/components/link'
 import PageWrapper from './src/components/page_wrapper'
 
-import { AppContextProvider } from './src/context'
+import { LayoutProvider } from './src/context/layout'
 
 import './src/i18n'
 
@@ -31,7 +31,9 @@ const components = {
 }
 
 export const wrapRootElement = ({ element }) => (
-  <AppContextProvider>
-    <MDXProvider components={components}>{element}</MDXProvider>
-  </AppContextProvider>
+  <LayoutProvider>
+    <MDXProvider components={components}>
+      {element}
+    </MDXProvider>
+  </LayoutProvider>
 )

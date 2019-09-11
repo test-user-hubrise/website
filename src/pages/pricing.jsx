@@ -1,16 +1,16 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation, Trans } from 'react-i18next'
 
 import Link from '../components/link'
 
-import AppContext from '../context'
+import { useLayoutContext } from '../context/layout'
 
 import { generateKey } from '../components/utils'
 
 export const PricingPage = ({ callToActionExtra }) => {
   const { t } = useTranslation()
-  const { toggleContactUsVisibility } = useContext(AppContext)
+  const { forms } = useLayoutContext()
 
   return (
     <section className='section section_white'>
@@ -74,7 +74,7 @@ export const PricingPage = ({ callToActionExtra }) => {
               aria-controls='contact-us'
               aria-haspopup='true'
               tabIndex='0'
-              onClick={toggleContactUsVisibility}
+              onClick={forms.contact.toggle}
             >
               text
             </button>
