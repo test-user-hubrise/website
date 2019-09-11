@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Link from '../../components/link'
 
-import { generateKey, kebabify } from '../../components/utils'
+import { generateKey, createHeaderAnchor } from '../../components/utils'
 
 const SidebarRight = ({ currentPath, currentNode }) => {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -23,9 +23,17 @@ const SidebarRight = ({ currentPath, currentNode }) => {
   }
 
   return (
-    <div className='section__sidebar section__sidebar_right section__sidebar_small-padding'>
+    <div
+      className={`
+        section__sidebar
+        section__sidebar_right
+        section__sidebar_small-padding
+      `}
+    >
       <div className='section__sidebar-in'>
-        <h5 className='content-nav__title'>Content</h5>
+        <h5 className='content-nav__title'>
+          Content
+        </h5>
         <h5
           id='content-nav'
           className='content-nav__title content-nav__title_small'
@@ -34,14 +42,18 @@ const SidebarRight = ({ currentPath, currentNode }) => {
           Content
           <i
             className={`
-            fa fa-angle-${isExpanded ? 'up' : 'down'} content-nav__arrow`}
+              fa
+              fa-angle-${isExpanded ? 'up' : 'down'}
+              content-nav__arrow
+            `}
           />
         </h5>
         <ul
           id='content-nav-list'
-          className={`content-nav__list ${
-            isExpanded ? '' : 'content-nav__list_hidden'
-          }`}
+          className={`
+            content-nav__list
+            ${isExpanded ? '' : 'content-nav__list_hidden'}
+          `}
         >
           {pages.map(({ frontmatter, fields, headings }, idx) => {
             const { slug } = fields
@@ -61,18 +73,18 @@ const SidebarRight = ({ currentPath, currentNode }) => {
                   <ol className='content-sublist'>
                     {headings
                       .filter(({ depth }) => depth === 2)
-                      .map(({ value: heading }, idx) => {
+                      .map(({ value: headingText }, idx) => {
                         return (
                           <li
-                            key={generateKey(heading, idx)}
+                            key={generateKey(headingText, idx)}
                             className='content-sublist-item content-sublist-level-2'
                           >
                             <Link
                               className='content-sublist-link'
-                              to={`#${kebabify(heading)}`}
+                              to={`#${createHeaderAnchor(headingText)}`}
                             >
                               <span className='content-sublist-text'>
-                                {heading}
+                                {headingText}
                               </span>
                             </Link>
                           </li>

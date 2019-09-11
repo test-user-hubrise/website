@@ -121,9 +121,7 @@
   font-family: 'Poppins', sans-serif;
 
   h2,
-  h3,
-  h4,
-  h5 {
+  h3 {
     display: grid;
     grid-template-columns: max-content min-content;
     grid-auto-flow: column;

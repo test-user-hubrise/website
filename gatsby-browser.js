@@ -9,15 +9,13 @@ import PageWrapper from './src/components/page_wrapper'
 
 import { LayoutProvider } from './src/context/layout'
 
-import './src/i18n'
+import { generateHeaders } from './src/components/utils'
 
+import './src/i18n'
 import './src/styles/global.scss'
 
-export const wrapPageElement = (props) => {
-  return <PageWrapper {...props} />
-}
-
-const components = {
+let components = {
+  ...generateHeaders(),
   a: ({ href, ...other }) => <Link to={href} {...other} />,
   pre: ({ children: { props } }) => (
     <HighlightCode
@@ -37,3 +35,7 @@ export const wrapRootElement = ({ element }) => (
     </MDXProvider>
   </LayoutProvider>
 )
+
+export const wrapPageElement = (props) => {
+  return <PageWrapper {...props} />
+}
