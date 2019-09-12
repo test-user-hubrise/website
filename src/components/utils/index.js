@@ -7,7 +7,7 @@ import React from 'react'
  * @returns {string}
  */
 export const kebabify = (string, keepCase = false) => {
-  const result = string.replace(/[^\w|\s]+/g, ``).replace(/\s/g, `-`)
+  const result = string.replace(/[^\w\s]+/g, ``).replace(/\s/g, `-`)
 
   return keepCase ? result : result.toLowerCase()
 }
