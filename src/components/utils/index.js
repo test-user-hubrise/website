@@ -1,5 +1,11 @@
 import React from 'react'
 
+/**
+ * Applies kebab case to a string.
+ * @param {string}  string
+ * @param {boolean} keepCase - Keep original letter casing, or transform into lowercase.
+ * @returns {string}
+ */
 export const kebabify = (string, keepCase = false) => {
   const result = string.replace(/[^\w|\s]+/g, ``).replace(/\s/g, `-`)
 
@@ -9,7 +15,7 @@ export const kebabify = (string, keepCase = false) => {
 /**
  * Strips headers of chapters and subchapters, transforming
  * the remaining text into a kebabified anchor.
- * @param   {string} header - Header text.
+ * @param {string} header - Header text.
  * @returns {string} Header text without a leading chapter, kebabified.
  * @example
  *   1.2. Retrieve order => retrieve-order
@@ -50,4 +56,10 @@ export function generateHeaders () {
   }, {})
 }
 
-export const generateKey = (suffix, prefix) => `${suffix}--${prefix}`
+/**
+ * Generatey key prop for repeating sibling React elements.
+ * @param {string} prefix
+ * @param {string} suffix
+ * @returns {string}
+ */
+export const generateKey = (prefix, suffix) => `${prefix}--${suffix}`
