@@ -1,0 +1,96 @@
+.content-nav {
+  &__title {
+    display: block;
+    width: 100%;
+    position: relative;
+    padding-bottom: 1rem;
+    color: #cccccc;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding-left: 1rem;
+    cursor: pointer;
+
+    @include breakpoint(medium down) {
+      display: none;
+      padding-left: 0;
+    }
+
+    &:before {
+      border-bottom: 4px solid #ececec;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      width: 65%;
+      @include breakpoint(medium down) {
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  &__title_small {
+    @include breakpoint(medium up) {
+      display: none;
+    }
+    @include breakpoint(medium down) {
+      display: block;
+    }
+  }
+
+  &__list {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  &__list_hidden {
+    @include breakpoint(medium down) {
+      display: none;
+    }
+  }
+
+  &__arrow {
+    color: $main-green;
+    font-size: 1.3em;
+    float: right;
+    cursor: pointer;
+    display: none;
+    @include breakpoint(medium down) {
+      display: block;
+    }
+  }
+
+  &__item {
+    color: #555555;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 0.2rem;
+  }
+
+  &__item_active {
+    color: $white;
+    .content-nav__link {
+      color: $white;
+      background: $main-green;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  &__link {
+    color: #555555;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    display: inline-block;
+    width: 100%;
+    padding-left: 1rem;
+    padding-top: 0.2rem;
+    &:hover {
+      color: $main-green;
+    }
+  }
+}

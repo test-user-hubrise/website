@@ -1,0 +1,65 @@
+.index-faq {
+  padding: 0;
+  column-count: 2;
+  column-gap: 20px;
+  max-height: 90px;
+  margin: 0 auto;
+  display: inline-block;
+  text-align: left;
+
+  @media (max-width: 68.75rem) {
+    column-count: auto;
+    column-gap: 0;
+  }
+
+  @include breakpoint(medium down) {
+    column-count: auto;
+    column-gap: 0;
+  }
+
+  &__item {
+    position: relative;
+
+    &:before {
+      width: 4px;
+      height: 4px;
+      background: $white;
+      display: inline-block;
+      content: '';
+      border-radius: 50%;
+      margin-bottom: 0.2rem;
+    }
+
+    @include breakpoint(medium down) {
+      width: 100%;
+      float: inherit;
+      display: inline-block;
+      text-align: left;
+      margin-bottom: 1.2rem;
+      &:before {
+        position: absolute;
+        top: 45%;
+      }
+    }
+  }
+
+  &__link {
+    margin-left: 0.3rem;
+    color: $white;
+    border-bottom: 1px solid $white;
+    display: inline-block;
+    line-height: 1;
+    text-align: left;
+    font-size: 1.125rem;
+
+    &:hover {
+      color: $white;
+    }
+
+    @include breakpoint(medium down) {
+      margin-left: 1rem;
+      text-decoration: underline;
+      border-bottom: none;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.index-about {
+  display: block;
+  padding: 1rem 2rem;
+  background: #f0f0f0;
+  text-align: center;
+  margin: 0 auto;
+  width: 65%;
+  margin-top: 2rem;
+
+  @include breakpoint(medium down) {
+    width: 100%;
+  }
+
+  &__item {
+    display: inline-block;
+    position: relative;
+
+    &:after {
+      width: 5px;
+      height: 5px;
+      background: $gray-standard;
+      display: inline-block;
+      content: '';
+      border-radius: 50%;
+      margin-bottom: 0.2rem;
+    }
+
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  &__span {
+    font-size: 1.125rem;
+    color: #555555;
+    font-weight: 500;
+    padding-left: 0.3rem;
+    padding-right: 0.4rem;
+  }
+}

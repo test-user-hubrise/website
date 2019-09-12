@@ -1,0 +1,21 @@
+.leftbar-menu {
+  padding-bottom: 0.5rem;
+  text-align: center;
+  margin-top: 2rem;
+
+  &__item {
+    padding: 0.2rem 0.5rem;
+    text-transform: capitalize;
+  }
+
+  &__link {
+    padding-left: 0.3rem;
+    padding-right: 0.4rem;
+    font-size: 0.9375rem;
+    color: $gray-nav;
+    &:hover {
+      color: $main-green;
+      font-weight: 400;
+    }
+  }
+}

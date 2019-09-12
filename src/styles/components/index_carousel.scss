@@ -1,0 +1,92 @@
+.index-carousel {
+  min-height: 240px;
+  margin-top: 4rem;
+
+  &__container {
+    height: 200px;
+  }
+
+  &__title {
+    color: #555555;
+    font-size: 1rem;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      margin: 10px auto;
+      width: 20%;
+      height: 3px;
+      background: #ececec;
+    }
+  }
+
+  &__slide {
+  }
+
+  &__image {
+    width: 30%;
+    margin: 0 auto;
+    margin-top: $block-padding;
+    margin-bottom: 2rem;
+    min-width: 200px;
+  }
+
+  &__bullets {
+    width: 100%;
+    position: relative;
+    padding-top: 2rem;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 100%;
+      margin: 10px auto;
+      width: 20%;
+      height: 3px;
+      background: #ececec;
+    }
+
+    button {
+      width: 0.6rem;
+      height: 0.6rem;
+      margin: 0.1rem 0.3rem 0.1rem 0.3rem;
+      background-color: #ececec;
+      &:hover {
+        background-color: #333333;
+      }
+    }
+
+    button.is-active {
+      background-color: #333333;
+    }
+  }
+
+  &__arrow {
+    color: $black;
+    background: none;
+    font-size: 2rem;
+    top: 67%;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $black;
+      background: none;
+    }
+  }
+
+  &__arrow_previous {
+  }
+
+  &__arrow_next {
+  }
+}
