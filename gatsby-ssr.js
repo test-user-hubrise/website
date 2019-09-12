@@ -1,7 +1,7 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+import wrapRootElement from './gatsby_apis/wrap_root_element'
+import wrapPageElement from './gatsby_apis/wrap_page_element'
 
-// You can delete this file if you're not using it
+export {
+  wrapRootElement,
+  wrapPageElement
+}
