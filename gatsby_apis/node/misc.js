@@ -5,8 +5,8 @@ const yaml = require('js-yaml')
 
 const copyTranslations = () => {
   try {
-    const source = path.resolve(__dirname, `../src/i18n/resources`)
-    const target = path.resolve(__dirname, `../public/locales`)
+    const source = path.resolve(process.cwd(), `src/i18n/resources`)
+    const target = path.resolve(process.cwd(), `public/locales`)
 
     const locales = fs.readdirSync(source)
 

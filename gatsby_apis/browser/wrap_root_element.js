@@ -2,16 +2,16 @@ import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { I18nextProvider } from 'react-i18next'
 
-import HighlightCode from '../src/components/markdown/highlight_code'
-import CallSummaryTable from '../src/components/markdown/call_summary_table'
-import Label from '../src/components/markdown/label'
-import Link from '../src/components/link'
+import HighlightCode from '../../src/components/markdown/highlight_code'
+import CallSummaryTable from '../../src/components/markdown/call_summary_table'
+import Label from '../../src/components/markdown/label'
+import Link from '../../src/components/link'
 
-import { LayoutProvider } from '../src/context/layout'
+import { LayoutProvider } from '../../src/context/layout'
 
-import { generateHeaders } from '../src/components/utils'
+import { generateHeaders } from '../../src/components/utils'
 
-import i18n from '../src/i18n'
+import i18n from '../../src/i18n'
 
 let components = {
   ...generateHeaders(),
@@ -27,7 +27,7 @@ let components = {
   Label
 }
 
-export default ({ element }) => {
+export const wrapRootElement = ({ element }) => {
   return (
     <I18nextProvider i18n={i18n}>
       <LayoutProvider>

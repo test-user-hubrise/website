@@ -1,5 +1,9 @@
 const path = require('path')
 
+const templates = path.resolve(process.cwd(), `src/templates`)
+const docsTemplate = path.join(templates, `api/index.jsx`)
+const faqTemplate = path.join(templates, `faq.jsx`)
+
 const createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
@@ -24,19 +28,14 @@ const createPages = async ({ graphql, actions }) => {
     if (!fields.slug.startsWith(`/fr`)) {
       createPage({
         path: `/fr${fields.slug}`,
-        component: path.resolve(__dirname, `../src/templates/api/index.jsx`),
+        component: docsTemplate,
         context: { id }
       })
     }
 
     createPage({
       path: fields.slug,
-      component: path.resolve(
-        __dirname,
-        `../src/templates/${
-          fields.slug.startsWith(`/fr/faq`) ? 'faq.jsx' : 'api/index.jsx'
-        }`
-      ),
+      component: fields.slug.startsWith(`/fr/faq`) ? faqTemplate : docsTemplate,
       context: { id }
     })
   })

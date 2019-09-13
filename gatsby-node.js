@@ -1,4 +1,4 @@
-const { misc: { copyTranslations }, ...apis } = require('./gatsby_apis')
+const { misc: { copyTranslations }, ...apis } = require('./gatsby_apis/node')
 
 module.exports = {
   ...apis,
