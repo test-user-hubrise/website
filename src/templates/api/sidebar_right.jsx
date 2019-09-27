@@ -1,22 +1,23 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 import Link from '../../components/link'
 
 import { generateKey, createHeaderAnchor } from '../../components/utils'
 
-const SidebarRight = ({ currentPath, currentNode }) => {
+const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
   const [isExpanded, setIsExpanded] = useState(false)
-  const isApiSection = currentPath.includes('/api/')
+  const isApiSection = currentPath.includes('api')
   // Fetch all nodes from API section and match structure
   // with `currentNode` element to allow looping.
   const apiNodes = useStaticQuery(getAllApiDocsQuery)
     .allMdx
-    .edges
-    .map(({ node }) => ({ ...node }))
+    .nodes
+    .map((node) => ({ ...node }))
 
-  let pages = [ currentNode ]
+  let pages = currentNodes
 
   if (isApiSection) {
     pages = [ ...apiNodes ]
@@ -30,9 +31,10 @@ const SidebarRight = ({ currentPath, currentNode }) => {
         section__sidebar_small-padding
       `}
     >
+      {logo && <Img {...logo.childImageSharp} />}
       <div className='section__sidebar-in'>
         <h5 className='content-nav__title'>
-          Content
+          {title || `Content`}
         </h5>
         <h5
           id='content-nav'
@@ -104,18 +106,16 @@ const SidebarRight = ({ currentPath, currentNode }) => {
 const getAllApiDocsQuery = graphql`
   {
     allMdx(filter: { fields: { slug: { glob: "/api/*" } } }) {
-      edges {
-        node {
-          frontmatter {
-            title
-          }
-          fields {
-            slug
-          }
-          headings {
-            value
-            depth
-          }
+      nodes {
+        frontmatter {
+          title
+        }
+        fields {
+          slug
+        }
+        headings {
+          value
+          depth
         }
       }
     }
@@ -124,21 +124,22 @@ const getAllApiDocsQuery = graphql`
 
 SidebarRight.propTypes = {
   currentPath: PropTypes.string.isRequired,
-  currentNode: PropTypes.shape({
-    frontmatter: PropTypes.shape({
-      title: PropTypes.string.isRequired
-    }).isRequired,
-    headings: PropTypes.arrayOf(
-      PropTypes.shape({
-        depth: PropTypes.number.isRequired,
-        value: PropTypes.string.isRequired
-      })
-    ).isRequired,
-    fields: PropTypes.shape({
-      slug: PropTypes.string.isRequired
-    }).isRequired,
-    body: PropTypes.string.isRequired
-  }).isRequired
+  currentNodes: PropTypes.arrayOf(
+    PropTypes.shape({
+      frontmatter: PropTypes.shape({
+        title: PropTypes.string
+      }).isRequired,
+      headings: PropTypes.arrayOf(
+        PropTypes.shape({
+          depth: PropTypes.number.isRequired,
+          value: PropTypes.string.isRequired
+        })
+      ).isRequired,
+      fields: PropTypes.shape({
+        slug: PropTypes.string.isRequired
+      }).isRequired
+    })
+  ).isRequired
 }
 
 export default SidebarRight

@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import PropTypes from 'prop-types'
 
+import Layout from './layout'
 import SidebarLeft from './sidebar_left'
 import SidebarRight from './sidebar_right'
 
@@ -10,23 +11,23 @@ const ApiPage = ({ data, path }) => {
   const { frontmatter, body } = data.mdx
 
   return (
-    <>
-      <section className='section'>
-        <div className='section__in section__in_padding section__in_reverse section__in_developers'>
-          <SidebarLeft currentPath={path} />
-          <div className='section__content section__content_small'>
-            <div className='documentation'>
-              <h1>{frontmatter.title}</h1>
-              <MDXRenderer>{body}</MDXRenderer>
-            </div>
-          </div>
-          <SidebarRight
-            currentPath={path}
-            currentNode={data.mdx}
-          />
+    <Layout>
+      <SidebarLeft currentPath={path} />
+      <div className='section__content section__content_small'>
+        <div className='documentation'>
+          <h1>
+            {frontmatter.title}
+          </h1>
+          <MDXRenderer>
+            {body}
+          </MDXRenderer>
         </div>
-      </section>
-    </>
+      </div>
+      <SidebarRight
+        currentPath={path}
+        currentNodes={[data.mdx]}
+      />
+    </Layout>
   )
 }
 
