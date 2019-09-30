@@ -11,11 +11,14 @@ import SidebarRight from '../api/sidebar_right'
 const AppPage = ({ data, path }) => {
   return (
     <Layout>
-      <Overview content={data.mdx.body} />
+      <Overview
+        title={data.mdx.frontmatter.title}
+        content={data.mdx.body}
+      />
       <SidebarRight
         logo={data.appImages.nodes.find(({ name }) => name === `logo`)}
         currentPath={path}
-        currentNodes={[...data.helpPages.nodes]}
+        currentNodes={[ data.mdx, ...data.helpPages.nodes ]}
         title={data.mdx.frontmatter.appName}
       />
       <Gallery images={data.appImages.nodes.filter(({ name }) => name !== `logo`)} />
@@ -33,6 +36,7 @@ export const appPageQuery = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         appName
+        title
         info {
           category
           availability

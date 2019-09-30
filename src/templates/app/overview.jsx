@@ -1,12 +1,12 @@
 import React from 'react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-const Overview = ({ content }) => {
+const Overview = ({ content, title }) => {
   return (
     <div className='section__content'>
       <div className='documentation'>
         <h1>
-          Overview
+          {title}
         </h1>
         <MDXRenderer>
           {content}
