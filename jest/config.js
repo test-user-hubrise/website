@@ -1,6 +1,5 @@
 module.exports = {
   rootDir: process.cwd(),
-  testMatch: [`**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)`],
   transform: {
     '^.+\\.jsx?$': `<rootDir>/jest/preprocess.js`
   },
