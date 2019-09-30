@@ -54,7 +54,10 @@ const createPages = async ({ graphql, actions }) => {
         createPage({
           path: `fr${slug}`,
           component: docsTemplate,
-          context: { id }
+          context: {
+            id,
+            appLogoRelativePath: { regex: `/apps/${appId}/logo/` }
+          }
         })
       }
 
@@ -73,7 +76,10 @@ const createPages = async ({ graphql, actions }) => {
       createPage({
         path: (props.default ? `` : props.code) + slug,
         component: docsTemplate,
-        context: { id }
+        context: {
+          id,
+          appLogoRelativePath: { eq: null }
+        }
       })
     })
   })

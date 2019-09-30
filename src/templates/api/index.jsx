@@ -22,6 +22,7 @@ const ApiPage = ({ data, path }) => {
         </div>
       </div>
       <SidebarRight
+        logo={data.appLogo}
         currentPath={path}
         currentNodes={[data.mdx]}
       />
@@ -30,10 +31,11 @@ const ApiPage = ({ data, path }) => {
 }
 
 export const apiPageQuery = graphql`
-  query getApiPage($id: String!) {
-    mdx(
-      id: { eq: $id }
-    ) {
+  query getApiPage(
+    $id: String!,
+    $appLogoRelativePath: StringQueryOperatorInput!
+  ) {
+    mdx(id: { eq: $id }) {
       frontmatter {
         title
       }
@@ -45,6 +47,14 @@ export const apiPageQuery = graphql`
         slug
       }
       body
+    }
+    appLogo: file(relativePath: $appLogoRelativePath) {
+      name
+      childImageSharp {
+        fixed(width: 200) {
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
     }
   }
 `
