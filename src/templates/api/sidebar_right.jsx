@@ -29,10 +29,20 @@ const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
         section__sidebar
         section__sidebar_right
         section__sidebar_small-padding
+        ${logo ? 'section__sidebar--sticky' : ''}
       `}
     >
-      {logo && <Img {...logo.childImageSharp} />}
-      <div className='section__sidebar-in'>
+      {logo && (
+        <div className='section__sidebar_logo'>
+          <Img {...logo.childImageSharp} />
+        </div>
+      )}
+      <div
+        className={`
+          section__sidebar-in
+          ${logo ? '' : 'section__sidebar--sticky'}
+        `}
+      >
         <h5 className='content-nav__title'>
           {title || `Content`}
         </h5>

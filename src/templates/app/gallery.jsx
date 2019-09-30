@@ -4,10 +4,7 @@ import Img from 'gatsby-image'
 const Gallery = ({ images }) => {
   return (
     <div
-      className='section__content section__content_small'
-      style={{
-        marginTop: `5rem`
-      }}
+      className='section__content'
     >
       {images.map(({ childImageSharp }, idx) => (
         <Img

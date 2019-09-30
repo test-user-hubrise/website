@@ -11,7 +11,7 @@ const ApiPage = ({ data, path }) => {
 
   return (
     <Layout>
-      <div className='section__content section__content_small'>
+      <div className='section__content'>
         <div className='documentation'>
           <h1>
             {frontmatter.title}

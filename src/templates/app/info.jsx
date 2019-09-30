@@ -3,8 +3,7 @@ import React from 'react'
 const Info = ({ content }) => {
   return (
     <div
-      className='section__content section__content_small'
-      style={{ marginTop: `5rem` }}
+      className='section__content'
     >
       <ul>
         {Object.entries(content).map(([ key, value ], idx) => (

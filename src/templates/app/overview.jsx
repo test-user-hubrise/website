@@ -3,7 +3,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 const Overview = ({ content }) => {
   return (
-    <div className='section__content section__content_small'>
+    <div className='section__content'>
       <div className='documentation'>
         <h1>
           Overview
