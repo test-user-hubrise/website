@@ -1,5 +1,6 @@
 ---
 appName: iKentoo
+title: Overview
 info:
   category: POS
   availability: France, Switzerland, UK

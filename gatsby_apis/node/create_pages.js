@@ -31,10 +31,11 @@ const createPages = async ({ graphql, actions }) => {
 
     if (appId) {
       const isOverviewPage = slug.match(new RegExp(`${appId}/$`))
+
       if (isOverviewPage) {
         // Generate app overview page.
         createPage({
-          path: slug,
+          path: `fr${slug}`,
           component: appTemplate,
           context: {
             id,
@@ -51,7 +52,7 @@ const createPages = async ({ graphql, actions }) => {
       } else {
         // Generate help page.
         createPage({
-          path: slug,
+          path: `fr${slug}`,
           component: docsTemplate,
           context: { id }
         })
@@ -62,7 +63,7 @@ const createPages = async ({ graphql, actions }) => {
 
     if (slug.includes(`faq`)) {
       return createPage({
-        path: slug,
+        path: `fr${slug}`,
         component: faqTemplate,
         context: { id }
       })
