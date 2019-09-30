@@ -4,7 +4,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import PropTypes from 'prop-types'
 
 import Layout from './layout'
-import SidebarLeft from './sidebar_left'
 import SidebarRight from './sidebar_right'
 
 const ApiPage = ({ data, path }) => {
@@ -12,7 +11,6 @@ const ApiPage = ({ data, path }) => {
 
   return (
     <Layout>
-      <SidebarLeft currentPath={path} />
       <div className='section__content section__content_small'>
         <div className='documentation'>
           <h1>

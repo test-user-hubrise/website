@@ -6,13 +6,11 @@ import Overview from './overview'
 import Gallery from './gallery'
 import Info from './info'
 import Layout from '../api/layout'
-import SidebarLeft from '../api/sidebar_left'
 import SidebarRight from '../api/sidebar_right'
 
 const AppPage = ({ data, path }) => {
   return (
     <Layout>
-      <SidebarLeft currentPath={path} />
       <Overview content={data.mdx.body} />
       <SidebarRight
         logo={data.appImages.nodes.find(({ name }) => name === `logo`)}
