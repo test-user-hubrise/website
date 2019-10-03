@@ -1,5 +1,5 @@
 ---
-appName: iKentoo
+appName: Acrelec
 title: Overview
 info:
   category: POS
