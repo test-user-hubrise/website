@@ -1,0 +1,16 @@
+.image_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  grid-gap: 2rem;
+  padding: 1rem;
+
+  @include breakpoint(medium down) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image_grid__item_wrapper {
+  width: 100%;
+  cursor: pointer;
+}

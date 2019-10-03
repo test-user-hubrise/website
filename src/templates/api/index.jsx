@@ -51,8 +51,9 @@ export const apiPageQuery = graphql`
     appLogo: file(relativePath: $appLogoRelativePath) {
       name
       childImageSharp {
-        fixed(width: 200) {
-          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        fluid(quality: 100) {
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+          presentationWidth
         }
       }
     }

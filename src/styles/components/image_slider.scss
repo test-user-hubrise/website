@@ -1,0 +1,121 @@
+$button_offset: -5rem;
+$button_height: 4rem;
+
+.image_slider {
+  top: 50%;
+  transform: translateY(-50%);
+
+  & .slick-dots {
+    bottom: calc(#{$button_height} / -2);
+
+    & li {
+      & button::before {
+        content: '';
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+        border: 2px solid $main-green;
+        transition: border 200ms ease-in-out;
+        opacity: 0.75;
+      }
+
+      & button:hover::before,
+      & button:focus::before {
+        border: 7px solid $main-green;
+        opacity: 1;
+      }
+
+      &.slick-active button::before {
+        border: 7px solid $main-green;
+        opacity: 1;
+      }
+    }
+  }
+
+  & .slick-next,
+  & .slick-prev {
+    height: $button_height;
+    width: $button_height;
+    transform: none;
+    top: -$button_height;
+  }
+
+  & .slick-next {
+    left: calc(50% + #{$button_height} / 2);
+
+    &::before {
+      content: '\f0a9';
+    }
+
+    @include breakpoint(small down) {
+      margin-left: calc(#{$button_height} / -4);
+    }
+  }
+
+  & .slick-prev {
+    left: calc(50% - #{$button_height} * 1.5);
+
+    &::before {
+      content: '\f0a8';
+    }
+
+    @include breakpoint(small down) {
+      margin-left: calc(#{$button_height} / 4);
+    }
+  }
+
+  & .slick-prev::before,
+  .slick-next::before {
+    font-family: FontAwesome;
+    font-size: 3rem;
+
+    @include breakpoint(small down) {
+      font-size: 2.2rem;
+    }
+  }
+}
+
+.image_slider__wrapper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  padding: 0px 6rem;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  @include breakpoint(small down) {
+    padding: 0px 3rem;
+  }
+}
+
+.image_slider__close_button {
+  position: absolute;
+  top: -$button_height;
+  left: calc(50% - #{$button_height} / 2);
+  width: $button_height;
+  height: $button_height;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus::before,
+  &:hover::before {
+    opacity: 1;
+  }
+
+  &::before {
+    content: '\f057';
+    font-family: FontAwesome;
+    font-size: 3rem;
+    color: #fff;
+    opacity: 0.75;
+
+    @include breakpoint(small down) {
+      font-size: 2.2rem;
+    }
+  }
+}

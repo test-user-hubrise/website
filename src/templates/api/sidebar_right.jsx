@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+
+import { NonStretchedImage } from '../../components/image'
 
 import Link from '../../components/link'
 
@@ -34,7 +35,10 @@ const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
     >
       {logo && (
         <div className='section__sidebar_logo'>
-          <Img {...logo.childImageSharp} />
+          <NonStretchedImage
+            alt={logo.name}
+            {...logo.childImageSharp}
+          />
         </div>
       )}
       <div
@@ -51,7 +55,7 @@ const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
           className='content-nav__title content-nav__title_small'
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          Content
+          {title || `Content`}
           <i
             className={`
               fa
