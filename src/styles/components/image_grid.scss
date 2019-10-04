@@ -1,4 +1,4 @@
-.image_grid {
+.image-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
@@ -10,7 +10,7 @@
   }
 }
 
-.image_grid__item_wrapper {
+.image-grid__item-wrapper {
   width: 100%;
   cursor: pointer;
 }

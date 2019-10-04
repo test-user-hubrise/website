@@ -1,121 +1,137 @@
-$button_offset: -5rem;
-$button_height: 4rem;
+.image-slider {
+  align-self: center;
+  /* override display prop on .slick-list */
+  display: grid !important;
+  grid-template-areas: 'previous_arrow slide next_arrow';
+  grid-template-columns: 7.5% 1fr 7.5%;
+  width: inherit;
+  align-items: center;
 
-.image_slider {
-  top: 50%;
-  transform: translateY(-50%);
-
-  & .slick-dots {
-    bottom: calc(#{$button_height} / -2);
-
-    & li {
-      & button::before {
-        content: '';
-        height: 14px;
-        width: 14px;
-        border-radius: 50%;
-        border: 2px solid $main-green;
-        transition: border 200ms ease-in-out;
-        opacity: 0.75;
-      }
-
-      & button:hover::before,
-      & button:focus::before {
-        border: 7px solid $main-green;
-        opacity: 1;
-      }
-
-      &.slick-active button::before {
-        border: 7px solid $main-green;
-        opacity: 1;
-      }
-    }
+  & .slick-list {
+    grid-area: slide;
   }
+
+  // & .slick-dots {
+  //   bottom: calc(#{$button_height} / -2);
+  //
+  //   & li {
+  //     & button::before {
+  //       content: '';
+  //       height: 1rem;
+  //       width: 1rem;
+  //       border-radius: 50%;
+  //       border: 2px solid $main-green;
+  //       transition: border 200ms ease-in-out;
+  //       opacity: 0.75;
+  //     }
+  //
+  //     & button:hover::before,
+  //     & button:focus::before {
+  //       border: 0.5rem solid $main-green;
+  //       opacity: 1;
+  //     }
+  //
+  //     &.slick-active button::before {
+  //       border: 0.5rem solid $main-green;
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
 
   & .slick-next,
   & .slick-prev {
-    height: $button_height;
-    width: $button_height;
-    transform: none;
-    top: -$button_height;
+    justify-self: center;
+    position: initial;
+    height: auto;
+    width: 100%;
   }
 
   & .slick-next {
-    left: calc(50% + #{$button_height} / 2);
+    right: 0;
+    grid-area: next_arrow;
 
     &::before {
-      content: '\f0a9';
+      content: '\f061';
     }
 
     @include breakpoint(small down) {
-      margin-left: calc(#{$button_height} / -4);
     }
   }
 
   & .slick-prev {
-    left: calc(50% - #{$button_height} * 1.5);
+    grid-area: previous_arrow;
+    left: 0;
 
     &::before {
-      content: '\f0a8';
+      content: '\f060';
     }
 
     @include breakpoint(small down) {
-      margin-left: calc(#{$button_height} / 4);
     }
   }
 
   & .slick-prev::before,
-  .slick-next::before {
+  & .slick-next::before {
     font-family: FontAwesome;
-    font-size: 3rem;
+    font-size: 2rem;
+
+    @include breakpoint(xxlarge up) {
+      font-size: 3rem;
+    }
 
     @include breakpoint(small down) {
-      font-size: 2.2rem;
+      font-size: 1rem;
     }
   }
+
+  &__slide {
+    border-radius: 0.6rem;
+  }
 }
 
-.image_slider__wrapper {
+.image-slider-wrapper {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-rows: max-content 1fr;
   height: 100vh;
   width: 100vw;
-  padding: 0px 6rem;
   z-index: 11;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.85);
 
   @include breakpoint(small down) {
-    padding: 0px 3rem;
-  }
-}
-
-.image_slider__close_button {
-  position: absolute;
-  top: -$button_height;
-  left: calc(50% - #{$button_height} / 2);
-  width: $button_height;
-  height: $button_height;
-  outline: none;
-
-  &:hover {
-    cursor: pointer;
   }
 
-  &:focus::before,
-  &:hover::before {
-    opacity: 1;
-  }
-
-  &::before {
-    content: '\f057';
-    font-family: FontAwesome;
-    font-size: 3rem;
-    color: #fff;
-    opacity: 0.75;
+  &__topbar {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    width: 100vw;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.6);
 
     @include breakpoint(small down) {
-      font-size: 2.2rem;
+    }
+  }
+
+  &__title {
+    align-self: center;
+    color: $white;
+    margin-bottom: 0;
+  }
+
+  &__title-app-name {
+    font-weight: bold;
+  }
+
+  &__close_button {
+    padding: 0.5rem 1rem;
+    color: $white;
+    border: 1px solid $white;
+    border-radius: 0.6rem;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }

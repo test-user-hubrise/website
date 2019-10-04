@@ -9,20 +9,24 @@ import Layout from '../api/layout'
 import SidebarRight from '../api/sidebar_right'
 
 const AppPage = ({ data, path }) => {
+  const { mdx, appImages, helpPages } = data
   return (
     <Layout>
       <Overview
-        title={data.mdx.frontmatter.title}
-        content={data.mdx.body}
+        title={mdx.frontmatter.title}
+        content={mdx.body}
       />
       <SidebarRight
-        logo={data.appImages.nodes.find(({ name }) => name === `logo`)}
+        logo={appImages.nodes.find(({ name }) => name === `logo`)}
         currentPath={path}
-        currentNodes={[ data.mdx, ...data.helpPages.nodes ]}
-        title={data.mdx.frontmatter.appName}
+        currentNodes={[ mdx, ...helpPages.nodes ]}
+        title={mdx.frontmatter.appName}
       />
-      <Gallery images={data.appImages.nodes.filter(({ name }) => name !== `logo`)} />
-      <Info content={data.mdx.frontmatter.info} />
+      <Gallery
+        appName={mdx.frontmatter.appName}
+        images={appImages.nodes.filter(({ name }) => name !== `logo`)}
+      />
+      <Info content={mdx.frontmatter.info} />
     </Layout>
   )
 }

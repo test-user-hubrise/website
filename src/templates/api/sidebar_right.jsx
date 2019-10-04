@@ -30,7 +30,7 @@ const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
         section__sidebar
         section__sidebar_right
         section__sidebar_small-padding
-        ${logo ? 'section__sidebar--sticky' : ''}
+        ${logo ? 'section__sidebar_sticky' : ''}
       `}
     >
       {logo && (
@@ -44,7 +44,7 @@ const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
       <div
         className={`
           section__sidebar-in
-          ${logo ? '' : 'section__sidebar--sticky'}
+          ${logo ? '' : 'section__sidebar_sticky'}
         `}
       >
         <h5 className='content-nav__title'>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Slider from 'react-slick'
+import Img from 'gatsby-image'
 
 import { NonStretchedImage } from '../../components/image'
 
@@ -8,34 +9,14 @@ import { generateKey } from '../../components/utils'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-function NextArrowWithCloseButton ({ className, style, onClick, onClose }) {
-  return (
-    <>
-      <button
-        className={className}
-        style={style}
-        onClick={onClick}
-      />
-      <button
-        onClick={onClose}
-        className='image_slider__close_button'
-      />
-    </>
-  )
-}
-
-const Gallery = ({ images }) => {
+const Gallery = ({ images, appName }) => {
   const slider = useRef(null)
   const [ isSliderVisible, setIsSliderVisible ] = useState(false)
 
   const sliderSettings = {
-    dots: true,
-    speed: 350,
+    speed: 0,
     slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow: (
-      <NextArrowWithCloseButton onClose={() => setIsSliderVisible(false)} />
-    )
+    slidesToScroll: 1
   }
 
   useEffect(() => {
@@ -68,30 +49,45 @@ const Gallery = ({ images }) => {
   return (
     <div className='section__content'>
       <div
-        className='image_slider__wrapper'
+        className='image-slider-wrapper'
         style={{
-          display: isSliderVisible ? `inherit` : `none`
+          display: isSliderVisible ? `grid` : `none`
         }}
       >
+        <section className='image-slider-wrapper__topbar'>
+          <p className='image-slider-wrapper__title'>
+            <span className='image-slider-wrapper__title-app-name'>
+              {appName}
+            </span>
+            {` `}
+            screenshots
+          </p>
+          <button
+            className='image-slider-wrapper__close_button'
+            onClick={() => setIsSliderVisible(false)}
+          >
+            Close
+          </button>
+        </section>
         <Slider
           ref={slider}
-          className='image_slider'
+          className='image-slider'
           {...sliderSettings}
         >
           {images.map(({ name, childImageSharp }, idx) => (
-            <NonStretchedImage
+            <Img
+              className='image-slider__slide'
               key={generateKey(name, idx)}
               alt={name}
               {...childImageSharp}
-              additionalStyle={{ borderRadius: `10px` }}
             />
           ))}
         </Slider>
       </div>
-      <section className='image_grid'>
+      <section className='image-grid'>
         {images.map(({ name, childImageSharp }, idx) => (
           <div
-            className='image_grid__item_wrapper'
+            className='image-grid__item-wrapper'
             key={generateKey(name, idx)}
             onClick={() => {
               slider.current.slickGoTo(idx)
