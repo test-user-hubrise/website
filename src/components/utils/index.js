@@ -38,9 +38,7 @@ export function createHeaderAnchor (header) {
  *
  * @returns {object} Object containing specified headers as React elements.
  */
-export function generateHeaders () {
-  const headers = [`h2`, `h3`]
-
+export function generateHeaders (headers) {
   return headers.reduce((obj, header) => {
     obj[header] = ({ children: headerText }) => {
       const headerAnchor = createHeaderAnchor(headerText)
