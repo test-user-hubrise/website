@@ -1,13 +1,15 @@
 import React from 'react'
 
 /**
- * Applies kebab case to a string.
- * @param {string}  string
- * @param {boolean} keepCase - Keep original letter casing, or transform into lowercase.
+ * Applies kebab case to a regular string.
+ * NOTE: strips away any punctuation, except for `_`
+ *
+ * @param   {string}  string
+ * @param   {boolean} keepCase - Keep original letter casing, or transform into lowercase.
  * @returns {string}
  */
 export const kebabify = (string, keepCase = false) => {
-  const result = string.replace(/[^\w\s]+/g, ``).replace(/\s/g, `-`)
+  const result = string.split(/[^\w]+/g).filter(Boolean).join(`-`)
 
   return keepCase ? result : result.toLowerCase()
 }
@@ -15,7 +17,8 @@ export const kebabify = (string, keepCase = false) => {
 /**
  * Strips headers of chapters and subchapters, transforming
  * the remaining text into a kebabified anchor.
- * @param {string} header - Header text.
+ *
+ * @param   {string} header - Header text.
  * @returns {string} Header text without a leading chapter, kebabified.
  * @example
  *   1.2. Retrieve order => retrieve-order
@@ -32,6 +35,7 @@ export function createHeaderAnchor (header) {
 /**
  * Defines custom h2-h3 headers with attached anchors.
  * Intended for replacing default MDX components.
+ *
  * @returns {object} Object containing specified headers as React elements.
  */
 export function generateHeaders () {
@@ -58,8 +62,9 @@ export function generateHeaders () {
 
 /**
  * Generatey key prop for repeating sibling React elements.
- * @param {string} prefix
- * @param {string} suffix
+ *
+ * @param   {string} prefix
+ * @param   {string} suffix
  * @returns {string}
  */
 export const generateKey = (prefix, suffix) => `${prefix}--${suffix}`
