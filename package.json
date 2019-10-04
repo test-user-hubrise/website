@@ -86,6 +86,7 @@
     "globals": [
       "describe",
       "it",
+      "expect",
       "cy",
       "jest"
     ]
