@@ -32,7 +32,7 @@ pages:
         title: Integration
         description: Integration checklist, covering several types of applications
   pricing:
-    title: Single monthly fee unlimited usage
+    title: Single monthly fee, unlimited usage
     offer:
       value: 25€ / month <1>per location</1>
       features:
