@@ -40,10 +40,9 @@ const SidebarLeft = ({ currentPath }) => (
         id='sidebar-nav-list'
       >
         {nav.map(({ to, title }, idx) => {
-          const isHighlighted =
-            // Retain highlighting when navigating API section.
-            (currentPath.startsWith(`/api`) && to.startsWith(`/api`)) ||
-            currentPath.startsWith(to)
+          // Retain highlighting when navigating API section.
+          const isHighlighted = currentPath.includes(to)
+
           return (
             <li key={generateKey(title, idx)} className='sidebar-nav__item'>
               <Link
