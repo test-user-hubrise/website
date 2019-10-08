@@ -1,5 +1,6 @@
 ---
 title: Catalog management
+position: 4
 ---
 
 ## 1. Catalogs

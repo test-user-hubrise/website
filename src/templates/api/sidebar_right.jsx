@@ -103,11 +103,15 @@ const SidebarRight = ({ currentPath, currentNode }) => {
 
 const getAllApiDocsQuery = graphql`
   {
-    allMdx(filter: { fields: { slug: { glob: "/api/*" } } }) {
+    allMdx(
+      filter: { fields: { slug: { glob: "/api/*" } } }
+      sort: { fields: [frontmatter___position] }
+    ) {
       edges {
         node {
           frontmatter {
             title
+            position
           }
           fields {
             slug
