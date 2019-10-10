@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
 
+import { handleSubmit } from './helpers'
 import Form from './base/form'
 
 const structure = {
@@ -137,13 +138,11 @@ const SuggestAppEnhanced = withFormik({
     app_name: ``,
     app_site: ``,
     app_contact: ``,
-    app_extra: ``
+    app_extra: ``,
+    _gotcha: ``
   }),
   validationSchema: ({ t }) => createSuggestAppSchema(t),
-  handleSubmit: (_values, { resetForm }) => {
-    window.alert(`Let's pretend its sent!`)
-    resetForm()
-  }
+  handleSubmit
 })(SuggestApp)
 
 export default withTranslation()(SuggestAppEnhanced)

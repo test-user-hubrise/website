@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
 
+import { handleSubmit } from './helpers'
 import Form from './base/form'
 
 const structure = {
@@ -50,6 +51,8 @@ const Contact = ({ t, _i18n, ...formikProps }) => {
       structure={structure}
       t={t}
       formikProps={formikProps}
+      action='https://formspree.io/mwgbedem'
+      method='POST'
     />
   )
 }
@@ -77,13 +80,11 @@ const ContactEnhanced = withFormik({
   mapPropsToValues: () => ({
     name: ``,
     email: ``,
-    message: ``
+    message: ``,
+    _gotcha: ``
   }),
   validationSchema: ({ t }) => createContactSchema(t),
-  handleSubmit: (_values, { resetForm }) => {
-    window.alert(`Let's pretend its sent!`)
-    resetForm()
-  }
+  handleSubmit
 })(Contact)
 
 export default withTranslation()(ContactEnhanced)

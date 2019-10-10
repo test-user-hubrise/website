@@ -103,7 +103,8 @@
       "it",
       "expect",
       "cy",
-      "jest"
+      "jest",
+      "fetch"
     ]
   },
   "eslintConfig": {

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form } from 'formik'
+import { Form, Field } from 'formik'
 
 import Row from './row'
 
@@ -30,6 +30,7 @@ const CompleteForm = ({
   formikProps
 }) => {
   const { classNames: formClasses, ...otherFormProps } = formProps
+  const { isSubmitting } = formikProps
 
   return (
     <Form
@@ -39,7 +40,11 @@ const CompleteForm = ({
       {defineContent(structure, t)
         .map(({ subtitle, rows }, idx) => (
           <section key={generateKey(subtitle, idx)}>
-            {subtitle && <h6 className='form__sub-title'>{subtitle}</h6>}
+            {subtitle && (
+              <h6 className='form__sub-title'>
+                {subtitle}
+              </h6>
+            )}
             {rows.map(({ fields }) => (
               <Row
                 key={generateKey(`${subtitle}${fields[0].id}`, idx)}
@@ -49,10 +54,16 @@ const CompleteForm = ({
             ))}
           </section>
         ))}
+      <Field
+        type='text'
+        name='_gotcha'
+        className='hidden'
+      />
       <button
         className={`form__button ${buttonClasses ? buttonClasses.join(' ') : ''}`}
         type='submit'
         name='submit'
+        disabled={isSubmitting}
       >
         {t(`forms.${structure.formId}.button`)}
       </button>

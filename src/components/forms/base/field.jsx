@@ -29,6 +29,7 @@ CompleteField.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.string,
+    placeholder: PropTypes.string,
     component: PropTypes.string.isRequired
   }).isRequired,
   formikProps: PropTypes.object.isRequired
