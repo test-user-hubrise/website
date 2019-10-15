@@ -28,9 +28,17 @@ const createPages = async ({ graphql, actions }) => {
 
   result.data.allMdx.nodes.forEach(({ id, fields }) => {
     const { slug, appId } = fields
+    const notCurrentIdFilter = { id: { ne: id } }
 
     if (appId) {
       const isOverviewPage = slug.match(new RegExp(`${appId}/$`))
+      const allAppPagesFilter = {
+        fields: {
+          slug: {
+            regex: `/apps/${appId}/`
+          }
+        }
+      }
 
       if (isOverviewPage) {
         // Generate app overview page.
@@ -43,20 +51,24 @@ const createPages = async ({ graphql, actions }) => {
               relativeDirectory: { regex: `/${appId}/` },
               sourceInstanceName: { eq: `images` }
             },
-            helpPagesFilter: {
-              // Exclude /appId/index.md
-              fileAbsolutePath: { regex: `/${appId}/(?!index)/` }
+            relatedPagesFilter: {
+              ...notCurrentIdFilter,
+              ...allAppPagesFilter
             }
           }
         })
       } else {
-        // Generate help page.
+        // Generate related help page.
         createPage({
           path: `fr${slug}`,
           component: docsTemplate,
           context: {
             id,
-            appLogoRelativePath: { regex: `/apps/${appId}/logo/` }
+            appLogoRelativePath: { regex: `/apps/${appId}/logo/` },
+            relatedPagesFilter: {
+              ...notCurrentIdFilter,
+              ...allAppPagesFilter
+            }
           }
         })
       }
@@ -78,7 +90,15 @@ const createPages = async ({ graphql, actions }) => {
         component: docsTemplate,
         context: {
           id,
-          appLogoRelativePath: { eq: null }
+          appLogoRelativePath: { eq: null },
+          relatedPagesFilter: {
+            ...notCurrentIdFilter,
+            fields: {
+              slug: {
+                glob: `/api/*`
+              }
+            }
+          }
         }
       })
     })

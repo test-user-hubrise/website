@@ -7,7 +7,8 @@ import Layout from './layout'
 import SidebarRight from './sidebar_right'
 
 const ApiPage = ({ data, path }) => {
-  const { frontmatter, body } = data.mdx
+  const { currentPage, relatedPages } = data
+  const { frontmatter, body } = data.currentPage
 
   return (
     <Layout>
@@ -24,7 +25,10 @@ const ApiPage = ({ data, path }) => {
       <SidebarRight
         logo={data.appLogo}
         currentPath={path}
-        currentNodes={[data.mdx]}
+        pages={[
+          currentPage,
+          ...relatedPages.nodes.map((node) => ({ ...node }))
+        ]}
       />
     </Layout>
   )
@@ -33,9 +37,10 @@ const ApiPage = ({ data, path }) => {
 export const apiPageQuery = graphql`
   query getApiPage(
     $id: String!,
+    $relatedPagesFilter: MdxFilterInput!
     $appLogoRelativePath: StringQueryOperatorInput!
   ) {
-    mdx(id: { eq: $id }) {
+    currentPage: mdx(id: { eq: $id }) {
       frontmatter {
         title
       }
@@ -48,10 +53,24 @@ export const apiPageQuery = graphql`
       }
       body
     }
+    relatedPages: allMdx(filter: $relatedPagesFilter) {
+      nodes {
+        frontmatter {
+          title
+        }
+        fields {
+          slug
+        }
+        headings {
+          value
+          depth
+        }
+      }
+    }
     appLogo: file(relativePath: $appLogoRelativePath) {
       name
       childImageSharp {
-        fluid(quality: 100) {
+        fluid {
           ...GatsbyImageSharpFluid_withWebp_tracedSVG
           presentationWidth
         }

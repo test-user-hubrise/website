@@ -9,24 +9,28 @@ import Layout from '../api/layout'
 import SidebarRight from '../api/sidebar_right'
 
 const AppPage = ({ data, path }) => {
-  const { mdx, appImages, helpPages } = data
+  const { currentPage, relatedPages, appImages } = data
+
   return (
     <Layout>
       <Overview
-        title={mdx.frontmatter.title}
-        content={mdx.body}
+        title={currentPage.frontmatter.title}
+        content={currentPage.body}
       />
       <SidebarRight
         logo={appImages.nodes.find(({ name }) => name === `logo`)}
         currentPath={path}
-        currentNodes={[ mdx, ...helpPages.nodes ]}
-        title={mdx.frontmatter.appName}
+        pages={[
+          currentPage,
+          ...relatedPages.nodes.map((node) => ({ ...node }))
+        ]}
+        title={currentPage.frontmatter.appName}
       />
       <Gallery
-        appName={mdx.frontmatter.appName}
+        appName={currentPage.frontmatter.appName}
         images={appImages.nodes.filter(({ name }) => name !== `logo`)}
       />
-      <Info content={mdx.frontmatter.info} />
+      <Info content={currentPage.frontmatter.info} />
     </Layout>
   )
 }
@@ -35,9 +39,9 @@ export const appPageQuery = graphql`
   query getAppPageContent(
     $id: String!,
     $appImagesFilter: FileFilterInput!,
-    $helpPagesFilter: MdxFilterInput!
+    $relatedPagesFilter: MdxFilterInput!
   ) {
-    mdx(id: { eq: $id }) {
+    currentPage: mdx(id: { eq: $id }) {
       frontmatter {
         appName
         title
@@ -58,18 +62,7 @@ export const appPageQuery = graphql`
       }
       body
     }
-    appImages: allFile(filter: $appImagesFilter) {
-      nodes {
-        name
-        childImageSharp {
-          fluid(quality: 100) {
-            ...GatsbyImageSharpFluid_withWebp_tracedSVG
-            presentationWidth
-          }
-        }
-      }
-    }
-    helpPages: allMdx(filter: $helpPagesFilter) {
+    relatedPages: allMdx(filter: $relatedPagesFilter) {
       nodes {
         frontmatter {
           title
@@ -80,6 +73,17 @@ export const appPageQuery = graphql`
         headings {
           depth
           value
+        }
+      }
+    }
+    appImages: allFile(filter: $appImagesFilter) {
+      nodes {
+        name
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            presentationWidth
+          }
         }
       }
     }

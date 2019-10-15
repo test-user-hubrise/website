@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
 
 import { NonStretchedImage } from '../../components/image'
 
@@ -8,21 +7,8 @@ import Link from '../../components/link'
 
 import { generateKey, createHeaderAnchor } from '../../components/utils'
 
-const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
+const SidebarRight = ({ currentPath, pages, title, logo }) => {
   const [isExpanded, setIsExpanded] = useState(false)
-  const isApiSection = currentPath.includes('api')
-  // Fetch all nodes from API section and match structure
-  // with `currentNode` element to allow looping.
-  const apiNodes = useStaticQuery(getAllApiDocsQuery)
-    .allMdx
-    .nodes
-    .map((node) => ({ ...node }))
-
-  let pages = currentNodes
-
-  if (isApiSection) {
-    pages = [ ...apiNodes ]
-  }
 
   return (
     <div
@@ -73,7 +59,7 @@ const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
         >
           {pages.map(({ frontmatter, fields, headings }, idx) => {
             const { slug } = fields
-            const isCurrentPage = currentPath.includes(slug)
+            const isCurrentPage = currentPath.endsWith(slug)
 
             return (
               <li
@@ -85,7 +71,7 @@ const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
                 <Link to={slug} className='content-nav__link'>
                   {frontmatter.title}
                 </Link>
-                {isCurrentPage && (
+                {isCurrentPage && (headings.length !== 0) && (
                   <ol className='content-sublist'>
                     {headings
                       .filter(({ depth }) => depth === 2)
@@ -117,28 +103,9 @@ const SidebarRight = ({ currentPath, currentNodes, title, logo }) => {
   )
 }
 
-const getAllApiDocsQuery = graphql`
-  {
-    allMdx(filter: { fields: { slug: { glob: "/api/*" } } }) {
-      nodes {
-        frontmatter {
-          title
-        }
-        fields {
-          slug
-        }
-        headings {
-          value
-          depth
-        }
-      }
-    }
-  }
-`
-
 SidebarRight.propTypes = {
   currentPath: PropTypes.string.isRequired,
-  currentNodes: PropTypes.arrayOf(
+  pages: PropTypes.arrayOf(
     PropTypes.shape({
       frontmatter: PropTypes.shape({
         title: PropTypes.string
