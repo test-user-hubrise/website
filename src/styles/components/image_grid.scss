@@ -2,8 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
-  grid-gap: 2rem;
-  padding: 1rem;
+  grid-gap: 1rem;
 
   @include breakpoint(medium down) {
     grid-template-columns: 1fr;

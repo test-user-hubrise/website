@@ -64,6 +64,10 @@
     margin-bottom: 0.2rem;
   }
 
+  &__item:last-child {
+    margin-bottom: 1rem;
+  }
+
   &__item_active {
     color: $white;
     .content-nav__link {

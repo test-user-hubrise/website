@@ -1,8 +1,8 @@
 import React from 'react'
 import GatsbyImg from 'gatsby-image'
 
-export const NonStretchedImage = props => {
-  const { fluid, style, additionalStyle } = props
+export const NonStretchedImage = (props) => {
+  const { fluid, style, className } = props
   let normalizedProps = { ...props }
 
   if (fluid && fluid.presentationWidth) {
@@ -10,13 +10,10 @@ export const NonStretchedImage = props => {
       ...props,
       style: {
         ...(style || {}),
-        ...(additionalStyle || {}),
         // Avoit stretching by setting original width as max width.
-        maxWidth: fluid.presentationWidth,
-        // Used to center the image.
-        display: `grid`,
-        margin: `0 auto`
-      }
+        maxWidth: fluid.presentationWidth
+      },
+      className: `${className || ''} image_centered`
     }
   }
 
