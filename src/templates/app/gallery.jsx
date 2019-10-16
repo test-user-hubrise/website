@@ -9,6 +9,26 @@ import { generateKey } from '../../components/utils'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
+const NextArrow = ({ className, style, onClick }) => {
+  return (
+    <div
+      className={className}
+      style={style}
+      onClick={(e) => { e.stopPropagation(); onClick() }}
+    />
+  )
+}
+
+const PrevArrow = ({ className, style, onClick }) => {
+  return (
+    <div
+      className={className}
+      style={style}
+      onClick={(e) => { e.stopPropagation(); onClick() }}
+    />
+  )
+}
+
 const Gallery = ({ images, appName }) => {
   const slider = useRef(null)
   const [ isSliderVisible, setIsSliderVisible ] = useState(false)
@@ -16,7 +36,9 @@ const Gallery = ({ images, appName }) => {
   const sliderSettings = {
     speed: 0,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />
   }
 
   useEffect(() => {
@@ -53,8 +75,12 @@ const Gallery = ({ images, appName }) => {
         style={{
           display: isSliderVisible ? `grid` : `none`
         }}
+        onClick={() => setIsSliderVisible(false)}
       >
-        <section className='image-slider-wrapper__topbar'>
+        <section
+          className='image-slider-wrapper__topbar'
+          onClick={(e) => e.stopPropagation()}
+        >
           <p className='image-slider-wrapper__title'>
             <span className='image-slider-wrapper__title-app-name'>
               {appName}
@@ -75,12 +101,16 @@ const Gallery = ({ images, appName }) => {
           {...sliderSettings}
         >
           {images.map(({ name, childImageSharp }, idx) => (
-            <Img
-              className='image-slider__slide'
+            <div
               key={generateKey(name, idx)}
-              alt={name}
-              {...childImageSharp}
-            />
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Img
+                className='image-slider__slide'
+                alt={name}
+                {...childImageSharp}
+              />
+            </div>
           ))}
         </Slider>
       </div>
