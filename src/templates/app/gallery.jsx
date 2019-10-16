@@ -90,7 +90,7 @@ const Gallery = ({ images, appName }) => {
               {appName}
             </span>
             {` `}
-            screenshots
+            {window.innerWidth > 575 ? `screenshots` : ``}
           </p>
           <button
             className='image-slider-wrapper__close_button'
