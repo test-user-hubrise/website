@@ -1,3 +1,5 @@
+// NOTE: slick-* classes are coming from react-slick carousel component
+
 .image-slider {
   align-self: center;
   /* override display prop on .slick-list */
@@ -100,9 +102,6 @@
   z-index: 11;
   background-color: rgba(0, 0, 0, 0.85);
 
-  @include breakpoint(small down) {
-  }
-
   &__topbar {
     display: grid;
     grid-template-columns: 1fr max-content;
@@ -110,7 +109,8 @@
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.6);
 
-    @include breakpoint(small down) {
+    @include breakpoint(medium down) {
+      font-size: 0.85rem;
     }
   }
 
