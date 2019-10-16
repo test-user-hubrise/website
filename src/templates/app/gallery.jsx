@@ -32,13 +32,17 @@ const PrevArrow = ({ className, style, onClick }) => {
 const Gallery = ({ images, appName }) => {
   const slider = useRef(null)
   const [ isSliderVisible, setIsSliderVisible ] = useState(false)
+  const [ currentImageNumber, setCurrentImageNumber ] = useState(0)
+
+  const totalNumberOfImages = images.length
 
   const sliderSettings = {
     speed: 0,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />
+    prevArrow: <PrevArrow />,
+    afterChange: (newIdx) => setCurrentImageNumber(newIdx + 1)
   }
 
   useEffect(() => {
@@ -94,6 +98,9 @@ const Gallery = ({ images, appName }) => {
           >
             Close
           </button>
+          <p className='image-slider-wrapper__count'>
+            {currentImageNumber} of {totalNumberOfImages}
+          </p>
         </section>
         <Slider
           ref={slider}
