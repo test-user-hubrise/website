@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { capitalize } from 'lodash'
 import PropTypes from 'prop-types'
 
 import Layout from './layout'
@@ -8,7 +9,7 @@ import SidebarRight from './sidebar_right'
 
 const ApiPage = ({ data, path }) => {
   const { currentPage, relatedPages } = data
-  const { frontmatter, body } = data.currentPage
+  const { frontmatter, body, fields } = data.currentPage
 
   return (
     <Layout>
@@ -25,6 +26,7 @@ const ApiPage = ({ data, path }) => {
       <SidebarRight
         logo={data.appLogo}
         currentPath={path}
+        title={fields.appId && capitalize(fields.appId)}
         pages={[
           currentPage,
           ...relatedPages.nodes.map((node) => ({ ...node }))
@@ -35,7 +37,7 @@ const ApiPage = ({ data, path }) => {
 }
 
 export const apiPageQuery = graphql`
-  query getApiPage(
+  query getApiPageContent(
     $id: String!,
     $relatedPagesFilter: MdxFilterInput!
     $appLogoRelativePath: StringQueryOperatorInput!
@@ -51,6 +53,7 @@ export const apiPageQuery = graphql`
       }
       fields {
         slug
+        appId
       }
       body
     }

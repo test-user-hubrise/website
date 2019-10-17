@@ -1,6 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import { capitalize } from 'lodash'
+import PropTypes from 'prop-types'
 
 import Overview from './overview'
 import Gallery from './gallery'
@@ -10,12 +11,13 @@ import SidebarRight from '../api/sidebar_right'
 
 const AppPage = ({ data, path }) => {
   const { currentPage, relatedPages, appImages } = data
+  const { frontmatter, body, fields } = currentPage
 
   return (
     <Layout>
       <Overview
-        title={currentPage.frontmatter.title}
-        content={currentPage.body}
+        title={frontmatter.title}
+        content={body}
       />
       <SidebarRight
         logo={appImages.nodes.find(({ name }) => name === `logo`)}
@@ -24,13 +26,13 @@ const AppPage = ({ data, path }) => {
           currentPage,
           ...relatedPages.nodes.map((node) => ({ ...node }))
         ]}
-        title={currentPage.frontmatter.appName}
+        title={fields.appId && capitalize(fields.appId)}
       />
       <Gallery
-        appName={currentPage.frontmatter.appName}
+        appName={frontmatter.appName}
         images={appImages.nodes.filter(({ name }) => name !== `logo`)}
       />
-      <Info content={currentPage.frontmatter.info} />
+      <Info content={frontmatter.info} />
     </Layout>
   )
 }
@@ -43,7 +45,6 @@ export const appPageQuery = graphql`
   ) {
     currentPage: mdx(id: { eq: $id }) {
       frontmatter {
-        appName
         position
         title
         info {
@@ -60,6 +61,7 @@ export const appPageQuery = graphql`
       }
       fields {
         slug
+        appId
       }
       body
     }

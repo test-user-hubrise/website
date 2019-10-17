@@ -1,5 +1,4 @@
 ---
-appName: Acrelec
 position: 1
 title: Overview
 info:
