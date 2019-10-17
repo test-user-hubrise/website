@@ -16,6 +16,9 @@
     "test:e2e:ci": "start-server-and-test start:prod http://localhost:9009 cy:run"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.6",
     "@mdx-js/mdx": "^1.1.4",
     "@mdx-js/react": "^1.1.4",
     "font-awesome": "^4.7.0",
