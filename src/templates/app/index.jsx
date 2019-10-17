@@ -44,6 +44,7 @@ export const appPageQuery = graphql`
     currentPage: mdx(id: { eq: $id }) {
       frontmatter {
         appName
+        position
         title
         info {
           category
@@ -66,6 +67,7 @@ export const appPageQuery = graphql`
       nodes {
         frontmatter {
           title
+          position
         }
         fields {
           slug

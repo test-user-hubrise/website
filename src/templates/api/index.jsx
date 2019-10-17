@@ -43,6 +43,7 @@ export const apiPageQuery = graphql`
     currentPage: mdx(id: { eq: $id }) {
       frontmatter {
         title
+        position
       }
       headings {
         value
@@ -57,6 +58,7 @@ export const apiPageQuery = graphql`
       nodes {
         frontmatter {
           title
+          position
         }
         fields {
           slug

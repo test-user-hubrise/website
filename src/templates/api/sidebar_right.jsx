@@ -2,10 +2,17 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { NonStretchedImage } from '../../components/image'
-
 import Link from '../../components/link'
-
 import { generateKey, createHeaderAnchor } from '../../components/utils'
+
+const sortPagesAsc = (pages) => {
+  return pages.sort((page1, page2) => {
+    const position1 = page1.frontmatter.position
+    const position2 = page2.frontmatter.position
+
+    return position1 - position2
+  })
+}
 
 const SidebarRight = ({ currentPath, pages, title, logo }) => {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -57,46 +64,47 @@ const SidebarRight = ({ currentPath, pages, title, logo }) => {
             ${isExpanded ? '' : 'content-nav__list_hidden'}
           `}
         >
-          {pages.map(({ frontmatter, fields, headings }, idx) => {
-            const { slug } = fields
-            const isCurrentPage = currentPath.endsWith(slug)
+          {sortPagesAsc(pages)
+            .map(({ frontmatter, fields, headings }, idx) => {
+              const { slug } = fields
+              const isCurrentPage = currentPath.endsWith(slug)
 
-            return (
-              <li
-                key={generateKey(frontmatter.title, idx)}
-                className={`content-nav__item ${
-                  isCurrentPage ? 'content-nav__item_active' : ''
-                }`}
-              >
-                <Link to={slug} className='content-nav__link'>
-                  {frontmatter.title}
-                </Link>
-                {isCurrentPage && (headings.length !== 0) && (
-                  <ol className='content-sublist'>
-                    {headings
-                      .filter(({ depth }) => depth === 2)
-                      .map(({ value: headingText }, idx) => {
-                        return (
-                          <li
-                            key={generateKey(headingText, idx)}
-                            className='content-sublist-item content-sublist-level-2'
-                          >
-                            <Link
-                              className='content-sublist-link'
-                              to={`#${createHeaderAnchor(headingText)}`}
+              return (
+                <li
+                  key={generateKey(frontmatter.title, idx)}
+                  className={`content-nav__item ${
+                    isCurrentPage ? 'content-nav__item_active' : ''
+                  }`}
+                >
+                  <Link to={slug} className='content-nav__link'>
+                    {frontmatter.title}
+                  </Link>
+                  {isCurrentPage && (headings.length !== 0) && (
+                    <ol className='content-sublist'>
+                      {headings
+                        .filter(({ depth }) => depth === 2)
+                        .map(({ value: headingText }, idx) => {
+                          return (
+                            <li
+                              key={generateKey(headingText, idx)}
+                              className='content-sublist-item content-sublist-level-2'
                             >
-                              <span className='content-sublist-text'>
-                                {headingText}
-                              </span>
-                            </Link>
-                          </li>
-                        )
-                      })}
-                  </ol>
-                )}
-              </li>
-            )
-          })}
+                              <Link
+                                className='content-sublist-link'
+                                to={`#${createHeaderAnchor(headingText)}`}
+                              >
+                                <span className='content-sublist-text'>
+                                  {headingText}
+                                </span>
+                              </Link>
+                            </li>
+                          )
+                        })}
+                    </ol>
+                  )}
+                </li>
+              )
+            })}
         </ul>
       </div>
     </div>
@@ -108,7 +116,8 @@ SidebarRight.propTypes = {
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       frontmatter: PropTypes.shape({
-        title: PropTypes.string
+        title: PropTypes.string,
+        position: PropTypes.number
       }).isRequired,
       headings: PropTypes.arrayOf(
         PropTypes.shape({
