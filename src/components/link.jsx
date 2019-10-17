@@ -5,10 +5,13 @@ import { Link as GatsbyLink } from 'gatsby'
 
 import locales from '../i18n/locales'
 
-const Link = ({ to, children, newTab, ...other }) => {
-  const leadsToInternalPage = to.startsWith(`/`)
-  const isAnchorWithinCurrentPage = to.startsWith(`#`)
+const Link = ({ to: initialTo, children, newTab, ...other }) => {
+  const leadsToInternalPage = initialTo.startsWith(`/`)
+  const leadsToApp = initialTo.includes(`manager.hubrise.com`)
+  const isAnchorWithinCurrentPage = initialTo.startsWith(`#`)
   const { i18n: { language } } = useTranslation()
+  const queryString = `?locale=${locales[language].tag}`
+  const to = initialTo + (leadsToApp ? queryString : ``)
 
   if (leadsToInternalPage) {
     return (

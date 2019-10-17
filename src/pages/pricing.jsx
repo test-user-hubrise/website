@@ -8,13 +8,9 @@ import { useLayoutContext } from '../context/layout'
 
 import { generateKey } from '../components/utils'
 
-import locales from '../i18n/locales'
-
 export const PricingPage = ({ callToActionExtra }) => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const { forms } = useLayoutContext()
-
-  const queryString = `?locale=${locales[i18n.language].tag}`
 
   return (
     <section className='section section_white'>
@@ -46,7 +42,7 @@ export const PricingPage = ({ callToActionExtra }) => {
             </ul>
             <Link
               className='button button_white button_section'
-              to={`https://manager.hubrise.com/signup${queryString}`}
+              to={`https://manager.hubrise.com/signup`}
               newTab={false}
             >
               {t(`pages.pricing.offer.button`)}
@@ -59,7 +55,7 @@ export const PricingPage = ({ callToActionExtra }) => {
             text
             <Link
               className='section__description-link section__description-link_black'
-              to={`https://manager.hubrise.com/signup${queryString}`}
+              to={`https://manager.hubrise.com/signup`}
               newTab={false}
             >
               text
