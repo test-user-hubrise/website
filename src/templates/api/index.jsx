@@ -85,11 +85,12 @@ export const apiPageQuery = graphql`
 `
 
 ApiPage.propTypes = {
-  data: PropTypes.shape({
-    mdx: PropTypes.shape({
+  data: PropTypes.exact({
+    currentPage: PropTypes.exact({
       frontmatter: PropTypes.shape({
-        title: PropTypes.string.isRequired
-      }).isRequired,
+        title: PropTypes.string.isRequired,
+        position: PropTypes.number
+      }),
       headings: PropTypes.arrayOf(
         PropTypes.shape({
           depth: PropTypes.number.isRequired,
@@ -97,11 +98,39 @@ ApiPage.propTypes = {
         })
       ).isRequired,
       fields: PropTypes.shape({
-        slug: PropTypes.string.isRequired
+        slug: PropTypes.string.isRequired,
+        appId: PropTypes.string
       }).isRequired,
       body: PropTypes.string.isRequired
+    }).isRequired,
+    relatedPages: PropTypes.exact({
+      nodes: PropTypes.arrayOf(
+        PropTypes.exact({
+          frontmatter: PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            position: PropTypes.number
+          }),
+          headings: PropTypes.arrayOf(
+            PropTypes.shape({
+              depth: PropTypes.number.isRequired,
+              value: PropTypes.string.isRequired
+            })
+          ),
+          fields: PropTypes.exact({
+            slug: PropTypes.string.isRequired
+          })
+        })
+      )
+    }),
+    appLogo: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          childImageSharp: PropTypes.object.isRequired
+        })
+      )
     })
-  }).isRequired
+  })
 }
 
 export default ApiPage
