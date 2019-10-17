@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Slider from 'react-slick'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import Img from 'gatsby-image'
+import Slider from 'react-slick'
 
 import { NonStretchedImage } from '../../components/image'
 
@@ -9,8 +11,14 @@ import { generateKey } from '../../components/utils'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-const NextArrow = ({ className, style, onClick }) => {
-  return (
+const NextArrow = ({
+  className,
+  style,
+  onClick,
+  currentImageNumber,
+  totalNumberOfImages
+}) => {
+  return currentImageNumber < totalNumberOfImages && (
     <div
       className={className}
       style={style}
@@ -19,8 +27,13 @@ const NextArrow = ({ className, style, onClick }) => {
   )
 }
 
-const PrevArrow = ({ className, style, onClick }) => {
-  return (
+const PrevArrow = ({
+  className,
+  style,
+  onClick,
+  currentImageNumber
+}) => {
+  return currentImageNumber !== 1 && (
     <div
       className={className}
       style={style}
@@ -32,16 +45,22 @@ const PrevArrow = ({ className, style, onClick }) => {
 const Gallery = ({ images, appName }) => {
   const slider = useRef(null)
   const [ isSliderVisible, setIsSliderVisible ] = useState(false)
-  const [ currentImageNumber, setCurrentImageNumber ] = useState(0)
+  const [ currentImageNumber, setCurrentImageNumber ] = useState(1)
 
   const totalNumberOfImages = images.length
 
   const sliderSettings = {
     speed: 0,
+    infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    nextArrow: (
+      <NextArrow
+        currentImageNumber={currentImageNumber}
+        totalNumberOfImages={totalNumberOfImages}
+      />
+    ),
+    prevArrow: <PrevArrow currentImageNumber={currentImageNumber} />,
     afterChange: (newIdx) => setCurrentImageNumber(newIdx + 1)
   }
 
@@ -89,17 +108,15 @@ const Gallery = ({ images, appName }) => {
             <span className='image-slider-wrapper__title-app-name'>
               {appName}
             </span>
-            {` `}
-            {window.innerWidth > 575 ? `screenshots` : ``}
           </p>
           <button
             className='image-slider-wrapper__close_button'
             onClick={() => setIsSliderVisible(false)}
           >
-            Close
+            <FontAwesomeIcon icon={faTimes} />
           </button>
           <p className='image-slider-wrapper__count'>
-            {currentImageNumber} of {totalNumberOfImages}
+            {currentImageNumber} / {totalNumberOfImages}
           </p>
         </section>
         <Slider

@@ -26,10 +26,10 @@ const AppPage = ({ data, path }) => {
           currentPage,
           ...relatedPages.nodes.map((node) => ({ ...node }))
         ]}
-        title={fields.appId && capitalize(fields.appId)}
+        title={capitalize(fields.appId)}
       />
       <Gallery
-        appName={frontmatter.appName}
+        appName={capitalize(fields.appId)}
         images={appImages.nodes.filter(({ name }) => name !== `logo`)}
       />
       <Info content={frontmatter.info} />
