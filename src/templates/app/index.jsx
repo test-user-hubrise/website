@@ -26,7 +26,6 @@ const AppPage = ({ data, path }) => {
           currentPage,
           ...relatedPages.nodes.map((node) => ({ ...node }))
         ]}
-        title={capitalize(fields.appId)}
       />
       <Gallery
         appName={capitalize(fields.appId)}
@@ -110,39 +109,39 @@ AppPage.propTypes = {
       }).isRequired,
       headings: PropTypes.arrayOf(
         PropTypes.shape({
-          depth: PropTypes.number.isRequired,
-          value: PropTypes.string.isRequired
-        })
+          depth: PropTypes.number,
+          value: PropTypes.string
+        }).isRequired
       ).isRequired,
       fields: PropTypes.shape({
-        slug: PropTypes.string.isRequired,
-        appId: PropTypes.string.isRequired
+        slug: PropTypes.string,
+        appId: PropTypes.string
       }).isRequired,
       body: PropTypes.string.isRequired
     }),
     appImages: PropTypes.shape({
       nodes: PropTypes.arrayOf(
         PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          childImageSharp: PropTypes.object.isRequired
-        })
+          name: PropTypes.string,
+          childImageSharp: PropTypes.object
+        }).isRequired
       )
     }),
     relatedPages: PropTypes.exact({
       nodes: PropTypes.arrayOf(
         PropTypes.exact({
           frontmatter: PropTypes.exact({
-            title: PropTypes.string.isRequired,
-            position: PropTypes.number.isRequired
+            title: PropTypes.string,
+            position: PropTypes.number
           }).isRequired,
           headings: PropTypes.arrayOf(
             PropTypes.shape({
-              depth: PropTypes.number.isRequired,
-              value: PropTypes.string.isRequired
-            })
+              depth: PropTypes.number,
+              value: PropTypes.string
+            }).isRequired
           ),
           fields: PropTypes.exact({
-            slug: PropTypes.string.isRequired
+            slug: PropTypes.string
           }).isRequired
         })
       )

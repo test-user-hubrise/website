@@ -14,7 +14,7 @@ const sortPagesAsc = (pages) => {
   })
 }
 
-const SidebarRight = ({ currentPath, pages, title, logo }) => {
+const SidebarRight = ({ currentPath, pages, logo }) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const [currentPage] = pages
     .filter(({ fields }) => currentPath.endsWith(fields.slug))
@@ -43,14 +43,14 @@ const SidebarRight = ({ currentPath, pages, title, logo }) => {
         `}
       >
         <h5 className='content-nav__title'>
-          {title || `Content`}
+          {currentPage.frontmatter.title}
         </h5>
         <h5
           id='content-nav'
           className='content-nav__title content-nav__title_small'
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          {currentPage.frontmatter.title || `Content`}
+          {currentPage.frontmatter.title}
           <i
             className={`
               fa
