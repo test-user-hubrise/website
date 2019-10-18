@@ -75,3 +75,17 @@ export function generateHeaders () {
  * @returns {string}
  */
 export const generateKey = (prefix, suffix) => `${prefix}--${suffix}`
+
+/**
+ * Splits path into standalone segments.
+ * @param   {string} path - Path to page.
+ * @returns {array[string]} List of path segments without locale prefix,
+ *   if applicable.
+ */
+export const getPathSegments = (path) => {
+  const regex = /\/(?<languageCode>[a-z]{2})\//
+  const withLocalePrefix = regex.exec(path)
+  const parts = path.split(`/`).filter(Boolean)
+
+  return withLocalePrefix ? parts.slice(1) : parts
+}
