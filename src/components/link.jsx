@@ -8,12 +8,16 @@ import locales from '../i18n/locales'
 const Link = ({ to, children, ...other }) => {
   const leadsToInternalPage = to.startsWith('/')
   const { i18n: { language } } = useTranslation()
+  const isDefaultLanguage = locales[language].default
+  const mappedTo = (
+    locales[language][`pathMappings`] && locales[language][`pathMappings`][to]
+  )
 
   return leadsToInternalPage ? (
     <GatsbyLink
-      to={locales[language].default
+      to={isDefaultLanguage
         ? to
-        : `/${language}${to}`}
+        : `/${language}${mappedTo || to}`}
       {...other}
     >
       {children}

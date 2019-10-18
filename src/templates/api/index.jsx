@@ -3,39 +3,43 @@ import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import PropTypes from 'prop-types'
 
+import Breadcrumbs from './breadcrumbs'
 import Layout from './layout'
 import SidebarRight from './sidebar_right'
 
-const ApiPage = ({ data, path }) => {
+const DocPage = ({ data, path }) => {
   const { currentPage, relatedPages } = data
   const { frontmatter, body } = data.currentPage
 
   return (
-    <Layout>
-      <div className='section__content'>
-        <div className='documentation'>
-          <h1>
-            {frontmatter.title}
-          </h1>
-          <MDXRenderer>
-            {body}
-          </MDXRenderer>
+    <>
+      <Breadcrumbs path={path} />
+      <Layout>
+        <div className='section__content'>
+          <div className='documentation'>
+            <h1>
+              {frontmatter.title}
+            </h1>
+            <MDXRenderer>
+              {body}
+            </MDXRenderer>
+          </div>
         </div>
-      </div>
-      <SidebarRight
-        logo={data.appLogo}
-        currentPath={path}
-        pages={[
-          currentPage,
-          ...relatedPages.nodes.map((node) => ({ ...node }))
-        ]}
-      />
-    </Layout>
+        <SidebarRight
+          logo={data.appLogo}
+          currentPath={path}
+          pages={[
+            currentPage,
+            ...relatedPages.nodes.map((node) => ({ ...node }))
+          ]}
+        />
+      </Layout>
+    </>
   )
 }
 
 export const apiPageQuery = graphql`
-  query getApiPageContent(
+  query getDocPageContent(
     $id: String!,
     $relatedPagesFilter: MdxFilterInput!
     $appLogoRelativePath: StringQueryOperatorInput!
@@ -82,7 +86,7 @@ export const apiPageQuery = graphql`
   }
 `
 
-ApiPage.propTypes = {
+DocPage.propTypes = {
   data: PropTypes.exact({
     currentPage: PropTypes.exact({
       frontmatter: PropTypes.shape({
@@ -131,4 +135,4 @@ ApiPage.propTypes = {
   })
 }
 
-export default ApiPage
+export default DocPage

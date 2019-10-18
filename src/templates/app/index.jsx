@@ -7,6 +7,7 @@ import Overview from './overview'
 import Gallery from './gallery'
 import Info from './info'
 import Layout from '../api/layout'
+import Breadcrumbs from '../api/breadcrumbs'
 import SidebarRight from '../api/sidebar_right'
 
 const AppPage = ({ data, path }) => {
@@ -14,25 +15,28 @@ const AppPage = ({ data, path }) => {
   const { frontmatter, body, fields } = currentPage
 
   return (
-    <Layout>
-      <Overview
-        title={frontmatter.title}
-        content={body}
-      />
-      <SidebarRight
-        logo={appImages.nodes.find(({ name }) => name === `logo`)}
-        currentPath={path}
-        pages={[
-          currentPage,
-          ...relatedPages.nodes.map((node) => ({ ...node }))
-        ]}
-      />
-      <Gallery
-        appName={capitalize(fields.appId)}
-        images={appImages.nodes.filter(({ name }) => name !== `logo`)}
-      />
-      <Info content={frontmatter.info} />
-    </Layout>
+    <>
+      <Breadcrumbs path={path} />
+      <Layout>
+        <Overview
+          title={frontmatter.title}
+          content={body}
+        />
+        <SidebarRight
+          logo={appImages.nodes.find(({ name }) => name === `logo`)}
+          currentPath={path}
+          pages={[
+            currentPage,
+            ...relatedPages.nodes.map((node) => ({ ...node }))
+          ]}
+        />
+        <Gallery
+          appName={capitalize(fields.appId)}
+          images={appImages.nodes.filter(({ name }) => name !== `logo`)}
+        />
+        <Info content={frontmatter.info} />
+      </Layout>
+    </>
   )
 }
 

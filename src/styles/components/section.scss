@@ -1,6 +1,5 @@
 .section {
-  margin-top: $block-padding;
-  margin-bottom: $block-padding;
+  margin: ($block-padding / 2) 0;
   @include flex();
   @include flex-grid-row();
   justify-content: center;
