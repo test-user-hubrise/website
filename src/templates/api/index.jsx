@@ -4,6 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import PropTypes from 'prop-types'
 
 import Breadcrumbs from './breadcrumbs'
+import Feedback from './feedback'
 import Layout from './layout'
 import SidebarRight from './sidebar_right'
 
@@ -24,16 +25,17 @@ const DocPage = ({ data, path }) => {
               {body}
             </MDXRenderer>
           </div>
+          <SidebarRight
+            logo={data.appLogo}
+            currentPath={path}
+            pages={[
+              currentPage,
+              ...relatedPages.nodes.map((node) => ({ ...node }))
+            ]}
+          />
         </div>
-        <SidebarRight
-          logo={data.appLogo}
-          currentPath={path}
-          pages={[
-            currentPage,
-            ...relatedPages.nodes.map((node) => ({ ...node }))
-          ]}
-        />
       </Layout>
+      <Feedback />
     </>
   )
 }
