@@ -7,7 +7,8 @@ import {
   SectionNavigation,
   Gallery,
   AppInfo,
-  Breadcrumbs
+  Breadcrumbs,
+  Feedback
 } from '../components/documentation'
 
 const DocumentationPage = ({ data, path, pageContext }) => {
@@ -58,6 +59,7 @@ const DocumentationPage = ({ data, path, pageContext }) => {
           {appInfo && <AppInfo content={appInfo} />}
         </div>
       </section>
+      <Feedback />
     </>
   )
 }
