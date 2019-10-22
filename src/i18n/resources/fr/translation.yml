@@ -68,7 +68,7 @@ pages:
         - "Nombre d'applications connectées : illimité"
       button: Démarrer maintenant
     special:
-      free: <0>Gratuit :</0> usqu'à 50 commandes et 50 clients par mois. <2>Démarrer maintenant</2>
+      free: <0>Gratuit :</0> Jusqu'à 50 commandes et 50 clients par mois. <2>Démarrer maintenant</2>
       large_accounts: <0>Pour les chaînes :</0> Tarifs dégressifs à partir de 5 points de vente. <2>Nous contacter</2>
       faq: Voir notre F.A.Q. concernant l'abonnement
   apps:
