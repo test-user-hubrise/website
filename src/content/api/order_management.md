@@ -309,7 +309,7 @@ Orders do not have to go through all steps. The sequence actually depends on the
 | `sku_ref` <Label type="optional" />       | string                                         | The ref of the sku.                                                                                                                                                                         |
 | `price`                                   | [Money](/api/general-concepts/#monetary-value) | The unit price of the sku, without the cost of options.                                                                                                                                     |
 | `quantity`                                | decimal                                        | The quantity of items ordered.                                                                                                                                                              |
-| `options` <Label type="optional" />       | [OrderOption](#order-options)[]              | Item customization.                                                                                                                                                                         |
+| `options` <Label type="optional" />       | [OrderOption](#order-options)[]                | Item customization.                                                                                                                                                                         |
 | `points_earned` <Label type="optional" /> | decimal                                        | Loyalty points earned by the customer. This field is not linked to a particular loyalty card: a loyalty operation must be included in the order to effectively add/remove points to a card. |
 | `points_used` <Label type="optional" />   | decimal                                        | Loyalty points used by the customer. Same remark as above.                                                                                                                                  |
 
@@ -387,10 +387,10 @@ An order deal associates an order item's `deal_key` to a particular deal.
 
 ```json
 {
-    "0": {
-      "name": "Buy a dessert, get a drink for 1€",
-      "ref": "FREEDRINK"
-    }
+  "0": {
+    "name": "Buy a dessert, get a drink for 1€",
+    "ref": "FREEDRINK"
+  }
 }
 ```
 

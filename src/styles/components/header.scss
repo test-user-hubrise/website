@@ -11,10 +11,11 @@
 
   &__desktop {
     @include flex-grid-row();
-    @include flex();
-    height: 100%;
+    @include flex() // @include flex-grid-column(9);
+      height: 100%;
     align-items: center;
-    max-width: 60rem;
+    max-width: 75rem;
+    padding: 0 1rem;
     @include breakpoint(medium down) {
       display: none;
     }

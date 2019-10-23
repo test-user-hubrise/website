@@ -3,10 +3,11 @@
     display: block;
     width: 100%;
     position: relative;
-    padding-bottom: 1rem;
-    color: #cccccc;
+    padding-top: 1rem;
+    margin-bottom: 0;
+    color: #555;
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 1rem;
     padding-left: 1rem;
     cursor: pointer;
@@ -14,19 +15,6 @@
     @include breakpoint(medium down) {
       display: none;
       padding-left: 0;
-    }
-
-    &:before {
-      border-bottom: 4px solid #ececec;
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 1rem;
-      width: 65%;
-      @include breakpoint(medium down) {
-        width: 100%;
-        left: 0;
-      }
     }
   }
 
@@ -36,12 +24,22 @@
     }
     @include breakpoint(medium down) {
       display: block;
+      margin-bottom: 0;
+      padding: 1rem;
     }
+  }
+
+  &__title_small_bottom_border {
+    border-bottom: 1px solid $main-green;
   }
 
   &__list {
     display: block;
-    margin-top: 1rem;
+    padding: 1rem 0;
+
+    @include breakpoint(medium down) {
+      padding: 0;
+    }
   }
 
   &__list_hidden {
@@ -67,14 +65,15 @@
     font-size: 0.9375rem;
     width: 100%;
     display: inline-block;
-    margin-bottom: 0.2rem;
   }
 
   &__item_active {
     color: $white;
+
     .content-nav__link {
       color: $white;
       background: $main-green;
+
       &:hover {
         color: $white;
       }
@@ -87,8 +86,9 @@
     font-size: 0.9375rem;
     display: inline-block;
     width: 100%;
+    padding: 0.25rem 0;
     padding-left: 1rem;
-    padding-top: 0.2rem;
+
     &:hover {
       color: $main-green;
     }

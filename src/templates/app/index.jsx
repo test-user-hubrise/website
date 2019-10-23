@@ -1,51 +1,59 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { capitalize } from 'lodash'
 import PropTypes from 'prop-types'
 
-import Layout from './layout'
-import SectionNavigation from './section_navigation'
+import Overview from './overview'
+import Gallery from './gallery'
+import Info from './info'
+import Layout from '../api/layout'
+import SectionNavigation from '../api/section_navigation'
 
-const ApiPage = ({ data, path }) => {
-  const { currentPage, relatedPages } = data
-  const { frontmatter, body, fields } = data.currentPage
+const AppPage = ({ data, path }) => {
+  const { currentPage, relatedPages, appImages } = data
+  const { frontmatter, body, fields } = currentPage
 
   return (
     <Layout>
-      <div className='section__content'>
-        <div className='documentation'>
-          <h1>
-            {frontmatter.title}
-          </h1>
-          <MDXRenderer>
-            {body}
-          </MDXRenderer>
-        </div>
-      </div>
+      <Overview
+        title={frontmatter.title}
+        content={body}
+      />
       <SectionNavigation
-        logo={data.appLogo}
+        logo={appImages.nodes.find(({ name }) => name === `logo`)}
         currentPath={path}
-        title={fields.appId && capitalize(fields.appId)}
         pages={[
           currentPage,
           ...relatedPages.nodes.map((node) => ({ ...node }))
         ]}
+        title={capitalize(fields.appId)}
       />
+      <Gallery
+        appName={capitalize(fields.appId)}
+        images={appImages.nodes.filter(({ name }) => name !== `logo`)}
+      />
+      <Info content={frontmatter.info} />
     </Layout>
   )
 }
 
-export const apiPageQuery = graphql`
-  query getApiPageContent(
+export const appPageQuery = graphql`
+  query getAppPageContent(
     $id: String!,
+    $appImagesFilter: FileFilterInput!,
     $relatedPagesFilter: MdxFilterInput!
-    $appLogoRelativePath: StringQueryOperatorInput!
   ) {
     currentPage: mdx(id: { eq: $id }) {
       frontmatter {
-        title
         position
+        title
+        info {
+          category
+          availability
+          priceRange
+          website
+          contact
+        }
       }
       headings {
         value
@@ -67,29 +75,38 @@ export const apiPageQuery = graphql`
           slug
         }
         headings {
-          value
           depth
+          value
         }
       }
     }
-    appLogo: file(relativePath: $appLogoRelativePath) {
-      name
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_withWebp_tracedSVG
-          presentationWidth
+    appImages: allFile(filter: $appImagesFilter) {
+      nodes {
+        name
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            presentationWidth
+          }
         }
       }
     }
   }
 `
 
-ApiPage.propTypes = {
+AppPage.propTypes = {
   data: PropTypes.exact({
     currentPage: PropTypes.exact({
-      frontmatter: PropTypes.exact({
-        title: PropTypes.string.isRequired,
-        position: PropTypes.number.isRequired
+      frontmatter: PropTypes.shape({
+        position: PropTypes.number,
+        title: PropTypes.string,
+        info: PropTypes.exact({
+          category: PropTypes.string,
+          availability: PropTypes.string,
+          priceRange: PropTypes.string,
+          website: PropTypes.string,
+          contact: PropTypes.string
+        })
       }).isRequired,
       headings: PropTypes.arrayOf(
         PropTypes.shape({
@@ -97,11 +114,19 @@ ApiPage.propTypes = {
           value: PropTypes.string.isRequired
         })
       ).isRequired,
-      fields: PropTypes.exact({
+      fields: PropTypes.shape({
         slug: PropTypes.string.isRequired,
-        appId: PropTypes.string
+        appId: PropTypes.string.isRequired
       }).isRequired,
       body: PropTypes.string.isRequired
+    }),
+    appImages: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          childImageSharp: PropTypes.object.isRequired
+        })
+      )
     }),
     relatedPages: PropTypes.exact({
       nodes: PropTypes.arrayOf(
@@ -121,16 +146,8 @@ ApiPage.propTypes = {
           }).isRequired
         })
       )
-    }),
-    appLogo: PropTypes.shape({
-      nodes: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          childImageSharp: PropTypes.object.isRequired
-        })
-      )
     })
   }).isRequired
 }
 
-export default ApiPage
+export default AppPage

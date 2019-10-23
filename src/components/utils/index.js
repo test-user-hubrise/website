@@ -15,6 +15,18 @@ export const kebabify = (string, keepCase = false) => {
 }
 
 /**
+ * Inserts a space between words in a camel cased string.
+ * @param {string}  string
+ * @param {boolean} keepCase - Keep original letter casing, or transform into lowercase.
+ * @returns {string}
+ */
+export const splitCamelCase = (string, keepCase = false) => {
+  const result = string.split(/([A-Z]?[a-z]+)/).filter(Boolean).join(` `)
+
+  return keepCase ? result : result.toLowerCase()
+}
+
+/**
  * Strips headers of chapters and subchapters, transforming
  * the remaining text into a kebabified anchor.
  *

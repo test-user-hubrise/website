@@ -37,16 +37,6 @@
     padding-top: $block-padding;
     padding-bottom: $block-padding;
     text-align: center;
-
-    &:before {
-      width: 9999px;
-      left: 100%;
-      top: 0;
-      bottom: 0;
-      content: '';
-      background: $white;
-      position: absolute;
-    }
   }
 
   &__in_padding {
@@ -151,29 +141,61 @@
       padding-top: $block-padding;
       padding-bottom: $block-padding;
       background: #ffffff;
+
+      @include breakpoint(medium down) {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
     }
 
     .section__sidebar_right {
       padding-top: 0;
       background: transparent;
+
+      @include breakpoint(medium down) {
+        padding: 0;
+      }
     }
   }
 
   &__sidebar {
     @include flex-grid-column(3);
+    position: sticky;
+    top: 1rem;
 
     @include breakpoint(medium down) {
       @include flex-grid-column(12);
       order: 0;
+      position: unset;
     }
   }
 
   &__sidebar-in {
-    position: sticky;
-    top: 0;
     background: $white;
+
+    @include breakpoint(medium down) {
+      border-top: 1px solid $main-green;
+      border-bottom: 1px solid $main-green;
+    }
+  }
+
+  &__sidebar_sticky {
+    position: sticky;
+    top: 1rem;
+
+    @include breakpoint(medium down) {
+      position: unset;
+    }
+  }
+
+  &__sidebar_logo {
+    margin-bottom: 1rem;
     padding: 1rem 0;
-    margin-bottom: $block-padding;
+    background: $white;
+
+    @include breakpoint(medium down) {
+      margin-bottom: 1.5rem;
+    }
   }
 
   &__sidebar_white {
@@ -183,19 +205,11 @@
   }
 
   &__sidebar_right {
-    padding-right: 0;
-
     @include breakpoint(medium down) {
       @include flex-grid-column(12);
       order: 1;
       background: $white;
-    }
-  }
-
-  &__sidebar_left {
-    @include flex-grid-column(2);
-    @include breakpoint(medium down) {
-      @include flex-grid-column(12);
+      padding: 0;
     }
   }
 
@@ -207,9 +221,26 @@
   }
 
   &__content {
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: '';
+      top: 0;
+      right: 100%;
+      height: 100%;
+      width: 100%;
+      background: #fff;
+    }
+
+    &:not(:first-of-type) {
+      margin-top: 1rem;
+    }
+
     @include flex-grid-column(9);
     @include breakpoint(medium down) {
       @include flex-grid-column(12);
+      order: 2;
     }
   }
 
