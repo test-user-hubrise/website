@@ -6,4 +6,4 @@ patchesStrategicMerge:
 
 images:
   - name: hubrise/website
-    newTag: "latest"
+    newTag: __RELEASE__

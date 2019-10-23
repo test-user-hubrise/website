@@ -6,4 +6,4 @@ patchesStrategicMerge:
 
 images:
   - name: hubrise/website
-    newTag: "2019101001"
+    newTag: __RELEASE__
