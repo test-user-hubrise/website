@@ -29,20 +29,27 @@ const createPages = async ({ graphql, actions }) => {
   result.data.allMdx.nodes.forEach(({ id, fields }) => {
     const { slug, appId } = fields
     const notCurrentIdFilter = { id: { ne: id } }
+    const allApiPagesFilter = {
+      fields: {
+        slug: { glob: `/api/*` }
+      }
+    }
 
     if (appId) {
-      const isOverviewPage = slug.match(new RegExp(`${appId}/$`))
+      const isAppOverviewPage = slug.match(new RegExp(`${appId}/$`))
       const allAppPagesFilter = {
         fields: {
-          slug: {
-            regex: `/apps/${appId}/`
-          }
+          slug: { regex: `/apps/${appId}/` }
         }
       }
+      const appRelatedPagesFilter = {
+        ...notCurrentIdFilter,
+        ...allAppPagesFilter
+      }
 
-      if (isOverviewPage) {
+      if (isAppOverviewPage) {
         // Generate app overview page.
-        createPage({
+        return createPage({
           path: `fr${slug}`,
           component: appTemplate,
           context: {
@@ -51,29 +58,21 @@ const createPages = async ({ graphql, actions }) => {
               relativeDirectory: { regex: `/${appId}/` },
               sourceInstanceName: { eq: `images` }
             },
-            relatedPagesFilter: {
-              ...notCurrentIdFilter,
-              ...allAppPagesFilter
-            }
+            relatedPagesFilter: appRelatedPagesFilter
           }
         })
       } else {
         // Generate related help page.
-        createPage({
+        return createPage({
           path: `fr${slug}`,
           component: docsTemplate,
           context: {
             id,
             appLogoRelativePath: { regex: `/apps/${appId}/logo/` },
-            relatedPagesFilter: {
-              ...notCurrentIdFilter,
-              ...allAppPagesFilter
-            }
+            relatedPagesFilter: appRelatedPagesFilter
           }
         })
       }
-
-      return
     }
 
     if (slug.includes(`faq`)) {
@@ -84,6 +83,14 @@ const createPages = async ({ graphql, actions }) => {
       })
     }
 
+    // Pull in other related doc pages for API section - required for navigation.
+    const docRelatedPagesFilter = slug.includes(`api`)
+      ? {
+        ...notCurrentIdFilter,
+        ...allApiPagesFilter
+      }
+      : { id: { eq: null } }
+
     Object.values(locales).forEach((props) => {
       createPage({
         path: (props.default ? `` : props.code) + slug,
@@ -91,14 +98,7 @@ const createPages = async ({ graphql, actions }) => {
         context: {
           id,
           appLogoRelativePath: { eq: null },
-          relatedPagesFilter: {
-            ...notCurrentIdFilter,
-            fields: {
-              slug: {
-                glob: `/api/*`
-              }
-            }
-          }
+          relatedPagesFilter: docRelatedPagesFilter
         }
       })
     })
