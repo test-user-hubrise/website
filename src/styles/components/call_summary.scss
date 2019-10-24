@@ -1,6 +1,6 @@
 .call-summary {
-  color: #777;
-  background-color: #fafafa;
+  color: #555;
+  background-color: inherit;
 
   tr {
     vertical-align: middle;
@@ -9,14 +9,11 @@
     &:nth-child(even) {
       background: none;
     }
-
-    &:last-child {
-      border: none;
-    }
   }
 
   td:first-of-type {
     width: 33%;
+    font-weight: 600;
   }
 
   &__cell-wrapper--outer {
