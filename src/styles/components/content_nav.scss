@@ -56,12 +56,12 @@
   }
 
   &__item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0.2rem;
     color: #555555;
     font-weight: 500;
     font-size: 0.9375rem;
-    width: 100%;
-    display: inline-block;
-    margin-bottom: 0.2rem;
   }
 
   &__item:last-child {
@@ -80,13 +80,13 @@
   }
 
   &__link {
-    color: #555555;
-    font-weight: 500;
-    font-size: 0.9375rem;
     display: inline-block;
     width: 100%;
     padding-left: 1rem;
     padding-top: 0.2rem;
+    color: #555555;
+    font-weight: 500;
+    font-size: 0.9375rem;
     &:hover {
       color: $main-green;
     }

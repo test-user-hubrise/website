@@ -74,9 +74,10 @@ const SidebarRight = ({ currentPath, pages, logo }) => {
               return (
                 <li
                   key={generateKey(frontmatter.title, idx)}
-                  className={`content-nav__item ${
-                    isCurrentPage ? 'content-nav__item_active' : ''
-                  }`}
+                  className={`
+                    content-nav__item
+                    ${isCurrentPage ? 'content-nav__item_active' : ''}
+                  `}
                 >
                   <Link to={slug} className='content-nav__link'>
                     {frontmatter.title}
