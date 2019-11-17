@@ -25,15 +25,15 @@ const DocPage = ({ data, path }) => {
               {body}
             </MDXRenderer>
           </div>
-          <SidebarRight
-            logo={data.appLogo}
-            currentPath={path}
-            pages={[
-              currentPage,
-              ...relatedPages.nodes.map((node) => ({ ...node }))
-            ]}
-          />
         </div>
+        <SidebarRight
+          logo={data.appLogo}
+          currentPath={path}
+          pages={[
+            currentPage,
+            ...relatedPages.nodes.map((node) => ({ ...node }))
+          ]}
+        />
       </Layout>
       <Feedback />
     </>
