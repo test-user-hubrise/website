@@ -132,11 +132,42 @@
     margin: 1.5rem auto;
     border-top: 1px solid $gray-color;
     border-bottom: 1px solid $gray-color;
+  }
 
-    & .prism-code__wrapper {
-      position: relative;
-      white-space: inherit;
-    }
+  .prism-code__outer-wrapper {
+    position: relative;
+  }
+
+  .prism-code__outer-wrapper_extra-padding {
+    padding-bottom: 4rem;
+  }
+
+  .prism-code__inner-wrapper {
+    position: relative;
+    white-space: inherit;
+  }
+
+  .prism-code__expand-button {
+    display: flex;
+    position: absolute;
+    left: 0;
+    line-height: 1.5;
+    height: 1.5rem;
+    padding-top: 0.5rem;
+    color: $main-green;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .prism-code__expand-button-dots {
+    width: 3em;
+    padding-right: 0.8em;
+    text-align: right;
+    letter-spacing: 2px;
+  }
+
+  .prism-code_inline {
+    padding: 0.1rem 0.3rem;
   }
 
   .token-line {
