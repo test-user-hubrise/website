@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useLayoutContext } from '../../context/layout'
 import Link from '../../components/link'
+import { generateKey } from '../../components/utils'
 
 const Feedback = () => {
   const [ isExpanded, setIsExpanded ] = useState(false)
@@ -46,8 +47,11 @@ const Feedback = () => {
             {t(`misc.feedback.description`)}
           </p>
           <ul>
-            {t(`misc.feedback.options`).map(({ text, to }) => (
-              <li className='feedback__instructions-list-item'>
+            {t(`misc.feedback.options`).map(({ text, to }, idx) => (
+              <li
+                key={generateKey(text, idx)}
+                className='feedback__instructions-list-item'
+              >
                 {to ? (
                   <Link
                     className='feedback__link'
