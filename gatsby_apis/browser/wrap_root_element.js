@@ -2,9 +2,12 @@ import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { I18nextProvider } from 'react-i18next'
 
-import CallSummaryTable from '../../src/components/markdown/call_summary_table'
-import HighlightCode from '../../src/components/markdown/highlight_code'
-import Label from '../../src/components/markdown/label'
+import {
+  CallSummaryTable,
+  ContactFormToggle,
+  HighlightCode,
+  Label
+} from '../../src/components/markdown'
 import Link from '../../src/components/link'
 import { generateHeaders } from '../../src/components/utils'
 import { LayoutProvider } from '../../src/context/layout'
@@ -22,6 +25,7 @@ let components = {
   ),
   inlineCode: ({ children }) => <HighlightCode inline code={children} />,
   CallSummaryTable,
+  ContactFormToggle,
   Label
 }
 

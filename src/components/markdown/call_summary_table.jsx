@@ -11,7 +11,7 @@ const TableCell = ({ children }) => {
   )
 }
 
-const CallSummaryTable = ({ endpoint, shortEndpoint, accessLevel }) => {
+export const CallSummaryTable = ({ endpoint, shortEndpoint, accessLevel }) => {
   let url
   let extra
 
@@ -59,5 +59,3 @@ CallSummaryTable.propTypes = {
 CallSummaryTable.defaultProps = {
   shortEndpoint: null
 }
-
-export default CallSummaryTable

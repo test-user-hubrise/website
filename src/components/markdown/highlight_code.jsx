@@ -5,7 +5,7 @@ import Highlight from 'prism-react-renderer'
 
 import { generateKey } from '../utils'
 
-const HighlightCode = ({ code, language, inline }) => {
+export const HighlightCode = ({ code, language, inline }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
@@ -107,5 +107,3 @@ HighlightCode.defaultProps = {
   language: `none`,
   inline: false
 }
-
-export default HighlightCode

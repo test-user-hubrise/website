@@ -1,11 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { useLayoutContext } from '../../context/layout'
 
-function ContactFormToggle ({ text }) {
+export const ContactFormToggle = ({ text }) => {
   const { forms } = useLayoutContext()
 
-  return <button onClick={forms.contact.toggle}>{text}</button>
+  return (
+    <button onClick={forms.contact.toggle}>
+      {text}
+    </button>
+  )
 }
 
-export default ContactFormToggle
+ContactFormToggle.propTypes = {
+  text: PropTypes.string.isRequired
+}

@@ -2,8 +2,6 @@
 title: F.A.Q
 ---
 
-import ContactFormToggle from '../components/markdown/contact_form_toggle.jsx'
-
 #### Abonnement
 
 ##### Puis-je tester gratuitement HubRise ?
