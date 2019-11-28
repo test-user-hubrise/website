@@ -6,7 +6,8 @@ import {
   CallSummaryTable,
   ContactFormToggle,
   HighlightCode,
-  Label
+  Label,
+  MultilanguageSnippets
 } from '../../src/components/markdown'
 import Link from '../../src/components/link'
 import { generateHeaders } from '../../src/components/utils'
@@ -17,16 +18,19 @@ import i18n from '../../src/i18n'
 let components = {
   ...generateHeaders(),
   a: ({ href, ...other }) => <Link to={href} {...other} />,
-  pre: ({ children: { props } }) => (
-    <HighlightCode
-      language={props.className && props.className.split(`-`)[1]}
-      code={props.children}
-    />
-  ),
+  pre: ({ children: { props: { className, children } } }) => {
+    return (
+      <HighlightCode
+        language={className && className.split(`-`)[1]}
+        code={children}
+      />
+    )
+  },
   inlineCode: ({ children }) => <HighlightCode inline code={children} />,
   CallSummaryTable,
   ContactFormToggle,
-  Label
+  Label,
+  MultilanguageSnippets
 }
 
 export const wrapRootElement = ({ element }) => {

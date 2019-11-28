@@ -1,0 +1,21 @@
+{
+  "id": "3r4s3-1",
+  "name": "Paris",
+  "account": {
+    "id": "3r4s3",
+    "name": "Bella Pizza",
+    "currency": "EUR"
+  },
+  "address": "13 rue du Chant des Oiseaux",
+  "postal_code": "75003",
+  "city": "Paris",
+  "country": "FR",
+  "timezone": {
+    "name": "Europe/Paris",
+    "utc_offset": 7200
+  },
+  "custom_fields": {
+    "latitude": 48.8697246,
+    "longitude": 2.3061506
+  }
+}

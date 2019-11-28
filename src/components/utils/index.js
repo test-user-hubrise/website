@@ -89,3 +89,14 @@ export const getPathSegments = (path) => {
 
   return withLocalePrefix ? parts.slice(1) : parts
 }
+
+/**
+ * Fetches file (same origin) and returns its text representation.
+ * @param   {path} path - File location relative to site's root.
+ * @returns {Promise} File contents in text format.
+ */
+export const fetchFileAsText = async (path) => {
+  const blob = await fetch(path)
+
+  return blob.text()
+}

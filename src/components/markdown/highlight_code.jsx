@@ -5,7 +5,9 @@ import Highlight from 'prism-react-renderer'
 
 import { generateKey } from '../utils'
 
-export const HighlightCode = ({ code, language, inline }) => {
+export const HighlightCode = ({
+  code, language, inline, outerWrapperClassName, isMultiLanguage
+}) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
@@ -16,6 +18,8 @@ export const HighlightCode = ({ code, language, inline }) => {
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => {
         const numberOfLines = tokens.length - 1
+        const lineLimit = 10
+        const isAboveLimit = numberOfLines > lineLimit
         const firstTenLines = tokens.slice(0, 10)
         const otherLines = tokens.slice(10)
 
@@ -26,12 +30,18 @@ export const HighlightCode = ({ code, language, inline }) => {
             style={style}
           />
         ) : (
-          <div className='prism-code__outer-wrapper'>
+          <div
+            className={`
+              prism-code__outer-wrapper
+              ${outerWrapperClassName || ''}
+            `}
+          >
             <pre
               className={`
                 ${className}
-                ${isExpanded ? '' : 'prism-code__outer-wrapper_extra-padding'}
                 line-numbers
+                ${(!isExpanded && isAboveLimit) ? 'prism-code_truncated' : ''}
+                ${isMultiLanguage ? 'prism-code_with-switch' : ''}
               `}
               style={style}
             >
@@ -78,7 +88,7 @@ export const HighlightCode = ({ code, language, inline }) => {
                   )}
                 </span>
               </div>
-              {(numberOfLines > 10) && !isExpanded && (
+              {isAboveLimit && !isExpanded && (
                 <button
                   className='prism-code__expand-button'
                   onClick={() => setIsExpanded(true)}

@@ -5,6 +5,9 @@ console.log(`Using environment config: '${activeEnv}'`)
 
 require('dotenv').config({ path: `.env.${activeEnv}` })
 
+const pathToSrc = `${__dirname}/src`
+const pathToContent = `${pathToSrc}/content`
+
 module.exports = {
   siteMetadata: {
     title: `HubRise`,
@@ -24,14 +27,21 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`
+        path: `${pathToSrc}/images`
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `content`,
-        path: `${__dirname}/src/content`
+        name: `articles`,
+        path: `${pathToContent}/articles`
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `snippets`,
+        path: `${pathToContent}/snippets`
       }
     },
     `gatsby-transformer-sharp`,

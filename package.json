@@ -100,7 +100,8 @@
       "describe",
       "it",
       "cy",
-      "jest"
+      "jest",
+      "fetch"
     ]
   },
   "eslintConfig": {

@@ -1,5 +1,6 @@
 ---
 title: Account management
+snippets_path: api/account_management
 ---
 
 ## 1. Location
@@ -18,29 +19,10 @@ Get location details.
 
 `GET /locations/3r4s3-1`:
 
-```json
-{
-  "id": "3r4s3-1",
-  "name": "Paris",
-  "account": {
-    "id": "3r4s3",
-    "name": "Bella Pizza",
-    "currency": "EUR"
-  },
-  "address": "13 rue du Chant des Oiseaux",
-  "postal_code": "75003",
-  "city": "Paris",
-  "country": "FR",
-  "timezone": {
-    "name": "Europe/Paris",
-    "utc_offset": 7200
-  },
-  "custom_fields": {
-    "latitude": 48.8697246,
-    "longitude": 2.3061506
-  }
-}
-```
+<MultilanguageSnippets
+  path={props.frontmatter.snippets_path}
+  name='retrieve_location'
+/>
 
 ### 1.2 Update location
 

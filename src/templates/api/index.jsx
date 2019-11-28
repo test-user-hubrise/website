@@ -21,7 +21,7 @@ const DocPage = ({ data, path }) => {
             <h1>
               {frontmatter.title}
             </h1>
-            <MDXRenderer>
+            <MDXRenderer frontmatter={frontmatter}>
               {body}
             </MDXRenderer>
           </div>
@@ -50,6 +50,7 @@ export const apiPageQuery = graphql`
       frontmatter {
         title
         position
+        snippets_path
       }
       headings {
         value
