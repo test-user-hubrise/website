@@ -5,9 +5,9 @@
     position: relative;
     padding-top: 1rem;
     margin-bottom: 0;
-    color: #cccccc;
+    color: #555;
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 1rem;
     padding-left: 1rem;
     cursor: pointer;
@@ -26,15 +26,21 @@
       margin-bottom: 0;
       padding: 1rem 1.5rem;
       display: block;
+      margin-bottom: 0;
+      padding: 1rem;
     }
+  }
+
+  &__title_small_bottom_border {
+    border-bottom: 1px solid $main-green;
   }
 
   &__list {
     display: block;
-    margin-top: 1rem;
+    padding: 1rem 0;
 
     @include breakpoint(medium down) {
-      margin-top: 0;
+      padding: 0;
     }
   }
 
@@ -59,20 +65,18 @@
     display: inline-block;
     width: 100%;
     margin-bottom: 0.2rem;
-    color: #555555;
+    color: #555;
     font-weight: 500;
     font-size: 0.9375rem;
   }
 
-  &__item:last-child {
-    margin-bottom: 1rem;
-  }
-
   &__item_active {
     color: $white;
+
     .content-nav__link {
       color: $white;
       background: $main-green;
+
       &:hover {
         color: $white;
       }
@@ -82,11 +86,12 @@
   &__link {
     display: inline-block;
     width: 100%;
+    padding: 0.25rem 0;
     padding-left: 1rem;
-    padding-top: 0.2rem;
-    color: #555555;
+    color: #555;
     font-weight: 500;
     font-size: 0.9375rem;
+
     &:hover {
       color: $main-green;
     }

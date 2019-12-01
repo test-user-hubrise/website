@@ -8,21 +8,6 @@ import { generateKey } from './utils'
 import logo from '../images/logo.png'
 import button from '../images/bread_button.png'
 
-const social = [
-  {
-    icon: 'fa-twitter',
-    to: 'https://www.twitter.com'
-  },
-  {
-    icon: 'fa-facebook',
-    to: 'https://www.facebook.com'
-  },
-  {
-    icon: 'fa-envelope',
-    to: 'mailto:contact@hubrise.com'
-  }
-]
-
 const HeaderMobile = () => {
   const [ isVisible, setIsVisible ] = useState(false)
   const { t } = useTranslation()
@@ -37,42 +22,56 @@ const HeaderMobile = () => {
       )}
       <div className='header__mobile'>
         <div className='mobile-bar'>
-          <button
-            id='mobile-bar-button'
-            className='mobile-bar__button'
-            type='button'
-            style={{
-              backgroundImage: `url(${button})`,
-              backgroundRepeat: 'no-repeat'
-            }}
+          <div
+            className='mobile-bar__button-wrapper'
             onClick={() => setIsVisible(!isVisible)}
-          />
-          <Link className='mobile-bar__logo' to='/'>
-            <img src={logo} alt='company-logo' />
+          >
+            <button
+              id='mobile-bar-button'
+              className='mobile-bar__button'
+              type='button'
+              style={{
+                backgroundImage: `url(${button})`,
+                backgroundRepeat: 'no-repeat'
+              }}
+            />
+          </div>
+          <Link
+            className='mobile-bar__logo'
+            to='/'
+          >
+            <img
+              src={logo}
+              alt='company-logo'
+            />
           </Link>
         </div>
         {isVisible && (
-          <div id='mobile-bar-menu' className='mobile-bar__menu'>
+          <div
+            id='mobile-bar-menu'
+            className='mobile-bar__menu'
+          >
             <div className='mobile-bar__header'>
               <button
-                onClick={() => setIsVisible(!isVisible)}
                 className='mobile-bar__close-button'
                 id='mobile-bar-close'
               >
-                <i className='fa fa-angle-left fa-pull-left' />
-                <span className='mobile-bar__sclose-button-span'>Menu</span>
+                <div
+                  className='mobile-bar__close-button-icon-wrapper'
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <i
+                    className={`
+                    fa
+                    fa-angle-left
+                    mobile-bar__close-button-icon
+                  `}
+                  />
+                </div>
+                <span>
+                  Menu
+                </span>
               </button>
-              <div className='header__social-block header__social-block_sidenav'>
-                {social.map(({ icon, to }, idx) => (
-                  <Link
-                    key={generateKey(icon, idx)}
-                    to={to}
-                    className='header__social-block-link'
-                  >
-                    <i className={`fa ${icon} header__social-block-icon`} />
-                  </Link>
-                ))}
-              </div>
             </div>
             <nav className='mobile-bar__content'>
               <ul className='leftbar-menu'>
@@ -92,11 +91,17 @@ const HeaderMobile = () => {
                 <Link
                   to='https://manager.hubrise.com/signup'
                   className='header__action-signup'
+                  newTab={false}
                 >
-                  Sign up
+                  {t(`layout.header.buttons.signup`)}
                 </Link>
                 <button className='header__action-login'>
-                  <Link to='https://manager.hubrise.com/login'>Login</Link>
+                  <Link
+                    to='https://manager.hubrise.com/login'
+                    newTab={false}
+                  >
+                    {t(`layout.header.buttons.login`)}
+                  </Link>
                 </button>
               </div>
             </nav>

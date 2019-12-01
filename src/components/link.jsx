@@ -5,25 +5,42 @@ import { Link as GatsbyLink } from 'gatsby'
 
 import locales from '../i18n/locales'
 
-const Link = ({ to, children, ...other }) => {
-  const leadsToInternalPage = to.startsWith('/')
+const newTabProps = {
+  target: `_blank`,
+  rel: `noopener noreferrer`
+}
+
+const Link = ({ to: initialTo, children, newTab, ...other }) => {
+  const leadsToInternalPage = initialTo.startsWith(`/`)
+  const leadsToDashboard = initialTo.includes(`manager.hubrise.com`)
+  const isAnchorWithinCurrentPage = initialTo.startsWith(`#`)
   const { i18n: { language } } = useTranslation()
   const isDefaultLanguage = locales[language].default
+  const queryString = `?locale=${locales[language].tag}`
+  const to = initialTo + (leadsToDashboard ? queryString : ``)
   const mappedTo = (
     locales[language][`pathMappings`] && locales[language][`pathMappings`][to]
   )
 
-  return leadsToInternalPage ? (
-    <GatsbyLink
-      to={isDefaultLanguage
-        ? to
-        : `/${language}${mappedTo || to}`}
+  if (leadsToInternalPage) {
+    return (
+      <GatsbyLink
+        to={isDefaultLanguage
+          ? to
+          : `/${language}${mappedTo || to}`}
+        {...other}
+      >
+        {children}
+      </GatsbyLink>
+    )
+  }
+
+  return (
+    <a
+      href={to}
+      {...((newTab && !isAnchorWithinCurrentPage) && newTabProps)}
       {...other}
     >
-      {children}
-    </GatsbyLink>
-  ) : (
-    <a href={to} {...other}>
       {children}
     </a>
   )
@@ -31,11 +48,13 @@ const Link = ({ to, children, ...other }) => {
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,
-  children: PropTypes.node
+  children: PropTypes.node,
+  newTab: PropTypes.bool
 }
 
 Link.defaultProps = {
-  children: <></>
+  children: <></>,
+  newTab: true
 }
 
 export default Link

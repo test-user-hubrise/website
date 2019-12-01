@@ -5,6 +5,8 @@ import * as yup from 'yup'
 
 import Form from './base/form'
 
+import locales from '../../i18n/locales'
+
 const structure = {
   formId: `signup`,
   sections: [
@@ -55,10 +57,11 @@ const structure = {
   ]
 }
 
-const Signup = ({ t, _i18n, ...formikProps }) => {
+const Signup = ({ t, _i18n, buttonText, ...formikProps }) => {
   return (
     <Form
       buttonClasses={[`form__button_full-width`]}
+      buttonText={buttonText}
       formProps={{ id: `main-form` }}
       structure={structure}
       t={t}
@@ -68,17 +71,22 @@ const Signup = ({ t, _i18n, ...formikProps }) => {
 }
 
 const createSignupSchema = (t) => {
-  const lastNameMinLength = 2
-  const passwordLength = 10
+  const nameMinLength = 2
+  const passwordLength = 8
 
   return yup.object().shape({
     first_name: yup
-      .string(),
+      .string()
+      .min(
+        nameMinLength,
+        t(`forms.validation.min`, { length: nameMinLength })
+      )
+      .required(t(`forms.validation.first_name_required`)),
     last_name: yup
       .string()
       .min(
-        lastNameMinLength,
-        t(`forms.validation.min`, { length: lastNameMinLength })
+        nameMinLength,
+        t(`forms.validation.min`, { length: nameMinLength })
       )
       .required(t(`forms.validation.last_name_required`)),
     email: yup
@@ -103,8 +111,10 @@ const SignupEnhanced = withFormik({
     password: ``
   }),
   validationSchema: ({ t }) => createSignupSchema(t),
-  handleSubmit: () => {
-    window.location = `https://manager.hubrise.com/signup`
+  handleSubmit: (_values, { props }) => {
+    const queryString = `?locale=${locales[props.i18n.language].tag}`
+
+    window.location = `https://manager.hubrise.com/signup${queryString}`
   }
 })(Signup)
 

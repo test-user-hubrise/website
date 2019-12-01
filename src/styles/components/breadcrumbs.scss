@@ -3,50 +3,46 @@
   @include breakpoint(medium down) {
     padding: 0 1rem;
   }
+}
 
-  &__list {
-    @include flex-grid-row();
-    flex-flow: row wrap;
-    margin-top: $block-padding / 2;
-    margin-bottom: calc(1rem - #{$block-padding} / 2);
+.breadcrumbs-wrapper__list {
+  @include flex-grid-row();
+  flex-flow: row wrap;
+  margin-top: $block-padding / 2;
+  margin-bottom: calc(1rem - #{$block-padding} / 2);
 
-    @include breakpoint(medium down) {
-      padding: 0;
-    }
+  @include breakpoint(medium down) {
+    padding: 0;
+  }
+}
+
+.breadcrumbs-wrapper__list-item {
+  position: relative;
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+  color: #555;
+  text-transform: capitalize;
+
+  &::after {
+    content: '>';
+    margin-left: 0.5rem;
   }
 
-  &__list-item {
-    position: relative;
-    margin-right: 0.5rem;
-    font-size: 0.85rem;
-    color: #555;
-    text-transform: capitalize;
+  &:last-of-type {
+    color: #777;
 
     &::after {
-      content: '>';
-      margin-left: 0.5rem;
-    }
-
-    &:last-of-type {
-      color: #777;
-
-      & .section__breadcrumbs-item_link {
-        color: #777;
-      }
-
-      &::after {
-        content: '';
-      }
+      content: '';
     }
   }
+}
 
-  &__list-item_link {
-    color: #555;
+.breadcrumbs-wrapper__list-item_link {
+  color: #555;
 
-    &:hover,
-    &:focus {
-      color: inherit;
-      cursor: pointer;
-    }
+  &:hover,
+  &:focus {
+    color: inherit;
+    cursor: pointer;
   }
 }
