@@ -125,7 +125,7 @@ content:
           description: A loyalty programme solution for retail and hospitality companies that gathers data about purchases and preferences to approach customers with more personalized offers. 
         - to: https://myemma.com
           domain: myemma.com
-          logo: notavailable.png
+          logo: emma.jpg
           title: Emma
           description: Email campaign platform with support available to lend a hand in email marketing strategy, content and design to help maximize your results.
         - to: https://mailchimp.com
