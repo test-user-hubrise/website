@@ -21,7 +21,7 @@ content:
         - to: https://iikosoftware.com
           logo: iiko.png
           title: iiko
-          description: iiko is 100% cloud, easy to deploy and scale for single and multi-store businesses. Over 30 000 businesses use iiko to automate every aspect of their operations. 
+          description: iiko is 100% cloud, easy to deploy and scale for single and multi-store businesses. Over 30,000 businesses use iiko to automate every aspect of their operations. 
         - to: https://www.ikentoo.com
           logo: ikentoo-lightspeed.png
           title: iKentoo by LightSpeed
@@ -33,7 +33,7 @@ content:
           additional_info: Documentation in French
         - to: http://www.myorderboxhq.com
           logo: myorderbox.png
-          title: MyOrderBox
+          title: My Order Box
           description: My Order Box is an affordable cloud based Point of Sales for takeaway and restaurants. My Order Box is easy to install and get hands on.
         - to: http://www.logiciel-de-livraison.com
           logo: nestor.png

@@ -22,7 +22,7 @@ content:
         - to: https://iikosoftware.com
           logo: iiko.png
           title: iiko
-          description: iiko est une solution cloud facile à déployer et à faire évoluer. Plus de 30 000 entreprises mono ou multisites l'utilisent pour automatiser leurs opérations. 
+          description: iiko est une solution cloud facile à déployer et à faire évoluer. Plus de 30.000 entreprises mono ou multisites l'utilisent pour automatiser leurs opérations. 
           additional_info: Documentation en anglais
         - to: https://www.ikentoo.com
           logo: ikentoo-lightspeed.png
