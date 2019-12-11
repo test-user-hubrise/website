@@ -32,7 +32,7 @@ export const Feedback = () => {
           >
             <FontAwesomeIcon
               icon={faAngleDown}
-              flip={isExpanded ? `vertical` : null}
+              flip={isExpanded && `vertical`}
               fixedWidth
             />
           </button>
