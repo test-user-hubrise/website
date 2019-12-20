@@ -16,7 +16,7 @@ const DocumentationPage = ({ data, path, pageContext }) => {
   const [ currentPage ] = currentAndSiblingPages.nodes
     .filter(({ id }) => id === data.currentPage.id)
   const { frontmatter, body } = currentPage
-  const { title, gallery, appInfo } = frontmatter
+  const { title, gallery, app_info } = frontmatter
 
   return (
     <>
@@ -55,7 +55,7 @@ const DocumentationPage = ({ data, path, pageContext }) => {
               }, [])}
             />
           )}
-          {appInfo && <AppInfo content={appInfo} />}
+          {app_info && <AppInfo content={app_info} />}
         </div>
       </section>
     </>
