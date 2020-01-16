@@ -7,29 +7,23 @@ import locales from '../i18n/locales'
 
 const newTabProps = {
   target: `_blank`,
-  rel: `noopener noreferrer`
+  rel: `noopener noreferrer`,
 }
 
 const Link = ({ to: initialTo, children, newTab, ...other }) => {
   const leadsToInternalPage = initialTo.startsWith(`/`)
   const leadsToDashboard = initialTo.includes(`manager.hubrise.com`)
   const isAnchorWithinCurrentPage = initialTo.startsWith(`#`)
-  const { i18n: { language } } = useTranslation()
+  const {
+    i18n: { language },
+  } = useTranslation()
   const isDefaultLanguage = locales[language].default
   const queryString = `?locale=${locales[language].tag}`
   const to = initialTo + (leadsToDashboard ? queryString : ``)
-  const mappedTo = (
-    locales[language][`pathMappings`] && locales[language][`pathMappings`][to]
-  )
 
   if (leadsToInternalPage) {
     return (
-      <GatsbyLink
-        to={isDefaultLanguage
-          ? to
-          : `/${language}${mappedTo || to}`}
-        {...other}
-      >
+      <GatsbyLink to={isDefaultLanguage ? to : `/${language}${to}`} {...other}>
         {children}
       </GatsbyLink>
     )
@@ -38,7 +32,7 @@ const Link = ({ to: initialTo, children, newTab, ...other }) => {
   return (
     <a
       href={to}
-      {...((newTab && !isAnchorWithinCurrentPage) && newTabProps)}
+      {...(newTab && !isAnchorWithinCurrentPage && newTabProps)}
       {...other}
     >
       {children}
@@ -49,12 +43,12 @@ const Link = ({ to: initialTo, children, newTab, ...other }) => {
 Link.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.node,
-  newTab: PropTypes.bool
+  newTab: PropTypes.bool,
 }
 
 Link.defaultProps = {
   children: <></>,
-  newTab: true
+  newTab: true,
 }
 
 export default Link

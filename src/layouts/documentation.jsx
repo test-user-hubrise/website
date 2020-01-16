@@ -7,21 +7,42 @@ import {
   SectionNavigation,
   Gallery,
   AppInfo,
-  Breadcrumbs
+  Breadcrumbs,
 } from '../components/documentation'
 
 const DocumentationPage = ({ data, path, pageContext }) => {
   const { name: chapterTitle, logo: logoBase } = pageContext.config
   const { currentAndSiblingPages, images } = data
-  const [ currentPage ] = currentAndSiblingPages.nodes
-    .filter(({ id }) => id === data.currentPage.id)
+  const [currentPage] = currentAndSiblingPages.nodes.filter(
+    ({ id }) => id === data.currentPage.id
+  )
   const { frontmatter, body } = currentPage
   const { title, gallery, app_info } = frontmatter
 
+  const breadcrumbs = getBreadcrumbs(
+    data.currentAndSiblingPages.nodes,
+    data.currentPage.id
+  )
+
+  function getBreadcrumbs() {
+    const pageNodes = currentAndSiblingPages.nodes
+    const currentPageId = data.currentPage.id
+
+    const firstPage = pageNodes.find((node) => node.frontmatter.position === 1)
+
+    const currentPage = pageNodes.find((node) => node.id === currentPageId)
+
+    return [
+      { id: 1, path: '/developers/', label: 'Developers' },
+      { id: 2, path: firstPage.fields.slug, label: chapterTitle },
+      { id: 3, path: null, label: currentPage.frontmatter.title },
+    ]
+  }
+
   return (
     <>
-      <Breadcrumbs path={path} />
-      <section className='section'>
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      <section className="section">
         <div
           className={`
           section__in
@@ -30,14 +51,10 @@ const DocumentationPage = ({ data, path, pageContext }) => {
           section__in_developers
         `}
         >
-          <div className='section__content'>
-            <div className='documentation'>
-              <h1>
-                {title}
-              </h1>
-              <MDXRenderer>
-                {body}
-              </MDXRenderer>
+          <div className="section__content">
+            <div className="documentation">
+              <h1>{title}</h1>
+              <MDXRenderer>{body}</MDXRenderer>
             </div>
           </div>
           <SectionNavigation
@@ -64,11 +81,13 @@ const DocumentationPage = ({ data, path, pageContext }) => {
 
 export const documentationPageQuery = graphql`
   query getDocumentationPageContent(
-    $id: String!,
-    $currentAndSiblingPagesFilter: MdxFilterInput!,
-    $imagesFilter: FileFilterInput,
+    $id: String!
+    $currentAndSiblingPagesFilter: MdxFilterInput!
+    $imagesFilter: FileFilterInput
   ) {
-    currentPage: mdx(id: { eq: $id }) { id }
+    currentPage: mdx(id: { eq: $id }) {
+      id
+    }
     currentAndSiblingPages: allMdx(filter: $currentAndSiblingPagesFilter) {
       nodes {
         id
@@ -96,7 +115,9 @@ export const documentationPageQuery = graphql`
       }
     }
     images: allFile(filter: $imagesFilter) {
-      nodes { ...Image }
+      nodes {
+        ...Image
+      }
     }
   }
 `
@@ -104,7 +125,7 @@ export const documentationPageQuery = graphql`
 DocumentationPage.propTypes = {
   data: PropTypes.shape({
     currentPage: PropTypes.exact({
-      id: PropTypes.string.isRequired
+      id: PropTypes.string.isRequired,
     }),
     currentAndSiblingPages: PropTypes.shape({
       nodes: PropTypes.arrayOf(
@@ -118,31 +139,31 @@ DocumentationPage.propTypes = {
               availability: PropTypes.string,
               price_range: PropTypes.string,
               website: PropTypes.string,
-              contact: PropTypes.string
-            })
+              contact: PropTypes.string,
+            }),
           }),
           fields: PropTypes.shape({
-            slug: PropTypes.string.isRequired
+            slug: PropTypes.string.isRequired,
           }),
           headings: PropTypes.arrayOf(
             PropTypes.shape({
               depth: PropTypes.number.isRequired,
-              value: PropTypes.string.isRequired
+              value: PropTypes.string.isRequired,
             })
           ),
-          body: PropTypes.string.isRequired
+          body: PropTypes.string.isRequired,
         })
-      )
+      ),
     }),
     images: PropTypes.shape({
       nodes: PropTypes.arrayOf(
         PropTypes.shape({
           name: PropTypes.string.isRequired,
-          childImageSharp: PropTypes.object.isRequired
+          childImageSharp: PropTypes.object.isRequired,
         })
-      )
-    })
-  })
+      ),
+    }),
+  }),
 }
 
 export default DocumentationPage
