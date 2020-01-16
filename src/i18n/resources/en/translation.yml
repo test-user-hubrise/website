@@ -13,12 +13,12 @@ layout:
     links:
       - title: Home
         to: /
-      - title: Apps
+      - title: Integrations
         to: /apps
-      - title: Pricing
-        to: /pricing
       - title: Developers
         to: /developers
+      - title: Pricing
+        to: /pricing
 
 forms:
   validation:
