@@ -1,6 +1,6 @@
 .call-summary {
-  color: #555;
-  background-color: inherit;
+  color: #777;
+  background-color: #fafafa;
 
   tr {
     vertical-align: middle;
@@ -13,7 +13,6 @@
 
   td:first-of-type {
     width: 33%;
-    font-weight: 600;
   }
 
   &__cell-wrapper--outer {
