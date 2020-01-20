@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import ContactForm from './forms/contact'
 import Modal from '../components/modal'
 import Layout from './layout'
-import Seo from './seo'
+import Seo from '../components/seo'
 
 import { useLayoutContext } from '../context/layout'
 
