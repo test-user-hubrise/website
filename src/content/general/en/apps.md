@@ -1,5 +1,4 @@
 ---
-title: Applications
 layout: apps
 content:
   hero:

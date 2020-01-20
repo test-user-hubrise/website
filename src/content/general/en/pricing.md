@@ -1,5 +1,4 @@
 ---
-title: Pricing
 layout: pricing
 content:
   hero:

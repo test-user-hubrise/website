@@ -1,5 +1,4 @@
 ---
-title: Front page
 layout: frontpage
 path_override: /
 content:

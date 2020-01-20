@@ -1,5 +1,4 @@
 ---
-title: Developpeurs
 layout: developers
 content:
   hero:
