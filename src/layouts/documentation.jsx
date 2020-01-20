@@ -20,10 +20,11 @@ const DocumentationPage = ({ data, path, pageContext }) => {
   const { title, gallery, app_info } = frontmatter
 
   return (
-    <Breadcrumbs path={path} />
-    <section className='section'>
-      <div
-        className={`
+    <>
+      <Breadcrumbs path={path} />
+      <section className='section'>
+        <div
+          className={`
           section__in
           section__in_padding
           section__in_reverse
