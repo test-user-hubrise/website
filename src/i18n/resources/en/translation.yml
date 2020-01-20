@@ -20,6 +20,16 @@ layout:
       - title: Pricing
         to: /pricing
 
+misc:
+  feedback:
+    title: Feedback on this page
+    description: 'If you spotted an error or a need for improvement, you can:'
+    options:
+      - text: Send us an email
+        to: 'mailto:support@hubrise.com'
+      - text: Or edit this page and submit a Pull Request
+        to: https://github.com/HubRise/website
+
 forms:
   validation:
     # Generic {
