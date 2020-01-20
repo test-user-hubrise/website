@@ -13,7 +13,7 @@ layout:
     links:
       - title: Home
         to: /
-      - title: Intégrations
+      - title: Apps
         to: /apps
       - title: Développeurs
         to: /developpeurs
