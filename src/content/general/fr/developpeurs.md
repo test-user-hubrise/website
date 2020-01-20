@@ -23,7 +23,7 @@ content:
       to: /developers/authentication
       icon: fa-sign-out
     - title: Intégration
-      description: Checklist d'intégration, couvrant plusieurs types d'applications (en anglais)
+      description: Checklist d'intégration, couvrant plusieurs types d'applications (en anglais) -- ceci est un test!!!
       to: /developers/integration
       icon: fa-list-alt
 ---
