@@ -17,14 +17,13 @@ const DocumentationPage = ({ data, path, pageContext }) => {
   const [ currentPage ] = currentAndSiblingPages.nodes
     .filter(({ id }) => id === data.currentPage.id)
   const { frontmatter, body } = currentPage
-  const { title, gallery, appInfo } = frontmatter
+  const { title, gallery, app_info } = frontmatter
 
   return (
-    <>
-      <Breadcrumbs path={path} />
-      <section className='section'>
-        <div
-          className={`
+    <Breadcrumbs path={path} />
+    <section className='section'>
+      <div
+        className={`
           section__in
           section__in_padding
           section__in_reverse
@@ -56,7 +55,7 @@ const DocumentationPage = ({ data, path, pageContext }) => {
               }, [])}
             />
           )}
-          {appInfo && <AppInfo content={appInfo} />}
+          {app_info && <AppInfo content={app_info} />}
         </div>
       </section>
       <Feedback />

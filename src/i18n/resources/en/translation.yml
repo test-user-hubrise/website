@@ -13,10 +13,12 @@ layout:
     links:
       - title: Home
         to: /
-      - title: Pricing
-        to: /pricing
+      - title: Apps
+        to: /apps
       - title: Developers
         to: /developers
+      - title: Pricing
+        to: /pricing
 
 misc:
   feedback:
