@@ -1,8 +1,8 @@
 ---
 layout: developers
 meta:
-    title: Documentation développeurs - HubRise
-    description:
+  title: Documentation développeurs - HubRise
+  description:
 content:
   hero:
     title: Connectez votre application à HubRise

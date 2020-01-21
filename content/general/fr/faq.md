@@ -2,8 +2,8 @@
 title: F.A.Q
 layout: faq
 meta:
-    title: F.A.Q. - HubRise
-    description:
+  title: F.A.Q. - HubRise
+  description:
 ---
 
 import ContactFormToggle from '../../../src/components/markdown/contact_form_toggle.jsx'

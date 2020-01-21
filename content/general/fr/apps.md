@@ -1,8 +1,8 @@
 ---
 layout: apps
 meta:
-    title: Applications intégrées - HubRise
-    description:
+  title: Applications intégrées - HubRise
+  description:
 content:
   hero:
     title: Applications intégrées
