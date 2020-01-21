@@ -9,17 +9,17 @@ export const Breadcrumbs = ({ path }) => {
   let rebuiltPath = ``
 
   return (
-    <section className='breadcrumbs-wrapper'>
-      <ul className='breadcrumbs-wrapper__list'>
+    <section className="breadcrumbs-wrapper">
+      <ul className="breadcrumbs-wrapper__list">
         {/*
           Dev section, which isn't part of the path,
           should come before API section (per provided design),
         */}
         {path.includes(`api`) && (
-          <li className='breadcrumbs-wrapper__list-item'>
+          <li className="breadcrumbs-wrapper__list-item">
             <Link
-              to='/developers'
-              className='breadcrumbs-wrapper__list-item_link'
+              to="/developers"
+              className="breadcrumbs-wrapper__list-item_link"
             >
               Developers
             </Link>
@@ -32,23 +32,23 @@ export const Breadcrumbs = ({ path }) => {
           return (
             <li
               key={generateKey(segment, idx)}
-              className='breadcrumbs-wrapper__list-item'
+              className="breadcrumbs-wrapper__list-item"
             >
               {/* Last element in chain should't be a link */}
-              {(idx === pathSegments.length - 1) ? (
+              {idx === pathSegments.length - 1 ? (
                 segmentWithoutDashes
               ) : (
                 <Link
-                  to={rebuiltPath.endsWith(`api`)
-                    ? rebuiltPath + `/${pathSegments[idx + 1]}`
-                    : rebuiltPath
+                  to={
+                    rebuiltPath.endsWith(`api`)
+                      ? rebuiltPath + `/${pathSegments[idx + 1]}`
+                      : rebuiltPath
                   }
-                  className='breadcrumbs-wrapper__list-item_link'
+                  className="breadcrumbs-wrapper__list-item_link"
                 >
                   {segmentWithoutDashes === `api`
                     ? `API Reference`
-                    : segmentWithoutDashes
-                  }
+                    : segmentWithoutDashes}
                 </Link>
               )}
             </li>

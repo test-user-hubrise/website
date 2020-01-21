@@ -14,15 +14,16 @@ import {
 const DocumentationPage = ({ data, path, pageContext }) => {
   const { name: chapterTitle, logo: logoBase } = pageContext.config
   const { currentAndSiblingPages, images } = data
-  const [ currentPage ] = currentAndSiblingPages.nodes
-    .filter(({ id }) => id === data.currentPage.id)
+  const [currentPage] = currentAndSiblingPages.nodes.filter(
+    ({ id }) => id === data.currentPage.id
+  )
   const { frontmatter, body } = currentPage
   const { title, gallery, app_info } = frontmatter
 
   return (
     <>
       <Breadcrumbs path={path} />
-      <section className='section'>
+      <section className="section">
         <div
           className={`
           section__in
@@ -31,14 +32,10 @@ const DocumentationPage = ({ data, path, pageContext }) => {
           section__in_developers
         `}
         >
-          <div className='section__content'>
-            <div className='documentation'>
-              <h1>
-                {title}
-              </h1>
-              <MDXRenderer>
-                {body}
-              </MDXRenderer>
+          <div className="section__content">
+            <div className="documentation">
+              <h1>{title}</h1>
+              <MDXRenderer>{body}</MDXRenderer>
             </div>
           </div>
           <SectionNavigation
@@ -66,11 +63,13 @@ const DocumentationPage = ({ data, path, pageContext }) => {
 
 export const documentationPageQuery = graphql`
   query getDocumentationPageContent(
-    $id: String!,
-    $currentAndSiblingPagesFilter: MdxFilterInput!,
-    $imagesFilter: FileFilterInput,
+    $id: String!
+    $currentAndSiblingPagesFilter: MdxFilterInput!
+    $imagesFilter: FileFilterInput
   ) {
-    currentPage: mdx(id: { eq: $id }) { id }
+    currentPage: mdx(id: { eq: $id }) {
+      id
+    }
     currentAndSiblingPages: allMdx(filter: $currentAndSiblingPagesFilter) {
       nodes {
         id
@@ -98,7 +97,9 @@ export const documentationPageQuery = graphql`
       }
     }
     images: allFile(filter: $imagesFilter) {
-      nodes { ...Image }
+      nodes {
+        ...Image
+      }
     }
   }
 `
