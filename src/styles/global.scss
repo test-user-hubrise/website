@@ -1,3 +1,5 @@
+@import 'base/_constants';
+
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
 @import 'node_modules/font-awesome/scss/font-awesome';
 
@@ -5,10 +7,10 @@
 @import 'plugins/foundation/foundation';
 @include foundation-everything($flex: true);
 
-@import 'base/_base';
-@import 'base/_variables';
+@import 'base/_reset';
 
 @import 'components/app';
+@import 'components/app_info';
 @import 'components/apps';
 @import 'components/breadcrumbs_wrapper';
 @import 'components/button';

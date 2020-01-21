@@ -6,7 +6,7 @@ export const Philosophy = ({ title, description }) => {
     <section className="section">
       <div className="section__in section__in_padding">
         <h3 className="section__title">{title}</h3>
-        <p className="section__description section__description_black">
+        <p className="section__description section__description_large">
           {description.paragraph_1}
         </p>
         <p className="section__description">{description.paragraph_2}</p>

@@ -11,12 +11,7 @@ export const Hero = ({ title, description, signupFormContent }) => {
         <div className="index-hero__banner">
           <div className="index-hero__banner-in">
             <h3 className="index-hero__title">{title}</h3>
-            <p className="index-hero__description">
-              {description.paragraph}
-              <Link to="#more" className="index-hero__link">
-                {description.link}
-              </Link>
-            </p>
+            <p className="index-hero__description">{description.paragraph}</p>
           </div>
         </div>
         <div className="index-hero__form">
@@ -45,8 +40,7 @@ export const Hero = ({ title, description, signupFormContent }) => {
 Hero.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.shape({
-    paragraph: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired
+    paragraph: PropTypes.string.isRequired
   }).isRequired,
   signupFormContent: PropTypes.shape({
     title: PropTypes.string.isRequired,

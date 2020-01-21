@@ -16,7 +16,7 @@ export const Hero = ({ content }) => {
             {content.description.paragraph_1_text}
             {` `}
             <button
-              className="section__description-link section__description-link_black"
+              className="section__description-link"
               data-open="contact-us"
               aria-controls="contact-us"
               aria-haspopup="true"
@@ -30,7 +30,7 @@ export const Hero = ({ content }) => {
             {content.description.paragraph_2_text}
             {` `}
             <Link
-              className="section__description-link section__description-link_black"
+              className="section__description-link"
               to={content.description.paragraph_2_link_to}
             >
               {content.description.paragraph_2_link_text}

@@ -13,20 +13,14 @@ export const Specials = ({ items }) => {
       {items.map((item, idx) => (
         <p
           key={generateKey(item.paragraph_chunk_1, idx)}
-          className={`
-          section__description
-          section__description_large
-        `}
+          className="section__description"
         >
           <b>{item.paragraph_chunk_1}</b>
           {item.paragraph_chunk_2}
           {` `}
           {item.link && item.link.to ? (
             <Link
-              className={`
-              section__description-link
-              section__description-link_black
-            `}
+              className="section__description-link"
               to={item.link.to}
               newTab={false}
             >
@@ -34,10 +28,7 @@ export const Specials = ({ items }) => {
             </Link>
           ) : (
             <button
-              className={`
-              section__description-link
-              section__description-link_black
-            `}
+              className="section__description-link"
               data-open="contact-us"
               aria-controls="contact-us"
               aria-haspopup="true"

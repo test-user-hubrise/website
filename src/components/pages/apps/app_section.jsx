@@ -30,7 +30,7 @@ export const AppSection = ({ title, apps, logos, suggestAppContent }) => {
                   <div className="app__description">
                     {description}
                     {additionalInfo && (
-                      <p style={{ fontSize: `0.9rem` }}>
+                      <p>
                         <i>{additionalInfo}</i>
                       </p>
                     )}

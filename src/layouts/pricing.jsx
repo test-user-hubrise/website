@@ -16,14 +16,7 @@ const PricingPage = ({ data }) => {
         <Specials items={content.specials} />
         {content.faq && (
           <div className="section__link-block">
-            <Link
-              className={`
-                section__description-link
-                section__description-link_black
-                section__description-link_bold
-              `}
-              to={content.faq.to}
-            >
+            <Link className="section__description-link" to={content.faq.to}>
               {content.faq.text}
             </Link>
           </div>
