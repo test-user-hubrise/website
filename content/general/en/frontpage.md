@@ -2,7 +2,7 @@
 layout: frontpage
 meta:
   title: HubRise
-  description:
+  description: HubRise connects your POS, your website and all your applications.
 path_override: /
 content:
   hero:

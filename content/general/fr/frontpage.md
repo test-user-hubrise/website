@@ -3,12 +3,12 @@ layout: frontpage
 path_override: /
 meta:
   title: HubRise
-  description:
+  description: HubRise relie votre caisse, votre site Internet et tous vos logiciels.
 content:
   hero:
     title: HubRise centralise les données de votre commerce
     description:
-      paragraph: Reliez votre caisse votre site Internet et tous vos logiciels.
+      paragraph: Reliez votre caisse, votre site Internet et tous vos logiciels.
       link: En savoir plus
   signup_form:
     title: Démarrez maintenant
