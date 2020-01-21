@@ -3,8 +3,8 @@ title: Integration guide
 position: 3
 layout: documentation
 meta:
-    title:
-    description:
+  title:
+  description:
 ---
 
 ## Menu setup

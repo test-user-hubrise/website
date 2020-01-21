@@ -3,8 +3,8 @@ title: API Extensions
 position: 6
 layout: documentation
 meta:
-    title:
-    description:
+  title:
+  description:
 ---
 
 The HubRise API can be extended in two ways:

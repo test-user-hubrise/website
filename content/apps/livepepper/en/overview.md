@@ -3,8 +3,8 @@ position: 1
 title: Overview
 layout: documentation
 meta:
-    title:
-    description:
+  title:
+  description:
 gallery:
   - pizza-hut.png
   - papajohns.png

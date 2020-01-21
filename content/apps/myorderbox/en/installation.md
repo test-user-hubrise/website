@@ -3,8 +3,8 @@ title: Installation
 position: 2
 layout: documentation
 meta:
-    title:
-    description:
+  title:
+  description:
 ---
 
 - Open the My Order Box back-office https://go.myorderboxhq.com/

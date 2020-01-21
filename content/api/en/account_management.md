@@ -3,8 +3,8 @@ title: Account management
 position: 2
 layout: documentation
 meta:
-    title:
-    description:
+  title:
+  description:
 ---
 
 ## 1. Location

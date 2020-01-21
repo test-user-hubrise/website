@@ -3,8 +3,8 @@ title: Integration
 position: 3
 layout: documentation
 meta:
-    title:
-    description:
+  title:
+  description:
 ---
 
 We are working on this chapter.

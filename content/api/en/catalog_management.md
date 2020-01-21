@@ -3,8 +3,8 @@ title: Catalog management
 position: 4
 layout: documentation
 meta:
-    title:
-    description:
+  title:
+  description:
 ---
 
 ## 1. Catalogs
