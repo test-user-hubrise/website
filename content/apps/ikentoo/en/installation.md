@@ -13,6 +13,8 @@ meta:
 
 - When you see the page below, click on "setup connection" and identify yourself with your iKentoo credentials
   ![](../images/installation_setup.png)
+  
+  THIS IS A TEST
 
 - Select the correct location and click on "Connect"
 
