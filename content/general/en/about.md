@@ -1,6 +1,6 @@
 ---
 title: HubRise
-layout: simple
+layout: faq
 meta:
   title: About HubRise
   description:
